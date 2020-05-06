@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12.2
+    networks:
+      backend:
+        aliases:
+          - db-testing
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ScoupApp
+  backend:
+    image: scoupApp-backend
+    build: .
+    networks:
+      - backend
+    depends_on:
+      - db
+    ports:
+      - 3080:3080
+      - 3443:3443
+    environment:
+      NODE_ENV: testing
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: scoupApp
+      DATABASE_PASSWORD: admin
+      DATABASE_NAME: scoupApp
+volumes:
+  db:
+networks:
+  backend:
