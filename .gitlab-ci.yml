@@ -1,0 +1,12 @@
+image: node:latest
+stages:
+  - build
+cache:
+  paths:
+    - node_modules/
+build:
+  stage: build
+  script:
+    - yarn install
+    - yarn compile
+    - yarn lint
