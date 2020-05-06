@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'scoupappM' do
-  # Pods for scoupappM
+target 'scoutapp' do
+  # Pods for scoutapp
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -77,11 +77,6 @@ target 'scoupappM' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'scoupappMTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-
   use_native_modules!
 
   # Enables Flipper.
@@ -91,14 +86,5 @@ target 'scoupappM' do
   add_flipper_pods!
   post_install do |installer|
     flipper_post_install(installer)
-  end
-end
-
-target 'scoupappM-tvOS' do
-  # Pods for scoupappM-tvOS
-
-  target 'scoupappM-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
   end
 end

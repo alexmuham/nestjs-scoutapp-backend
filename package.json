@@ -1,5 +1,5 @@
 {
-  "name": "scoupappM",
+  "name": "scoutapp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint scoupappM"
+    "lint": "eslint scoutapp"
   },
   "dependencies": {
     "react": "16.11.0",
