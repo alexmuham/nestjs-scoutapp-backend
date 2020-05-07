@@ -29,6 +29,7 @@
     "prettier": "^2.0.5",
     "react": "16.11.0",
     "react-native": "0.62.2",
+    "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
@@ -69,5 +70,10 @@
     "*.{ts,tsx}": [
       "eslint"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc -p ./tsconfig.json --noEmit && lint-staged"
+    }
   }
 }
