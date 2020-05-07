@@ -1,4 +1,4 @@
-FROM node:12 as build
+FROM node:14.0.0-alpine3.11 as build
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lock
@@ -12,11 +12,5 @@ COPY package.json yarn.lock ./
 RUN yarn install --prod --frozen-lock
 COPY --from=build /app/dist dist
 COPY resources resources
-COPY certificates certificates
-COPY config/gcloud config/gcloud
-COPY config/firebase config/firebase
-COPY config/typeorm-*.json config/
-COPY migrations migrations
-COPY email email
 COPY .env* ./
 CMD ["yarn", "start:prod"]

@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   db:
-    image: postgres:12.2
+    image: mongo
     networks:
       backend:
         aliases:
@@ -11,11 +11,10 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: ScoupApp
+      MONGO_INITDB_ROOT_USERNAME: avikast
+      MONGO_INITDB_ROOT_PASSWORD: admin
   backend:
-    image: scoupApp-backend
+    image: scoutApp-backend
     build: .
     networks:
       - backend
@@ -26,10 +25,6 @@ services:
       - 3443:3443
     environment:
       NODE_ENV: testing
-      DATABASE_PORT: 5432
-      DATABASE_USERNAME: scoupApp
-      DATABASE_PASSWORD: admin
-      DATABASE_NAME: scoupApp
 volumes:
   db:
 networks:

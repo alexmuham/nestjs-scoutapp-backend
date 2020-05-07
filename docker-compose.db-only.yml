@@ -2,14 +2,14 @@ version: '3.7'
 
 services:
   db:
-    image: postgres:12.2
+    image: mongo
     ports:
       - 5432:5432
     volumes:
-      - db:/var/lib/postgresql/data
+      - db:/data/db
     environment:
-      POSTGRES_USER: scoupApp
+      POSTGRES_USER: scoutApp
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: scoupApp
+      POSTGRES_DB: scoutApp
 volumes:
   db:
