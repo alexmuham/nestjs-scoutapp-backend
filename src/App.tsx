@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-  View,
-  Text,
-} from 'react-native';
+import {View, Text} from 'react-native';
 
-const App:  React.FC = () => {
-return (
+const App: React.FC = () => {
+  return (
     <View>
       <Text>test</Text>
-      </View>)
-}
+    </View>
+  );
+};
 export default App;

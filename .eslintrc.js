@@ -2,12 +2,15 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   extends: [
-    '@react-native-community', //TODO fixed
-    'airbnb-typescript', //TODO fixed
+    '@react-native-community',
+    'airbnb-typescript',
     'prettier',
     'prettier/@typescript-eslint',
     'prettier/react',
   ],
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   rules: {
     'import/no-unresolved': 'off',
     'import/named': 'off',
@@ -19,7 +22,7 @@ module.exports = {
     'consistent-return': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react-hooks/exhaustive-deps': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
+    // '@typescript-eslint/no-unused-vars': 'off',
     'no-useless-return': 'off',
     'no-await-in-loop': 'off',
     'import/no-cycle': 'error',
