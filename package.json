@@ -30,7 +30,10 @@
     "react": "16.11.0",
     "react-native": "0.62.2",
     "ts-node": "^8.10.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "@spryrocks/react-api": "git+https://gitlab.com/spry-rocks/modules/spry-rocks-modules-react-api.git#0.1.0-initial+1",
+    "apollo-boost": "^0.4.7",
+    "yup": "0.28.5"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -58,7 +61,6 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.5",
     "jest": "^24.9.0",
-    "lint-staged": "^10.2.0",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "^2.0.5",
     "react-test-renderer": "16.11.0"
@@ -66,14 +68,9 @@
   "jest": {
     "preset": "react-native"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint"
-    ]
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "tsc -p ./tsconfig.json --noEmit && lint-staged"
+      "pre-commit": "yarn compile && yarn lint"
     }
   }
 }
