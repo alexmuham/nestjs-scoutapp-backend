@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../scoutapp-backend/.idea/scoutapp-backend.iml" filepath="$PROJECT_DIR$/../scoutapp-backend/.idea/scoutapp-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/scoutapp-mobile.iml" filepath="$PROJECT_DIR$/.idea/scoutapp-mobile.iml" />
     </modules>
   </component>
