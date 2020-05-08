@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import IUserStore from '../../database/stores/user/IUserStore';
 import IAccountManager from './IAccountManager';
 import {mapAccountFromDB} from '../../database/entities/Mappers';
-import AvikastError from '../../AvikastError';
+import ScoutAppError from '../../ScoutAppError';
 
 @Injectable()
 export default class AccountManager implements IAccountManager {
@@ -10,20 +10,7 @@ export default class AccountManager implements IAccountManager {
 
   async getMyAccount(myUserId: string) {
     const dbUser = await this.userStore.getUser(myUserId);
-    if (!dbUser) throw new AvikastError('User is not found');
-    return mapAccountFromDB(dbUser);
-  }
-
-  async updateAccount(
-    myUserId: string,
-    user: {
-      name: string;
-      email: string;
-    },
-  ) {
-    await this.userStore.updateUser(myUserId, user);
-    const dbUser = await this.userStore.getUser(myUserId);
-    if (!dbUser) throw new AvikastError('User is not found');
+    if (!dbUser) throw new ScoutAppError('User is not found');
     return mapAccountFromDB(dbUser);
   }
 }

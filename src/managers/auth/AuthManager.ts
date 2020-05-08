@@ -1,23 +1,22 @@
 import IAuthManager from './IAuthManager';
 import AuthResponse from '../../entities/AuthResponse';
-import IUserStore from '../../database/stores/user/IUserStore';
+import IUserStore from 'database/stores/user/IUserStore';
 import {Injectable} from '@nestjs/common';
-import ILoginStore from '../../database/stores/login/ILoginStore';
+import ILoginStore from 'database/stores/login/ILoginStore';
 import * as bcrypt from 'bcrypt';
-import DbUser from '../../database/entities/User';
-import AvikastError from '../../AvikastError';
-import LocalLogin from '../../database/entities/LocalLogin';
-import ISessionStore from '../../database/stores/session/ISessionStore';
+import DbUser from 'database/entities/User';
+import LocalLogin from 'database/entities/LocalLogin';
+import ISessionStore from 'database/stores/session/ISessionStore';
+import Session from 'database/entities/Session';
 import {IJwtService} from './jwt/IJwtService';
 import {JwtPayload} from './jwt/JwtPayload';
 import {pbkdf2Sync, randomBytes} from 'crypto';
-import Session from '../../database/entities/Session';
 import AppSession from 'entities/Session';
-import AvikastAuthError, {AvikastErrorType} from './AvikastAuthError';
+import ScoutAppAuthError, {ScoutAppErrorType} from './ScoutAppAuthError';
 import {generate as generatePassword} from 'generate-password';
 import {ID} from 'entities/Common';
-import AppType from 'entities/AppType';
 import {Platform} from 'entities/Platform';
+import ScoutAppError from '../../ScoutAppError';
 
 @Injectable()
 export default class AuthManager extends IAuthManager {
@@ -31,46 +30,56 @@ export default class AuthManager extends IAuthManager {
   }
 
   async register(
-    appType: AppType,
     platform: Platform,
     email: string,
     password: string,
-    name: string,
-    // @ts-ignore
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    image: string,
+    education: string,
   ): Promise<AuthResponse> {
     // if (await this.loginStore.findLocalLoginByEmail(email)) {
-    //   throw new AvikastError('User with the same email already exists');
+    //   throw new ScoutAppError('User with the same email already exists');
     // }
 
-    const user = await this.userStore.createUser({
-      name,
-      email,
-      allowNotifications: true,
-    });
+    const user = await this.userStore.createUser(
+      {
+        firstName,
+        email,
+        allowNotifications: true,
+        lastName,
+        phoneNumber,
+        education,
+      },
+      {
+        id: image,
+      },
+    );
     const login = await this.createLocalLogin(user, email, password);
-    return this.createSession(login.user, appType, platform);
+    return this.createSession(login.user, platform);
   }
 
-  async login(appType: AppType, platform: Platform, email: string, password: string) {
-    const login = await this.findLoginOrThrow({email}, AvikastErrorType.AuthFailed);
+  async login(platform: Platform, email: string, password: string) {
+    const login = await this.findLoginOrThrow({email}, ScoutAppErrorType.AuthFailed);
 
-    await AuthManager.checkPasswordOrThrow(login, password, AvikastErrorType.AuthFailed);
-    return this.createSession(login.user, appType, platform);
+    await AuthManager.checkPasswordOrThrow(login, password, ScoutAppErrorType.AuthFailed);
+    return this.createSession(login.user, platform);
   }
 
   private static async checkPasswordOrThrow(
     login: LocalLogin,
     password: string,
-    errorType: AvikastErrorType,
+    errorType: ScoutAppErrorType,
   ) {
     if (!(await AuthManager.isPasswordValid(login, password))) {
-      throw new AvikastAuthError('Password is not valid', errorType);
+      throw new ScoutAppAuthError('Password is not valid', errorType);
     }
   }
 
   private async findLoginOrThrow(
     user: {email?: string; id?: ID},
-    errorType: AvikastErrorType,
+    errorType: ScoutAppErrorType,
   ): Promise<LocalLogin> {
     let login;
     if (user.email) {
@@ -80,7 +89,7 @@ export default class AuthManager extends IAuthManager {
     }
 
     if (!login) {
-      throw new AvikastAuthError('Login not found', errorType);
+      throw new ScoutAppAuthError('Login not found', errorType);
     }
 
     return login;
@@ -106,23 +115,18 @@ export default class AuthManager extends IAuthManager {
     return pbkdf2Sync(tmp, tmp, 2048, 32, 'sha512').toString('hex');
   }
 
-  private async createSession(
-    user: DbUser,
-    appType: AppType,
-    platform: Platform,
-  ): Promise<AuthResponse> {
-    return this.createSessionInfo(appType, platform, user, (token, refreshToken) =>
-      this.sessionStore.createSession(user, token, refreshToken, appType, platform),
+  private async createSession(user: DbUser, platform: Platform): Promise<AuthResponse> {
+    return this.createSessionInfo(platform, user, (token, refreshToken) =>
+      this.sessionStore.createSession(user, token, refreshToken, platform),
     );
   }
 
   public async refresh(refreshToken: string) {
     const session = await this.sessionStore.getSessionByRefreshToken(refreshToken);
     if (!session) {
-      throw new AvikastAuthError('Session not found', AvikastErrorType.RefreshFailed);
+      throw new ScoutAppAuthError('Session not found', ScoutAppErrorType.RefreshFailed);
     }
     return this.createSessionInfo(
-      session.appType,
       session.platform,
       session.user,
       (token: string, refreshToken: string) =>
@@ -131,7 +135,6 @@ export default class AuthManager extends IAuthManager {
   }
 
   private async createSessionInfo(
-    appType: AppType,
     platform: Platform,
     user: DbUser,
     createOrUpdateSession: (token: string, refreshToken: string) => Promise<Session>,
@@ -140,12 +143,11 @@ export default class AuthManager extends IAuthManager {
     const refreshToken = AuthManager.createCryptoToken();
     const session = await createOrUpdateSession(token, refreshToken);
     if (!session) {
-      throw new AvikastError('Session wasn`t created!');
+      throw new ScoutAppError('Session wasn`t created!');
     }
     const payload: JwtPayload = {
       userId: user.id,
       sessionToken: session.token,
-      appType: AppType[appType],
       platform: Platform[platform],
     };
     const jwt = await this.jwtService.sign(payload);
@@ -157,37 +159,28 @@ export default class AuthManager extends IAuthManager {
       const {
         userId,
         sessionToken,
-        appType: appTypeString,
         platform: platformString,
       } = await this.jwtService.verify(jwt);
 
-      const appType = AppType[appTypeString as AppType];
-      if (!appType)
-        throw new AvikastAuthError(
-          'JWT payload should contains a valid appType',
-          AvikastErrorType.JwtPayloadMalformed,
-        );
-
       const platform = Platform[platformString as Platform];
       if (!platform)
-        throw new AvikastAuthError(
+        throw new ScoutAppAuthError(
           'JWT payload should contains a valid platform',
-          AvikastErrorType.JwtPayloadMalformed,
+          ScoutAppErrorType.JwtPayloadMalformed,
         );
 
       const session: AppSession = {
         token: sessionToken,
         userId,
-        appType,
         platform,
       };
 
       return session;
     } catch (e) {
       if (e.message === 'jwt expired') {
-        throw new AvikastAuthError('JWT token expired', AvikastErrorType.TokenExpired);
+        throw new ScoutAppAuthError('JWT token expired', ScoutAppErrorType.TokenExpired);
       }
-      throw new AvikastError(e.message);
+      throw new ScoutAppError(e.message);
     }
   }
 
@@ -196,11 +189,9 @@ export default class AuthManager extends IAuthManager {
 
     const dbSession = await this.sessionStore.getSessionByToken(session.token);
     if (!dbSession)
-      throw new AvikastAuthError('Session not found', AvikastErrorType.AuthFailed);
+      throw new ScoutAppAuthError('Session not found', ScoutAppErrorType.AuthFailed);
     if (dbSession.user.id !== session.userId)
-      throw new AvikastAuthError('User malformed', AvikastErrorType.AuthFailed);
-    if (dbSession.appType !== session.appType)
-      throw new AvikastAuthError('appType malformed', AvikastErrorType.AuthFailed);
+      throw new ScoutAppAuthError('User malformed', ScoutAppErrorType.AuthFailed);
 
     return session;
   }
@@ -217,7 +208,7 @@ export default class AuthManager extends IAuthManager {
   async recoverPassword(email: string) {
     const login = await this.findLoginOrThrow(
       {email},
-      AvikastErrorType.RestorePasswordFailed,
+      ScoutAppErrorType.RestorePasswordFailed,
     );
 
     const password = AuthManager.generateNewPassword();
@@ -233,13 +224,13 @@ export default class AuthManager extends IAuthManager {
   async changePassword(userId: ID, oldPassword: string, password: string) {
     const login = await this.findLoginOrThrow(
       {id: userId},
-      AvikastErrorType.ChangePasswordFailed,
+      ScoutAppErrorType.ChangePasswordFailed,
     );
 
     await AuthManager.checkPasswordOrThrow(
       login,
       oldPassword,
-      AvikastErrorType.ChangePasswordFailed,
+      ScoutAppErrorType.ChangePasswordFailed,
     );
 
     await this.updatePassword(login, password);

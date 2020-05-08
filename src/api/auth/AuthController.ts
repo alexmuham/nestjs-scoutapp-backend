@@ -22,15 +22,18 @@ export class AuthController {
   @Ignore('Authorization')
   async register(
     @Body() request: RegisterRequest,
-    @HttpRequest() {appType, platform}: HttpRequestInfo,
+    @HttpRequest() {platform}: HttpRequestInfo,
   ): Promise<AuthResponse> {
     return mapAuthResponseToApi(
       await this.authManager.register(
-        appType,
         platform,
         request.email,
         request.password,
-        request.name,
+        request.firstName,
+        request.lastName,
+        request.phoneNumber,
+        request.image,
+        request.education,
       ),
     );
   }
@@ -39,10 +42,10 @@ export class AuthController {
   @Ignore('Authorization')
   async login(
     @Body() request: LoginRequest,
-    @HttpRequest() {appType, platform}: HttpRequestInfo,
+    @HttpRequest() {platform}: HttpRequestInfo,
   ): Promise<AuthResponse> {
     return mapAuthResponseToApi(
-      await this.authManager.login(appType, platform, request.email, request.password),
+      await this.authManager.login(platform, request.email, request.password),
     );
   }
 

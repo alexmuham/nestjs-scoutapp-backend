@@ -1,20 +1,21 @@
 import AuthResponse from '../../entities/AuthResponse';
 import Session from '../../entities/Session';
 import {ID} from 'entities/Common';
-import AppType from 'entities/AppType';
 import {Platform} from 'entities/Platform';
 
 export default abstract class IAuthManager {
   abstract register(
-    appType: AppType,
     platform: Platform,
     email: string,
     password: string,
-    name: string,
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    image: string,
+    education: string,
   ): Promise<AuthResponse>;
 
   abstract login(
-    appType: AppType,
     platform: Platform,
     email: string,
     password: string,

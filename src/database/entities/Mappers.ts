@@ -1,20 +1,17 @@
-import User from '../../entities/User';
 import DbUser from './User';
+import User from '../../entities/User';
 import Account from '../../entities/Account';
-import AdditionalUserInfo from '../../entities/AdditionalUserInfo';
 import Preferences from '../../entities/Preferences';
 
-export const mapAdditionalUserInfoFromDb = (user: DbUser): AdditionalUserInfo => ({
-  email: user.email,
-});
-
-export const mapUserFromDb = (
-  user: DbUser,
-  addAdditionalInfo: boolean = false,
-): User => ({
+export const mapUserFromDb = (user: DbUser): User => ({
   id: user.id,
-  name: user.name,
-  additionalUserInfo: addAdditionalInfo ? mapAdditionalUserInfoFromDb(user) : undefined,
+  firstName: user.firstName,
+  lastName: user.lastName,
+  phoneNumber: user.phoneNumber,
+  allowNotifications: user.allowNotifications,
+  email: user.email,
+  image: user.image ? user.image.id : user.imageId,
+  education: user.education,
 });
 
 export const mapPreferencesFromDB = (user: DbUser): Preferences => ({
@@ -23,6 +20,5 @@ export const mapPreferencesFromDB = (user: DbUser): Preferences => ({
 
 export const mapAccountFromDB = (account: DbUser): Account => ({
   user: mapUserFromDb(account),
-  info: mapAdditionalUserInfoFromDb(account),
   preferences: mapPreferencesFromDB(account),
 });

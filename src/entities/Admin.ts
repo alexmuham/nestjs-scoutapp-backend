@@ -1,5 +1,5 @@
 import {ID} from './Common';
-import User from 'entities/User';
+import User from 'database/entities/User';
 
 export default interface Admin {
   id: ID;

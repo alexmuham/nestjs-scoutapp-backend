@@ -1,20 +1,20 @@
 import {ObservableInput} from 'rxjs';
 import {BadRequestException, UnauthorizedException} from '@nestjs/common';
-import AvikastError from 'AvikastError';
-import AvikastAuthError, {AvikastErrorType} from 'managers/auth/AvikastAuthError';
+import ScoutAppError from 'ScoutAppError';
+import ScoutAppAuthError, {ScoutAppErrorType} from 'managers/auth/ScoutAppAuthError';
 
-function processAuthError(error: AvikastAuthError) {
+function processAuthError(error: ScoutAppAuthError) {
   switch (error.type) {
-    case AvikastErrorType.TokenExpired:
-    case AvikastErrorType.AuthFailed:
-    case AvikastErrorType.RefreshFailed:
+    case ScoutAppErrorType.TokenExpired:
+    case ScoutAppErrorType.AuthFailed:
+    case ScoutAppErrorType.RefreshFailed:
       throw new UnauthorizedException(error.message);
   }
 }
 
 export function processError(error: any): ObservableInput<any> {
-  if (error instanceof AvikastError) {
-    if (error instanceof AvikastAuthError) {
+  if (error instanceof ScoutAppError) {
+    if (error instanceof ScoutAppAuthError) {
       processAuthError(error);
     }
     throw new BadRequestException(error.message);

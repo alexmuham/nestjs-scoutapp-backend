@@ -1,17 +1,16 @@
 import ISessionStore from './ISessionStore';
-import Session from '../../entities/Session';
-import {ID} from 'entities/Common';
-import AppType from 'entities/AppType';
+import {InjectRepository} from '@nestjs/typeorm';
+import {In, IsNull, Not, Repository} from 'typeorm';
+import Session from 'database/entities/Session';
 import {Platform} from 'entities/Platform';
-import SessionModel, {SessionSchema} from '../../models/SessionModel';
-import {InjectModel} from '@nestjs/mongoose';
-import {Model} from 'mongoose';
-import AvikastError from '../../../AvikastError';
-import {mapSessionFromModel, mapSessionToModel} from '../../models/Mappers';
+import {ID} from 'entities/Common';
+import {FindConditions} from 'typeorm/find-options/FindConditions';
+import ScoutAppError from '../../../ScoutAppError';
 
 export default class SessionStore extends ISessionStore {
   constructor(
-    @InjectModel(SessionSchema.name) private sessionModel: Model<SessionModel>,
+    @InjectRepository(Session)
+    private readonly repository: Repository<Session>,
   ) {
     super();
   }
@@ -20,41 +19,52 @@ export default class SessionStore extends ISessionStore {
     user: {id: string},
     token: string,
     refreshToken: string,
-    appType: AppType,
     platform: Platform,
   ) {
-    let newSession = await this.sessionModel.create(
-      mapSessionToModel(user.id, refreshToken, token, appType, platform),
-    );
-    newSession = await newSession.populate('user');
-    return mapSessionFromModel(newSession);
+    const session = await this.repository.create({
+      user,
+      refreshToken,
+      token,
+      platform,
+    });
+    await this.repository.insert(session);
+    return session;
   }
 
   async getSession(session: {id: string}) {
-    const newSession = await this.sessionModel.findOne({_id: session.id});
-    return newSession ? mapSessionFromModel(newSession) : undefined;
+    return this.repository.findOne(session.id, {
+      relations: ['user'],
+    });
   }
 
   async getSessionOrFail(sessionId: ID) {
-    const session = await this.sessionModel.findOne({_id: sessionId});
-    if (!session) throw new AvikastError('Session not exists');
-    return mapSessionFromModel(session);
+    const session = await this.getSession({id: sessionId});
+    if (!session) throw new ScoutAppError('Session not exists');
+    return session;
   }
 
   async getSessionByToken(token: string) {
-    const session = await this.sessionModel.findOne({token});
-    return session ? mapSessionFromModel(session) : undefined;
+    return this.repository.findOne(
+      {token},
+      {
+        relations: ['user'],
+      },
+    );
   }
 
   async getSessionByTokenOrThrow(token: string) {
-    const session = await this.sessionModel.findOne({token});
-    if (!session) throw new AvikastError('Session not found');
-    return mapSessionFromModel(session);
+    const session = await this.getSessionByToken(token);
+    if (!session) throw new ScoutAppError('Session not found');
+    return session;
   }
 
   async getSessionByRefreshToken(refreshToken: string) {
-    const session = await this.sessionModel.findOne({refreshToken});
-    return session ? mapSessionFromModel(session) : undefined;
+    return this.repository.findOne(
+      {refreshToken},
+      {
+        relations: ['user'],
+      },
+    );
   }
 
   async updateSession(
@@ -62,14 +72,39 @@ export default class SessionStore extends ISessionStore {
     token: string,
     refreshToken: string,
   ): Promise<Session> {
-    await this.sessionModel.update({_id: session.id}, {token, refreshToken});
+    await this.repository.update(session.id, {token, refreshToken});
     return this.getSessionOrFail(session.id);
   }
 
   async updateFirebaseToken(session: {id: string}, registrationId: string) {
-    await this.sessionModel.update(
-      {_id: session.id},
-      {firebaseRegistrationId: registrationId},
-    );
+    await this.repository.update(session.id, {firebaseRegistrationId: registrationId});
+  }
+
+  async getUserFirebaseTokens(userId: ID): Promise<string[]> {
+    const where: FindConditions<Session> = {
+      userId,
+      firebaseRegistrationId: Not(IsNull()),
+    };
+    return (
+      await this.repository.find({
+        where,
+        relations: ['user'],
+        select: ['firebaseRegistrationId'],
+      })
+    ).map((session: Session) => session.firebaseRegistrationId as string);
+  }
+
+  async getUsersFirebaseTokens(userIds: ID[]): Promise<string[]> {
+    const where: FindConditions<Session> = {
+      userId: In(userIds),
+      firebaseRegistrationId: Not(IsNull()),
+    };
+    return (
+      await this.repository.find({
+        where,
+        relations: ['user'],
+        select: ['firebaseRegistrationId'],
+      })
+    ).map((session: Session) => session.firebaseRegistrationId as string);
   }
 }

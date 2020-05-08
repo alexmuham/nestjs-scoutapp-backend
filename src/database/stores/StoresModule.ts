@@ -6,6 +6,8 @@ import ISessionStore from 'database/stores/session/ISessionStore';
 import SessionStore from 'database/stores/session/SessionStore';
 import IUserStore from './user/IUserStore';
 import UserStore from './user/UserStore';
+import IFileStore from './file/IFileStore';
+import FileStore from './file/FileStore';
 
 @Module({
   imports: [
@@ -25,12 +27,17 @@ import UserStore from './user/UserStore';
       provide: ISessionStore,
       useClass: SessionStore,
     },
+    {
+      provide: IFileStore,
+      useClass: FileStore,
+    },
   ],
   exports: [
     //
     ISessionStore,
     ILoginStore,
     IUserStore,
+    IFileStore,
   ],
 })
 export class StoresModule {}

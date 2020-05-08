@@ -1,5 +1,4 @@
-import Session from '../../entities/Session';
-import AppType from 'entities/AppType';
+import Session from 'database/entities/Session';
 import {Platform} from 'entities/Platform';
 import {ID} from 'entities/Common';
 
@@ -8,7 +7,6 @@ export default abstract class ISessionStore {
     user: {id: string},
     token: string,
     refreshToken: string,
-    appType: AppType,
     platform: Platform,
   ): Promise<Session>;
 
@@ -32,4 +30,8 @@ export default abstract class ISessionStore {
     session: {id: string},
     registrationId: string,
   ): Promise<void>;
+
+  abstract getUserFirebaseTokens(userId: ID): Promise<string[]>;
+
+  abstract getUsersFirebaseTokens(userId: ID[]): Promise<string[]>;
 }

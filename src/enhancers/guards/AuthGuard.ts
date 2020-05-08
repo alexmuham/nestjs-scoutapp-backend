@@ -1,6 +1,6 @@
 import {CanActivate, ExecutionContext, Injectable} from '@nestjs/common';
 import IAuthManager from '../../managers/auth/IAuthManager';
-import AvikastError from '../../AvikastError';
+import ScoutAppError from '../../ScoutAppError';
 import {extractJwtFromContext} from '../RequestExtractors';
 import {processError} from '../utils/ErrorUtils';
 
@@ -12,7 +12,7 @@ export default class AuthGuard implements CanActivate {
     try {
       const jwt = extractJwtFromContext(context);
       if (!jwt) {
-        throw new AvikastError('Authorization token is empty');
+        throw new ScoutAppError('Authorization token is empty');
       }
 
       await this.authManager.getSessionFromTokenOrThrow(jwt);

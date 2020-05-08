@@ -2,8 +2,6 @@
 import IRouter, {Absolute, Routes} from './IRouter';
 import {Injectable} from '@nestjs/common';
 import IConfigService from 'services/config/IConfigService';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import AppType from 'entities/AppType';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const q = (key: string, value: string) => ({key, value});

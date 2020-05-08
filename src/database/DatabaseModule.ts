@@ -1,46 +1,45 @@
 import {Module} from '@nestjs/common';
-import {MongooseModule, MongooseModuleOptions} from '@nestjs/mongoose';
+import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
 import IConfigService from 'services/config/IConfigService';
 import {ConfigModule} from 'services/config/ConfigModule';
-import {UserSchema} from './models/UserModel';
-import {LocalLoginSchema} from './models/LocalLoginModel';
-import {SessionSchema} from './models/SessionModel';
+import File from './entities/File';
+import User from './entities/User';
+import LocalLogin from './entities/LocalLogin';
+import Session from './entities/Session';
 
-const options = (configService: IConfigService): MongooseModuleOptions => {
-  const host = configService.get('DATABASE_HOST');
-  const port = configService.getNumber('DATABASE_PORT');
-  const databaseName = configService.get('DATABASE_NAME');
+const entities = [
+  //
+  File,
+  User,
+  LocalLogin,
+  Session,
+];
 
-  const uri = `mongodb://${host}:${port}/${databaseName}`;
-
-  return {
-    uri,
-    user: configService.get('DATABASE_USERNAME'),
-    pass: configService.get('DATABASE_PASSWORD'),
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-  };
-};
+const options = (configService: IConfigService): TypeOrmModuleOptions => ({
+  type: 'postgres',
+  host: configService.get('DATABASE_HOST'),
+  port: configService.getNumber('DATABASE_PORT'),
+  username: configService.get('DATABASE_USERNAME'),
+  password: configService.get('DATABASE_PASSWORD'),
+  database: configService.get('DATABASE_NAME'),
+  synchronize: configService.getBoolean('DATABASE_SYNCHRONIZE', false),
+  logging: 'all',
+  entities,
+});
 
 @Module({
   imports: [
     //
-    MongooseModule.forRootAsync({
+    TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [IConfigService],
       useFactory: options,
     }),
-    MongooseModule.forFeature([
-      //
-      UserSchema,
-      LocalLoginSchema,
-      SessionSchema,
-    ]),
+    TypeOrmModule.forFeature(entities),
   ],
   exports: [
     //
-    MongooseModule,
+    TypeOrmModule,
   ],
 })
 export class DatabaseModule {}

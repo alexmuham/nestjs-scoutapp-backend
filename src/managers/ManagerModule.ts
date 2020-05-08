@@ -4,6 +4,10 @@ import IAccountManager from './account/IAccountManager';
 import AccountManager from './account/AccountManager';
 import {AuthModule} from './auth/AuthModule';
 import {ServicesModule} from 'services/ServicesModule';
+import AuthManager from './auth/AuthManager';
+import IAuthManager from './auth/IAuthManager';
+import FileManager from './file/FileManager';
+import IFileManager from './file/IFileManager';
 
 @Module({
   imports: [
@@ -17,7 +21,21 @@ import {ServicesModule} from 'services/ServicesModule';
       provide: IAccountManager,
       useClass: AccountManager,
     },
+    {
+      provide: IAuthManager,
+      useClass: AuthManager,
+    },
+    {
+      provide: IFileManager,
+      useClass: FileManager,
+    },
   ],
-  exports: [IAccountManager, AuthModule],
+  exports: [
+    //
+    IAccountManager,
+    AuthModule,
+    IAuthManager,
+    IFileManager,
+  ],
 })
 export class ManagerModule {}
