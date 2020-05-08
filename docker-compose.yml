@@ -13,7 +13,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: Klean
+      POSTGRES_DB: ScoutApp
   backend:
     image: scoutApp-backend
     build: .

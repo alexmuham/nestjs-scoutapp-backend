@@ -1,0 +1,34 @@
+{
+  "Project": "ScoutApp-backend",
+  "Source": {
+    "Type": "Excel",
+    "Placement": {
+      "Type": "OneDrive",
+      "Config": {
+        "ResId": "C62576FDA2F2250C!25306",
+        "AuthKey": "!ALxoYcweqQJPWY8"
+      }
+    },
+    "Config": {
+      "LanguageColumns": {
+        "English (default)": {
+          "Id": "en",
+          "Name": "English"
+        }
+      },
+      "PlatformKeyColumns": {
+        "Key (Web)": "Web"
+      }
+    }
+  },
+  "Destinations": [
+    {
+      "Type": "Web",
+      "Path": "resources",
+      "File": "Translations.json",
+      "Filter": {
+        "App": [null]
+      }
+    }
+  ]
+}

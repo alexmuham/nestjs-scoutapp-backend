@@ -3,27 +3,23 @@ import {StoresModule} from 'database/stores/StoresModule';
 import IAccountManager from './account/IAccountManager';
 import AccountManager from './account/AccountManager';
 import {AuthModule} from './auth/AuthModule';
-import {ServicesModule} from 'services/ServicesModule';
-import AuthManager from './auth/AuthManager';
-import IAuthManager from './auth/IAuthManager';
-import FileManager from './file/FileManager';
 import IFileManager from './file/IFileManager';
+import FileManager from './file/FileManager';
+import {StorageModule} from 'storage/StorageModule';
+import {ServicesModule} from 'services/ServicesModule';
 
 @Module({
   imports: [
     //
     StoresModule,
     AuthModule,
+    StorageModule,
     ServicesModule,
   ],
   providers: [
     {
       provide: IAccountManager,
       useClass: AccountManager,
-    },
-    {
-      provide: IAuthManager,
-      useClass: AuthManager,
     },
     {
       provide: IFileManager,
@@ -34,7 +30,6 @@ import IFileManager from './file/IFileManager';
     //
     IAccountManager,
     AuthModule,
-    IAuthManager,
     IFileManager,
   ],
 })
