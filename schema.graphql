@@ -1,0 +1,27 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  allowNotifications: Boolean!
+  phoneNumber: String!
+  image: String!
+  education: String!
+}
+
+type Preferences {
+  allowNotifications: Boolean!
+}
+
+type Account {
+  user: User!
+  preferences: Preferences!
+}
+
+type Query {
+  myAccount: Account!
+}

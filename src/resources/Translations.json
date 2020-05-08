@@ -1,0 +1,395 @@
+{
+  "en": {
+    "welcome": {
+      "login": "Login",
+      "registration": "Registration",
+      "terms&Conditions": "Terms & Conditions",
+      "forgotPass": "If you don’t remember neither password or email and the account really belongs\n          to you, you can contact our",
+      "support": "support",
+      "email": "Email",
+      "pass": "Password",
+      "signUp": "Sign Up",
+      "can’tGetAccess": "Can’t get access?",
+      "accessRecovery": "Access recovery"
+    },
+    "clientDetails": {
+      "customer": "Customer",
+      "age": "Age: ",
+      "phone": "Phone: "
+    },
+    "client": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "courierDetails": {
+      "accept": "Accept",
+      "decline": "Decline",
+      "waitVerificationCourier": "Please wait while courier made verification request",
+      "courier": "Courier",
+      "revisionStatus": "Revision status: ",
+      "age": "Age: ",
+      "phone": "Phone: ",
+      "email": "Email: ",
+      "W4": "W4",
+      "carInsurance": "Car insurance",
+      "driversLicense": "Drivers license",
+      "licensePlate": "License plate",
+      "carRegistration": "Car registration"
+    },
+    "courier": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "status": "Status"
+    },
+    "laundries": {
+      "title": "Title",
+      "contactPerson": "Contact person",
+      "address": "Address"
+    },
+    "pages": {
+      "keyword": "Keyword",
+      "title": "Title",
+      "save": "Save"
+    },
+    "conditions": {
+      "termsAndConditions": "Terms and Conditions",
+      "registerNow": "Register now"
+    },
+    "registration": {
+      "registration": "Registration",
+      "fullName": "Full name",
+      "phoneNum": "Phone number",
+      "email": "Email",
+      "pass": "Password",
+      "confirmPass": "Confirm password",
+      "alreadyReg": "Already registered?",
+      "logIn": "Log In",
+      "submit": "Submit",
+      "birthday": "Birthday",
+      "signUp": "Sign Up"
+    },
+    "logIn": {
+      "logIn": "Log In",
+      "enterEmail": "Please enter your email",
+      "pass": "Password",
+      "forgotPass": "Forgot password ?",
+      "enter": "Enter"
+    },
+    "forgotPassword": {
+      "forgotPass": "Forgot password?",
+      "logIn": "Log In",
+      "havePass": "Have a password?",
+      "enter": "Enter",
+      "enterEmail": "Enter your E-mail",
+      "doNotRememberPass": "If you don’t remember neither password or email and the account really belongs to you, you can contact our",
+      "support": "support",
+      "accessRecovery": "Access recovery",
+      "sendYourEmail": "We will send you an email with a link to restore access",
+      "email": "Email",
+      "restore": "Restore",
+      "haveAnAccount": "Have an account ?"
+    },
+    "registrationDatePicker": {
+      "dateOfBirth": "Date of birth"
+    },
+    "addressDropMenu": {
+      "userAddress": "User Address",
+      "search": "Search"
+    },
+    "imagePickerPopUp": {
+      "camera": "Camera",
+      "gallery": "Gallery",
+      "cancel": "Cancel"
+    },
+    "scanner": {
+      "scanBags": "Scan bags"
+    },
+    "popUpContainer": {
+      "cancel": "Cancel"
+    },
+    "settings": {
+      "notice": "Notice!",
+      "tornOff": "Turn off",
+      "settings": "Settings",
+      "preferences": "Setup your preferences",
+      "notifications": "Push notifications",
+      "terms&Conditions": "Terms & Conditions"
+    },
+    "editProfile": {
+      "phoneNumber": "Phone number",
+      "profile": "Profile",
+      "saveProfile": "Profile has been saved"
+    },
+    "userProfile": {
+      "profile": "Profile",
+      "dateOfBirth": "Date of birth",
+      "phoneNumber": "Phone number",
+      "email": "E-mail",
+      "edit": "Edit"
+    },
+    "orderHistory": {
+      "orderHistory": "Order History"
+    },
+    "menu": {
+      "profileTitle": "Profile",
+      "orderHistoryTitle": "Order History",
+      "paymentCardTitle": "Payment Card",
+      "settingsTitle": "Settings",
+      "logOutTitle": "Log Out",
+      "wantToBeAPartner": "Want to be a partner?",
+      "learnHowBtn": "Learn how",
+      "profileSubTitle": "Edit your profile",
+      "orderHistorySubTitle": "See your order history",
+      "paymentCardSubTitle": "Change your payment info",
+      "settingsSubTitle": "Manage your application",
+      "logOutSubTitle": "Change your account",
+      "homeTitle": "Home",
+      "homeSubTitle": "Laundry list"
+    },
+    "additionalInfo": {
+      "additionalInfo": "Additional Info",
+      "laundryName": "Bussiness name",
+      "workHours": "Work hours",
+      "contactPerson": "Contact person",
+      "website": "Website (optional)",
+      "bussinessDescription": "Describe your own business",
+      "save ": "Save",
+      "address": "Address",
+      "paymentInfo": "Payment info"
+    },
+    "bill": {
+      "bags": "Total bags",
+      "weight": "Measured weight",
+      "price": "Total price",
+      "billCustomer": "Bill Customer",
+      "openBill": "Open Bill"
+    },
+    "orderDetails": {
+      "summaryInformation": "Summary information",
+      "orderInfo": "Order info",
+      "scanBags": "Scan bags",
+      "solid": "solid",
+      "order": "Order ",
+      "status": "Status: ",
+      "address": "Address: ",
+      "laundry": "Laundry: ",
+      "customer": "Customer: ",
+      "courier": "Courier: "
+    },
+    "laundryOrders": {
+      "inRoute": "In route",
+      "washing": "Washing",
+      "completed": "Completed",
+      "orders": "Orders",
+      "refresh": "Drag down to refresh",
+      "selectOrder": "Select order"
+    },
+    "orderProgressLaundry": {
+      "loading...": "Loading...",
+      "loading": "Loading",
+      "pricing": "Pricing",
+      "configureBill": "Configure bill",
+      "payment": "Payment",
+      "enterPayment": "Enter payment",
+      "openBill": "Open Bill",
+      "washing": "Washing",
+      "timeRemaining": "Time remaining",
+      "washing...": "Washing...",
+      "orderInfo": "Order Info",
+      "confirmReady": "Confirm ready",
+      "customerPayment": "Customer payment",
+      "awaitingPayment": "Awaiting payment",
+      "bill": "Bill",
+      "refresh": "Refresh",
+      "completed": "Completed",
+      "orderStatus": "Order status",
+      "awaitingCourier": "Awaiting for courier",
+      "orders": "To orders"
+    },
+    "adminLayout": {
+      "orders": "ORDERS",
+      "customers": "CUSTOMERS",
+      "courier": "COURIERS",
+      "laundry": "LAUNDRIES",
+      "settings": "SETTINGS",
+      "pages": "PAGES",
+      "logout": "LOGOUT"
+    },
+    "errorPlaceholder": {
+      "seeDetails": "See details",
+      "tryAgain": "Try again"
+    },
+    "orderSummary": {
+      "youName": "Your name",
+      "clientName": "Client name",
+      "yourAddress": "Your address",
+      "clientAddress": "Client address",
+      "laundryAddress": "Laundry address",
+      "totalBags": "Total bags",
+      "totalWeight": "Total weight",
+      "distanceMiles": "Distance miles",
+      "orderCreated": "Order created",
+      "orderCompleted": "Order completed",
+      "unlockCode": "Unlock code",
+      "deliveryLaundry": "Delivery to laundry",
+      "totalPrice": "Total price",
+      "billStatus": "Bill status",
+      "deliveryToClient": "Delivery to client",
+      "washService": "Wash service",
+      "finishTime": "Finish time",
+      "weight": "Weight",
+      "orderTime": "Order time"
+    },
+    "scannedBags": {
+      "noScanedBags": "No scaned bags",
+      "scannedBags": "Scanned bags"
+    },
+    "additionalDocs": {
+      "refresh": "Refresh",
+      "confirm": "Confirm",
+      "W4": "W4",
+      "carInsurance": "Car insurance",
+      "driversLicense": "Drivers license",
+      "licensePlate": "License plate",
+      "carRegistration": "Car registration",
+      "additionalDocs": "Additional documents"
+    },
+    "orderInfo": {
+      "orderInfo": "Order info",
+      "totalPrice": "Total price",
+      "acceptOrder": "Accept order"
+    },
+    "orderProgressCourier": {
+      "loading": "Loading...",
+      "pickUp": "Pick up laundry",
+      "showNav": "Show on navigator",
+      "scanBags": "Scan bags",
+      "deliveryToLaundry": "Delivery to laundry",
+      "deliveryToClient": "Delivery to client",
+      "laundryDelivered": "Laundry delivered",
+      "packageDelivered": "Package delivered",
+      "toOrdersList": "To orders list"
+    },
+    "orderList": {
+      "bags": "Bags:",
+      "weight": "Weight:",
+      "price": "Price:"
+    },
+    "orders": {
+      "orders": "Orders",
+      "refresh": "Drag down to refresh",
+      "order": "Order#",
+      "date": "Date",
+      "customer": "Customer",
+      "status": "Status"
+    },
+    "changePass": {
+      "oldPass": "Old password",
+      "enterOldPass": "Enter old password",
+      "newPass": "New password",
+      "enterNewPass": "Enter new password",
+      "confirmPass": "Confirm password",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "laundryDetails": {
+      "createOrder": "Create Order",
+      "laundryDetails": "Laundry details"
+    },
+    "laundryList": {
+      "laundryList": "Laundry list"
+    },
+    "newOrder": {
+      "newOrder": "New Order",
+      "address": "Your address:",
+      "enterAddress": "Enter your address",
+      "laundryAddress": "Laundry address:",
+      "distance": "Distance miles:",
+      "weight": "Weight:",
+      "UnlockCode": "Enter unlock code",
+      "comment": "Comment to order",
+      "returnShipping": "Return shipping:",
+      "selfDelivery": "Self delivery",
+      "scan": "Scan Bag(s)"
+    },
+    "orderComplete": {
+      "deliveryComplete": "Delivery complete",
+      "orderDetails": "Order details",
+      "totalPrice": "Total price",
+      "please": "Please",
+      "rate": "rate the service",
+      "acceptOrder": "Accept order"
+    },
+    "orderPayment": {
+      "newOrderDetails": "Check newOrder details",
+      "checkNewOrder": "Check newOrder",
+      "name": "Your name",
+      "address": "Your address",
+      "LaundryAddress": "Laundry address",
+      "bags": "Bags total",
+      "weight": "Weight total",
+      "distance": "Distance, miles",
+      "price": "Delivery price",
+      "checkOut": "Check out",
+      "orderPayment": "Order payment"
+    },
+    "orderPopUp": {
+      "confirmPay": "Confirm payment",
+      "verifyInfo": "Please verify info",
+      "bags": "Total Bags",
+      "weight": "Total Weight",
+      "distance": "Distance",
+      "total": "Total:",
+      "pay": "Pay"
+    },
+    "payment": {
+      "paymentCard": "Payment card",
+      "addAPaymentCard": "Add a payment card to pay for services",
+      "addNewPayment": "Add new payment"
+    },
+    "washingPayment": {
+      "confirmPayment": "Confirm payment",
+      "VerifyInfo": "Please verify info",
+      "bags": "Total Bags",
+      "measuredWeight": "Measured weight",
+      "readyTime": "Ready time",
+      "total": "Total:",
+      "pay": "Pay"
+    },
+    "orderProgressCl": {
+      "loading": "Loading...",
+      "payForOrder": "Pay for order",
+      "awaitingForPayment": "Awaiting for payment",
+      "deleteOrder": "Delete order",
+      "pay": "Pay",
+      "orderDetails": "Order Details",
+      "waitingForCourier": "Waiting for courier",
+      "courierOnWay": "Courier on way to you",
+      "waitingForCourierAssignment": "Waiting for courier assignment",
+      "refreshState": "Refresh state",
+      "deliveryToLaundry": "Delivery to laundry",
+      "courierOnWayToLaundry": "Courier on way to the laundry",
+      "delivered": "Delivered",
+      "laundryAcceptedOrder": "Laundry accepted your order",
+      "DeliveredYourPackageToLaundry": "Courier delivered your package to the laundry",
+      "laundryPricing": "Laundry pricing",
+      "bill": "Bill",
+      "confirmPayment": "Confirm payment",
+      "washing": "Washing",
+      "washInProgress": "Wash in progress",
+      "totalPrice": "Total price",
+      "washComplete": "Wash complete",
+      "onWayToYou": "Courier on the way to you",
+      "onWayToTheLaundry": "Courier on the way to the laundry",
+      "searchForAvailableCourier": "Search for available courier",
+      "deliveryPrice": "Delivery price",
+      "pickUpOrder": "Pick up he order",
+      "deliveryCompleted": "Delivery completed",
+      "orderIsWashingAndWaitingForYou": "order is washig and waiting for you",
+      "orderFinished": "Order finished",
+      "scanBags": "Scan bags"
+    }
+  }
+}

@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "build": "react-app-rewired build",
-    "compile": "yarn update-config && tsc -p ./tsconfig.json --noEmit",
+    "compile": "yarn update-config && tsc -p tsconfig.json --noEmit",
     "eject": "react-scripts eject",
     "test": "jest",
     "lint": "eslint './**/*.{ts,tsx}'",
@@ -22,17 +22,40 @@
     "graphql-generate": "graphql-codegen"
   },
   "dependencies": {
+    "@redux-saga/core": "^1.1.3",
+    "@spryrocks/react-api": "git+https://gitlab.com/spry-rocks/modules/spry-rocks-modules-react-api.git#0.1.0-initial+1",
     "@types/node": "^13.13.5",
+    "@types/promise-queue": "^2.2.0",
+    "@types/ramda": "^0.27.4",
     "@types/react-native": "^0.62.7",
+    "@types/react-redux": "^7.1.8",
+    "@types/react-router-native": "^5.1.0",
+    "@types/redux-actions": "^2.6.1",
+    "apollo-boost": "^0.4.7",
     "dotenv": "^8.2.0",
+    "firebase": "^7.14.2",
     "fs": "^0.0.1-security",
+    "graphql": "15.0.0",
+    "i18next": "^19.4.4",
     "prettier": "^2.0.5",
+    "promise-queue": "^2.2.5",
+    "ramda": "^0.27.0",
     "react": "16.11.0",
+    "react-i18next": "^10.13.1",
     "react-native": "0.62.2",
+    "react-native-device-info": "^5.5.7",
+    "react-native-fast-image": "^8.1.5",
+    "react-native-localize": "^1.4.0",
+    "react-native-snackbar": "^2.2.0",
+    "react-redux": "^7.2.0",
+    "react-scripts": "^3.1.1",
+    "redux": "^4.0.4",
+    "redux-actions": "^2.6.5",
+    "redux-persist": "^5.10.0",
+    "redux-saga": "^1.1.3",
+    "rn-secure-storage": "^2.0.4",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3",
-    "@spryrocks/react-api": "git+https://gitlab.com/spry-rocks/modules/spry-rocks-modules-react-api.git#0.1.0-initial+1",
-    "apollo-boost": "^0.4.7",
     "yup": "0.28.5"
   },
   "devDependencies": {
@@ -40,6 +63,8 @@
     "@babel/plugin-proposal-decorators": "^7.6.0",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/runtime": "^7.6.2",
+    "@graphql-codegen/cli": "^1.10.0",
+    "@graphql-codegen/typescript": "^1.10.0",
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/react": "^16.9.34",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
@@ -67,10 +92,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn compile && yarn lint"
-    }
   }
 }
