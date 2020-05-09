@@ -32,7 +32,6 @@ export class AuthController {
         request.firstName,
         request.lastName,
         request.phoneNumber,
-        request.image,
         request.education,
       ),
     );

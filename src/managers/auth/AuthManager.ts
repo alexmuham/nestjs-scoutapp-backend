@@ -36,26 +36,20 @@ export default class AuthManager extends IAuthManager {
     firstName: string,
     lastName: string,
     phoneNumber: string,
-    image: string,
     education: string,
   ): Promise<AuthResponse> {
     // if (await this.loginStore.findLocalLoginByEmail(email)) {
     //   throw new ScoutAppError('User with the same email already exists');
     // }
 
-    const user = await this.userStore.createUser(
-      {
-        firstName,
-        email,
-        allowNotifications: true,
-        lastName,
-        phoneNumber,
-        education,
-      },
-      {
-        id: image,
-      },
-    );
+    const user = await this.userStore.createUser({
+      firstName,
+      email,
+      allowNotifications: true,
+      lastName,
+      phoneNumber,
+      education,
+    });
     const login = await this.createLocalLogin(user, email, password);
     return this.createSession(login.user, platform);
   }

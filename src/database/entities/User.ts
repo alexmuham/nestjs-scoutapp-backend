@@ -1,5 +1,4 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
-import File from './File';
+import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export default class User {
@@ -7,8 +6,6 @@ export default class User {
     id: string,
     firstName: string,
     lastName: string,
-    imageId: string,
-    image: File,
     email: string,
     phoneNumber: string,
     allowNotifications: boolean,
@@ -17,8 +14,6 @@ export default class User {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.imageId = imageId;
-    this.image = image;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.allowNotifications = allowNotifications;
@@ -33,12 +28,6 @@ export default class User {
 
   @Column()
   lastName: string;
-
-  @Column()
-  imageId: string;
-
-  @ManyToOne(() => File, {nullable: false})
-  image?: File;
 
   @Column()
   email: string;

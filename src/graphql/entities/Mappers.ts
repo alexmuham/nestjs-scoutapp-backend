@@ -11,7 +11,6 @@ export const mapUserToGQL = (user: User): GQLUser => {
     lastName: user.lastName,
     phoneNumber: user.phoneNumber,
     education: user.education,
-    image: user.image,
     email: user.email,
     allowNotifications: user.allowNotifications,
   };

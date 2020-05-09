@@ -7,7 +7,6 @@ export default class RegisterRequest {
     email: string,
     password: string,
     phoneNumber: string,
-    image: string,
     education: string,
   ) {
     this.firstName = firstName;
@@ -15,7 +14,6 @@ export default class RegisterRequest {
     this.email = email;
     this.password = password;
     this.phoneNumber = phoneNumber;
-    this.image = image;
     this.education = education;
   }
 
@@ -37,9 +35,6 @@ export default class RegisterRequest {
   @IsNotEmpty()
   @IsString()
   phoneNumber: string;
-
-  @IsString()
-  image: string;
 
   @IsString()
   education: string;

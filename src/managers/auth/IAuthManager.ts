@@ -11,7 +11,6 @@ export default abstract class IAuthManager {
     firstName: string,
     lastName: string,
     phoneNumber: string,
-    image: string,
     education: string,
   ): Promise<AuthResponse>;
 

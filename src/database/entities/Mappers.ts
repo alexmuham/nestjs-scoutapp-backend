@@ -10,7 +10,6 @@ export const mapUserFromDb = (user: DbUser): User => ({
   phoneNumber: user.phoneNumber,
   allowNotifications: user.allowNotifications,
   email: user.email,
-  image: user.image ? user.image.id : user.imageId,
   education: user.education,
 });
 

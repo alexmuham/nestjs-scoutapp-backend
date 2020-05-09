@@ -18,8 +18,8 @@ export default class UserStore implements IUserStore {
     });
   }
 
-  async createUser(user: Partial<User>, image: Partial<File>) {
-    const newUser = this.repository.create({...user, image});
+  async createUser(user: Partial<User>) {
+    const newUser = this.repository.create(user);
     await this.repository.insert(newUser);
     return newUser;
   }

@@ -9,7 +9,6 @@ export default class User {
     firstName: string,
     lastName: string,
     phoneNumber: string,
-    image: string,
     education: string,
   ) {
     this.id = id;
@@ -18,7 +17,6 @@ export default class User {
     this.email = email;
     this.allowNotifications = allowNotifications;
     this.phoneNumber = phoneNumber;
-    this.image = image;
     this.education = education;
   }
 
@@ -39,9 +37,6 @@ export default class User {
 
   @Field(() => String)
   phoneNumber: string;
-
-  @Field(() => String)
-  image: string;
 
   @Field(() => String)
   education: string;
