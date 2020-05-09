@@ -4,6 +4,5 @@ export default interface RegisterRequest {
   firstName: string;
   lastName: string;
   education: string;
-  uploadFile: string;
   phoneNumber: string;
 }

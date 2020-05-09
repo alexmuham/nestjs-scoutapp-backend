@@ -12,7 +12,5 @@ export default {
   logout: createAction(types.LOGOUT),
   recoverPassword: createAction<ForgotPasswordRequest>(types.RECOVER_PASSWORD),
   setIsChecking: createAction<boolean>(types.SET_IS_CHECKING),
-  chooseAvatar: createAction(types.CHOOSE_AVATAR),
-  chooseAvatarCompleted: createAction<{imageUrl: string}>(types.CHOOSE_AVATAR_COMPLETED),
   removeImage: createAction(types.REMOVE_IMAGE),
 };

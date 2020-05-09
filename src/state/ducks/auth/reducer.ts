@@ -11,10 +11,6 @@ export default handleActions<Auth, any>(
       ...state,
       isChecking: payload,
     }),
-    [types.CHOOSE_AVATAR_COMPLETED]: (state, {payload}: Action<{imageUrl: string}>) => ({
-      ...state,
-      imageUrl: payload.imageUrl,
-    }),
     [types.REMOVE_IMAGE]: (state) => ({...state, imageUrl: undefined}),
   },
   {isBusy: false, isChecking: false, isLoading: false, imageUrl: undefined},

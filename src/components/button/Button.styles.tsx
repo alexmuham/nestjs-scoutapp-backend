@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 25,
+    borderRadius: 10,
     overflow: 'hidden',
     paddingHorizontal: 40,
     paddingVertical: 12,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
 
   solidBtnBackground: {
-    backgroundColor: '#FCAA0D',
+    backgroundColor: '#A61911',
   },
 
   borderedBtnBackground: {

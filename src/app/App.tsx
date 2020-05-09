@@ -1,6 +1,5 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {getStore} from 'state';
 import {NativeRouter, Route, Link} from 'react-router-native';
 import {Text, View} from 'react-native';
 import {Registration} from '../screens/auth';
@@ -8,9 +7,10 @@ import LogIn from '../screens/auth/login/LogIn';
 import ForgotPassword from '../screens/auth/forgotPassword/ForgotPassword';
 import {I18nextProvider} from 'react-i18next';
 import i18n from 'i18next';
-import {getBuildType} from 'services/config/ConfigUtils';
-import BuildType from 'entities/BuildType';
 import AppDebugHeader from 'app/debug/AppDebugHeader';
+import {getBuildType} from '../services/config/ConfigUtils';
+import {getStore} from '../state';
+import BuildType from '../entities/BuildType';
 
 const App: React.FC = () => {
   const buildType = getBuildType();

@@ -1,12 +1,21 @@
-import React from 'react';
-import {KeyboardTypeOptions, TextInput, View, ViewProps, ViewStyle} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  TextInput,
+  TouchableOpacity,
+  View,
+  ViewProps,
+  ViewStyle,
+} from 'react-native';
 import styles from './AuthInputField.styles';
+import * as AuthImageAssets from '../../assets';
 
 interface AuthInputFieldProps extends ViewProps {
   placeholder?: string;
   placeholderTextColor?: string;
   onChangeText?: (text: string) => void;
   value?: string;
+  type?: 'none' | 'emailAddress' | 'password' | 'telephoneNumber' | 'date' | 'decimal';
 }
 
 const AuthInputField: React.FC<AuthInputFieldProps> = ({
@@ -16,13 +25,13 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
   children,
   onChangeText,
   value,
+  type,
   ...otherProps
 }) => {
-  // Keyboard configuration
-  const keyboardType: KeyboardTypeOptions = 'default';
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+
   let autoCapitalize: 'none' | 'sentences' | 'words' | 'characters' | undefined;
 
-  // @ts-ignore
   let inputBorderStyle: ViewStyle;
 
   if (value == null || value === '') {
@@ -35,7 +44,7 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
     <View style={[styles.container, style]}>
       <TextInput
         underlineColorAndroid="transparent"
-        placeholderTextColor="#90B3DD"
+        placeholderTextColor="#D6D6D6"
         style={{
           ...styles.textInput,
           ...inputBorderStyle,
@@ -44,10 +53,24 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
         selectionColor="#0433BF"
         onChangeText={onChangeText}
         value={value}
-        keyboardType={keyboardType}
         placeholder={placeholder}
         {...otherProps}
+        secureTextEntry={type === 'password' && !isPasswordVisible}
+        // @ts-ignore
+        textContentType={type !== 'decimal' ? type : undefined}
       />
+      {type === 'password' && (
+        <TouchableOpacity
+          onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+          style={styles.showHidePasswordContainer}
+        >
+          {value == null || value === '' ? (
+            <Image source={AuthImageAssets.OpenEye} style={styles.pass} />
+          ) : (
+            <Image source={AuthImageAssets.CloseEye} style={styles.pass} />
+          )}
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

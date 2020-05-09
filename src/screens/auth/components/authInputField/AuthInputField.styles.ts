@@ -7,19 +7,19 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    paddingVertical: 0,
-    margin: 0,
+    paddingBottom: 5,
+    paddingLeft: 5,
+    paddingTop: 14,
     borderBottomWidth: 1,
-    color: '#0433BF',
-    padding: 0,
+    color: '#A61911',
   },
 
   textInputEmpty: {
-    borderBottomColor: '#90B3DD',
+    borderBottomColor: '#A61911',
   },
 
   textInputFull: {
-    borderBottomColor: '#0433BF',
+    borderBottomColor: '#A61911',
   },
 
   placeholder: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 12,
     width: 15,
-    height: '100%',
+    top: 8,
     alignItems: 'flex-start',
   },
 

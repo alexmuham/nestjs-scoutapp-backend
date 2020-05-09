@@ -15,10 +15,7 @@ import {actions as alertActions} from '../alert';
 
 function* registerUser({payload}: Action<RegisterRequest>) {
   try {
-    const uploadFileId: string = yield Api.uploadFile(payload.uploadFile);
-    const session: Session = yield Api.register(
-      mapRegisterRequestToApi(payload, uploadFileId),
-    );
+    const session: Session = yield Api.register(mapRegisterRequestToApi(payload));
     yield put(actions.authCompleted(session));
   } catch (e) {
     yield put(actions.authCompleted(e));
@@ -61,14 +58,6 @@ function* recoverPassword({payload}: Action<ForgotPasswordRequest>) {
   }
 }
 
-// function* chooseAvatar() {
-//   yield put(
-//     routerActions.navigateToImagePicker({
-//       submitAction: actions.chooseAvatarCompleted,
-//     }),
-//   );
-// }
-
 export default function* () {
   yield all([
     takeEvery(types.LOGOUT, logout),
@@ -76,6 +65,5 @@ export default function* () {
     takeEvery(types.AUTH_COMPLETED, authCompleted),
     takeEvery(types.LOGIN_USER, loginUser),
     takeEvery(types.RECOVER_PASSWORD, recoverPassword),
-    // takeEvery(types.CHOOSE_AVATAR, chooseAvatar),
   ]);
 }

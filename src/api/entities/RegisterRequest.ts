@@ -4,6 +4,5 @@ export default interface RegisterRequest {
   firstName: string;
   lastName: string;
   education: string;
-  image: string;
   phoneNumber: string;
 }

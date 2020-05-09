@@ -10,14 +10,12 @@ import {User as GQLUser} from './graphql/types';
 
 export const mapRegisterRequestToApi = (
   registerRequest: RegisterRequest,
-  uploadFileId: string,
 ): ApiRegisterRequest => ({
   firstName: registerRequest.firstName,
   lastName: registerRequest.lastName,
   education: registerRequest.education,
   email: registerRequest.email,
   password: registerRequest.password,
-  image: uploadFileId,
   phoneNumber: registerRequest.phoneNumber,
 });
 

@@ -1,11 +1,11 @@
 import {useDispatch} from 'react-redux';
 import {actions as authActions} from '../ducks/auth';
-import RegisterRequest from 'auth/RegisterRequest';
-import LoginRequest from 'api/entities/LoginRequest';
-import ForgotPasswordRequest from 'api/entities/ForgotPasswordRequest';
-import {snackBarActions} from 'state/ducks/snackBar';
 import UpdateUserRequest from '../ducks/session/models';
 import {actions as sessionActions} from '../ducks/session';
+import RegisterRequest from '../../auth/RegisterRequest';
+import LoginRequest from '../../auth/LoginRequest';
+import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
+import {snackBarActions} from '../ducks/snackBar';
 
 export function useAuthActions() {
   const dispatch = useDispatch();
