@@ -1,8 +1,4 @@
-// import {all, put, select, takeEvery} from 'redux-saga/effects';
-// import types from './types';
-// import State from '../../entities/State';
-// import {LoadableContainer} from 'state/entities/LoadableContainer';
-// import {actions as sessionActions} from '../session';
+import {all} from 'redux-saga/effects';
 //
 // function navigateTo(
 //   key: NavigatorKey,
@@ -30,12 +26,12 @@
 // function navigateToMain() {
 //   navigateTo(NavigatorKey.Main, NavigatorUtils.NavigationFlag.Reset);
 // }
-//
-// export default function* () {
-//   yield all([
-//     takeEvery(types.GO_BACK, goBack),
-//     takeEvery(types.NAVIGATE_TO_AUTH, navigateToAuth),
-//     takeEvery(types.ACCOUNT_ENTERED, accountEntered),
-//     takeEvery(types.NAVIGATE_TO_MAIN, navigateToMain),
-//   ]);
-// }
+
+export default function* () {
+  yield all([
+    // takeEvery(types.GO_BACK, goBack),
+    // takeEvery(types.NAVIGATE_TO_AUTH, navigateToAuth),
+    // takeEvery(types.ACCOUNT_ENTERED, accountEntered),
+    // takeEvery(types.NAVIGATE_TO_MAIN, navigateToMain),
+  ]);
+}
