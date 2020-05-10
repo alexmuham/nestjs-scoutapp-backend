@@ -22,9 +22,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
-  centralContainer: {
-    marginBottom: 70,
-  },
   textLink: {
     fontSize: 15,
   },

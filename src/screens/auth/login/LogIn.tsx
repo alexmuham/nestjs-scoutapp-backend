@@ -21,6 +21,7 @@ const LogIn: React.FC = () => {
         onPress={() => undefined}
         text={t('signIn')}
         styleText={styles.textLink}
+        link="/registration"
       />
     </View>
   );
@@ -33,7 +34,6 @@ const LogIn: React.FC = () => {
       buttonTitle={t('signIn')}
       bottomText={bottomText()}
       title={t('signIn')}
-      centralContainerStyles={styles.centralContainer}
     >
       <View>
         <ScrollView>
@@ -55,7 +55,11 @@ const LogIn: React.FC = () => {
         </ScrollView>
         <View style={styles.bottomTextContainerLogin}>
           <Text style={styles.bottomText}>{t('Forget password?')}</Text>
-          <TextLink onPress={() => undefined} text={t('restore')} />
+          <TextLink
+            onPress={() => undefined}
+            text={t('restore')}
+            link="/forgotPassword"
+          />
         </View>
       </View>
     </AuthCard>
