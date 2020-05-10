@@ -101,8 +101,4 @@ export default class ScoutApi implements IScoutApi {
   public async updateFirebaseToken(request: UpdateFirebaseTokenRequest) {
     return this.wrapApiCall(async () => this.restApi.updateFirebaseToken(request));
   }
-
-  public async uploadFile(uri: string) {
-    return this.restApi.uploadFile(uri);
-  }
 }

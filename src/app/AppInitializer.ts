@@ -3,6 +3,8 @@ import translations from 'resources/Translations.json';
 import Localization from './localization/Localization';
 import {AuthInfoKeeper} from 'auth/index';
 import {initializeServicesAsync} from 'services';
+import StateInitializer from '../state/StateInitializer';
+import {rootReducer, rootSaga} from '../state/ducks';
 
 const setupYellowBox = () => {
   YellowBox.ignoreWarnings([
@@ -14,11 +16,9 @@ const setupYellowBox = () => {
   ]);
 };
 
-type Options = {stateInitializer: {initStore: () => void}};
-
 let initialized = false;
 
-const initAsync = async (options: Options) => {
+const initAsync = async () => {
   if (initialized) return;
   initialized = true;
 
@@ -26,7 +26,7 @@ const initAsync = async (options: Options) => {
 
   await Localization.initAsync(translations);
 
-  options.stateInitializer.initStore();
+  await StateInitializer.createStore(rootReducer, rootSaga);
 
   await AuthInfoKeeper.initialize();
 

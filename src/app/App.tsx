@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Provider} from 'react-redux';
 import {NativeRouter, Route, Link} from 'react-router-native';
 import {Text, View} from 'react-native';
@@ -11,10 +11,27 @@ import AppDebugHeader from 'app/debug/AppDebugHeader';
 import {getBuildType} from '../services/config/ConfigUtils';
 import {getStore} from '../state';
 import BuildType from '../entities/BuildType';
+import AppLoading from './AppLoading';
+import AppInitializer from './AppInitializer';
+import {logError} from '../utils/Logger';
 
 const App: React.FC = () => {
   const buildType = getBuildType();
   const isDebug = buildType !== BuildType.Production;
+
+  const [isReady, setIsReady] = useState<boolean>(false);
+
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={async () => {
+          await AppInitializer.initAsync();
+        }}
+        onFinish={() => setIsReady(true)}
+        onError={logError}
+      />
+    );
+  }
 
   return (
     <Provider store={getStore()}>
@@ -32,7 +49,6 @@ const App: React.FC = () => {
                 <Text>ForgotPassword</Text>
               </Link>
             </View>
-
             <Route exact path="/" component={LogIn} />
             <Route exact path="/registration" component={Registration} />
             <Route exact path="/forgotPassword" component={ForgotPassword} />

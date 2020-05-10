@@ -14,6 +14,7 @@ const createStore = <T extends State>(reducer: Reducer<T>, saga: Saga) => {
   if (ScoutStore.store) throw Error('Already initialized');
 
   // @ts-ignore
+  // eslint-disable-next-line no-underscore-dangle
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const sagaMiddleware = createSagaMiddleware();

@@ -31,8 +31,4 @@ export default class RestApi extends ApiBase {
   public async updateFirebaseToken(request: UpdateFirebaseTokenRequest) {
     return this.post<void>('auth/firebaseToken', request);
   }
-
-  public async uploadFile(uri: string) {
-    return this.postFile(uri);
-  }
 }

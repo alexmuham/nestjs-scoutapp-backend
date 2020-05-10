@@ -11,5 +11,4 @@ export interface IScoutApi {
   myAccount(): Promise<Account>;
   forgotPassword(request: ForgotPasswordRequest): Promise<void>;
   updateFirebaseToken(request: UpdateFirebaseTokenRequest): Promise<void>;
-  uploadFile(uri: string): Promise<void>;
 }
