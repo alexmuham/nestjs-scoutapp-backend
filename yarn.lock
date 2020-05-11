@@ -458,6 +458,20 @@
     "@angular-devkit/core" "9.1.4"
     "@angular-devkit/schematics" "9.1.4"
 
+"@spryrocks/config-core@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@spryrocks/config-core/-/config-core-1.0.0-alpha.5.tgz#e098d067bb834adbab69aaa636c45b5f36088e51"
+  integrity sha512-/1lrIb2XFInXtVcBFg2Q3pGo54qr7ce8x31h3XHNq5p2a9v85VYdwMAUAdtB2GywlFIMVMEEgkm6etb6UEcoGA==
+
+"@spryrocks/config-node@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@spryrocks/config-node/-/config-node-1.0.0-alpha.5.tgz#61b53914d804ce572b614ec53d30adc5f427ae7e"
+  integrity sha512-Fc0XtQ95FLrRK94VKp4MJX6K4RZNK8cawGKBz2vDgKumyjxyqeynr6aiu9eB3W1YKF+HJmhSq5IvEuuW/r3GSQ==
+  dependencies:
+    "@spryrocks/config-core" "^1.0.0-alpha.5"
+    dotenv "^8.2.0"
+    node "^14.2.0"
+
 "@spryrocks/eslint-config@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config/-/eslint-config-0.1.1.tgz#097d177c69ec9fc06ca5efa06f7ac6cfc0db58e6"
@@ -472,6 +486,13 @@
     eslint-plugin-import "^2.20.2"
     eslint-plugin-prettier "^3.1.3"
     typescript "^3.8.3"
+
+"@spryrocks/files-google-cloud-storage@^0.0.1-alpha.1":
+  version "0.0.1-alpha.1"
+  resolved "https://registry.yarnpkg.com/@spryrocks/files-google-cloud-storage/-/files-google-cloud-storage-0.0.1-alpha.1.tgz#177962171a80d969585559ee01239811337b94ab"
+  integrity sha512-X7wa5FoppeBxLUiLvwU2uutRH/u4KxaKRAZ8SJntaNmju0hil7iqt07avsWwJx3oY2nQnfIXrq9wt/T6uUFs8A==
+  dependencies:
+    "@google-cloud/storage" "^4.7.0"
 
 "@spryrocks/prettier-config@^0.1.1":
   version "0.1.1"
@@ -5239,6 +5260,11 @@ node-addon-api@^2.0.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-2.0.0.tgz#f9afb8d777a91525244b01775ea0ddbe1125483b"
   integrity sha512-ASCL5U13as7HhOExbT6OlWJJUV/lLzL2voOSP1UVehpRD8FbSrSDjfScK/KwAvVTI5AS6r4VwbOMlIqtvRidnA==
 
+node-bin-setup@^1.0.0:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.0.6.tgz#4b5c9bb937ece702d7069b36ca78af4684677528"
+  integrity sha512-uPIxXNis1CRbv1DwqAxkgBk5NFV3s7cMN/Gf556jSw6jBvV7ca4F9lRL/8cALcZecRibeqU+5dFYqFFmzv5a0Q==
+
 node-emoji@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.10.0.tgz#8886abd25d9c7bb61802a658523d1f8d2a89b2da"
@@ -5300,6 +5326,13 @@ node-pre-gyp@0.14.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4.4.2"
+
+node@^14.2.0:
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-14.2.0.tgz#5998796896cd16c923ea65620883ad8bc61b3cae"
+  integrity sha512-qhnO1B0tPkL1+9suHJ5XIyHNPeGUbF/s6PChhquBOhIHFHQf2kgsKSRX5TCWd3YLFbzLMaRGNrO8+84CCE3BUw==
+  dependencies:
+    node-bin-setup "^1.0.0"
 
 nopt@^4.0.1:
   version "4.0.3"

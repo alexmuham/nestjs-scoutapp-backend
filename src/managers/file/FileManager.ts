@@ -1,10 +1,10 @@
 import {Injectable} from '@nestjs/common';
 import IFileManager from './IFileManager';
 import IFileStore from 'database/stores/file/IFileStore';
-import {ICloudStorage} from 'storage/ICloudStorage';
 import {Buffer} from 'buffer';
 import {v4 as uuidv4} from 'uuid';
 import ScoutAppError from '../../ScoutAppError';
+import {ICloudStorage} from '@spryrocks/files-google-cloud-storage';
 
 @Injectable()
 export default class FileManager extends IFileManager {

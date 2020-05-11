@@ -9,7 +9,6 @@ type User {
   email: String!
   allowNotifications: Boolean!
   phoneNumber: String!
-  image: String!
   education: String!
 }
 
