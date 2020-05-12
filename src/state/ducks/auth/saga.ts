@@ -1,60 +1,73 @@
 import types from './types';
 import {all, put, takeEvery} from 'redux-saga/effects';
 import {Action} from 'redux-actions';
-import RegisterRequest from 'auth/RegisterRequest';
-import LoginRequest from 'api/entities/LoginRequest';
-import sessionActions from '../session/actions';
-import routerActions from '../router/actions';
 import Session from 'auth/Session';
 import {ScoutApi as Api} from 'api';
 import {AuthInfoKeeper} from 'auth';
 import {mapLoginRequestToApi, mapRegisterRequestToApi} from 'api/Mappers';
-import actions from './actions';
-import ForgotPasswordRequest from 'api/entities/ForgotPasswordRequest';
+import actions, {AuthCompleted, Login, RecoverPassword, RegisterUser} from './actions';
 import {actions as alertActions} from '../alert';
+import {actions as snackActions} from '../snackBar';
+import {actions as sessionActions} from '../session';
+import {actions as routerActions} from '../router';
+import {NavigationPayload} from '../router/actions';
 
-function* registerUser({payload}: Action<RegisterRequest>) {
+function* registerUser({payload: {request, history}}: Action<RegisterUser>) {
   try {
-    const session: Session = yield Api.register(mapRegisterRequestToApi(payload));
-    yield put(actions.authCompleted(session));
+    const session: Session = yield Api.register(mapRegisterRequestToApi(request));
+    yield put(actions.authCompleted({session, history}));
   } catch (e) {
     yield put(actions.authCompleted(e));
   }
 }
 
-function* authCompleted({payload, error}: Action<Session>) {
+function* authCompleted({payload, error}: Action<AuthCompleted>) {
   if (error) {
     yield put(alertActions.showError(payload));
     return;
   }
 
-  yield AuthInfoKeeper.authenticate(payload);
+  yield AuthInfoKeeper.authenticate(payload.session);
   yield put(sessionActions.setSessionExists(true));
-  yield put(routerActions.navigateToMain());
+  yield put(routerActions.navigateToMain(payload));
   yield put(sessionActions.fetchSession());
 }
 
-function* logout() {
+function* logout({payload}: Action<NavigationPayload>) {
   yield AuthInfoKeeper.reset();
-  yield put(routerActions.navigateToAuth());
+  yield put(routerActions.navigateToAuth(payload));
 }
 
-function* loginUser({payload}: Action<LoginRequest>) {
+function* loginUser({payload}: Action<Login>) {
   try {
-    const session: Session = yield Api.login(mapLoginRequestToApi(payload));
-    yield put(actions.authCompleted(session));
+    const session: Session = yield Api.login(mapLoginRequestToApi(payload.request));
+    yield put(actions.authCompleted({session, history: payload.history}));
   } catch (e) {
     yield put(actions.authCompleted(e));
   }
 }
 
-function* recoverPassword({payload}: Action<ForgotPasswordRequest>) {
+function* recoverPassword({payload: {request, history}}: Action<RecoverPassword>) {
   try {
-    yield Api.forgotPassword(payload);
-    yield put(routerActions.goBack());
+    yield Api.forgotPassword(request);
+    yield put(actions.recoverPasswordCompleted({history}));
   } catch (e) {
-    yield put(alertActions.showError(e));
+    yield put(actions.recoverPasswordCompleted(e));
   }
+}
+
+function* recoverPasswordCompleted({payload, error}: Action<NavigationPayload>) {
+  if (error) {
+    yield put(yield put(alertActions.showError(payload)));
+    return;
+  }
+  yield put(
+    snackActions.showSnackbar({
+      message: 'Password successfully changed!',
+      type: 'success',
+    }),
+  );
+  yield put(routerActions.goBack(payload));
 }
 
 export default function* () {
@@ -64,5 +77,6 @@ export default function* () {
     takeEvery(types.AUTH_COMPLETED, authCompleted),
     takeEvery(types.LOGIN_USER, loginUser),
     takeEvery(types.RECOVER_PASSWORD, recoverPassword),
+    takeEvery(types.RECOVER_PASSWORD_COMPLETED, recoverPasswordCompleted),
   ]);
 }

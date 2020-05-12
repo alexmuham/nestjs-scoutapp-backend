@@ -6,20 +6,24 @@ import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '../../auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
 import {snackBarActions} from '../ducks/snackBar';
+import {useHistory} from 'react-router-native';
 
 export function useAuthActions() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return {
     registerUser: (registerRequest: RegisterRequest) => {
-      dispatch(authActions.registerUser(registerRequest));
+      dispatch(authActions.registerUser({request: registerRequest, history}));
     },
-    login: (loginRequest: LoginRequest) => dispatch(authActions.login(loginRequest)),
+    login: (loginRequest: LoginRequest) =>
+      dispatch(authActions.login({request: loginRequest, history})),
     updateUserProfile: (updateRequest: UpdateUserRequest) => {
       dispatch(sessionActions.updateUserProfile(updateRequest));
     },
+    logout: () => dispatch(authActions.logout({history})),
     recoverPassword: (email: ForgotPasswordRequest) => {
-      dispatch(authActions.recoverPassword(email));
+      dispatch(authActions.recoverPassword({request: email, history}));
     },
   };
 }

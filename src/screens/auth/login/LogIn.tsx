@@ -19,7 +19,7 @@ const LogIn: React.FC = () => {
       <Text>Haven’t an account?</Text>
       <TextLink
         onPress={() => undefined}
-        text={t('signIn')}
+        text={t('signUp')}
         styleText={styles.textLink}
         link="/registration"
       />

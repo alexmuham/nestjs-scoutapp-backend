@@ -9,7 +9,7 @@ import BuildType from '../entities/BuildType';
 import AppLoading from './AppLoading';
 import AppInitializer from './AppInitializer';
 import {logError} from '../utils/Logger';
-import Router from '../navigation/route/Router';
+import Router from '../navigation/routes/Router';
 
 const App: React.FC = () => {
   const buildType = getBuildType();
