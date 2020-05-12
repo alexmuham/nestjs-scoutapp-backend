@@ -12,5 +12,4 @@ export default {
   logout: createAction(types.LOGOUT),
   recoverPassword: createAction<ForgotPasswordRequest>(types.RECOVER_PASSWORD),
   setIsChecking: createAction<boolean>(types.SET_IS_CHECKING),
-  removeImage: createAction(types.REMOVE_IMAGE),
 };

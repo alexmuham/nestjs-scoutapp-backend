@@ -8,5 +8,4 @@ export default {
   RECOVER_PASSWORD: `${prefix}RECOVER_PASSWORD`,
   UPLOAD_FILE_USER: `${prefix}UPLOAD_FILE_USER`,
   SET_IS_CHECKING: `${prefix}SET_IS_CHECKING`,
-  REMOVE_IMAGE: `${prefix}REMOVE_IMAGE`,
 };

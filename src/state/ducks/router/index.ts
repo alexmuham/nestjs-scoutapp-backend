@@ -1,4 +1,4 @@
-export {default as actions, default as sharedRouterActions} from './actions';
+export {default as actions} from './actions';
 
 export {default as saga} from './saga';
 

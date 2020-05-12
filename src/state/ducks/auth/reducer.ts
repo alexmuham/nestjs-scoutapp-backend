@@ -11,7 +11,6 @@ export default handleActions<Auth, any>(
       ...state,
       isChecking: payload,
     }),
-    [types.REMOVE_IMAGE]: (state) => ({...state, imageUrl: undefined}),
   },
-  {isBusy: false, isChecking: false, isLoading: false, imageUrl: undefined},
+  {isBusy: false, isChecking: false, isLoading: false},
 );

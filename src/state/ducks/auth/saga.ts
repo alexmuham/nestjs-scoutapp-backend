@@ -32,7 +32,6 @@ function* authCompleted({payload, error}: Action<Session>) {
   yield put(sessionActions.setSessionExists(true));
   yield put(routerActions.navigateToMain());
   yield put(sessionActions.fetchSession());
-  yield put(actions.removeImage());
 }
 
 function* logout() {
