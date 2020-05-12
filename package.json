@@ -47,7 +47,9 @@
     "rxjs": "7.0.0-beta.0",
     "typeorm": "^0.2.24",
     "uuid": "^8.0.0",
-    "uuidv4": "^6.0.8"
+    "uuidv4": "^6.0.8",
+    "@spryrocks/config-node": "^1.0.0-alpha.5",
+    "@spryrocks/file-storage": "^0.0.1-alpha.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",

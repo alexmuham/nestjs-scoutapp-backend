@@ -3,6 +3,9 @@ import {StoresModule} from 'database/stores/StoresModule';
 import IAccountManager from './account/IAccountManager';
 import AccountManager from './account/AccountManager';
 import {AuthModule} from './auth/AuthModule';
+import IFileManager from './file/IFileManager';
+import FileManager from './file/FileManager';
+import {StorageModule} from 'services/storage/StorageModule';
 import {ServicesModule} from 'services/ServicesModule';
 import IPlayerManager from './player/IPlayerManager';
 import PlayerManager from './player/PlayerManager';
@@ -15,6 +18,7 @@ import PreferencesManager from './preferences/PreferencesManager';
     AuthModule,
     ServicesModule,
     StoresModule,
+    StorageModule
   ],
   providers: [
     {
@@ -29,6 +33,10 @@ import PreferencesManager from './preferences/PreferencesManager';
       provide: IPreferencesManager,
       useClass: PreferencesManager,
     },
+    {
+      provide: IFileManager,
+      useClass: FileManager,
+    },
   ],
   exports: [
     //
@@ -36,6 +44,7 @@ import PreferencesManager from './preferences/PreferencesManager';
     AuthModule,
     IPlayerManager,
     IPreferencesManager,
+    IFileManager,
   ],
 })
 export class ManagerModule {}
