@@ -1,18 +1,15 @@
 import {Module} from '@nestjs/common';
 import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
 import {ConfigModule} from 'services/config/ConfigModule';
-import File from './entities/File';
-import User from './entities/User';
-import LocalLogin from './entities/LocalLogin';
-import Session from './entities/Session';
 import {IConfigService} from '@spryrocks/config-node';
+import {Player, User, LocalLogin, Session} from 'database/entities';
 
 const entities = [
   //
-  File,
   User,
   LocalLogin,
   Session,
+  Player,
 ];
 
 const options = (configService: IConfigService): TypeOrmModuleOptions => ({

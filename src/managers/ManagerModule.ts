@@ -3,18 +3,16 @@ import {StoresModule} from 'database/stores/StoresModule';
 import IAccountManager from './account/IAccountManager';
 import AccountManager from './account/AccountManager';
 import {AuthModule} from './auth/AuthModule';
-import IFileManager from './file/IFileManager';
-import FileManager from './file/FileManager';
-import {StorageModule} from 'storage/StorageModule';
 import {ServicesModule} from 'services/ServicesModule';
+import IPlayerManager from './player/IPlayerManager';
+import PlayerManager from './player/PlayerManager';
 
 @Module({
   imports: [
     //
-    StoresModule,
     AuthModule,
-    StorageModule,
     ServicesModule,
+    StoresModule,
   ],
   providers: [
     {
@@ -22,15 +20,15 @@ import {ServicesModule} from 'services/ServicesModule';
       useClass: AccountManager,
     },
     {
-      provide: IFileManager,
-      useClass: FileManager,
+      provide: IPlayerManager,
+      useClass: PlayerManager,
     },
   ],
   exports: [
     //
     IAccountManager,
     AuthModule,
-    IFileManager,
+    IPlayerManager,
   ],
 })
 export class ManagerModule {}

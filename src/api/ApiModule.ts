@@ -8,6 +8,7 @@ import {memoryStorage} from 'multer';
 import {ApiExceptionInterceptor} from 'enhancers/interceptors/ApiExceptionInterceptor';
 import {RouterModule} from 'router/RouterModule';
 import {HealthController} from 'api/HealthController';
+import {CSVController} from './csv/CSVController';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import {HealthController} from 'api/HealthController';
     //
     AuthController,
     HealthController,
+    CSVController,
   ],
   exports: [],
 })

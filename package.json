@@ -25,12 +25,15 @@
     "@nestjs/jwt": "^7.0.0",
     "@nestjs/platform-express": "^7.0.9",
     "@nestjs/typeorm": "^7.0.0",
+    "@spryrocks/config-node": "^1.0.0-alpha.5",
+    "@spryrocks/files-google-cloud-storage": "^0.0.1-alpha.1",
     "@types/morgan": "^1.9.0",
     "@types/uuid": "^7.0.3",
     "apollo-server-express": "^2.13.0",
     "bcrypt": "^4.0.1",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
+    "csv-parser": "^2.3.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "generate-password": "^1.5.1",
@@ -44,13 +47,12 @@
     "rxjs": "7.0.0-beta.0",
     "typeorm": "^0.2.24",
     "uuid": "^8.0.0",
-    "uuidv4": "^6.0.8",
-    "@spryrocks/config-node": "^1.0.0-alpha.5",
-    "@spryrocks/files-google-cloud-storage": "^0.0.1-alpha.1"
+    "uuidv4": "^6.0.8"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
     "@nestjs/schematics": "^7.0.0",
+    "@spryrocks/eslint-config": "^0.1.1",
     "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.17.3",
     "@types/multer": "^1.4.3",
@@ -61,8 +63,7 @@
     "ts-loader": "^6.2.1",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.4",
-    "@spryrocks/eslint-config": "^0.1.1"
+    "typescript": "^3.7.4"
   },
   "husky": {
     "hooks": {

@@ -6,8 +6,8 @@ import ISessionStore from 'database/stores/session/ISessionStore';
 import SessionStore from 'database/stores/session/SessionStore';
 import IUserStore from './user/IUserStore';
 import UserStore from './user/UserStore';
-import IFileStore from './file/IFileStore';
-import FileStore from './file/FileStore';
+import IPlayerStore from './player/IPlayerStore';
+import PlayerStore from './player/PlayerStore';
 
 @Module({
   imports: [
@@ -28,8 +28,8 @@ import FileStore from './file/FileStore';
       useClass: SessionStore,
     },
     {
-      provide: IFileStore,
-      useClass: FileStore,
+      provide: IPlayerStore,
+      useClass: PlayerStore,
     },
   ],
   exports: [
@@ -37,7 +37,7 @@ import FileStore from './file/FileStore';
     ISessionStore,
     ILoginStore,
     IUserStore,
-    IFileStore,
+    IPlayerStore,
   ],
 })
 export class StoresModule {}
