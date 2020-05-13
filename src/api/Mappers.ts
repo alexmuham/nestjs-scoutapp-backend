@@ -63,3 +63,11 @@ export const mapPlayerFromGQL = (player: GQLPlayer): Player => ({
 export const mapPlayersFromGQL = (players: GQLPlayer[]): Player[] => {
   return players.map((player) => mapPlayerFromGQL(player));
 };
+
+export const mapMyNotificationsSettingsFromGQL = (
+  configuration: ApiConfiguration,
+  account: any,
+): Account => ({
+  info: mapAdditionalUserInfoFromGQL(account.info),
+  user: mapUserFromGQL(configuration, account.user),
+});

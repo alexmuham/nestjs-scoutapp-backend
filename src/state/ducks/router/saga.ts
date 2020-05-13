@@ -32,6 +32,10 @@ function navigateToPlayer({payload}: Action<NavigateToPlayer>) {
   payload.history.push(`/main/player:${payload.playerId}`);
 }
 
+function navigateToSettings({payload}: Action<NavigationPayload>) {
+  payload.history.push('/settings');
+}
+
 export default function* () {
   yield all([
     takeEvery(types.GO_BACK, goBack),
@@ -40,5 +44,6 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_MAIN, navigateToMain),
     takeEvery(types.NAVIGATE_TO_PROSPECT, navigateToProspect),
     takeEvery(types.NAVIGATE_TO_PLAYER, navigateToPlayer),
+    takeEvery(types.NAVIGATE_TO_SETTINGS, navigateToSettings),
   ]);
 }

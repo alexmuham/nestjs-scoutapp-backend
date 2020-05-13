@@ -5,6 +5,10 @@ import RestApi from 'api/rest/RestApi';
 import ApiConfiguration from '@spryrocks/react-api/ApiConfiguration';
 import ScoutGraphqlApi from 'api/graphql/ScoutGraphqlApi';
 import {mapMyAccountFromGQL, mapPlayerFromGQL, mapPlayersFromGQL} from 'api/Mappers';
+import {mapMyAccountFromGQL, mapMyNotificationsSettingsFromGQL} from 'api/Mappers';
+import {ApolloError} from 'apollo-boost';
+import ApiHttpError from '@spryrocks/react-api/rest/ApiHttpError';
+import ApiError from '@spryrocks/react-api/rest/ApiError';
 import ForgotPasswordRequest from 'api/entities/ForgotPasswordRequest';
 import ApiDelegate, {AuthInfo} from '@spryrocks/react-api/ApiDelegate';
 import IApiTokenHolder from '@spryrocks/react-api/IApiTokenHolder';
@@ -42,6 +46,48 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
     return this.wrapApiCall(async () =>
       mapMyAccountFromGQL(await this.graphqlApi.queryMyAccount()),
     );
+  }
+
+  public async myNotificationsSettingsQuery() {
+    return this.wrapApiCall(async () =>
+      mapMyNotificationsSettingsFromGQL(this.configuration, await this.graphqlApi.queryMyNotificationsSettings()),
+    );
+  }
+
+  public async wrapApiCall<TResponse>(
+    call: () => Promise<TResponse>,
+  ): Promise<TResponse> {
+    try {
+      return await call();
+    } catch (e) {
+      if (ScoutApi.checkNotAuthorizedError(e)) {
+        await this.refreshQueue.add(() => this.refreshTokens());
+        // eslint-disable-next-line no-return-await
+        return await call();
+      }
+      throw e;
+    }
+  }
+
+  private static checkNotAuthorizedError(e: ApolloError | ApiHttpError) {
+    if (e instanceof ApiError) {
+      return e.status === 401;
+    }
+    // @ts-ignore
+    const gqlError = filter((e) => e.message.statusCode === 401, e.graphQLErrors);
+    return !!gqlError;
+  }
+
+  public async refreshTokens() {
+    const authInfo = await AuthInfoKeeper.getAuthInfo();
+    if (!authInfo) {
+      throw new Error('Not authorized');
+    }
+    const authResponse = await this.restApi.refresh({
+      refreshToken: authInfo.refreshToken,
+    });
+    await AuthInfoKeeper.update(authResponse);
+    ScoutApiTokenHolders.setToken(authResponse.jwt);
   }
 
   public async forgotPassword(request: ForgotPasswordRequest) {

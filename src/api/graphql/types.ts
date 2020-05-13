@@ -15,6 +15,7 @@ export type User = {
   lastName: Scalars['String'];
   email: Scalars['String'];
   allowNotifications: Scalars['Boolean'];
+  notifications: Notifications;
   phoneNumber: Scalars['String'];
   education: Scalars['String'];
 };
@@ -24,10 +25,20 @@ export type Preferences = {
   allowNotifications: Scalars['Boolean'];
 };
 
+export type Notifications = {
+   __typename?: 'Notifications';
+  id: Scalars['ID'];
+  friendRequest: Scalars['Boolean'];
+  playersMatching: Scalars['Boolean'];
+  messages: Scalars['Boolean'];
+  sendNotificationsToEmail: Scalars['Boolean'];
+};
+
 export type Account = {
    __typename?: 'Account';
   user: User;
   preferences: Preferences;
+  notifications: Notifications;
 };
 
 export type Player = {

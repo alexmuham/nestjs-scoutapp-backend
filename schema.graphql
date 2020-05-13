@@ -2,47 +2,34 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Notifications {
+  id: String!
+  friendRequest: Boolean!
+  playersMatching: Boolean!
+  messages: Boolean!
+  sendNotificationsToEmail: Boolean!
+}
+
 type User {
   id: ID!
   firstName: String!
   lastName: String!
   email: String!
-  allowNotifications: Boolean!
+  notifications: Notifications!
   phoneNumber: String!
   education: String!
 }
 
-type Preferences {
-  allowNotifications: Boolean!
-}
-
 type Account {
   user: User!
-  preferences: Preferences!
-}
-
-type Player {
-  id: ID!
-  name: String!
-  externalId: String!
-  height: String!
-  weight: String!
-  bats: String!
-  throws: String!
-  graduatingClass: String!
-  primaryPosition: String!
-  highSchool: String!
-  contactPhone: String!
-  highSchoolContactPhone: String!
-  statePositionRanking: String!
-  stateOverallRanking: String!
-  nationalPositionRanking: String!
-  nationalOverallRanking: String!
-  collegeCommitment: String!
+  notifications: Notifications!
 }
 
 type Query {
   myAccount: Account!
-  playerById(playerId: String!): Player!
-  getPlayers: [Player!]!
+  myNotificationsSettings: Notifications!
+}
+
+type Mutation {
+  updateNotificationsSettings(sendNotificationsToEmail: Boolean!, messages: Boolean!, playersMatching: Boolean!, friendRequest: Boolean!): Boolean!
 }

@@ -1,5 +1,7 @@
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-native';
+import {actions as authActions} from '../ducks/auth';
+import {actions as settingsActions} from '../ducks/settings';
 import UpdateUserRequest from '../ducks/session/models';
 import {snackBarActions} from '../ducks/snackBar';
 import {actions as authActions} from '../ducks/auth';
@@ -60,6 +62,17 @@ export function usePlayerActions() {
   return {
     fetchPlayer: (playerId: string) => {
       dispatch(playerActions.fetchPlayer({playerId, history}));
+    },
+  };
+}
+
+export function useSettingsActions() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  return {
+    openSettings: () => {
+      dispatch(settingsActions.openSettings({history}));
     },
   };
 }

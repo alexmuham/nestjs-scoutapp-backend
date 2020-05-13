@@ -1,5 +1,6 @@
 import GraphqlApiBase from '@spryrocks/react-api/graphql/ApiBase';
 import {myAccountQuery, playerByIdQuery, playersQuery} from './ScoutGraphqlQueryBuilder';
+import {myAccountQuery, myNotificationsSettingsQuery} from './ScoutGraphqlQueryBuilder';
 
 export default class ScoutGraphqlApi extends GraphqlApiBase {
   public async queryMyAccount() {
@@ -12,5 +13,9 @@ export default class ScoutGraphqlApi extends GraphqlApiBase {
 
   public async queryPlayers() {
     return this.query(playersQuery());
+  }
+
+  public async queryMyNotificationsSettings() {
+    return this.query(myNotificationsSettingsQuery());
   }
 }

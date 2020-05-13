@@ -12,4 +12,5 @@ export default {
   navigateToMain: createAction<NavigationPayload>(types.NAVIGATE_TO_MAIN),
   navigateToProspect: createAction<NavigationPayload>(types.NAVIGATE_TO_PROSPECT),
   navigateToPlayer: createAction<NavigateToPlayer>(types.NAVIGATE_TO_PLAYER),
+  navigateToSettings: createAction<NavigationPayload>(types.NAVIGATE_TO_SETTINGS),
 };
