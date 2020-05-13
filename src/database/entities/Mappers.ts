@@ -4,13 +4,26 @@ import User from 'entities/User';
 import Account from 'entities/Account';
 import Preferences from 'entities/Preferences';
 import Player from 'entities/Player';
+import DbUser from './User';
+import DbNotifications from './Notifications';
+import Notifications from '../../entities/Notifications';
+
+export const mapNotificationsFromDB = (
+  notifications: DbNotifications,
+): Notifications => ({
+  id: notifications.id,
+  friendRequest: notifications.friendRequest,
+  playersMatching: notifications.playersMatching,
+  messages: notifications.messages,
+  sendNotificationsToEmail: notifications.sendNotificationsToEmail,
+});
 
 export const mapUserFromDb = (user: DBUser): User => ({
   id: user.id,
   firstName: user.firstName,
   lastName: user.lastName,
   phoneNumber: user.phoneNumber,
-  allowNotifications: user.allowNotifications,
+  notifications: mapNotificationsFromDB(user.notifications),
   email: user.email,
   education: user.education,
 });
@@ -19,9 +32,9 @@ export const mapPreferencesFromDB = (user: DBUser): Preferences => ({
   allowNotifications: user.allowNotifications,
 });
 
-export const mapAccountFromDB = (account: DBUser): Account => ({
+export const mapAccountFromDB = (account: DbUser): Account => ({
   user: mapUserFromDb(account),
-  preferences: mapPreferencesFromDB(account),
+  notifications: mapNotificationsFromDB(account.notifications),
 });
 
 export const mapPlayerFormDB = (player: DBPlayer): Player => ({

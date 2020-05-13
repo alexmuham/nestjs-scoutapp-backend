@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import Notifications from './Notifications';
 
 @Entity()
 export default class User {
@@ -8,7 +9,8 @@ export default class User {
     lastName: string,
     email: string,
     phoneNumber: string,
-    allowNotifications: boolean,
+    notifications: Notifications,
+    notificationsId: string,
     education: string,
   ) {
     this.id = id;
@@ -16,7 +18,8 @@ export default class User {
     this.lastName = lastName;
     this.email = email;
     this.phoneNumber = phoneNumber;
-    this.allowNotifications = allowNotifications;
+    this.notifications = notifications;
+    this.notificationsId = notificationsId;
     this.education = education;
   }
 
@@ -35,8 +38,11 @@ export default class User {
   @Column()
   phoneNumber: string;
 
-  @Column()
-  allowNotifications: boolean;
+  @ManyToOne(() => Notifications, {nullable: false})
+  notifications: Notifications;
+
+  @Column({nullable: false})
+  notificationsId: string;
 
   @Column()
   education: string;

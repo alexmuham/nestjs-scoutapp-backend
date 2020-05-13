@@ -2,10 +2,15 @@ import {Module} from '@nestjs/common';
 import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
 import {ConfigModule} from 'services/config/ConfigModule';
 import {IConfigService} from '@spryrocks/config-node';
-import {Player, User, LocalLogin, Session} from 'database/entities';
+import {
+  //
+  Player, User, LocalLogin, Session} from 'database/entities';
+import Notifications from './entities/Notifications';
 
 const entities = [
   //
+  Notifications,
+  File,
   User,
   LocalLogin,
   Session,

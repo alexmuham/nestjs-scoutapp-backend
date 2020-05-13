@@ -6,6 +6,8 @@ import {AuthModule} from './auth/AuthModule';
 import {ServicesModule} from 'services/ServicesModule';
 import IPlayerManager from './player/IPlayerManager';
 import PlayerManager from './player/PlayerManager';
+import INotificationsManager from './notifications/INotificationsManager';
+import NotificationsManager from './notifications/NotificationsManager';
 
 @Module({
   imports: [
@@ -23,12 +25,18 @@ import PlayerManager from './player/PlayerManager';
       provide: IPlayerManager,
       useClass: PlayerManager,
     },
+    {
+      provide: INotificationsManager,
+      useClass: NotificationsManager,
+    },
   ],
   exports: [
     //
     IAccountManager,
     AuthModule,
     IPlayerManager,
+    IFileManager,
+    INotificationsManager,
   ],
 })
 export class ManagerModule {}

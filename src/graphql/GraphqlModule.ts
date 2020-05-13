@@ -7,6 +7,7 @@ import {EnhancersModule} from 'enhancers/EnhancersModule';
 import {APP_PIPE} from '@nestjs/core';
 import {RouterModule} from 'router/RouterModule';
 import {PlayerResolver} from './resolvers/PlayerResolver';
+import {NotificationsResolver} from './resolvers/NotificationsResolver';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import {PlayerResolver} from './resolvers/PlayerResolver';
     },
     AccountResolver,
     PlayerResolver,
+    NotificationsResolver,
   ],
 })
 export class GraphqlModule {}

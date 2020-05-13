@@ -2,23 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Notifications {
+  id: String!
+  friendRequest: Boolean!
+  playersMatching: Boolean!
+  messages: Boolean!
+  sendNotificationsToEmail: Boolean!
+}
+
 type User {
   id: ID!
   firstName: String!
   lastName: String!
   email: String!
-  allowNotifications: Boolean!
+  notifications: Notifications!
   phoneNumber: String!
   education: String!
 }
 
-type Preferences {
-  allowNotifications: Boolean!
-}
-
 type Account {
   user: User!
-  preferences: Preferences!
+  notifications: Notifications!
 }
 
 type Player {
@@ -43,6 +47,11 @@ type Player {
 
 type Query {
   myAccount: Account!
+  myNotificationsSettings: Notifications!
   playerById(playerId: String!): Player!
   getPlayers: [Player!]!
+}
+
+type Mutation {
+  updateNotificationsSettings(sendNotificationsToEmail: Boolean!, messages: Boolean!, playersMatching: Boolean!, friendRequest: Boolean!): Boolean!
 }

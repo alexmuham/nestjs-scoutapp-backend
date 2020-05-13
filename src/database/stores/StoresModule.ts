@@ -8,6 +8,10 @@ import IUserStore from './user/IUserStore';
 import UserStore from './user/UserStore';
 import IPlayerStore from './player/IPlayerStore';
 import PlayerStore from './player/PlayerStore';
+import IFileStore from './file/IFileStore';
+import FileStore from './file/FileStore';
+import INotificationsStore from './notifications/INotificationsStore';
+import NotificationsStore from './notifications/NotificationsStore';
 
 @Module({
   imports: [
@@ -31,6 +35,10 @@ import PlayerStore from './player/PlayerStore';
       provide: IPlayerStore,
       useClass: PlayerStore,
     },
+    {
+      provide: INotificationsStore,
+      useClass: NotificationsStore,
+    },
   ],
   exports: [
     //
@@ -38,6 +46,8 @@ import PlayerStore from './player/PlayerStore';
     ILoginStore,
     IUserStore,
     IPlayerStore,
+    IFileStore,
+    INotificationsStore,
   ],
 })
 export class StoresModule {}
