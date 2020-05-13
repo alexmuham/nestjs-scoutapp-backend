@@ -1,17 +1,17 @@
 import {Field, ObjectType} from '@nestjs/graphql';
 import User from '../user/User';
-import Preferences from '../user/Preferences';
+import Notifications from '../user/Notifications';
 
 @ObjectType()
 export default class Account {
   @Field(() => User)
   user: User;
 
-  @Field(() => Preferences)
-  preferences: Preferences;
+  @Field(() => Notifications)
+  notifications: Notifications;
 
-  constructor(user: User, preferences: Preferences) {
+  constructor(user: User, notifications: Notifications) {
     this.user = user;
-    this.preferences = preferences;
+    this.notifications = notifications;
   }
 }
