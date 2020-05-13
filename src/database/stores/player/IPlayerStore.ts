@@ -1,3 +1,5 @@
+import {Player} from 'database/entities';
+
 export default abstract class IPlayerStore {
   abstract uploadPlayersData(
     name: string,
@@ -18,4 +20,8 @@ export default abstract class IPlayerStore {
     collegeCommitment: string,
     // statistics: object,
   ): Promise<void>;
+
+  abstract getPlayerById(playerId: string): Promise<Player | undefined>;
+
+  abstract getPlayers(): Promise<Player[] | undefined>;
 }

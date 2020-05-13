@@ -1,5 +1,6 @@
-import {IsObject, IsString} from 'class-validator';
+import {Field, ID, ObjectType} from '@nestjs/graphql';
 
+@ObjectType()
 export default class Player {
   constructor(
     id: string,
@@ -19,7 +20,6 @@ export default class Player {
     nationalPositionRanking: string,
     nationalOverallRanking: string,
     collegeCommitment: string,
-    statistics?: object,
   ) {
     this.id = id;
     this.name = name;
@@ -38,60 +38,56 @@ export default class Player {
     this.nationalPositionRanking = nationalPositionRanking;
     this.nationalOverallRanking = nationalOverallRanking;
     this.collegeCommitment = collegeCommitment;
-    this.statistics = statistics;
   }
 
-  @IsString()
+  @Field(() => ID)
   id: string;
 
-  @IsString()
+  @Field(() => String)
   name: string;
 
-  @IsString()
+  @Field(() => String)
   externalId: string;
 
-  @IsString()
+  @Field(() => String)
   height: string;
 
-  @IsString()
+  @Field(() => String)
   weight: string;
 
-  @IsString()
+  @Field(() => String)
   bats: string;
 
-  @IsString()
+  @Field(() => String)
   throws: string;
 
-  @IsString()
+  @Field(() => String)
   graduatingClass: string;
 
-  @IsString()
+  @Field(() => String)
   primaryPosition: string;
 
-  @IsString()
+  @Field(() => String)
   highSchool: string;
 
-  @IsString()
+  @Field(() => String)
   contactPhone: string;
 
-  @IsString()
+  @Field(() => String)
   highSchoolContactPhone: string;
 
-  @IsString()
+  @Field(() => String)
   statePositionRanking: string;
 
-  @IsString()
+  @Field(() => String)
   stateOverallRanking: string;
 
-  @IsString()
+  @Field(() => String)
   nationalPositionRanking: string;
 
-  @IsString()
+  @Field(() => String)
   nationalOverallRanking: string;
 
-  @IsString()
+  @Field(() => String)
   collegeCommitment: string;
-
-  @IsObject()
-  statistics?: object;
 }

@@ -1,9 +1,11 @@
-import DbUser from './User';
-import User from '../../entities/User';
-import Account from '../../entities/Account';
-import Preferences from '../../entities/Preferences';
+import DBUser from './User';
+import DBPlayer from './Player';
+import User from 'entities/User';
+import Account from 'entities/Account';
+import Preferences from 'entities/Preferences';
+import Player from 'entities/Player';
 
-export const mapUserFromDb = (user: DbUser): User => ({
+export const mapUserFromDb = (user: DBUser): User => ({
   id: user.id,
   firstName: user.firstName,
   lastName: user.lastName,
@@ -13,11 +15,37 @@ export const mapUserFromDb = (user: DbUser): User => ({
   education: user.education,
 });
 
-export const mapPreferencesFromDB = (user: DbUser): Preferences => ({
+export const mapPreferencesFromDB = (user: DBUser): Preferences => ({
   allowNotifications: user.allowNotifications,
 });
 
-export const mapAccountFromDB = (account: DbUser): Account => ({
+export const mapAccountFromDB = (account: DBUser): Account => ({
   user: mapUserFromDb(account),
   preferences: mapPreferencesFromDB(account),
 });
+
+export const mapPlayerFormDB = (player: DBPlayer): Player => ({
+  id: player.id,
+  name: player.name,
+  weight: player.weight,
+  throws: player.throws,
+  statePositionRanking: player.statePositionRanking,
+  stateOverallRanking: player.stateOverallRanking,
+  primaryPosition: player.primaryPosition,
+  nationalPositionRanking: player.nationalPositionRanking,
+  nationalOverallRanking: player.nationalOverallRanking,
+  highSchoolContactPhone: player.highSchoolContactPhone,
+  highSchool: player.highSchool,
+  height: player.height,
+  graduatingClass: player.graduatingClass,
+  externalId: player.externalId,
+  contactPhone: player.contactPhone,
+  collegeCommitment: player.collegeCommitment,
+  bats: player.bats,
+});
+
+export const mapPlayersFormDB = (players: DBPlayer[]): Player[] => {
+  return players.map((player) => {
+    return mapPlayerFormDB(player);
+  });
+};

@@ -21,6 +21,28 @@ type Account {
   preferences: Preferences!
 }
 
+type Player {
+  id: ID!
+  name: String!
+  externalId: String!
+  height: String!
+  weight: String!
+  bats: String!
+  throws: String!
+  graduatingClass: String!
+  primaryPosition: String!
+  highSchool: String!
+  contactPhone: String!
+  highSchoolContactPhone: String!
+  statePositionRanking: String!
+  stateOverallRanking: String!
+  nationalPositionRanking: String!
+  nationalOverallRanking: String!
+  collegeCommitment: String!
+}
+
 type Query {
   myAccount: Account!
+  playerById(playerId: String!): Player!
+  getPlayers: [Player!]!
 }
