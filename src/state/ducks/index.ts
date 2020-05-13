@@ -4,6 +4,8 @@ import authReducer from './auth/reducer';
 import {saga as routerSaga} from './router';
 import {saga as alertSaga} from './alert';
 import {reducer as snackBarReducer} from 'state/ducks/snackBar';
+import {reducer as prospectReducer, saga as prospectSage} from 'state/ducks/prospect';
+import {reducer as playerReducer, saga as playerSage} from 'state/ducks/player';
 
 import {all} from 'redux-saga/effects';
 import State from 'state/entities/State';
@@ -13,8 +15,18 @@ export const rootReducer = combineReducers<State>({
   session: sessionReducer,
   auth: authReducer,
   snackBar: snackBarReducer,
+  players: prospectReducer,
+  player: playerReducer,
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), routerSaga(), sessionSaga(), alertSaga()]);
+  yield all([
+    //
+    authSaga(),
+    routerSaga(),
+    sessionSaga(),
+    alertSaga(),
+    prospectSage(),
+    playerSage(),
+  ]);
 }

@@ -4,6 +4,5 @@ export default interface User {
   firstName: string;
   lastName: string;
   education: string;
-  image: string;
   phoneNumber: string;
 }

@@ -1,10 +1,39 @@
-import React from 'react';
-import {MenuBar} from 'components';
+import React, {useEffect} from 'react';
+import {MenuBar, RequireLoadable, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
+import {ID} from 'entities/Common';
+import {Text, View} from 'react-native';
+import {usePlayerActions} from '../../state/hooks/UseActions';
+import {useSelector} from 'react-redux';
+import State from '../../state/entities/State';
 
-const PlayerCard: React.FC = () => {
+interface PlayerCardProps {
+  playerId: ID;
+}
+
+const PlayerCard: React.FC<PlayerCardProps> = ({playerId}) => {
+  const actions = usePlayerActions();
+
+  useEffect(() => {
+    actions.fetchPlayer(playerId);
+  }, []);
+
+  const {player} = useSelector((state: State) => state);
+
   return (
-    <MenuBar leftIcons={[MenuBarItems.Friends]} rightIcons={[MenuBarItems.Settings]} />
+    <View>
+      <MenuBar leftIcons={[MenuBarItems.Settings]} rightIcons={[MenuBarItems.Friends]} />
+      <View style={{flex: 1}}>
+        <RequireLoadable data={player}>
+          {(data) => (
+            <>
+              <Text>{data.name}</Text>
+            </>
+          )}
+        </RequireLoadable>
+      </View>
+      <TransitionBar />
+    </View>
   );
 };
 

@@ -4,7 +4,7 @@ import LoginRequest from './entities/LoginRequest';
 import RestApi from 'api/rest/RestApi';
 import ApiConfiguration from '@spryrocks/react-api/ApiConfiguration';
 import ScoutGraphqlApi from 'api/graphql/ScoutGraphqlApi';
-import {mapMyAccountFromGQL} from 'api/Mappers';
+import {mapMyAccountFromGQL, mapPlayerFromGQL, mapPlayersFromGQL} from 'api/Mappers';
 import {ApolloError} from 'apollo-boost';
 import ApiHttpError from '@spryrocks/react-api/rest/ApiHttpError';
 import ApiError from '@spryrocks/react-api/rest/ApiError';
@@ -25,6 +25,7 @@ export default class ScoutApi implements IScoutApi {
 
   private readonly graphqlApi: ScoutGraphqlApi;
 
+  // @ts-ignore
   constructor(private configuration: ApiConfiguration) {
     let baseUrl = `${configuration.url}:${configuration.port}`;
     if (configuration.globalPrefix) baseUrl += configuration.globalPrefix;
@@ -48,7 +49,7 @@ export default class ScoutApi implements IScoutApi {
 
   public async myAccount() {
     return this.wrapApiCall(async () =>
-      mapMyAccountFromGQL(this.configuration, await this.graphqlApi.queryMyAccount()),
+      mapMyAccountFromGQL(await this.graphqlApi.queryMyAccount()),
     );
   }
 
@@ -100,5 +101,17 @@ export default class ScoutApi implements IScoutApi {
 
   public async updateFirebaseToken(request: UpdateFirebaseTokenRequest) {
     return this.wrapApiCall(async () => this.restApi.updateFirebaseToken(request));
+  }
+
+  public async getPlayerById(playerId: string) {
+    return this.wrapApiCall(async () =>
+      mapPlayerFromGQL(await this.graphqlApi.queryPlayerById(playerId)),
+    );
+  }
+
+  public async getPlayers() {
+    return this.wrapApiCall(async () =>
+      mapPlayersFromGQL(await this.graphqlApi.queryPlayers()),
+    );
   }
 }

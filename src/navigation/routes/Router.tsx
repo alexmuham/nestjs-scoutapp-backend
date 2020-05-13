@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NativeRouter, Redirect, Route, Switch, MemoryRouter} from 'react-router-native';
 import AppRoute from './AppRoute';
 import Auth from 'screens/auth';
 import Main from 'screens';
 import Layout from '../layouts';
 import {View} from 'react-native';
+import {useAuthActions} from '../../state/hooks/UseActions';
+
+const Logout = () => {
+  const actions = useAuthActions();
+  useEffect(() => {
+    actions.logout();
+  }, []);
+  return <></>;
+};
 
 const Router: React.FC = () => {
   const {AuthLayout} = Layout;
@@ -15,10 +24,21 @@ const Router: React.FC = () => {
         <View style={{flex: 1}}>
           <Switch>
             <Route exact path="/">
-              <Redirect to="/login" />
+              <Redirect to="/auth" />
+            </Route>
+            <Route exact path="/logout">
+              <Logout />
+            </Route>
+            <Route exact path="/main">
+              <Redirect to="/prospect" />
             </Route>
           </Switch>
-          <AppRoute exact path="/main" component={Auth.Welcome} layout={AuthLayout} />
+          <AppRoute
+            exact
+            path="/auth"
+            component={Auth.LogIn}
+            layout={Layout.AuthLayout}
+          />
           <AppRoute
             exact
             path="/registration"
@@ -34,7 +54,13 @@ const Router: React.FC = () => {
           <AppRoute exact path="/login" component={Auth.LogIn} layout={AuthLayout} />
           <AppRoute
             exact
-            path="/player"
+            path="/prospect"
+            component={Main.Prospect}
+            layout={MainLayout}
+          />
+          <AppRoute
+            exact
+            path="/player:id"
             component={Main.PlayerCard}
             layout={MainLayout}
           />

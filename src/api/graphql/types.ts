@@ -16,7 +16,6 @@ export type User = {
   email: Scalars['String'];
   allowNotifications: Scalars['Boolean'];
   phoneNumber: Scalars['String'];
-  image: Scalars['String'];
   education: Scalars['String'];
 };
 
@@ -31,7 +30,35 @@ export type Account = {
   preferences: Preferences;
 };
 
+export type Player = {
+   __typename?: 'Player';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  externalId: Scalars['String'];
+  height: Scalars['String'];
+  weight: Scalars['String'];
+  bats: Scalars['String'];
+  throws: Scalars['String'];
+  graduatingClass: Scalars['String'];
+  primaryPosition: Scalars['String'];
+  highSchool: Scalars['String'];
+  contactPhone: Scalars['String'];
+  highSchoolContactPhone: Scalars['String'];
+  statePositionRanking: Scalars['String'];
+  stateOverallRanking: Scalars['String'];
+  nationalPositionRanking: Scalars['String'];
+  nationalOverallRanking: Scalars['String'];
+  collegeCommitment: Scalars['String'];
+};
+
 export type Query = {
    __typename?: 'Query';
   myAccount: Account;
+  playerById: Player;
+  getPlayers: Array<Player>;
+};
+
+
+export type QueryPlayerByIdArgs = {
+  playerId: Scalars['String'];
 };

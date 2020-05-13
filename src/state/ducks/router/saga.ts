@@ -1,6 +1,6 @@
 import {all, put, select, takeEvery} from 'redux-saga/effects';
 import types from './types';
-import {NavigationPayload} from './actions';
+import {NavigateToPlayer, NavigationPayload} from './actions';
 import {Action} from 'redux-actions';
 import State from 'state/entities/State';
 import {actions as sessionActions} from 'state/ducks/session';
@@ -18,11 +18,18 @@ function* accountEntered() {
 }
 
 function navigateToAuth({payload}: Action<NavigationPayload>) {
-  payload.history.push('/login');
+  payload.history.push('/auth');
 }
 
 function navigateToMain({payload}: Action<NavigationPayload>) {
-  payload.history.push('/player');
+  payload.history.push('/main');
+}
+
+function navigateToProspect({payload}: Action<NavigationPayload>) {
+  payload.history.push('/prospect');
+}
+function navigateToPlayer({payload}: Action<NavigateToPlayer>) {
+  payload.history.push(`/player:${payload.playerId}`);
 }
 
 export default function* () {
@@ -31,5 +38,7 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_AUTH, navigateToAuth),
     takeEvery(types.ACCOUNT_ENTERED, accountEntered),
     takeEvery(types.NAVIGATE_TO_MAIN, navigateToMain),
+    takeEvery(types.NAVIGATE_TO_PROSPECT, navigateToProspect),
+    takeEvery(types.NAVIGATE_TO_PLAYER, navigateToPlayer),
   ]);
 }

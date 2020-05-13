@@ -4,9 +4,12 @@ import LoginRequest from 'auth/LoginRequest';
 import ApiLoginRequest from 'api/entities/LoginRequest';
 import {Account} from 'entities/Account';
 import User from 'entities/User';
-import AdditionalUserInfo from 'entities/AdditionalUserInfo';
-import ApiConfiguration from '@spryrocks/react-api/ApiConfiguration';
-import {User as GQLUser} from './graphql/types';
+import {
+  User as GQLUser,
+  Player as GQLPlayer,
+  Account as GQLAccout,
+} from './graphql/types';
+import Player from 'entities/Player';
 
 export const mapRegisterRequestToApi = (
   registerRequest: RegisterRequest,
@@ -24,35 +27,39 @@ export const mapLoginRequestToApi = (loginRequest: LoginRequest): ApiLoginReques
   password: loginRequest.password,
 });
 
-export const mapAdditionalUserInfoFromGQL = (
-  additionalInfo: AdditionalUserInfo,
-): AdditionalUserInfo => ({
-  email: additionalInfo.email,
-});
-
-export const mapImageFromGQL = (
-  configuration: ApiConfiguration,
-  imageId: string,
-): string => {
-  let baseUrl = `${configuration.url}:${configuration.port}`;
-  if (configuration.globalPrefix) baseUrl += configuration.globalPrefix;
-  return `${baseUrl}${configuration.rest.path}/files/${imageId}`;
-};
-
-export const mapUserFromGQL = (configuration: ApiConfiguration, user: GQLUser): User => ({
+export const mapUserFromGQL = (user: GQLUser): User => ({
   id: user.id,
   email: user.email,
-  image: mapImageFromGQL(configuration, user.image),
   education: user.education,
   phoneNumber: user.phoneNumber,
   lastName: user.lastName,
   firstName: user.firstName,
 });
 
-export const mapMyAccountFromGQL = (
-  configuration: ApiConfiguration,
-  account: any,
-): Account => ({
-  info: mapAdditionalUserInfoFromGQL(account.info),
-  user: mapUserFromGQL(configuration, account.user),
+export const mapMyAccountFromGQL = (account: GQLAccout): Account => ({
+  user: mapUserFromGQL(account.user),
 });
+
+export const mapPlayerFromGQL = (player: GQLPlayer): Player => ({
+  id: player.id,
+  name: player.name,
+  weight: player.weight,
+  throws: player.throws,
+  statePositionRanking: player.statePositionRanking,
+  stateOverallRanking: player.stateOverallRanking,
+  primaryPosition: player.primaryPosition,
+  nationalPositionRanking: player.nationalPositionRanking,
+  nationalOverallRanking: player.nationalOverallRanking,
+  highSchoolContactPhone: player.highSchoolContactPhone,
+  highSchool: player.highSchool,
+  height: player.height,
+  graduatingClass: player.graduatingClass,
+  externalId: player.externalId,
+  contactPhone: player.contactPhone,
+  collegeCommitment: player.collegeCommitment,
+  bats: player.bats,
+});
+
+export const mapPlayersFromGQL = (players: GQLPlayer[]): Player[] => {
+  return players.map((player) => mapPlayerFromGQL(player));
+};
