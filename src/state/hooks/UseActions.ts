@@ -12,6 +12,9 @@ import {actions as routerActions} from '../ducks/router';
 import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
+import {snackBarActions} from '../ducks/snackBar';
+import {useHistory} from 'react-router-native';
+import UpdateNotificationsSettings from '../../api/entities/UpdateNotificationsSettings';
 
 export function useAuthActions() {
   const dispatch = useDispatch();
@@ -73,6 +76,8 @@ export function useSettingsActions() {
     fetchNotificationsSettings: () => {
       dispatch(settingsActions.fetchNotificationsSettings());
     },
+    updateNotificationsSettings: (request: UpdateNotificationsSettings) =>
+      dispatch(settingsActions.updateNotificationsSettings(request)),
   };
 }
 

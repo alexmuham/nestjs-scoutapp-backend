@@ -6,13 +6,11 @@ import {ScoutApi} from 'api';
 import Notifications from 'entities/Notifications';
 import {actions} from './index';
 import {snackBarActions} from '../snackBar';
+import UpdateNotificationsSettings from 'api/entities/UpdateNotificationsSettings';
 
-function* updateNotificationsSettings() {
+function* updateNotificationsSettings({payload}: Action<UpdateNotificationsSettings>) {
   try {
-    // const account: Account = yield ScoutApi.updateUserProfile(payload);
-    // yield put(actions.updateUserProfileCompleted(account));
-    // yield put(routerActions.goBack(payload));
-    yield put(alertActions.showSnackbar({title: 'Profile saved!!'}));
+    yield ScoutApi.updateNotificationsSettings(payload);
   } catch (e) {
     yield put(alertActions.showError(e));
   }

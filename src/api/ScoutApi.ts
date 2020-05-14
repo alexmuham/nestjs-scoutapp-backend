@@ -14,6 +14,7 @@ import ApiDelegate, {AuthInfo} from '@spryrocks/react-api/ApiDelegate';
 import IApiTokenHolder from '@spryrocks/react-api/IApiTokenHolder';
 import UpdateFirebaseTokenRequest from 'api/entities/UpdateFirebaseTokenRequest';
 import {ApiBase} from '@spryrocks/react-api';
+import UpdateNotificationsSettings from './entities/UpdateNotificationsSettings';
 
 export default class ScoutApi extends ApiBase implements IScoutApi {
   private readonly restApi: RestApi;
@@ -54,6 +55,10 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
         await this.graphqlApi.queryMyNotificationsSettings(),
       ),
     );
+  }
+
+  public async updateNotificationsSettings(request: UpdateNotificationsSettings) {
+    return this.wrapApiCall(() => this.graphqlApi.mutationNotificationsSettings(request));
   }
 
   public async wrapApiCall<TResponse>(

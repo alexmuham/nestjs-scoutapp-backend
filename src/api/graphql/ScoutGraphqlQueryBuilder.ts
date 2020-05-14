@@ -1,7 +1,13 @@
 import {createQuery, createQueryWithVariables} from '@spryrocks/react-api/graphql/Query';
+import {
+  createMutationWithVariables,
+  createQuery,
+} from '@spryrocks/react-api/graphql/Query';
 import {gql} from 'apollo-boost';
 import {Account, Player, QueryPlayerByIdArgs} from './types';
 import {Account, Notifications} from './types';
+import {Account, MutationUpdateNotificationsSettingsArgs, Notifications} from './types';
+import UpdateNotificationsSettings from '../entities/UpdateNotificationsSettings';
 
 const UserFragment = () => gql`
   fragment User on User {
@@ -94,4 +100,27 @@ export const playersQuery = createQuery<{getPlayers: [Player]}, [Player]>(
     }
   `,
   ({getPlayers}) => getPlayers,
+);
+
+export const mutationUpdateNotificationsSettings = createMutationWithVariables<
+  MutationUpdateNotificationsSettingsArgs,
+  {request: UpdateNotificationsSettings},
+  void
+>(
+  gql`
+    mutation updateNotificationsSettings(
+      $friendRequest: Boolean!
+      $playersMatching: Boolean!
+      $messages: Boolean!
+      $sendNotificationsToEmail: Boolean!
+    ) {
+      updateNotificationsSettings(
+        friendRequest: $friendRequest
+        playersMatching: $playersMatching
+        messages: $messages
+        sendNotificationsToEmail: $sendNotificationsToEmail
+      )
+    }
+  `,
+  () => Boolean,
 );

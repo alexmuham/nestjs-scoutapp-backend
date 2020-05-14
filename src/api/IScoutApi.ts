@@ -6,6 +6,7 @@ import UpdateFirebaseTokenRequest from 'api/entities/UpdateFirebaseTokenRequest'
 import Player from 'entities/Player';
 import Session from '@spryrocks/react-auth/Session';
 import Notifications from 'entities/Notifications';
+import UpdateNotificationsSettings from './entities/UpdateNotificationsSettings';
 
 export interface IScoutApi {
   register(request: RegisterRequest): Promise<Session>;
@@ -16,4 +17,5 @@ export interface IScoutApi {
   getPlayerById(playerId: string): Promise<Player>;
   getPlayers(): Promise<Player[]>;
   myNotificationsSettings(): Promise<Notifications>;
+  updateNotificationsSettings(request: UpdateNotificationsSettings): Promise<void>;
 }

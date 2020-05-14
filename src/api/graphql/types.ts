@@ -73,3 +73,15 @@ export type Query = {
 export type QueryPlayerByIdArgs = {
   playerId: Scalars['String'];
 };
+
+export type MutationUpdateNotificationsSettingsArgs = {
+  friendRequest: Scalars['Boolean'],
+  playersMatching: Scalars['Boolean'],
+  messages: Scalars['Boolean'],
+  sendNotificationsToEmail: Scalars['Boolean'],
+};
+
+export type Mutation = {
+  __typename?: 'Mutation',
+  updateNotificationsSettings: Boolean,
+};
