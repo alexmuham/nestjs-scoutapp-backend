@@ -50,7 +50,10 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
 
   public async myNotificationsSettingsQuery() {
     return this.wrapApiCall(async () =>
-      mapMyNotificationsSettingsFromGQL(this.configuration, await this.graphqlApi.queryMyNotificationsSettings()),
+      mapMyNotificationsSettingsFromGQL(
+        this.configuration,
+        await this.graphqlApi.queryMyNotificationsSettings(),
+      ),
     );
   }
 

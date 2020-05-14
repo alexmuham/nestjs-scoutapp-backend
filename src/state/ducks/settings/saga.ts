@@ -12,8 +12,6 @@ import {Action} from 'redux-actions';
 import {actions as routerActions} from '../router';
 import {NavigationPayload} from '../router/actions';
 
-
-
 // function* registerUser({payload: {request, history}}: Action<RegisterUser>) {
 //   try {
 //     const session: Session = yield Api.register(mapRegisterRequestToApi(request));

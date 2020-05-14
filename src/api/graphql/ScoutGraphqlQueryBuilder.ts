@@ -50,14 +50,17 @@ export const myAccountQuery = createQuery<{myAccount: Account}, Account>(
   ({myAccount}) => myAccount,
 );
 
-export const myNotificationsSettingsQuery = createQuery<{myNotificationsSettings: Notifications}, Notifications>(
+export const myNotificationsSettingsQuery = createQuery<
+  {myNotificationsSettings: Notifications},
+  Notifications
+>(
   gql`
     query myNotificationsSettings {
       myNotificationsSettings {
-        id,
-        friendRequest,
-        messages,
-        playersMatching,
+        id
+        friendRequest
+        messages
+        playersMatching
         sendNotificationsToEmail
       }
     }
