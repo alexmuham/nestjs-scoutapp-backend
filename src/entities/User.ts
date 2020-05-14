@@ -1,12 +1,11 @@
 import {ID} from './Common';
 import {IsString} from 'class-validator';
-import Notifications from './Notifications';
 
 export default class User {
   constructor(
     id: string,
     email: string,
-    notifications: Notifications,
+    notificationsId: string,
     firstName: string,
     lastName: string,
     phoneNumber: string,
@@ -16,7 +15,7 @@ export default class User {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.notifications = notifications;
+    this.notificationsId = notificationsId;
     this.phoneNumber = phoneNumber;
     this.education = education;
   }
@@ -32,7 +31,8 @@ export default class User {
   @IsString()
   email: string;
 
-  notifications: Notifications;
+  @IsString()
+  notificationsId: string;
 
   @IsString()
   phoneNumber: string;

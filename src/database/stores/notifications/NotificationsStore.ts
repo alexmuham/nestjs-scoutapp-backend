@@ -46,7 +46,10 @@ export default class NotificationsStore extends INotificationsStore {
     const user = await this.userRepository.findOne(userId);
     if (!user) throw new ScoutAppError('User not exists');
     await this.repository.update(user?.notificationsId, {
-      friendRequest, playersMatching, messages, sendNotificationsToEmail
+      friendRequest,
+      playersMatching,
+      messages,
+      sendNotificationsToEmail,
     });
     return this.getNotificationsOrFail(user?.notificationsId);
   }

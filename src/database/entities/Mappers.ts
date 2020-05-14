@@ -23,7 +23,7 @@ export const mapUserFromDb = (user: DBUser): User => ({
   firstName: user.firstName,
   lastName: user.lastName,
   phoneNumber: user.phoneNumber,
-  notifications: mapNotificationsFromDB(user.notifications),
+  notificationsId: user.notificationsId,
   email: user.email,
   education: user.education,
 });
@@ -32,9 +32,12 @@ export const mapPreferencesFromDB = (user: DBUser): Preferences => ({
   allowNotifications: user.allowNotifications,
 });
 
-export const mapAccountFromDB = (account: DbUser): Account => ({
+export const mapAccountFromDB = (
+    account: DbUser,
+    notifications: DbNotifications,
+): Account => ({
   user: mapUserFromDb(account),
-  notifications: mapNotificationsFromDB(account.notifications),
+  notifications: mapNotificationsFromDB(notifications),
 });
 
 export const mapPlayerFormDB = (player: DBPlayer): Player => ({

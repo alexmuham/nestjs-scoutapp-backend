@@ -33,6 +33,8 @@ export class NotificationsResolver {
 
   @Query(() => Notifications)
   async myNotificationsSettings(@CurrentSession() {userId}: Session) {
-    return mapNotificationsToGQL(await this.notificationsManager.getMyNotificationsSettings(userId));
+    return mapNotificationsToGQL(
+      await this.notificationsManager.getMyNotificationsSettings(userId),
+    );
   }
 }

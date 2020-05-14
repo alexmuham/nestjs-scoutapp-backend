@@ -2,22 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  notificationsId: String!
+  phoneNumber: String!
+  education: String!
+}
+
 type Notifications {
   id: String!
   friendRequest: Boolean!
   playersMatching: Boolean!
   messages: Boolean!
   sendNotificationsToEmail: Boolean!
-}
-
-type User {
-  id: ID!
-  firstName: String!
-  lastName: String!
-  email: String!
-  notifications: Notifications!
-  phoneNumber: String!
-  education: String!
 }
 
 type Account {

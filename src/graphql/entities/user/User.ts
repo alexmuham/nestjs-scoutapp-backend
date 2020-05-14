@@ -1,12 +1,11 @@
 import {Field, ID, ObjectType} from '@nestjs/graphql';
-import Notifications from './Notifications';
 
 @ObjectType()
 export default class User {
   constructor(
     id: string,
     email: string,
-    notifications: Notifications,
+    notificationsId: string,
     firstName: string,
     lastName: string,
     phoneNumber: string,
@@ -16,7 +15,7 @@ export default class User {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.notifications = notifications;
+    this.notificationsId = notificationsId;
     this.phoneNumber = phoneNumber;
     this.education = education;
   }
@@ -33,8 +32,8 @@ export default class User {
   @Field(() => String)
   email: string;
 
-  @Field(() => Notifications, {nullable: false})
-  notifications: Notifications;
+  @Field(() => String)
+  notificationsId: string;
 
   @Field(() => String)
   phoneNumber: string;

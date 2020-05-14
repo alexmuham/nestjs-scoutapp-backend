@@ -6,6 +6,7 @@ import Preferences from 'entities/Preferences';
 import GQLPlayer from './player/Player';
 import Player from 'entities/Player';
 import Notifications from 'entities/Notifications';
+import GQLNotifications from './user/Notifications';
 
 export const mapUserToGQL = (user: User): GQLUser => {
   return {
@@ -15,11 +16,13 @@ export const mapUserToGQL = (user: User): GQLUser => {
     phoneNumber: user.phoneNumber,
     education: user.education,
     email: user.email,
-    notifications: user.notifications,
+    notificationsId: user.notificationsId,
   };
 };
 
-export const mapNotificationsToGQL = (notifications: Notifications) => ({
+export const mapNotificationsToGQL = (
+  notifications: Notifications,
+): GQLNotifications => ({
   id: notifications.id,
   friendRequest: notifications.friendRequest,
   playersMatching: notifications.playersMatching,
