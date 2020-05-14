@@ -2,6 +2,7 @@ import React from 'react';
 import ItemModel from './ItemModel';
 import MenuBarContainer, {MenuBarContainerProps} from './MenuBarContainer';
 import MenuBarItem from './MenuBarItem';
+import {useHistory} from 'react-router-native';
 
 interface MenuBarProps extends MenuBarContainerProps {
   leftIcons?: ItemModel[];
@@ -11,22 +12,31 @@ interface MenuBarProps extends MenuBarContainerProps {
 const MenuBar: React.FC<MenuBarProps> = ({leftIcons, rightIcons, ...otherProps}) => {
   const menuBarItemKeyExtractor = (index: number) => index;
 
-  const renderItems = (items: ItemModel[]) => {
+  const history = useHistory();
+
+  const openSettings = () => {
+    history.push('/settings');
+  };
+  const openFriends = () => {
+    history.push('/friends');
+  };
+
+  const renderItems = (items: ItemModel[], onPress: () => void) => {
     return items.map((item, index) => (
       <MenuBarItem
         key={menuBarItemKeyExtractor(index)}
         image={item.image}
-        onPress={item.onPress}
+        onPress={onPress}
       />
     ));
   };
 
   const props: Partial<MenuBarContainerProps> = {};
   if (leftIcons) {
-    props.left = renderItems(leftIcons);
+    props.left = renderItems(leftIcons, () => openFriends());
   }
   if (rightIcons) {
-    props.right = renderItems(rightIcons);
+    props.right = renderItems(rightIcons, () => openSettings());
   }
   return <MenuBarContainer {...otherProps} {...props} />;
 };

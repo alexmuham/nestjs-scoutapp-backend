@@ -1,4 +1,5 @@
 import {reducer as sessionReducer, saga as sessionSaga} from './session';
+import {reducer as notificationsReducer, saga as notificationsSaga} from './settings';
 import {saga as authSaga} from './auth';
 import authReducer from './auth/reducer';
 import {saga as routerSaga} from './router';
@@ -18,6 +19,7 @@ export const rootReducer = combineReducers<State>({
   snackBar: snackBarReducer,
   prospect: prospectReducer,
   player: playerReducer,
+  notifications: notificationsReducer,
 });
 
 export function* rootSaga() {
@@ -30,5 +32,6 @@ export function* rootSaga() {
     prospectSage(),
     playerSage(),
     errorSaga(),
+    notificationsSaga(),
   ]);
 }

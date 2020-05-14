@@ -1,7 +1,11 @@
 import {createAction} from 'redux-actions';
 import types from './types';
-import {NavigationPayload} from '../router/actions';
+import Notifications from 'entities/Notifications';
 
 export default {
-  openSettings: createAction<NavigationPayload>(types.OPEN_SETTINGS),
+  updateNotificationsSettings: createAction(types.UPDATE_NOTIFICATIONS_SETTINGS),
+  fetchNotificationsSettings: createAction(types.FETCH_NOTIFICATIONS_SETTINGS),
+  fetchNotificationsSettingsCompleted: createAction<Notifications>(
+    types.FETCH_NOTIFICATIONS_SETTINGS_COMPLETED,
+  ),
 };

@@ -3,6 +3,7 @@ import {Auth} from 'state/entities/Auth';
 import {SnackBar} from 'state/entities/SnackBar';
 import {LoadableContainer} from './LoadableContainer';
 import Player from 'entities/Player';
+import {NotificationsContainer} from 'state/entities/NotificationsContainer';
 
 export default interface State {
   session: SessionContainer;
@@ -10,4 +11,5 @@ export default interface State {
   snackBar: SnackBar;
   prospect: LoadableContainer<{players: Player[]}>;
   player: LoadableContainer<Player>;
+  notifications: NotificationsContainer;
 }

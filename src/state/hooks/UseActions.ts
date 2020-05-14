@@ -68,11 +68,10 @@ export function usePlayerActions() {
 
 export function useSettingsActions() {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   return {
-    openSettings: () => {
-      dispatch(settingsActions.openSettings({history}));
+    fetchNotificationsSettings: () => {
+      dispatch(settingsActions.fetchNotificationsSettings());
     },
   };
 }
