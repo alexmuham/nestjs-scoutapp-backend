@@ -24,6 +24,7 @@ export const mapUserFromDb = (user: DbUser): User => ({
   preferencesId: user.preferencesId,
   email: user.email,
   education: user.education,
+  players: user.players,
 });
 
 export const mapAccountFromDb = (

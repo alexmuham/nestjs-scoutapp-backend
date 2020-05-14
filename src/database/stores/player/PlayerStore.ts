@@ -56,6 +56,10 @@ export default class PlayerStore implements IPlayerStore {
     return this.repository.findOne(playerId);
   }
 
+  async getPlayerByIdOrThrow(id: string) {
+    return this.repository.findOneOrFail(id);
+  }
+
   async getPlayers() {
     return this.repository.find();
   }

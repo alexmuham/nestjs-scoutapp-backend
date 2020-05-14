@@ -1,5 +1,6 @@
 import {ID} from './Common';
-import {IsString} from 'class-validator';
+import Player from './Player';
+import {Field} from '@nestjs/graphql';
 
 export default class User {
   constructor(
@@ -10,6 +11,7 @@ export default class User {
     lastName: string,
     phoneNumber: string,
     education: string,
+    players: Player[],
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -18,25 +20,29 @@ export default class User {
     this.preferencesId = preferencesId;
     this.phoneNumber = phoneNumber;
     this.education = education;
+    this.players = players;
   }
 
   id: ID;
 
-  @IsString()
+  @Field()
   firstName: string;
 
-  @IsString()
+  @Field()
   lastName: string;
 
-  @IsString()
+  @Field(() => [Player])
+  players?: Player[];
+
+  @Field()
   email: string;
 
   @IsString()
   preferencesId: string;
 
-  @IsString()
+  @Field()
   phoneNumber: string;
 
-  @IsString()
+  @Field()
   education: string;
 }

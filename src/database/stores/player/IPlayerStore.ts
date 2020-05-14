@@ -23,5 +23,7 @@ export default abstract class IPlayerStore {
 
   abstract getPlayerById(playerId: string): Promise<Player | undefined>;
 
+  abstract getPlayerByIdOrThrow(playerId: string): Promise<Player>;
+
   abstract getPlayers(): Promise<Player[] | undefined>;
 }

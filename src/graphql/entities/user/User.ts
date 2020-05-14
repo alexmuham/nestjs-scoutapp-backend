@@ -1,4 +1,5 @@
 import {Field, ID, ObjectType} from '@nestjs/graphql';
+import Player from '../player/Player';
 
 @ObjectType()
 export default class User {
@@ -10,6 +11,7 @@ export default class User {
     lastName: string,
     phoneNumber: string,
     education: string,
+    players: Player[] | undefined,
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -18,6 +20,7 @@ export default class User {
     this.preferencesId = preferencesId;
     this.phoneNumber = phoneNumber;
     this.education = education;
+    this.players = players;
   }
 
   @Field(() => ID)
@@ -40,4 +43,7 @@ export default class User {
 
   @Field(() => String)
   education: string;
+
+  @Field(() => [Player], {nullable: true})
+  players: Player[] | undefined;
 }

@@ -1,3 +1,5 @@
+import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import Player from './Player';
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import Preferences from './Preferences';
 
@@ -12,6 +14,7 @@ export default class User {
     preferences: Preferences,
     preferencesId: string,
     education: string,
+    players: Player[],
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -21,10 +24,15 @@ export default class User {
     this.preferences = preferences;
     this.preferencesId = preferencesId;
     this.education = education;
+    this.players = players;
   }
 
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @ManyToMany(() => Player, {nullable: false})
+  @JoinTable()
+  players: Player[];
 
   @Column()
   firstName: string;
