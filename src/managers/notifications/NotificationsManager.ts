@@ -32,7 +32,9 @@ export default class NotificationsManager implements INotificationsManager {
     const user = await this.userStore.getUser(id);
     if (!user) throw new ScoutAppError('User not exist');
 
-    const notifications = await this.notificationsStore.getMyNotificationsSettings(user?.notificationsId);
+    const notifications = await this.notificationsStore.getMyNotificationsSettings(
+      user?.notificationsId,
+    );
     if (!notifications) throw new ScoutAppError('there is no such laundry');
 
     return mapNotificationsFromDB(notifications);
