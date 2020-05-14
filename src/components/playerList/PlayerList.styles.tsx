@@ -3,15 +3,15 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginLeft: 10,
   },
-  list: {
-    flexDirection: 'row',
+  title: {
+    paddingTop: 15,
   },
-  title: {},
   titleText: {
     color: '#A61911',
+    fontSize: 30,
   },
-  sort: {},
 });
 
 export default styles;
