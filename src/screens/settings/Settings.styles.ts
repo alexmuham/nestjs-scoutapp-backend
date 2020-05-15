@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
 
-  notificationsContainer: {
+  preferencesContainer: {
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#EDEDED',

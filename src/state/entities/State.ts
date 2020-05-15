@@ -5,6 +5,7 @@ import {LoadableContainer} from './LoadableContainer';
 import Player from 'entities/Player';
 import {NotificationsContainer} from 'state/entities/NotificationsContainer';
 import Notifications from 'entities/Notifications';
+import Preferences from 'entities/Preferences';
 
 export default interface State {
   session: SessionContainer;
@@ -14,4 +15,5 @@ export default interface State {
   player: LoadableContainer<Player>;
   notifications: NotificationsContainer;
   notifications: Notifications;
+  preferences: Preferences;
 }

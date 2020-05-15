@@ -7,6 +7,7 @@ import {gql} from 'apollo-boost';
 import {Account, Player, QueryPlayerByIdArgs} from './types';
 import {Account, Notifications} from './types';
 import {Account, MutationUpdateNotificationsSettingsArgs, Notifications} from './types';
+import {Account, MutationUpdatePreferencesArgs, Preferences} from './types';
 
 const UserFragment = () => gql`
   fragment User on User {
@@ -42,7 +43,7 @@ const PlayerFragment = () => gql`
 `;
 
 export const myAccountQuery = createQuery<{myAccount: Account}, Account>(
-  gql`
+    gql`
     ${UserFragment()}
     query myAccount {
       myAccount {
@@ -52,25 +53,22 @@ export const myAccountQuery = createQuery<{myAccount: Account}, Account>(
       }
     }
   `,
-  ({myAccount}) => myAccount,
+    ({myAccount}) => myAccount,
 );
 
-export const myNotificationsSettingsQuery = createQuery<
-  {myNotificationsSettings: Notifications},
-  Notifications
->(
+export const preferencesQuery = createQuery<{preferences: Preferences}, Preferences>(
   gql`
-    query myNotificationsSettings {
-      myNotificationsSettings {
+    query preferences {
+      preferences {
         id
-        friendRequest
-        messages
-        playersMatching
+        enableFriendRequestNotification
+        enableMessageNotification
+        enablePlayerMatchingNotification
         sendNotificationsToEmail
       }
     }
   `,
-  ({myNotificationsSettings}) => myNotificationsSettings,
+  ({preferences}) => preferences,
 );
 
 export const playerByIdQuery = createQueryWithVariables<
@@ -105,27 +103,31 @@ export const mutationUpdateNotificationsSettings = createMutationWithVariables<
   MutationUpdateNotificationsSettingsArgs,
   Notifications,
   Notifications
+export const mutationUpdatePreferences = createMutationWithVariables<
+  MutationUpdatePreferencesArgs,
+  Preferences,
+  Preferences
 >(
   gql`
-    mutation updateNotificationsSettings(
-      $friendRequest: Boolean!
-      $playersMatching: Boolean!
-      $messages: Boolean!
+    mutation updatePreferences(
+      $enableFriendRequestNotification: Boolean!
+      $enablePlayerMatchingNotification: Boolean!
+      $enableMessageNotifications: Boolean!
       $sendNotificationsToEmail: Boolean!
     ) {
-      updateNotificationsSettings(
-        friendRequest: $friendRequest
-        playersMatching: $playersMatching
-        messages: $messages
+      updatePreferences(
+        enableFriendRequestNotification: $enableFriendRequestNotification
+        enablePlayerMatchingNotification: $enablePlayerMatchingNotification
+        enableMessageNotification: $enableMessageNotifications
         sendNotificationsToEmail: $sendNotificationsToEmail
       ) {
         id
-        friendRequest
-        messages
-        playersMatching
+        enableFriendRequestNotification
+        enableMessageNotification
+        enablePlayerMatchingNotification
         sendNotificationsToEmail
       }
     }
   `,
-  (updateNotificationsSettings) => updateNotificationsSettings,
+  (updatePreferences) => updatePreferences,
 );

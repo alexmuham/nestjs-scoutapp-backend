@@ -3,29 +3,29 @@ import {all, put, takeEvery} from 'redux-saga/effects';
 import {Action} from 'redux-actions';
 import {actions as alertActions} from '../alert';
 import {ScoutApi} from 'api';
-import Notifications from 'entities/Notifications';
+import Preferences from 'entities/Preferences';
 import {actions} from './index';
 import {snackBarActions} from '../snackBar';
-import UpdateNotificationsSettings from 'api/entities/UpdateNotificationsSettings';
+import UpdatePreferences from 'api/entities/UpdatePreferences';
 
-function* updateNotificationsSettings({payload}: Action<UpdateNotificationsSettings>) {
+function* updatePreferences({payload}: Action<UpdatePreferences>) {
   try {
-    yield ScoutApi.updateNotificationsSettings(payload);
+    yield ScoutApi.updatePreferences(payload);
   } catch (e) {
     yield put(alertActions.showError(e));
   }
 }
 
-function* fetchNotificationsSettings() {
+function* fetchPreferences() {
   try {
-    const notifications: Notifications = yield ScoutApi.myNotificationsSettings();
-    yield put(actions.fetchNotificationsSettingsCompleted(notifications));
+    const preferences: Preferences = yield ScoutApi.preferences();
+    yield put(actions.fetchPreferencesCompleted(preferences));
   } catch (e) {
-    yield put(actions.fetchNotificationsSettingsCompleted(e));
+    yield put(actions.fetchPreferencesCompleted(e));
   }
 }
 
-function* fetchNotificationsSettingsCompleted({payload, error}: Action<Notifications>) {
+function* fetchPreferencesCompleted({payload, error}: Action<Preferences>) {
   if (error) {
     yield put(
       snackBarActions.showSnackbar({
@@ -38,12 +38,8 @@ function* fetchNotificationsSettingsCompleted({payload, error}: Action<Notificat
 
 export default function* () {
   yield all([
-    takeEvery(types.UPDATE_NOTIFICATIONS_SETTINGS, updateNotificationsSettings),
-    takeEvery(types.FETCH_NOTIFICATIONS_SETTINGS, fetchNotificationsSettings),
-    takeEvery(
-      types.FETCH_NOTIFICATIONS_SETTINGS_COMPLETED,
-      fetchNotificationsSettingsCompleted,
-    ),
-    // takeEvery(types.AUTH_COMPLETED, authCompleted),
+    takeEvery(types.UPDATE_PREFERENCES, updatePreferences),
+    takeEvery(types.FETCH_PREFERENCES, fetchPreferences),
+    takeEvery(types.FETCH_PREFERENCES_COMPLETED, fetchPreferencesCompleted),
   ]);
 }

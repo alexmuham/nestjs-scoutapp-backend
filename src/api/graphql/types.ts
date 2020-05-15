@@ -14,23 +14,17 @@ export type User = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   email: Scalars['String'];
-  allowNotifications: Scalars['Boolean'];
-  notifications: Notifications;
+  preferences: Preferences;
   phoneNumber: Scalars['String'];
   education: Scalars['String'];
 };
 
 export type Preferences = {
    __typename?: 'Preferences';
-  allowNotifications: Scalars['Boolean'];
-};
-
-export type Notifications = {
-   __typename?: 'Notifications';
   id: Scalars['ID'];
-  friendRequest: Scalars['Boolean'];
-  playersMatching: Scalars['Boolean'];
-  messages: Scalars['Boolean'];
+  enableFriendRequestNotification: Scalars['Boolean'];
+  enablePlayerMatchingNotification: Scalars['Boolean'];
+  enableMessageNotification: Scalars['Boolean'];
   sendNotificationsToEmail: Scalars['Boolean'];
 };
 
@@ -38,7 +32,6 @@ export type Account = {
    __typename?: 'Account';
   user: User;
   preferences: Preferences;
-  notifications: Notifications;
 };
 
 export type Player = {
@@ -64,6 +57,7 @@ export type Player = {
 
 export type Query = {
    __typename?: 'Query';
+  account: Account;
   myAccount: Account;
   playerById: Player;
   getPlayers: Array<Player>;
@@ -74,14 +68,14 @@ export type QueryPlayerByIdArgs = {
   playerId: Scalars['String'];
 };
 
-export type MutationUpdateNotificationsSettingsArgs = {
-  friendRequest?: Maybe<Scalars['Boolean']>,
-  playersMatching?: Maybe<Scalars['Boolean']>,
-  messages?: Maybe<Scalars['Boolean']>,
+export type MutationUpdatePreferencesArgs = {
+  enableFriendRequestNotification?: Maybe<Scalars['Boolean']>,
+  enablePlayerMatchingNotification?: Maybe<Scalars['Boolean']>,
+  enableMessageNotification?: Maybe<Scalars['Boolean']>,
   sendNotificationsToEmail?: Maybe<Scalars['Boolean']>,
 };
 
 export type Mutation = {
   __typename?: 'Mutation',
-  updateNotificationsSettings: Boolean,
+  updatePreferences: Boolean,
 };

@@ -6,6 +6,7 @@ import ApiConfiguration from '@spryrocks/react-api/ApiConfiguration';
 import ScoutGraphqlApi from 'api/graphql/ScoutGraphqlApi';
 import {mapMyAccountFromGQL, mapPlayerFromGQL, mapPlayersFromGQL} from 'api/Mappers';
 import {mapMyAccountFromGQL, mapMyNotificationsSettingsFromGQL} from 'api/Mappers';
+import {mapAccountFromGQL, mapPreferencesFromGQL} from 'api/Mappers';
 import {ApolloError} from 'apollo-boost';
 import ApiHttpError from '@spryrocks/react-api/rest/ApiHttpError';
 import ApiError from '@spryrocks/react-api/rest/ApiError';
@@ -15,6 +16,7 @@ import IApiTokenHolder from '@spryrocks/react-api/IApiTokenHolder';
 import UpdateFirebaseTokenRequest from 'api/entities/UpdateFirebaseTokenRequest';
 import {ApiBase} from '@spryrocks/react-api';
 import UpdateNotificationsSettings from './entities/UpdateNotificationsSettings';
+import UpdatePreferences from './entities/UpdatePreferences';
 
 export default class ScoutApi extends ApiBase implements IScoutApi {
   private readonly restApi: RestApi;
@@ -43,25 +45,21 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
     return this.restApi.login(request);
   }
 
-  public async myAccount() {
+  public async account() {
     return this.wrapApiCall(async () =>
       mapMyAccountFromGQL(await this.graphqlApi.queryMyAccount()),
     );
   }
 
-  public async myNotificationsSettings() {
+  public async preferences() {
     return this.wrapApiCall(async () =>
-      mapMyNotificationsSettingsFromGQL(
-        await this.graphqlApi.queryMyNotificationsSettings(),
-      ),
+      mapPreferencesFromGQL(await this.graphqlApi.queryPreferences()),
     );
   }
 
-  public async updateNotificationsSettings(request: UpdateNotificationsSettings) {
+  public async updatePreferences(request: UpdatePreferences) {
     return this.wrapApiCall(async () =>
-      mapMyNotificationsSettingsFromGQL(
-        await this.graphqlApi.mutationNotificationsSettings(request),
-      ),
+      mapPreferencesFromGQL(await this.graphqlApi.mutationPreferences(request)),
     );
   }
 

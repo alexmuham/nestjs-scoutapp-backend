@@ -1,14 +1,10 @@
 import {createAction} from 'redux-actions';
 import types from './types';
-import Notifications from 'entities/Notifications';
-import UpdateNotificationsSettings from 'api/entities/UpdateNotificationsSettings';
+import Preferences from 'entities/Preferences';
+import UpdatePreferences from 'api/entities/UpdatePreferences';
 
 export default {
-  updateNotificationsSettings: createAction<UpdateNotificationsSettings>(
-    types.UPDATE_NOTIFICATIONS_SETTINGS,
-  ),
-  fetchNotificationsSettings: createAction(types.FETCH_NOTIFICATIONS_SETTINGS),
-  fetchNotificationsSettingsCompleted: createAction<Notifications>(
-    types.FETCH_NOTIFICATIONS_SETTINGS_COMPLETED,
-  ),
+  updatePreferences: createAction<UpdatePreferences>(types.UPDATE_PREFERENCES),
+  fetchPreferences: createAction(types.FETCH_PREFERENCES),
+  fetchPreferencesCompleted: createAction<Preferences>(types.FETCH_PREFERENCES_COMPLETED),
 };

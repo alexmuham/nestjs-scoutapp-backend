@@ -15,33 +15,37 @@ const Settings: React.FC = () => {
   const actions = useSettingsActions();
 
   useEffect(() => {
-    actions.fetchNotificationsSettings();
+    actions.fetchPreferences();
   }, []);
 
-  const notifications = useSelector((state) => state.notifications);
+  const preferences = useSelector((state) => state.preferences);
 
   const renderTextForLineProperty = (title: string) => {
     return <Text>{title}</Text>;
   };
 
-  const changeFriendRequest = {
-    friendRequest: !notifications.friendRequest,
+  const changeEnableFriendRequestNotification = {
+    enableFriendRequestNotification: !preferences.enableFriendRequestNotification,
   };
 
-  const changePlayersMatching = {
-    playersMatching: !notifications.playersMatching,
+  const changeEnablePlayerMatchingNotification = {
+    enablePlayerMatchingNotification: !preferences.enablePlayerMatchingNotification,
   };
 
-  const changeMessages = {
-    messages: !notifications.messages,
+  const changeEnableMessageNotification = {
+    enableMessageNotification: !preferences.enableMessageNotification,
   };
 
   const changeSendNotificationsToEmail = {
-    sendNotificationsToEmail: !notifications.sendNotificationsToEmail,
+    sendNotificationsToEmail: !preferences.sendNotificationsToEmail,
   };
 
   const renderSwitch = (
-    name: 'friendRequest' | 'playersMatching' | 'messages' | 'sendNotificationsToEmail',
+    name:
+      | 'enableFriendRequestNotification'
+      | 'enablePlayerMatchingNotification'
+      | 'enableMessageNotification'
+      | 'sendNotificationsToEmail',
     dbState: boolean,
   ) => {
     return (
@@ -49,14 +53,14 @@ const Settings: React.FC = () => {
         switchState={dbState}
         onPress={() => {
           switch (name) {
-            case 'friendRequest':
-              return actions.updateNotificationsSettings(changeFriendRequest);
-            case 'playersMatching':
-              return actions.updateNotificationsSettings(changePlayersMatching);
-            case 'messages':
-              return actions.updateNotificationsSettings(changeMessages);
+            case 'enableFriendRequestNotification':
+              return actions.updatePreferences(changeEnableFriendRequestNotification);
+            case 'enablePlayerMatchingNotification':
+              return actions.updatePreferences(changeEnablePlayerMatchingNotification);
+            case 'enableMessageNotification':
+              return actions.updatePreferences(changeEnableMessageNotification);
             case 'sendNotificationsToEmail':
-              return actions.updateNotificationsSettings(changeSendNotificationsToEmail);
+              return actions.updatePreferences(changeSendNotificationsToEmail);
           }
         }}
       />
@@ -83,37 +87,48 @@ const Settings: React.FC = () => {
         <Suspense fallback={<Text>Loading...</Text>}>
           <View>
             <View>
-              <View style={styles.notificationsContainer}>
+              <View style={styles.preferencesContainer}>
                 <LineProperty
                   text={() => renderTextForLineProperty('Friend Request')}
                   element={() =>
-                    renderSwitch('friendRequest', notifications.friendRequest)
+                    renderSwitch(
+                      'enableFriendRequestNotification',
+                      preferences.enableFriendRequestNotification,
+                    )
                   }
                 />
                 <View style={styles.horizontalLine} />
                 <LineProperty
                   text={() => renderTextForLineProperty('Player(s) matching')}
                   element={() =>
-                    renderSwitch('playersMatching', notifications.playersMatching)
+                    renderSwitch(
+                      'enablePlayerMatchingNotification',
+                      preferences.enablePlayerMatchingNotification,
+                    )
                   }
                 />
                 <View style={styles.horizontalLine} />
                 <LineProperty
                   text={() => renderTextForLineProperty('Messages')}
-                  element={() => renderSwitch('messages', notifications.messages)}
+                  element={() =>
+                    renderSwitch(
+                      'enableMessageNotification',
+                      preferences.enableMessageNotification,
+                    )
+                  }
                 />
                 <View style={styles.horizontalLine} />
                 <LineProperty
-                  text={() => renderTextForLineProperty('Send notifications to email')}
+                  text={() => renderTextForLineProperty('Send preferences to email')}
                   element={() =>
                     renderSwitch(
                       'sendNotificationsToEmail',
-                      notifications.sendNotificationsToEmail,
+                      preferences.sendNotificationsToEmail,
                     )
                   }
                 />
               </View>
-              <View style={styles.notificationsContainer}>
+              <View style={styles.preferencesContainer}>
                 <TouchableOpacity>
                   <LineProperty
                     text={() => renderTextForLineProperty('Edit Profile')}
@@ -121,7 +136,7 @@ const Settings: React.FC = () => {
                   />
                 </TouchableOpacity>
               </View>
-              <View style={styles.notificationsContainer}>
+              <View style={styles.preferencesContainer}>
                 <TouchableOpacity>
                   <LineProperty
                     text={() => renderTextForLineProperty('Log Out')}

@@ -14,7 +14,7 @@ import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
 import {snackBarActions} from '../ducks/snackBar';
 import {useHistory} from 'react-router-native';
-import UpdateNotificationsSettings from '../../api/entities/UpdateNotificationsSettings';
+import UpdatePreferences from '../../api/entities/UpdatePreferences';
 
 export function useAuthActions() {
   const dispatch = useDispatch();
@@ -73,11 +73,11 @@ export function useSettingsActions() {
   const dispatch = useDispatch();
 
   return {
-    fetchNotificationsSettings: () => {
-      dispatch(settingsActions.fetchNotificationsSettings());
+    fetchPreferences: () => {
+      dispatch(settingsActions.fetchPreferences());
     },
-    updateNotificationsSettings: (request: UpdateNotificationsSettings) =>
-      dispatch(settingsActions.updateNotificationsSettings(request)),
+    updatePreferences: (request: UpdatePreferences) =>
+      dispatch(settingsActions.updatePreferences(request)),
   };
 }
 

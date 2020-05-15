@@ -18,7 +18,7 @@ const fetchUserAccountCompleted: ReducerNextThrow<SessionContainer, Account> = {
   throw: (state, {payload}) => ({...state, ...failed(payload)}),
 };
 
-const updateMyAccountCompleted: ReducerNextThrow<SessionContainer, Account> = {
+const updateAccountCompleted: ReducerNextThrow<SessionContainer, Account> = {
   next: (state, {payload}) => ({...state, ...success({}), account: payload}),
   throw: (state, {payload}) => ({...state, ...failed(payload)}),
 };
@@ -29,7 +29,7 @@ export default handleActions<SessionContainer, any>(
     [types.FETCH_USER_ACCOUNT]: (state) =>
       state.exists ? {exists: true, ...loading(state)} : {exists: false},
     [types.FETCH_USER_COMPLETED]: fetchUserAccountCompleted,
-    [types.UPDATE_USER_PROFILE_COMPLETED]: updateMyAccountCompleted,
+    [types.UPDATE_USER_PROFILE_COMPLETED]: updateAccountCompleted,
   },
   initialState,
 );

@@ -3,7 +3,7 @@ import ApiRegisterRequest from 'api/entities/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ApiLoginRequest from 'api/entities/LoginRequest';
 import {Account} from 'entities/Account';
-import Notifications from 'entities/Notifications';
+import Preferences from 'entities/Preferences';
 import User from 'entities/User';
 import {
   User as GQLUser,
@@ -65,10 +65,18 @@ export const mapPlayersFromGQL = (players: GQLPlayer[]): Player[] => {
   return players.map((player) => mapPlayerFromGQL(player));
 };
 
-export const mapMyNotificationsSettingsFromGQL = (notifications: any): Notifications => ({
-  id: notifications.id,
-  friendRequest: notifications.friendRequest,
-  playersMatching: notifications.playersMatching,
-  messages: notifications.messages,
-  sendNotificationsToEmail: notifications.sendNotificationsToEmail,
+export const mapAccountFromGQL = (
+    configuration: ApiConfiguration,
+    account: any,
+): Account => ({
+  info: mapAdditionalUserInfoFromGQL(account.info),
+  user: mapUserFromGQL(configuration, account.user),
+});
+
+export const mapPreferencesFromGQL = (preferences: any): Preferences => ({
+  id: preferences.id,
+  enableFriendRequestNotification: preferences.enableFriendRequestNotification,
+  enablePlayerMatchingNotification: preferences.enablePlayerMatchingNotification,
+  enableMessageNotification: preferences.enableMessageNotification,
+  sendNotificationsToEmail: preferences.sendNotificationsToEmail,
 });

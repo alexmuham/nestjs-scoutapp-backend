@@ -21,7 +21,7 @@ function* updateMyAccount({payload}: Action<NavigationPayload>) {
 
 function* fetchSession({payload}: Action<NavigationPayload>) {
   try {
-    const account: Account = yield ScoutApi.myAccount();
+    const account: Account = yield ScoutApi.account();
     yield put(sessionActions.fetchUserCompleted(account));
     yield put(sessionActions.setSessionExists(true));
   } catch (e) {
@@ -30,6 +30,6 @@ function* fetchSession({payload}: Action<NavigationPayload>) {
 }
 
 export default function* () {
-  yield all([takeEvery(types.UPDATE_USER_PROFILE, updateMyAccount)]);
+  yield all([takeEvery(types.UPDATE_USER_PROFILE, updateAccount)]);
   yield all([takeEvery(types.FETCH_SESSION, fetchSession)]);
 }
