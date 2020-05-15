@@ -7,7 +7,6 @@ import {gql} from 'apollo-boost';
 import {Account, Player, QueryPlayerByIdArgs} from './types';
 import {Account, Notifications} from './types';
 import {Account, MutationUpdateNotificationsSettingsArgs, Notifications} from './types';
-import UpdateNotificationsSettings from '../entities/UpdateNotificationsSettings';
 
 const UserFragment = () => gql`
   fragment User on User {
@@ -104,8 +103,8 @@ export const playersQuery = createQuery<{getPlayers: [Player]}, [Player]>(
 
 export const mutationUpdateNotificationsSettings = createMutationWithVariables<
   MutationUpdateNotificationsSettingsArgs,
-  {request: UpdateNotificationsSettings},
-  void
+  Notifications,
+  Notifications
 >(
   gql`
     mutation updateNotificationsSettings(
@@ -119,8 +118,14 @@ export const mutationUpdateNotificationsSettings = createMutationWithVariables<
         playersMatching: $playersMatching
         messages: $messages
         sendNotificationsToEmail: $sendNotificationsToEmail
-      )
+      ) {
+        id
+        friendRequest
+        messages
+        playersMatching
+        sendNotificationsToEmail
+      }
     }
   `,
-  () => Boolean,
+  (updateNotificationsSettings) => updateNotificationsSettings,
 );

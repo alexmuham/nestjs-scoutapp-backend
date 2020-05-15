@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {MenuBar} from 'components';
 import {MenuBarItems} from 'navigation';
@@ -9,6 +9,13 @@ import {useSelector} from 'state/hooks';
 import {RequireLoadable} from 'components/index';
 
 const Settings: React.FC = () => {
+  const [friendRequest, setFriendRequest] = useState<undefined | boolean>(undefined);
+  const [messages, setMessages] = useState<undefined | boolean>(undefined);
+  const [playersMatching, setPlayersMatching] = useState<undefined | boolean>(undefined);
+  const [sendNotificationsToEmail, setSendNotificationsToEmail] = useState<
+    undefined | boolean
+  >(undefined);
+
   const renderTextForLineProperty = (title: string) => {
     return <Text>{title}</Text>;
   };
@@ -17,7 +24,7 @@ const Settings: React.FC = () => {
 
   useEffect(() => {
     actions.fetchNotificationsSettings();
-  }, []);
+  }, [friendRequest, messages, playersMatching, sendNotificationsToEmail]);
 
   const notifications = useSelector((state) => state.notifications);
 
@@ -36,27 +43,73 @@ const Settings: React.FC = () => {
                     <LineProperty
                       functionalityType="switch"
                       leftElement={() => renderTextForLineProperty('Friend Request')}
-                      switchState={notifications.account.friendRequest}
-                      // onPress={() => {
-                      //   actions.updateNotificationsSettings(
-                      //     {
-                      //       allowNotifications: !data.allowNotifications,
-                      //     },
-                      //     notificationText,
-                      //   );
-                      // }}
+                      switchState={friendRequest || notifications.account.friendRequest}
+                      onPress={() => {
+                        if (friendRequest) {
+                          setFriendRequest(!friendRequest);
+                        } else {
+                          setFriendRequest(!notifications.account.friendRequest);
+                        }
+
+                        actions.updateNotificationsSettings({
+                          friendRequest: friendRequest
+                            ? !friendRequest
+                            : !notifications.account.friendRequest,
+                          messages: messages || notifications.account.messages,
+                          playersMatching:
+                            playersMatching || notifications.account.playersMatching,
+                          sendNotificationsToEmail:
+                            sendNotificationsToEmail ||
+                            notifications.account.sendNotificationsToEmail,
+                        });
+                      }}
                     />
                     <View style={styles.horizontalLine} />
                     <LineProperty
                       functionalityType="switch"
                       leftElement={() => renderTextForLineProperty('Player(s) matching')}
                       switchState={notifications.account.playersMatching}
+                      onPress={() => {
+                        if (playersMatching) {
+                          setPlayersMatching(!playersMatching);
+                        } else {
+                          setPlayersMatching(!notifications.account.playersMatching);
+                        }
+
+                        actions.updateNotificationsSettings({
+                          friendRequest:
+                            friendRequest || notifications.account.friendRequest,
+                          messages: messages || notifications.account.messages,
+                          playersMatching: !notifications.account.playersMatching,
+                          sendNotificationsToEmail:
+                            sendNotificationsToEmail ||
+                            notifications.account.sendNotificationsToEmail,
+                        });
+                      }}
                     />
                     <View style={styles.horizontalLine} />
                     <LineProperty
                       functionalityType="switch"
                       leftElement={() => renderTextForLineProperty('Messages')}
                       switchState={notifications.account.messages}
+                      onPress={() => {
+                        if (messages) {
+                          setMessages(!messages);
+                        } else {
+                          setMessages(!notifications.account.messages);
+                        }
+
+                        actions.updateNotificationsSettings({
+                          friendRequest:
+                            friendRequest || notifications.account.friendRequest,
+                          messages: !notifications.account.messages,
+                          playersMatching:
+                            playersMatching || notifications.account.playersMatching,
+                          sendNotificationsToEmail:
+                            sendNotificationsToEmail ||
+                            notifications.account.sendNotificationsToEmail,
+                        });
+                      }}
                     />
                     <View style={styles.horizontalLine} />
                     <LineProperty
@@ -65,6 +118,25 @@ const Settings: React.FC = () => {
                         renderTextForLineProperty('Send notifications to email')
                       }
                       switchState={notifications.account.sendNotificationsToEmail}
+                      onPress={() => {
+                        if (sendNotificationsToEmail) {
+                          setSendNotificationsToEmail(!sendNotificationsToEmail);
+                        } else {
+                          setSendNotificationsToEmail(
+                            !notifications.account.sendNotificationsToEmail,
+                          );
+                        }
+
+                        actions.updateNotificationsSettings({
+                          friendRequest:
+                            friendRequest || notifications.account.friendRequest,
+                          messages: messages || notifications.account.messages,
+                          playersMatching:
+                            playersMatching || notifications.account.playersMatching,
+                          sendNotificationsToEmail: !notifications.account
+                            .sendNotificationsToEmail,
+                        });
+                      }}
                     />
                   </View>
                   <View style={styles.notificationsContainer}>

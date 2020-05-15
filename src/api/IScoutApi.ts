@@ -17,5 +17,7 @@ export interface IScoutApi {
   getPlayerById(playerId: string): Promise<Player>;
   getPlayers(): Promise<Player[]>;
   myNotificationsSettings(): Promise<Notifications>;
-  updateNotificationsSettings(request: UpdateNotificationsSettings): Promise<void>;
+  updateNotificationsSettings(
+    request: UpdateNotificationsSettings,
+  ): Promise<Notifications>;
 }
