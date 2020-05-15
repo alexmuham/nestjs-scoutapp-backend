@@ -8,6 +8,8 @@ import IPlayerManager from './player/IPlayerManager';
 import PlayerManager from './player/PlayerManager';
 import INotificationsManager from './notifications/INotificationsManager';
 import NotificationsManager from './notifications/NotificationsManager';
+import IPreferencesManager from './preferences/IPreferencesManager';
+import PreferencesManager from './preferences/PreferencesManager';
 
 @Module({
   imports: [
@@ -26,8 +28,8 @@ import NotificationsManager from './notifications/NotificationsManager';
       useClass: PlayerManager,
     },
     {
-      provide: INotificationsManager,
-      useClass: NotificationsManager,
+      provide: IPreferencesManager,
+      useClass: PreferencesManager,
     },
   ],
   exports: [
@@ -36,7 +38,7 @@ import NotificationsManager from './notifications/NotificationsManager';
     AuthModule,
     IPlayerManager,
     IFileManager,
-    INotificationsManager,
+    IPreferencesManager,
   ],
 })
 export class ManagerModule {}

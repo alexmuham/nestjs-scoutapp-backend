@@ -1,3 +1,7 @@
 export default interface Preferences {
-  allowNotifications: boolean;
+  id: string;
+  enableFriendRequestNotification?: boolean;
+  enablePlayerMatchingNotification?: boolean;
+  enableMessageNotification?: boolean;
+  sendNotificationsToEmail?: boolean;
 }

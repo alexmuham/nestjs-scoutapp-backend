@@ -1,7 +1,7 @@
 import User from 'entities/User';
-import Notifications from '../graphql/entities/user/Notifications';
+import Preferences from '../graphql/entities/user/Preferences';
 
 export default interface Account {
   user: User;
-  notifications: Notifications;
+  preferences: Preferences;
 }

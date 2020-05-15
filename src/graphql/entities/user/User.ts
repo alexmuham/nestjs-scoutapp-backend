@@ -5,7 +5,7 @@ export default class User {
   constructor(
     id: string,
     email: string,
-    notificationsId: string,
+    preferencesId: string,
     firstName: string,
     lastName: string,
     phoneNumber: string,
@@ -15,7 +15,7 @@ export default class User {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.notificationsId = notificationsId;
+    this.preferencesId = preferencesId;
     this.phoneNumber = phoneNumber;
     this.education = education;
   }
@@ -33,7 +33,7 @@ export default class User {
   email: string;
 
   @Field(() => String)
-  notificationsId: string;
+  preferencesId: string;
 
   @Field(() => String)
   phoneNumber: string;

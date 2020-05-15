@@ -13,7 +13,7 @@ export class AccountResolver {
   constructor(private readonly accountManager: IAccountManager) {}
 
   @Query(() => Account)
-  async myAccount(@CurrentSession() {userId}: Session) {
-    return mapAccountToGQL(await this.accountManager.getMyAccount(userId));
+  async account(@CurrentSession() {userId}: Session) {
+    return mapAccountToGQL(await this.accountManager.getAccount(userId));
   }
 }

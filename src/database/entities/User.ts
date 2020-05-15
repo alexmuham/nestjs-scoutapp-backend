@@ -1,5 +1,5 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
-import Notifications from './Notifications';
+import Preferences from './Preferences';
 
 @Entity()
 export default class User {
@@ -9,8 +9,8 @@ export default class User {
     lastName: string,
     email: string,
     phoneNumber: string,
-    notifications: Notifications,
-    notificationsId: string,
+    preferences: Preferences,
+    preferencesId: string,
     education: string,
   ) {
     this.id = id;
@@ -18,8 +18,8 @@ export default class User {
     this.lastName = lastName;
     this.email = email;
     this.phoneNumber = phoneNumber;
-    this.notifications = notifications;
-    this.notificationsId = notificationsId;
+    this.preferences = preferences;
+    this.preferencesId = preferencesId;
     this.education = education;
   }
 
@@ -38,11 +38,11 @@ export default class User {
   @Column()
   phoneNumber: string;
 
-  @ManyToOne(() => Notifications, {nullable: false})
-  notifications: Notifications;
+  @ManyToOne(() => Preferences, {nullable: false})
+  preferences: Preferences;
 
   @Column({nullable: false})
-  notificationsId: string;
+  preferencesId: string;
 
   @Column()
   education: string;

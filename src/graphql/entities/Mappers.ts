@@ -7,6 +7,7 @@ import GQLPlayer from './player/Player';
 import Player from 'entities/Player';
 import Notifications from 'entities/Notifications';
 import GQLNotifications from './user/Notifications';
+import GQLPreferences from './user/Preferences';
 
 export const mapUserToGQL = (user: User): GQLUser => {
   return {
@@ -16,23 +17,23 @@ export const mapUserToGQL = (user: User): GQLUser => {
     phoneNumber: user.phoneNumber,
     education: user.education,
     email: user.email,
-    notificationsId: user.notificationsId,
+    preferencesId: user.preferencesId,
   };
 };
 
-export const mapNotificationsToGQL = (
-  notifications: Notifications,
-): GQLNotifications => ({
-  id: notifications.id,
-  friendRequest: notifications.friendRequest || undefined,
-  playersMatching: notifications.playersMatching || undefined,
-  messages: notifications.messages || undefined,
-  sendNotificationsToEmail: notifications.sendNotificationsToEmail || undefined,
+export const mapPreferencesToGQL = (preferences: Preferences): GQLPreferences => ({
+  id: preferences.id,
+  enableFriendRequestNotification:
+    preferences.enableFriendRequestNotification || undefined,
+  enablePlayerMatchingNotification:
+    preferences.enablePlayerMatchingNotification || undefined,
+  enableMessageNotification: preferences.enableMessageNotification || undefined,
+  sendNotificationsToEmail: preferences.sendNotificationsToEmail || undefined,
 });
 
 export const mapAccountToGQL = (account: Account): GQLAccount => ({
   user: mapUserToGQL(account.user),
-  notifications: mapNotificationsToGQL(account.notifications),
+  preferences: mapPreferencesToGQL(account.preferences),
 });
 
 export const mapPlayerToGQL = (player: Player): GQLPlayer => ({

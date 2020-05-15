@@ -17,13 +17,13 @@ import {generate as generatePassword} from 'generate-password';
 import {ID} from 'entities/Common';
 import {Platform} from 'entities/Platform';
 import ScoutAppError from '../../ScoutAppError';
-import INotificationsStore from 'database/stores/notifications/INotificationsStore';
+import IPreferencesStore from 'database/stores/preferences/IPreferencesStore';
 
 @Injectable()
 export default class AuthManager extends IAuthManager {
   constructor(
     private readonly userStore: IUserStore,
-    private readonly notificationsStore: INotificationsStore,
+    private readonly preferencesStore: IPreferencesStore,
     private readonly loginStore: ILoginStore,
     private readonly sessionStore: ISessionStore,
     private readonly jwtService: IJwtService,
@@ -44,7 +44,7 @@ export default class AuthManager extends IAuthManager {
       throw new ScoutAppError('User with the same email already exists');
     }
 
-    const notifications = await this.notificationsStore.createNotifications(
+    const preferences = await this.preferencesStore.createPreferences(
       true,
       true,
       true,
@@ -57,7 +57,7 @@ export default class AuthManager extends IAuthManager {
       lastName,
       phoneNumber,
       education,
-      notificationsId: notifications.id,
+      preferencesId: preferences.id,
     });
     const login = await this.createLocalLogin(user, email, password);
     return this.createSession(login.user, platform);

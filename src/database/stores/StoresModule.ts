@@ -10,8 +10,8 @@ import IPlayerStore from './player/IPlayerStore';
 import PlayerStore from './player/PlayerStore';
 import IFileStore from './file/IFileStore';
 import FileStore from './file/FileStore';
-import INotificationsStore from './notifications/INotificationsStore';
-import NotificationsStore from './notifications/NotificationsStore';
+import IPreferencesStore from './preferences/IPreferencesStore';
+import PreferencesStore from './preferences/PreferencesStore';
 
 @Module({
   imports: [
@@ -36,8 +36,8 @@ import NotificationsStore from './notifications/NotificationsStore';
       useClass: PlayerStore,
     },
     {
-      provide: INotificationsStore,
-      useClass: NotificationsStore,
+      provide: IPreferencesStore,
+      useClass: PreferencesStore,
     },
   ],
   exports: [
@@ -47,7 +47,7 @@ import NotificationsStore from './notifications/NotificationsStore';
     IUserStore,
     IPlayerStore,
     IFileStore,
-    INotificationsStore,
+    IPreferencesStore,
   ],
 })
 export class StoresModule {}

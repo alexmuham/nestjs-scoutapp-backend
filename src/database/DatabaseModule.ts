@@ -6,10 +6,11 @@ import {
   //
   Player, User, LocalLogin, Session} from 'database/entities';
 import Notifications from './entities/Notifications';
+import Preferences from './entities/Preferences';
 
 const entities = [
   //
-  Notifications,
+  Preferences,
   File,
   User,
   LocalLogin,

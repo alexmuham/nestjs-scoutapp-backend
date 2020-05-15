@@ -7,22 +7,22 @@ type User {
   firstName: String!
   lastName: String!
   email: String!
-  notificationsId: String!
+  preferencesId: String!
   phoneNumber: String!
   education: String!
 }
 
-type Notifications {
+type Preferences {
   id: String!
-  friendRequest: Boolean!
-  playersMatching: Boolean!
-  messages: Boolean!
+  enableFriendRequestNotification: Boolean!
+  enablePlayerMatchingNotification: Boolean!
+  enableMessageNotification: Boolean!
   sendNotificationsToEmail: Boolean!
 }
 
 type Account {
   user: User!
-  notifications: Notifications!
+  preferences: Preferences!
 }
 
 type Player {
@@ -50,8 +50,10 @@ type Query {
   myNotificationsSettings: Notifications!
   playerById(playerId: String!): Player!
   getPlayers: [Player!]!
+  account: Account!
+  preferences: Preferences!
 }
 
 type Mutation {
-  updateNotificationsSettings(sendNotificationsToEmail: Boolean, messages: Boolean, playersMatching: Boolean, friendRequest: Boolean): Notifications!
+  updatePreferences(sendNotificationsToEmail: Boolean, enableMessageNotification: Boolean, enablePlayerMatchingNotification: Boolean, enableFriendRequestNotification: Boolean): Preferences!
 }

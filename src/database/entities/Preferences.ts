@@ -1,6 +1,6 @@
-import {Field, ObjectType} from '@nestjs/graphql';
+import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
-@ObjectType()
+@Entity()
 export default class Preferences {
   constructor(
     id: string,
@@ -16,18 +16,18 @@ export default class Preferences {
     this.sendNotificationsToEmail = sendNotificationsToEmail;
   }
 
-  @Field(() => String)
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Field(() => Boolean)
+  @Column()
   enableFriendRequestNotification?: boolean;
 
-  @Field(() => Boolean)
+  @Column()
   enablePlayerMatchingNotification?: boolean;
 
-  @Field(() => Boolean)
+  @Column()
   enableMessageNotification?: boolean;
 
-  @Field(() => Boolean)
+  @Column()
   sendNotificationsToEmail?: boolean;
 }

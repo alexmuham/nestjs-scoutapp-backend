@@ -3,22 +3,22 @@ import IUserStore from '../../database/stores/user/IUserStore';
 import IAccountManager from './IAccountManager';
 import {mapAccountFromDB} from '../../database/entities/Mappers';
 import ScoutAppError from '../../ScoutAppError';
-import INotificationsStore from '../../database/stores/notifications/INotificationsStore';
+import IPreferencesStore from 'database/stores/preferences/IPreferencesStore';
 
 @Injectable()
 export default class AccountManager implements IAccountManager {
   constructor(
     private userStore: IUserStore,
-    private notificationsStore: INotificationsStore,
+    private preferencesStore: IPreferencesStore,
   ) {}
 
-  async getMyAccount(myUserId: string) {
+  async getAccount(myUserId: string) {
     const dbUser = await this.userStore.getUser(myUserId);
     if (!dbUser) throw new ScoutAppError('User is not found');
-    const dbNotifications = await this.notificationsStore.getMyNotificationsSettings(
-      dbUser.notificationsId,
+    const dbPreferences = await this.preferencesStore.getPreferences(
+      dbUser.preferencesId,
     );
-    if (!dbNotifications) throw new ScoutAppError('Notifications is not found');
-    return mapAccountFromDB(dbUser, dbNotifications);
+    if (!dbPreferences) throw new ScoutAppError('Preferences is not found');
+    return mapAccountFromDB(dbUser, dbPreferences);
   }
 }
