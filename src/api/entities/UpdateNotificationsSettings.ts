@@ -1,6 +1,6 @@
 export default interface UpdateNotificationsSettings {
-  friendRequest: boolean;
-  playersMatching: boolean;
-  messages: boolean;
-  sendNotificationsToEmail: boolean;
+  friendRequest?: boolean;
+  playersMatching?: boolean;
+  messages?: boolean;
+  sendNotificationsToEmail?: boolean;
 }

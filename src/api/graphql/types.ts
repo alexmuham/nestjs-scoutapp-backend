@@ -75,10 +75,10 @@ export type QueryPlayerByIdArgs = {
 };
 
 export type MutationUpdateNotificationsSettingsArgs = {
-  friendRequest: Scalars['Boolean'],
-  playersMatching: Scalars['Boolean'],
-  messages: Scalars['Boolean'],
-  sendNotificationsToEmail: Scalars['Boolean'],
+  friendRequest?: Maybe<Scalars['Boolean']>,
+  playersMatching?: Maybe<Scalars['Boolean']>,
+  messages?: Maybe<Scalars['Boolean']>,
+  sendNotificationsToEmail?: Maybe<Scalars['Boolean']>,
 };
 
 export type Mutation = {

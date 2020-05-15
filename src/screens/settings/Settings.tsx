@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, Suspense} from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {MenuBar} from 'components';
 import {MenuBarItems} from 'navigation';
@@ -6,162 +6,132 @@ import LineProperty from 'components/lineProperty/LineProperty';
 import styles from './Settings.styles';
 import {useSettingsActions} from 'state/hooks/UseActions';
 import {useSelector} from 'state/hooks';
-import {RequireLoadable} from 'components/index';
+import {useHistory} from 'react-router';
+import PreferencesSwitch from 'components/switch/PreferencesSwitch';
 
 const Settings: React.FC = () => {
-  const [friendRequest, setFriendRequest] = useState<undefined | boolean>(undefined);
-  const [messages, setMessages] = useState<undefined | boolean>(undefined);
-  const [playersMatching, setPlayersMatching] = useState<undefined | boolean>(undefined);
-  const [sendNotificationsToEmail, setSendNotificationsToEmail] = useState<
-    undefined | boolean
-  >(undefined);
-
-  const renderTextForLineProperty = (title: string) => {
-    return <Text>{title}</Text>;
-  };
+  const history = useHistory();
 
   const actions = useSettingsActions();
 
   useEffect(() => {
     actions.fetchNotificationsSettings();
-  }, [friendRequest, messages, playersMatching, sendNotificationsToEmail]);
+  }, []);
 
   const notifications = useSelector((state) => state.notifications);
+
+  const renderTextForLineProperty = (title: string) => {
+    return <Text>{title}</Text>;
+  };
+
+  const changeFriendRequest = {
+    friendRequest: !notifications.friendRequest,
+  };
+
+  const changePlayersMatching = {
+    playersMatching: !notifications.playersMatching,
+  };
+
+  const changeMessages = {
+    messages: !notifications.messages,
+  };
+
+  const changeSendNotificationsToEmail = {
+    sendNotificationsToEmail: !notifications.sendNotificationsToEmail,
+  };
+
+  const renderSwitch = (
+    name: 'friendRequest' | 'playersMatching' | 'messages' | 'sendNotificationsToEmail',
+    dbState: boolean,
+  ) => {
+    return (
+      <PreferencesSwitch
+        switchState={dbState}
+        onPress={() => {
+          switch (name) {
+            case 'friendRequest':
+              return actions.updateNotificationsSettings(changeFriendRequest);
+            case 'playersMatching':
+              return actions.updateNotificationsSettings(changePlayersMatching);
+            case 'messages':
+              return actions.updateNotificationsSettings(changeMessages);
+            case 'sendNotificationsToEmail':
+              return actions.updateNotificationsSettings(changeSendNotificationsToEmail);
+          }
+        }}
+      />
+    );
+  };
+
+  const renderLink = () => {
+    return (
+      <View style={styles.rightImageContainer}>
+        {/* <Image source={Arrow} style={styles.rightImageContainer} /> */}
+      </View>
+    );
+  };
 
   // @ts-ignore
   return (
     <View style={styles.flex}>
-      <MenuBar leftIcons={[MenuBarItems.Friends]} rightIcons={[MenuBarItems.Settings]} />
+      <MenuBar
+        leftIcons={[MenuBarItems.Friends(history)]}
+        rightIcons={[MenuBarItems.Settings(history)]}
+      />
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Notification settings</Text>
-        <RequireLoadable data={notifications}>
-          {(notifications: any) => {
-            return (
-              <View>
-                <View>
-                  <View style={styles.notificationsContainer}>
-                    <LineProperty
-                      functionalityType="switch"
-                      leftElement={() => renderTextForLineProperty('Friend Request')}
-                      switchState={friendRequest || notifications.account.friendRequest}
-                      onPress={() => {
-                        if (friendRequest) {
-                          setFriendRequest(!friendRequest);
-                        } else {
-                          setFriendRequest(!notifications.account.friendRequest);
-                        }
-
-                        actions.updateNotificationsSettings({
-                          friendRequest: friendRequest
-                            ? !friendRequest
-                            : !notifications.account.friendRequest,
-                          messages: messages || notifications.account.messages,
-                          playersMatching:
-                            playersMatching || notifications.account.playersMatching,
-                          sendNotificationsToEmail:
-                            sendNotificationsToEmail ||
-                            notifications.account.sendNotificationsToEmail,
-                        });
-                      }}
-                    />
-                    <View style={styles.horizontalLine} />
-                    <LineProperty
-                      functionalityType="switch"
-                      leftElement={() => renderTextForLineProperty('Player(s) matching')}
-                      switchState={notifications.account.playersMatching}
-                      onPress={() => {
-                        if (playersMatching) {
-                          setPlayersMatching(!playersMatching);
-                        } else {
-                          setPlayersMatching(!notifications.account.playersMatching);
-                        }
-
-                        actions.updateNotificationsSettings({
-                          friendRequest:
-                            friendRequest || notifications.account.friendRequest,
-                          messages: messages || notifications.account.messages,
-                          playersMatching: !notifications.account.playersMatching,
-                          sendNotificationsToEmail:
-                            sendNotificationsToEmail ||
-                            notifications.account.sendNotificationsToEmail,
-                        });
-                      }}
-                    />
-                    <View style={styles.horizontalLine} />
-                    <LineProperty
-                      functionalityType="switch"
-                      leftElement={() => renderTextForLineProperty('Messages')}
-                      switchState={notifications.account.messages}
-                      onPress={() => {
-                        if (messages) {
-                          setMessages(!messages);
-                        } else {
-                          setMessages(!notifications.account.messages);
-                        }
-
-                        actions.updateNotificationsSettings({
-                          friendRequest:
-                            friendRequest || notifications.account.friendRequest,
-                          messages: !notifications.account.messages,
-                          playersMatching:
-                            playersMatching || notifications.account.playersMatching,
-                          sendNotificationsToEmail:
-                            sendNotificationsToEmail ||
-                            notifications.account.sendNotificationsToEmail,
-                        });
-                      }}
-                    />
-                    <View style={styles.horizontalLine} />
-                    <LineProperty
-                      functionalityType="switch"
-                      leftElement={() =>
-                        renderTextForLineProperty('Send notifications to email')
-                      }
-                      switchState={notifications.account.sendNotificationsToEmail}
-                      onPress={() => {
-                        if (sendNotificationsToEmail) {
-                          setSendNotificationsToEmail(!sendNotificationsToEmail);
-                        } else {
-                          setSendNotificationsToEmail(
-                            !notifications.account.sendNotificationsToEmail,
-                          );
-                        }
-
-                        actions.updateNotificationsSettings({
-                          friendRequest:
-                            friendRequest || notifications.account.friendRequest,
-                          messages: messages || notifications.account.messages,
-                          playersMatching:
-                            playersMatching || notifications.account.playersMatching,
-                          sendNotificationsToEmail: !notifications.account
-                            .sendNotificationsToEmail,
-                        });
-                      }}
-                    />
-                  </View>
-                  <View style={styles.notificationsContainer}>
-                    <TouchableOpacity>
-                      <LineProperty
-                        functionalityType="link"
-                        leftElement={() => renderTextForLineProperty('Edit Profile')}
-                        switchState
-                      />
-                    </TouchableOpacity>
-                  </View>
-                  <View style={styles.notificationsContainer}>
-                    <TouchableOpacity>
-                      <LineProperty
-                        functionalityType="link"
-                        leftElement={() => renderTextForLineProperty('Log Out')}
-                        switchState
-                      />
-                    </TouchableOpacity>
-                  </View>
-                </View>
+        <Suspense fallback={<Text>Loading...</Text>}>
+          <View>
+            <View>
+              <View style={styles.notificationsContainer}>
+                <LineProperty
+                  text={() => renderTextForLineProperty('Friend Request')}
+                  element={() =>
+                    renderSwitch('friendRequest', notifications.friendRequest)
+                  }
+                />
+                <View style={styles.horizontalLine} />
+                <LineProperty
+                  text={() => renderTextForLineProperty('Player(s) matching')}
+                  element={() =>
+                    renderSwitch('playersMatching', notifications.playersMatching)
+                  }
+                />
+                <View style={styles.horizontalLine} />
+                <LineProperty
+                  text={() => renderTextForLineProperty('Messages')}
+                  element={() => renderSwitch('messages', notifications.messages)}
+                />
+                <View style={styles.horizontalLine} />
+                <LineProperty
+                  text={() => renderTextForLineProperty('Send notifications to email')}
+                  element={() =>
+                    renderSwitch(
+                      'sendNotificationsToEmail',
+                      notifications.sendNotificationsToEmail,
+                    )
+                  }
+                />
               </View>
-            );
-          }}
-        </RequireLoadable>
+              <View style={styles.notificationsContainer}>
+                <TouchableOpacity>
+                  <LineProperty
+                    text={() => renderTextForLineProperty('Edit Profile')}
+                    element={() => renderLink()}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.notificationsContainer}>
+                <TouchableOpacity>
+                  <LineProperty
+                    text={() => renderTextForLineProperty('Log Out')}
+                    element={() => renderLink()}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Suspense>
       </ScrollView>
     </View>
   );

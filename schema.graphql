@@ -31,5 +31,5 @@ type Query {
 }
 
 type Mutation {
-  updateNotificationsSettings(sendNotificationsToEmail: Boolean!, messages: Boolean!, playersMatching: Boolean!, friendRequest: Boolean!): Notifications!
+  updateNotificationsSettings(sendNotificationsToEmail: Boolean, messages: Boolean, playersMatching: Boolean, friendRequest: Boolean): Notifications!
 }

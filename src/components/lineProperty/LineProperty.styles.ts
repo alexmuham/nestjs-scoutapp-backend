@@ -28,17 +28,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  rightImageContainer: {
-    alignItems: 'flex-end',
-  },
-
   linkImgWrapper: {
     flex: 1,
-  },
-
-  switchContainer: {
-    height: '90%',
-    width: '45%',
   },
 });
 

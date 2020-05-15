@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#E8E8E8',
   },
+
+  rightImageContainer: {
+    alignItems: 'flex-end',
+  },
 });
 
 export default styles;

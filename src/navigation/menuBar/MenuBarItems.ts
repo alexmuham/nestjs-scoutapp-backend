@@ -1,12 +1,13 @@
 import * as Items from './assets';
+import {History} from 'history';
 
 export default {
-  Friends: {
+  Friends: (history: History) => ({
     image: Items.Friends,
-    onPress: () => undefined,
-  },
-  Settings: {
+    onPress: () => history.push('/main/friends'),
+  }),
+  Settings: (history: History) => ({
     image: Items.Settings,
-    onPress: () => undefined,
-  },
+    onPress: () => history.push('/main/settings'),
+  }),
 };
