@@ -6,6 +6,7 @@ import {saga as alertSaga} from './alert';
 import {reducer as snackBarReducer} from 'state/ducks/snackBar';
 import {reducer as prospectReducer, saga as prospectSage} from 'state/ducks/prospect';
 import {reducer as playerReducer, saga as playerSage} from 'state/ducks/player';
+import {saga as errorSaga} from 'state/ducks/error';
 
 import {all} from 'redux-saga/effects';
 import State from 'state/entities/State';
@@ -28,5 +29,6 @@ export function* rootSaga() {
     alertSaga(),
     prospectSage(),
     playerSage(),
+    errorSaga(),
   ]);
 }

@@ -6,7 +6,7 @@ import AuthCard from '../components/authCard/AuthCard';
 import styles from '../registration/Registration.styles';
 import AuthInputField from '../components/authInputField/AuthInputField';
 import TextLink from '../components/textLink/TextLink';
-import {AuthInfoKeeper} from '../../../auth';
+import {AuthInfoKeeper} from 'auth';
 import {useHistory} from 'react-router-native';
 
 const LogIn: React.FC = () => {

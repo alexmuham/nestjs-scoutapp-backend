@@ -38,8 +38,7 @@ const PlayerList: React.FC<PlayerListProps> = ({players, title, styleContainer})
             return (
               <>
                 <FlatList
-                  // @ts-ignore
-                  data={players.players}
+                  data={players}
                   renderItem={({item}) => {
                     return (
                       <>

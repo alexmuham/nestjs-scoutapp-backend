@@ -10,10 +10,10 @@ function goBack({payload}: Action<NavigationPayload>) {
   payload.history.goBack();
 }
 
-function* accountEntered() {
+function* accountEntered({payload}: Action<NavigationPayload>) {
   const session: LoadableContainer<any> = yield select((state: State) => state.session);
   if (!session.isSuccess && !session.isLoading) {
-    yield put(sessionActions.fetchSession());
+    yield put(sessionActions.fetchSession(payload));
   }
 }
 

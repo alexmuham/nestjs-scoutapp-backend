@@ -1,9 +1,9 @@
 import {createAction} from 'redux-actions';
 import types from './types';
-import LoginRequest from 'auth/LoginRequest';
+import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import RegisterRequest from 'auth/RegisterRequest';
 import ForgotPasswordRequest from 'api/entities/ForgotPasswordRequest';
-import Session from 'auth/Session';
+import Session from '@spryrocks/react-auth/Session';
 import {NavigationPayload} from '../router/actions';
 
 export type RegisterUser = {request: RegisterRequest} & NavigationPayload;

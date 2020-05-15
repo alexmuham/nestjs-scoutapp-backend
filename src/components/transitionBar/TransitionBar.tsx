@@ -1,5 +1,11 @@
 import React from 'react';
-import {Image, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {
+  Image,
+  ImageSourcePropType,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 import * as Item from './assets';
 import styles from './TransitionBar.styles';
 
@@ -20,43 +26,22 @@ const TransitionBar: React.FC<TransitionBarProps> = ({
   activeSearch = false,
   activeShedule = false,
 }) => {
+  const renderComponent = (
+    status: boolean,
+    emptyImage: ImageSourcePropType,
+    activeImage: ImageSourcePropType,
+  ) => (
+    <TouchableOpacity style={styles.item}>
+      {!status ? <Image source={emptyImage} /> : <Image source={activeImage} />}
+    </TouchableOpacity>
+  );
   return (
     <View style={{...styles.container, ...style}}>
-      <TouchableOpacity style={styles.item}>
-        {!activeShedule ? (
-          <Image source={Item.Shedule} />
-        ) : (
-          <Image source={Item.ActiveShedule} />
-        )}
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        {!activeSearch ? (
-          <Image source={Item.Search} />
-        ) : (
-          <Image source={Item.ActiveSearch} />
-        )}
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        {!activeProspect ? (
-          <Image source={Item.Prospect} />
-        ) : (
-          <Image source={Item.ActiveProspect} />
-        )}
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        {!activeNotification ? (
-          <Image source={Item.Notification} />
-        ) : (
-          <Image source={Item.ActiveNotification} />
-        )}
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        {!activeBigBord ? (
-          <Image source={Item.BigBord} />
-        ) : (
-          <Image source={Item.ActiveBigBord} />
-        )}
-      </TouchableOpacity>
+      {renderComponent(activeShedule, Item.Shedule, Item.ActiveShedule)}
+      {renderComponent(activeSearch, Item.Search, Item.ActiveSearch)}
+      {renderComponent(activeProspect, Item.Prospect, Item.ActiveProspect)}
+      {renderComponent(activeNotification, Item.Notification, Item.ActiveNotification)}
+      {renderComponent(activeBigBord, Item.BigBord, Item.ActiveBigBord)}
     </View>
   );
 };

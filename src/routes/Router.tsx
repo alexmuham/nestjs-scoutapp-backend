@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {NativeRouter, Redirect, Route, Switch, MemoryRouter} from 'react-router-native';
 import AppRoute from './AppRoute';
-import Auth from 'screens/auth';
-import Main from 'screens';
-import Layout from '../layouts';
+import Auth from 'routes/auth';
+import Main from 'routes/main';
+import Layout from '../navigation/layouts';
 import {View} from 'react-native';
-import {useAuthActions} from '../../state/hooks/UseActions';
+import {useAuthActions} from '../state/hooks/UseActions';
 
 const Logout = () => {
   const actions = useAuthActions();

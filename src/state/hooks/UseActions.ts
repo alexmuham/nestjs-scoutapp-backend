@@ -8,7 +8,7 @@ import {actions as prospectActions} from '../ducks/prospect';
 import {actions as playerActions} from '../ducks/player';
 import {actions as routerActions} from '../ducks/router';
 import RegisterRequest from '../../auth/RegisterRequest';
-import LoginRequest from '../../auth/LoginRequest';
+import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
 
 export function useAuthActions() {

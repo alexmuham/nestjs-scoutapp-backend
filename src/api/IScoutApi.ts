@@ -1,10 +1,10 @@
-import Session from 'auth/Session';
 import RegisterRequest from './entities/RegisterRequest';
 import LoginRequest from './entities/LoginRequest';
 import {Account} from 'entities/Account';
 import ForgotPasswordRequest from 'api/entities/ForgotPasswordRequest';
 import UpdateFirebaseTokenRequest from 'api/entities/UpdateFirebaseTokenRequest';
 import Player from 'entities/Player';
+import Session from '@spryrocks/react-auth/Session';
 
 export interface IScoutApi {
   register(request: RegisterRequest): Promise<Session>;

@@ -16,10 +16,8 @@ const playersFetched: ReducerNextThrow<ReducerState, Player[]> = {
   throw: (_, {payload}) => failed(payload),
 };
 
-export default handleActions<ReducerState[], any>(
-  // @ts-ignore //TODO refactored
+export default handleActions<ReducerState, any>(
   {
-    // @ts-ignore //TODO refactored
     [types.FETCH_PLAYERS]: (state) => loading(state),
     [types.FETCH_PLAYERS_COMPLETE]: playersFetched,
   },

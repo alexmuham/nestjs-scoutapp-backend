@@ -3,9 +3,9 @@ import {MenuBar, RequireLoadable, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
 import {ID} from 'entities/Common';
 import {Text, View} from 'react-native';
-import {usePlayerActions} from '../../state/hooks/UseActions';
+import {usePlayerActions} from '../../../state/hooks/UseActions';
 import {useSelector} from 'react-redux';
-import State from '../../state/entities/State';
+import State from '../../../state/entities/State';
 
 interface PlayerCardProps {
   playerId: ID;

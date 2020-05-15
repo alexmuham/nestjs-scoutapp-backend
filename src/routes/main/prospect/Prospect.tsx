@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
-import {MenuBar, TransitionBar} from 'components/index';
+import {MenuBar, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
-import PlayerList from '../../components/playerList/PlayerList';
-import {AuthInfoKeeper} from '../../auth';
+import PlayerList from '../../../components/playerList/PlayerList';
 import {useHistory} from 'react-router-native';
 import {useSelector} from 'react-redux';
-import State from '../../state/entities/State';
-import {useProspectActions} from '../../state/hooks/UseActions';
+import State from '../../../state/entities/State';
+import {useProspectActions} from '../../../state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
 import styles from './Prospect.styles';
+import {AuthInfoKeeper} from '@spryrocks/react-auth';
 
 const Prospect: React.FC = () => {
   const history = useHistory();

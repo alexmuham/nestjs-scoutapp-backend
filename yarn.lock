@@ -1877,6 +1877,18 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@react-native-community/async-storage-backend-legacy@^2.0.0-rc.3":
+  version "2.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage-backend-legacy/-/async-storage-backend-legacy-2.0.0-rc.3.tgz#4f905bcfa4168918b61835bcd80ab16c68e2f5a5"
+  integrity sha512-nWH8GDMxQ93Ayx1ZhQWZkH70yz8e2mGOeiF7xY7h1/GNxl0taWJrjaWRaHb9FNcC7xe42c33hIjJBRZe0cMlFQ==
+  dependencies:
+    "@react-native-community/async-storage" "^2.0.0-rc.3"
+
+"@react-native-community/async-storage@^2.0.0-rc.3":
+  version "2.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-2.0.0-rc.3.tgz#e2ad162ef5eff1a32005753a7c054d463307b38f"
+  integrity sha512-inAIetMy5HwKA9vZGKrVzXA+Uxr7EzKy/IG+DsWTISEqQMwl0b3JWufRZHk3Xj7MqMSn8PdBDM/mmk5tY15qLg==
+
 "@react-native-community/cli-debugger-ui@^4.8.0":
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.8.0.tgz#9a6419b29be69422e0056bbb1874775750351d22"
@@ -2025,21 +2037,33 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@spryrocks/eslint-config-react@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config-react/-/eslint-config-react-0.1.0.tgz#9eed6c66675fd8cbc5ad6641f99f2e15eabd5d5a"
-  integrity sha512-NjDx8Zv886CLyZ0ahDAl79bhoSmUIUujTlWX60pazGUx9nB8cpA9bw1HIhQGNs2/pbd8BntfMh7BCTQKmTO6+w==
+"@spryrocks/config-core@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@spryrocks/config-core/-/config-core-1.0.0-alpha.5.tgz#e098d067bb834adbab69aaa636c45b5f36088e51"
+  integrity sha512-/1lrIb2XFInXtVcBFg2Q3pGo54qr7ce8x31h3XHNq5p2a9v85VYdwMAUAdtB2GywlFIMVMEEgkm6etb6UEcoGA==
+
+"@spryrocks/config-react@^1.0.0-alpha.7":
+  version "1.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@spryrocks/config-react/-/config-react-1.0.0-alpha.7.tgz#a0ed11a1fa6073c662d46971fd6c299bb1b096d6"
+  integrity sha512-8S9peDAYWbmnPKwrJWX/QqkHV6zTUZxmgbHd7Q+2LGP613ONhftMcHd/ebNla2baguY/edjIbYnlXzBqvM5+GQ==
   dependencies:
-    "@spryrocks/eslint-config" "^0.1.1"
+    "@spryrocks/config-core" "^1.0.0-alpha.5"
+
+"@spryrocks/eslint-config-react@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config-react/-/eslint-config-react-0.1.2.tgz#9838fd17ad4855fdd20c6d2cc5ec9779879d86e3"
+  integrity sha512-bKcHeb3uWT6NuqrnD7VRgXKOSKmpWGOnV6ZodaMuTTit4qSEmrpoOjrhstezVH3ALv7wPS36M1U3u3V/tjKkIw==
+  dependencies:
+    "@spryrocks/eslint-config" "^0.1.2"
     eslint-config-airbnb-typescript "^7.2.1"
     eslint-plugin-jsx-a11y "^6.2.3"
     eslint-plugin-react "^7.19.0"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@spryrocks/eslint-config@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config/-/eslint-config-0.1.1.tgz#097d177c69ec9fc06ca5efa06f7ac6cfc0db58e6"
-  integrity sha512-MWpWzn3Hg15JDt1jeeTVj0jimoU/xBbgGIG5tuf4zwyRS5K/Y6ztP+PK+6Fr1Vz1KgtHwg1joFBJLCHJtGmQjA==
+"@spryrocks/eslint-config@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config/-/eslint-config-0.1.2.tgz#70b6a97220051c66ada4dada5b2890ed33ad3553"
+  integrity sha512-gz8TjNNm+Tgc/aAp9ObbzToYIdF2FW5c5FSC+pWsnJ+TIu7WkIBCkaMSqJE258lr0pvjssUHhjwhMAvgevpelA==
   dependencies:
     "@spryrocks/prettier-config" "^0.1.1"
     "@typescript-eslint/eslint-plugin" "^2.31.0"
@@ -2070,6 +2094,13 @@
     axios-logger "^2.3.1"
     graphql "^14.6.0"
     promise-queue "^2.2.5"
+
+"@spryrocks/react-auth@^0.1.2-dev1":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@spryrocks/react-auth/-/react-auth-0.1.2.tgz#4625fb1704e057efacd0d87bed3130d37319ba8c"
+  integrity sha512-81VZNSMDvCtPVuUIZjWKEkrS1F1vUaX5zXQu4UaX1OFuHdKqO8KLQx1G1LNx9S7V+z8OBiDL/T8hMEOsKW5MYg==
+  dependencies:
+    "@react-native-community/async-storage" "^2.0.0-rc.3"
 
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"

@@ -21,7 +21,7 @@ module.exports = {
           'entities': ['./src/entities'],
           'navigation': ['./src/navigation'],
           'components': ['./src/components'],
-          'screens': ['./src/screens'],
+          'routes': ['./src/routes'],
           'state': ['./src/state'],
           'utils': ['./src/utils'],
           'auth': ['./src/auth'],

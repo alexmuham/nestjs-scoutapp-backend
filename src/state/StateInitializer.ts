@@ -13,6 +13,7 @@ export const ScoutStore: {store: Store<State> | undefined} = {store: undefined};
 const createStore = <T extends State>(reducer: Reducer<T>, saga: Saga) => {
   if (ScoutStore.store) throw Error('Already initialized');
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   // eslint-disable-next-line no-underscore-dangle
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

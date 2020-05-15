@@ -1,5 +1,5 @@
 import ApiBase from '@spryrocks/react-api/rest/ApiBase';
-import Session from 'auth/Session';
+import Session from '@spryrocks/react-auth/Session';
 import RegisterRequest from '../entities/RegisterRequest';
 import LoginRequest from '../entities/LoginRequest';
 import RefreshRequest from 'api/entities/RefreshRequest';

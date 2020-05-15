@@ -4,8 +4,8 @@ import actions from './actions';
 import {Action} from 'redux-actions';
 import {ScoutApi} from 'api';
 import {NavigationPayload} from '../router/actions';
-import {alertActions} from '../alert';
 import Player from 'entities/Player';
+import {errorActions} from '../error';
 
 function* fetchPlayers({payload}: Action<NavigationPayload>) {
   try {
@@ -18,7 +18,7 @@ function* fetchPlayers({payload}: Action<NavigationPayload>) {
 
 function* fetchPlayersComplete({payload, error}: Action<Player>) {
   if (error) {
-    yield put(alertActions.showError(payload));
+    yield put(errorActions.handleError(payload));
   }
 }
 

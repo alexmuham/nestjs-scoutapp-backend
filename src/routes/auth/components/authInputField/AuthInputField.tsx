@@ -15,7 +15,7 @@ interface AuthInputFieldProps extends ViewProps {
   placeholderTextColor?: string;
   onChangeText?: (text: string) => void;
   value?: string;
-  type?: 'none' | 'emailAddress' | 'password' | 'telephoneNumber' | 'date' | 'decimal';
+  type?: 'none' | 'emailAddress' | 'password' | 'telephoneNumber';
 }
 
 const AuthInputField: React.FC<AuthInputFieldProps> = ({
@@ -56,8 +56,7 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
         placeholder={placeholder}
         {...otherProps}
         secureTextEntry={type === 'password' && !isPasswordVisible}
-        // @ts-ignore
-        textContentType={type !== 'decimal' ? type : undefined}
+        textContentType={!type ? 'none' : type}
       />
       {type === 'password' && (
         <TouchableOpacity

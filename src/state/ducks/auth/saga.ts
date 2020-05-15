@@ -1,16 +1,17 @@
 import types from './types';
 import {all, put, takeEvery} from 'redux-saga/effects';
 import {Action} from 'redux-actions';
-import Session from 'auth/Session';
+import Session from '@spryrocks/react-auth/Session';
 import {ScoutApi as Api} from 'api';
 import {AuthInfoKeeper} from 'auth';
 import {mapLoginRequestToApi, mapRegisterRequestToApi} from 'api/Mappers';
 import actions, {AuthCompleted, Login, RecoverPassword, RegisterUser} from './actions';
-import {actions as alertActions} from '../alert';
 import {actions as snackActions} from '../snackBar';
 import {actions as sessionActions} from '../session';
 import {actions as routerActions} from '../router';
 import {NavigationPayload} from '../router/actions';
+import {errorActions} from '../error';
+import {alertActions} from '../alert';
 
 function* registerUser({payload: {request, history}}: Action<RegisterUser>) {
   try {
@@ -30,7 +31,7 @@ function* authCompleted({payload, error}: Action<AuthCompleted>) {
   yield AuthInfoKeeper.authenticate(payload.session);
   yield put(sessionActions.setSessionExists(true));
   yield put(routerActions.navigateToMain(payload));
-  yield put(sessionActions.fetchSession());
+  yield put(sessionActions.fetchSession(payload));
 }
 
 function* logout({payload}: Action<NavigationPayload>) {
@@ -58,7 +59,7 @@ function* recoverPassword({payload: {request, history}}: Action<RecoverPassword>
 
 function* recoverPasswordCompleted({payload, error}: Action<NavigationPayload>) {
   if (error) {
-    yield put(yield put(alertActions.showError(payload)));
+    yield put(yield put(errorActions.handleError(payload)));
     return;
   }
   yield put(

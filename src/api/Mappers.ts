@@ -1,6 +1,6 @@
 import RegisterRequest from 'auth/RegisterRequest';
 import ApiRegisterRequest from 'api/entities/RegisterRequest';
-import LoginRequest from 'auth/LoginRequest';
+import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ApiLoginRequest from 'api/entities/LoginRequest';
 import {Account} from 'entities/Account';
 import User from 'entities/User';
