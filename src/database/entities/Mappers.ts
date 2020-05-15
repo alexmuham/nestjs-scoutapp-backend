@@ -12,10 +12,10 @@ export const mapNotificationsFromDB = (
   notifications: DbNotifications,
 ): Notifications => ({
   id: notifications.id,
-  friendRequest: notifications.friendRequest,
-  playersMatching: notifications.playersMatching,
-  messages: notifications.messages,
-  sendNotificationsToEmail: notifications.sendNotificationsToEmail,
+  friendRequest: notifications.friendRequest || undefined,
+  playersMatching: notifications.playersMatching || undefined,
+  messages: notifications.messages || undefined,
+  sendNotificationsToEmail: notifications.sendNotificationsToEmail || undefined,
 });
 
 export const mapUserFromDb = (user: DBUser): User => ({

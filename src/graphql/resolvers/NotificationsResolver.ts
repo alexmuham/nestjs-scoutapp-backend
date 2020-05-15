@@ -15,10 +15,11 @@ export class NotificationsResolver {
   @Mutation(() => Notifications)
   async updateNotificationsSettings(
     @CurrentSession() {userId}: Session,
-    @Args('friendRequest') friendRequest: boolean,
-    @Args('playersMatching') playersMatching: boolean,
-    @Args('messages') messages: boolean,
-    @Args('sendNotificationsToEmail') sendNotificationsToEmail: boolean,
+    @Args('friendRequest', {nullable: true}) friendRequest?: boolean,
+    @Args('playersMatching', {nullable: true}) playersMatching?: boolean,
+    @Args('messages', {nullable: true}) messages?: boolean,
+    @Args('sendNotificationsToEmail', {nullable: true})
+    sendNotificationsToEmail?: boolean,
   ) {
     return this.notificationsManager.updateNotificationsSettings(
       userId,

@@ -15,9 +15,9 @@ export default abstract class INotificationsStore {
 
   abstract updateNotificationsSettings(
     userId: string,
-    friendRequest: boolean,
-    playersMatching: boolean,
-    messages: boolean,
-    sendNotificationsToEmail: boolean,
+    friendRequest?: boolean,
+    playersMatching?: boolean,
+    messages?: boolean,
+    sendNotificationsToEmail?: boolean,
   ): Promise<Notifications>;
 }

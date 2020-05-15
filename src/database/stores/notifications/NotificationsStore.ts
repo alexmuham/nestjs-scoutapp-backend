@@ -38,19 +38,33 @@ export default class NotificationsStore extends INotificationsStore {
 
   async updateNotificationsSettings(
     userId: string,
-    friendRequest: boolean,
-    playersMatching: boolean,
-    messages: boolean,
-    sendNotificationsToEmail: boolean,
+    friendRequest?: boolean,
+    playersMatching?: boolean,
+    messages?: boolean,
+    sendNotificationsToEmail?: boolean,
   ): Promise<Notifications> {
     const user = await this.userRepository.findOne(userId);
     if (!user) throw new ScoutAppError('User not exists');
-    await this.repository.update(user?.notificationsId, {
-      friendRequest,
-      playersMatching,
-      messages,
-      sendNotificationsToEmail,
-    });
+    if (friendRequest) {
+      await this.repository.update(user?.notificationsId, {
+        friendRequest,
+      });
+    }
+    if (playersMatching) {
+      await this.repository.update(user?.notificationsId, {
+        playersMatching,
+      });
+    }
+    if (messages) {
+      await this.repository.update(user?.notificationsId, {
+        messages,
+      });
+    }
+    if (sendNotificationsToEmail) {
+      await this.repository.update(user?.notificationsId, {
+        sendNotificationsToEmail,
+      });
+    }
     return this.getNotificationsOrFail(user?.notificationsId);
   }
 

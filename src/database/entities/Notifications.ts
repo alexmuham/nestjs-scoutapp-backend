@@ -4,10 +4,10 @@ import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 export default class Notifications {
   constructor(
     id: string,
-    friendRequest: boolean,
-    playersMatching: boolean,
-    messages: boolean,
-    sendNotificationsToEmail: boolean,
+    friendRequest?: boolean,
+    playersMatching?: boolean,
+    messages?: boolean,
+    sendNotificationsToEmail?: boolean,
   ) {
     this.id = id;
     this.friendRequest = friendRequest;
@@ -20,14 +20,14 @@ export default class Notifications {
   id: string;
 
   @Column()
-  friendRequest: boolean;
+  friendRequest?: boolean;
 
   @Column()
-  playersMatching: boolean;
+  playersMatching?: boolean;
 
   @Column()
-  messages: boolean;
+  messages?: boolean;
 
   @Column()
-  sendNotificationsToEmail: boolean;
+  sendNotificationsToEmail?: boolean;
 }

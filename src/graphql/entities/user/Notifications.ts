@@ -4,10 +4,10 @@ import {Field, ObjectType} from '@nestjs/graphql';
 export default class Notifications {
   constructor(
     id: string,
-    friendRequest: boolean,
-    playersMatching: boolean,
-    messages: boolean,
-    sendNotificationsToEmail: boolean,
+    friendRequest?: boolean,
+    playersMatching?: boolean,
+    messages?: boolean,
+    sendNotificationsToEmail?: boolean,
   ) {
     this.id = id;
     this.friendRequest = friendRequest;
@@ -20,14 +20,14 @@ export default class Notifications {
   id: string;
 
   @Field(() => Boolean)
-  friendRequest: boolean;
+  friendRequest?: boolean;
 
   @Field(() => Boolean)
-  playersMatching: boolean;
+  playersMatching?: boolean;
 
   @Field(() => Boolean)
-  messages: boolean;
+  messages?: boolean;
 
   @Field(() => Boolean)
-  sendNotificationsToEmail: boolean;
+  sendNotificationsToEmail?: boolean;
 }
