@@ -14,10 +14,10 @@ export default class NotificationsManager implements INotificationsManager {
 
   async updateNotificationsSettings(
     userId: string,
-    friendRequest: boolean,
-    playersMatching: boolean,
-    messages: boolean,
-    sendNotificationsToEmail: boolean,
+    friendRequest?: boolean,
+    playersMatching?: boolean,
+    messages?: boolean,
+    sendNotificationsToEmail?: boolean,
   ) {
     await this.notificationsStore.updateNotificationsSettings(
       userId,
