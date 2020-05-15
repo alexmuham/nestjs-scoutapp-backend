@@ -10,5 +10,5 @@ export default abstract class INotificationsManager {
     playersMatching: boolean,
     messages: boolean,
     sendNotificationsToEmail: boolean,
-  ): Promise<void>;
+  ): Promise<Notifications>;
 }

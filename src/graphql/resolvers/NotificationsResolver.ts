@@ -12,7 +12,7 @@ import {mapNotificationsToGQL} from '../entities/Mappers';
 export class NotificationsResolver {
   constructor(private readonly notificationsManager: INotificationsManager) {}
 
-  @Mutation(() => Boolean)
+  @Mutation(() => Notifications)
   async updateNotificationsSettings(
     @CurrentSession() {userId}: Session,
     @Args('friendRequest') friendRequest: boolean,
@@ -20,15 +20,13 @@ export class NotificationsResolver {
     @Args('messages') messages: boolean,
     @Args('sendNotificationsToEmail') sendNotificationsToEmail: boolean,
   ) {
-    await this.notificationsManager.updateNotificationsSettings(
+    return this.notificationsManager.updateNotificationsSettings(
       userId,
       friendRequest,
       playersMatching,
       messages,
       sendNotificationsToEmail,
     );
-
-    return true;
   }
 
   @Query(() => Notifications)

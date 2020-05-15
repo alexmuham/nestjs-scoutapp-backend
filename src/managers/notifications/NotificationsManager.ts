@@ -26,6 +26,8 @@ export default class NotificationsManager implements INotificationsManager {
       messages,
       sendNotificationsToEmail,
     );
+
+    return this.getMyNotificationsSettings(userId);
   }
 
   async getMyNotificationsSettings(id: string) {
