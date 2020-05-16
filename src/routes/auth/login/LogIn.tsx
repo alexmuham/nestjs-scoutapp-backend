@@ -1,30 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {useAuthActions} from '../../../state/hooks/UseActions';
+import {useAuthActions} from 'state/hooks/UseActions';
 import AuthCard from '../components/authCard/AuthCard';
 import styles from '../registration/Registration.styles';
 import AuthInputField from '../components/authInputField/AuthInputField';
 import TextLink from '../components/textLink/TextLink';
-import {AuthInfoKeeper} from 'auth';
-import {useHistory} from 'react-router-native';
+import {useGuard} from 'state/hooks/UseGuard';
 
 const LogIn: React.FC = () => {
-  const history = useHistory();
-
   const {t} = useTranslation('Login');
 
   const [email, setEmail] = useState('');
 
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    AuthInfoKeeper.isAuthenticated().then((isAuthenticated) => {
-      if (isAuthenticated) {
-        history.push('/main');
-      }
-    });
-  }, []);
+  useGuard({requireAuthenticated: false});
 
   const bottomText = () => (
     <View style={styles.bottomTextContainer}>
@@ -33,7 +24,7 @@ const LogIn: React.FC = () => {
         onPress={() => undefined}
         text={t('signUp')}
         styleText={styles.textLink}
-        link="/registration"
+        link="/auth/registration"
       />
     </View>
   );
@@ -70,7 +61,7 @@ const LogIn: React.FC = () => {
           <TextLink
             onPress={() => undefined}
             text={t('restore')}
-            link="/forgotPassword"
+            link="/auth/forgotPassword"
           />
         </View>
       </View>

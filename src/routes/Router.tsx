@@ -6,6 +6,7 @@ import Main from 'routes/main';
 import Layout from '../navigation/layouts';
 import {View} from 'react-native';
 import {useAuthActions} from '../state/hooks/UseActions';
+import styles from './Router.styles';
 
 const Logout = () => {
   const actions = useAuthActions();
@@ -21,49 +22,57 @@ const Router: React.FC = () => {
   return (
     <MemoryRouter>
       <NativeRouter>
-        <View style={{flex: 1}}>
+        <View style={styles.container}>
           <Switch>
             <Route exact path="/">
               <Redirect to="/auth" />
             </Route>
-            <Route exact path="/logout">
+            <Route exact path="/main/logout">
               <Logout />
             </Route>
-            <Route exact path="/main">
-              <Redirect to="/prospect" />
+            <Route path="/main">
+              <Redirect to="/main/prospect" />
+              <AppRoute
+                exact
+                path="/main/player"
+                component={Main.Prospect}
+                layout={MainLayout}
+              />
+              <AppRoute
+                exact
+                path="/main/player:id"
+                component={Main.PlayerCard}
+                layout={MainLayout}
+              />
+            </Route>
+            <Route path="/auth">
+              <Redirect to="/auth/login" />
+              <AppRoute
+                exact
+                path="/auth"
+                component={Auth.LogIn}
+                layout={Layout.AuthLayout}
+              />
+              <AppRoute
+                exact
+                path="/auth/registration"
+                component={Auth.Registration}
+                layout={AuthLayout}
+              />
+              <AppRoute
+                exact
+                path="/auth/forgotPassword"
+                component={Auth.ForgotPassword}
+                layout={AuthLayout}
+              />
+              <AppRoute
+                exact
+                path="/auth/login"
+                component={Auth.LogIn}
+                layout={AuthLayout}
+              />
             </Route>
           </Switch>
-          <AppRoute
-            exact
-            path="/auth"
-            component={Auth.LogIn}
-            layout={Layout.AuthLayout}
-          />
-          <AppRoute
-            exact
-            path="/registration"
-            component={Auth.Registration}
-            layout={AuthLayout}
-          />
-          <AppRoute
-            exact
-            path="/forgotPassword"
-            component={Auth.ForgotPassword}
-            layout={AuthLayout}
-          />
-          <AppRoute exact path="/login" component={Auth.LogIn} layout={AuthLayout} />
-          <AppRoute
-            exact
-            path="/prospect"
-            component={Main.Prospect}
-            layout={MainLayout}
-          />
-          <AppRoute
-            exact
-            path="/player:id"
-            component={Main.PlayerCard}
-            layout={MainLayout}
-          />
         </View>
       </NativeRouter>
     </MemoryRouter>

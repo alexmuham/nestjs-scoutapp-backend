@@ -15,7 +15,7 @@ function* updateMyAccount({payload}: Action<NavigationPayload>) {
     // yield put(routerActions.goBack(payload));
     yield put(alertActions.showSnackbar({title: 'Profile saved!!'}));
   } catch (e) {
-    yield put(yield put(errorActions.handleError(payload)));
+    yield put(errorActions.handleError(payload));
   }
 }
 

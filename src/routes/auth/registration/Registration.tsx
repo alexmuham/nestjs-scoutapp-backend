@@ -5,7 +5,7 @@ import AuthCard from '../components/authCard/AuthCard';
 import AuthInputField from '../components/authInputField/AuthInputField';
 import styles from './Registration.styles';
 import TextLink from '../components/textLink/TextLink';
-import {useAuthActions} from '../../../state/hooks/UseActions';
+import {useAuthActions} from 'state/hooks/UseActions';
 
 const Registration: React.FC = () => {
   const {t} = useTranslation('registration');
@@ -33,7 +33,7 @@ const Registration: React.FC = () => {
         styleText={styles.textLink}
         onPress={() => undefined}
         text={t('signIn')}
-        link="/login"
+        link="/auth/login"
       />
     </View>
   );
@@ -115,13 +115,13 @@ const Registration: React.FC = () => {
           <TextLink
             onPress={() => undefined}
             text={t('terms of service')}
-            link="/registration" // TODO add page
+            link="/auth/registration" // TODO add page
           />
           <Text style={styles.bottomText}>{t('and')}</Text>
           <TextLink
             onPress={() => undefined}
             text={t('private police')}
-            link="/registration" // TODO add page
+            link="/auth/registration" // TODO add page
           />
         </View>
       </View>

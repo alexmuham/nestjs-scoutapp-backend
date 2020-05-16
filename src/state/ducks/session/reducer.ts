@@ -15,16 +15,12 @@ const setSessionExists: ReducerNextThrow<SessionContainer, any> = {
 
 const fetchUserAccountCompleted: ReducerNextThrow<SessionContainer, Account> = {
   next: (state, {payload}) => ({...state, ...success({account: payload})}),
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  throw: (_, {payload}) => failed(payload),
+  throw: (state, {payload}) => ({...state, ...failed(payload)}),
 };
 
 const updateMyAccountCompleted: ReducerNextThrow<SessionContainer, Account> = {
   next: (state, {payload}) => ({...state, ...success({}), account: payload}),
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  throw: (_, {payload}) => failed(payload),
+  throw: (state, {payload}) => ({...state, ...failed(payload)}),
 };
 
 export default handleActions<SessionContainer, any>(

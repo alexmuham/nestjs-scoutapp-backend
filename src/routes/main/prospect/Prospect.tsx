@@ -2,27 +2,19 @@ import React, {useEffect} from 'react';
 import {MenuBar, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
-import PlayerList from '../../../components/playerList/PlayerList';
-import {useHistory} from 'react-router-native';
+import PlayerList from 'components/playerList/PlayerList';
 import {useSelector} from 'react-redux';
-import State from '../../../state/entities/State';
-import {useProspectActions} from '../../../state/hooks/UseActions';
+import State from 'state/entities/State';
+import {useProspectActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
 import styles from './Prospect.styles';
-import {AuthInfoKeeper} from 'auth';
+import {useGuard} from 'state/hooks/UseGuard';
 
 const Prospect: React.FC = () => {
-  const history = useHistory();
   const actions = useProspectActions();
   const {t} = useTranslation('prospect');
 
-  useEffect(() => {
-    AuthInfoKeeper.isAuthenticated().then((isAuthenticated) => {
-      if (!isAuthenticated) {
-        history.push('/auth');
-      }
-    });
-  }, []);
+  useGuard({requireAuthenticated: true});
 
   useEffect(() => {
     actions.fetchPlayers();

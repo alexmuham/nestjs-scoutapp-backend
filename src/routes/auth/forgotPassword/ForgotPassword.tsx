@@ -32,7 +32,7 @@ const ForgotPassword: React.FC = () => {
         </ScrollView>
         <View style={styles.bottomTextContainerLogin}>
           <Text style={styles.bottomText}>{t('Remember account?')}</Text>
-          <TextLink onPress={() => undefined} text={t('restore')} link="/login" />
+          <TextLink onPress={() => undefined} text={t('restore')} link="/auth/login" />
         </View>
       </View>
     </AuthCard>

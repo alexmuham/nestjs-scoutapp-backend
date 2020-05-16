@@ -2,13 +2,13 @@ import {ApolloError} from 'apollo-boost';
 import ApiHttpError from '@spryrocks/react-api/rest/ApiHttpError';
 import ApiError from '@spryrocks/react-api/rest/ApiError';
 import {ScoutApiTokenHolder} from 'api';
-import {Platform} from 'entities/Platform';
 import * as R from 'ramda';
+import Config from 'app/Config';
 
 export const getHeaders = () => {
   const token = ScoutApiTokenHolder.getToken();
   const headers: any = {
-    platform: Platform.iOS,
+    platform: Config.getPlatform(),
   };
   if (token) {
     headers.authorization = token;
