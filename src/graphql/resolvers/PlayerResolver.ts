@@ -32,11 +32,11 @@ export class PlayerResolver {
   }
 
   @Mutation(() => Boolean)
-  async deletePlayerToUser(
-    @Args({name: 'playersIds', type: () => [String]}) players: string[],
+  async deletePlayersToUser(
+    @Args({name: 'playersIds', type: () => [String]}) playersIds: string[],
     @CurrentSession() {userId}: Session,
   ) {
-    await this.playerManager.deletePlayerToUser(players, userId);
+    await this.playerManager.deletePlayersToUser(playersIds, userId);
     return true;
   }
 

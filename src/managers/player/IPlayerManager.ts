@@ -11,7 +11,7 @@ export default abstract class IPlayerManager {
 
   abstract addPlayerToUser(playerId: ID, userId: ID): Promise<void>;
 
-  abstract deletePlayerToUser(players: string[], userId: ID): Promise<void>;
+  abstract deletePlayersToUser(playersIds: string[], userId: ID): Promise<void>;
 
   abstract getPlayersFromUser(userId: ID): Promise<Player[]>;
 }

@@ -29,9 +29,12 @@ export default class UserStore implements IUserStore {
     await this.repository.save({id, players});
   }
 
-  async deletePlayerToUser(players: Player[], userId: string) {
-    // @ts-ignore
-    await this.repository.manager.update(userId, {players});
+  async deletePlayerToUser(playerId: string, userId: string) {
+    await this.repository
+      .createQueryBuilder()
+      .relation(User, 'players')
+      .of([userId, playerId])
+      .remove(playerId);
   }
 
   async getUserById(id: string) {

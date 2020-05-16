@@ -9,7 +9,7 @@ export default abstract class IUserStore {
 
   abstract addPlayerToUser(players: Player[], userId: ID): Promise<void>;
 
-  abstract deletePlayerToUser(players: Player[], userId: ID): Promise<void>;
+  abstract deletePlayerToUser(players: string, userId: ID): Promise<void>;
 
   abstract getUserById(userId: ID): Promise<User | undefined>;
 }

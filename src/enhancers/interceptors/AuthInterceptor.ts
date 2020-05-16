@@ -19,6 +19,7 @@ export class AuthInterceptor implements NestInterceptor {
     private readonly reflector: Reflector,
   ) {}
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   public async intercept(context: ExecutionContext, next: CallHandler) {
     try {
