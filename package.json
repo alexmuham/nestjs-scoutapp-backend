@@ -29,7 +29,7 @@
     "@redux-saga/core": "^1.1.3",
     "@spryrocks/config-react": "^1.0.0-alpha.7",
     "@spryrocks/react-api": "^0.1.1",
-    "@spryrocks/react-auth": "^0.1.3",
+    "@spryrocks/react-auth": "^0.1.4",
     "apollo-boost": "^0.4.7",
     "dotenv": "^8.2.0",
     "firebase": "^7.14.2",

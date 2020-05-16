@@ -2096,10 +2096,10 @@
     graphql "^14.6.0"
     promise-queue "^2.2.5"
 
-"@spryrocks/react-auth@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@spryrocks/react-auth/-/react-auth-0.1.3.tgz#c58f9e4dc7a59b361b7c4eb9270a153918246c83"
-  integrity sha512-9m+5XibxFRFFgXMlAceUh01Pjues52/Ltg15DSETtZV+3g3UVJdawW7b3gJ7CR4wThiZzfAsQbue6ZY8ld0PEw==
+"@spryrocks/react-auth@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@spryrocks/react-auth/-/react-auth-0.1.4.tgz#07402f99bed505d743e813f8093fa405872ec9ef"
+  integrity sha512-mg0Y/h5KunYvchWRiPC2klJh/nsAw4mxejJ/LuE+BNHjTAygtZ0ki2JfTsVfooPLWNQzu/KJ0p/bBKlASs2gvg==
   dependencies:
     "@react-native-community/async-storage" "^2.0.0-rc.3"
 
