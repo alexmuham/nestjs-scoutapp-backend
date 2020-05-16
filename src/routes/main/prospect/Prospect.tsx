@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {MenuBar, TransitionBar} from 'components';
+import {MenuBar, RequireLoadable, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
 import PlayerList from 'components/playerList/PlayerList';
@@ -20,12 +20,15 @@ const Prospect: React.FC = () => {
     actions.fetchPlayers();
   }, []);
 
-  const {players} = useSelector((state: State) => state);
+  const {prospect} = useSelector((state: State) => state);
 
   return (
     <View style={styles.container}>
       <MenuBar leftIcons={[MenuBarItems.Settings]} rightIcons={[MenuBarItems.Friends]} />
-      <PlayerList players={players} title={t('prospect')} />
+      <RequireLoadable data={prospect}>
+        {(players) => <PlayerList players={players.players} title={t('prospect')} />}
+      </RequireLoadable>
+
       <TransitionBar style={styles.transitionBar} activeProspect />
     </View>
   );

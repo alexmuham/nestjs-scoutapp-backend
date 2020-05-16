@@ -8,6 +8,6 @@ export default interface State {
   session: SessionContainer;
   auth: Auth;
   snackBar: SnackBar;
-  players: LoadableContainer<{players: Player[]}>;
+  prospect: LoadableContainer<{players: Player[]}>;
   player: LoadableContainer<Player>;
 }

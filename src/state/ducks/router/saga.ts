@@ -26,10 +26,10 @@ function navigateToMain({payload}: Action<NavigationPayload>) {
 }
 
 function navigateToProspect({payload}: Action<NavigationPayload>) {
-  payload.history.push('/prospect');
+  payload.history.push('/main/prospect');
 }
 function navigateToPlayer({payload}: Action<NavigateToPlayer>) {
-  payload.history.push(`/player:${payload.playerId}`);
+  payload.history.push(`/main/player:${payload.playerId}`);
 }
 
 export default function* () {

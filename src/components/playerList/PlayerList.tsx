@@ -1,14 +1,12 @@
 import React from 'react';
 import Player from 'entities/Player';
 import {FlatList, ScrollView, Text, View, ViewStyle} from 'react-native';
-import {LoadableContainer} from 'state/entities/LoadableContainer';
 import styles from './PlayerList.styles';
 import {useTranslation} from 'react-i18next';
-import {RequireLoadable} from '../index';
 import Item from './Item/Item';
 
 interface PlayerListProps {
-  players: LoadableContainer<{players: Player[]}>;
+  players: Player[];
   title?: string;
   styleContainer?: ViewStyle;
 }
@@ -33,25 +31,17 @@ const PlayerList: React.FC<PlayerListProps> = ({players, title, styleContainer})
         <Text>{t('highSchool')}</Text>
       </View>
       <ScrollView horizontal>
-        <RequireLoadable data={players}>
-          {({players}) => {
+        <FlatList
+          data={players}
+          renderItem={({item}) => {
             return (
               <>
-                <FlatList
-                  data={players}
-                  renderItem={({item}) => {
-                    return (
-                      <>
-                        <Item player={item} />
-                      </>
-                    );
-                  }}
-                  keyExtractor={(item) => item.id}
-                />
+                <Item player={item} />
               </>
             );
           }}
-        </RequireLoadable>
+          keyExtractor={(item) => item.id}
+        />
       </ScrollView>
     </View>
   );

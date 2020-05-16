@@ -1,7 +1,7 @@
-import MineLayout from './main/MineLayout';
+import MainLayout from './main/MainLayout';
 import AuthLayout from './auth/AuthLayout';
 
 export default {
-  MainLayout: MineLayout,
+  MainLayout,
   AuthLayout,
 };

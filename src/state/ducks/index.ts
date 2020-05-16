@@ -16,7 +16,7 @@ export const rootReducer = combineReducers<State>({
   session: sessionReducer,
   auth: authReducer,
   snackBar: snackBarReducer,
-  players: prospectReducer,
+  prospect: prospectReducer,
   player: playerReducer,
 });
 

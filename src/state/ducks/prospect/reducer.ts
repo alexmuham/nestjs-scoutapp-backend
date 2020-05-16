@@ -11,8 +11,8 @@ import {
 
 type ReducerState = LoadableContainer<{players: Player[]}>;
 
-const playersFetched: ReducerNextThrow<ReducerState, Player[]> = {
-  next: (_, {payload}) => success({players: payload}),
+const playersFetched: ReducerNextThrow<ReducerState, {players: Player[]}> = {
+  next: (_, {payload}) => success({players: payload.players}),
   throw: (_, {payload}) => failed(payload),
 };
 

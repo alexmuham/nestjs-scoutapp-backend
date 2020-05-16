@@ -27,14 +27,19 @@ const Router: React.FC = () => {
             <Route exact path="/">
               <Redirect to="/auth" />
             </Route>
-            <Route exact path="/main/logout">
+            <Route exact path="/auth/logout">
               <Logout />
             </Route>
             <Route path="/main">
-              <Redirect to="/main/prospect" />
               <AppRoute
                 exact
-                path="/main/player"
+                path="/main"
+                component={Main.Prospect}
+                layout={Layout.AuthLayout}
+              />
+              <AppRoute
+                exact
+                path="/main/prospect"
                 component={Main.Prospect}
                 layout={MainLayout}
               />
@@ -46,7 +51,6 @@ const Router: React.FC = () => {
               />
             </Route>
             <Route path="/auth">
-              <Redirect to="/auth/login" />
               <AppRoute
                 exact
                 path="/auth"
