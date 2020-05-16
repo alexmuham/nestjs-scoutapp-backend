@@ -9,7 +9,7 @@ import State from '../../../state/entities/State';
 import {useProspectActions} from '../../../state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
 import styles from './Prospect.styles';
-import {AuthInfoKeeper} from '@spryrocks/react-auth';
+import {AuthInfoKeeper} from 'auth';
 
 const Prospect: React.FC = () => {
   const history = useHistory();
