@@ -2049,10 +2049,10 @@
   dependencies:
     "@spryrocks/config-core" "^1.0.0-alpha.5"
 
-"@spryrocks/eslint-config-react@^0.1.3-dev1":
-  version "0.1.3-dev1"
-  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config-react/-/eslint-config-react-0.1.3-dev1.tgz#db1ed56719c7c4273cc4f0bb7e5b1fe4fd08cc99"
-  integrity sha512-OibZiUYOL0fhL8f5MyLTRYjYP2zEPp4w37ecR2JBOC9qoJxvaRpYJsoP3PQSo/SXSLbDxOLmaL2Qxi0jT/9MtA==
+"@spryrocks/eslint-config-react@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config-react/-/eslint-config-react-0.1.3.tgz#750315594338c7fd9ff7dff34778a0c640e40fd0"
+  integrity sha512-tatayqPxKZqZ23wXcmKR9pHNvQ0ZC/MDEQy2esvWw90Oo9EY1dUwxdcg1Vos4MzytqTTR5hMuhpeqloZ/RXqlw==
   dependencies:
     "@spryrocks/eslint-config" "^0.1.2"
     eslint-config-airbnb-typescript "^7.2.1"
