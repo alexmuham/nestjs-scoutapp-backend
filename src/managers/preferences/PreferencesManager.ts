@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common';
-import {mapPreferencesFromDB} from 'database/entities/Mappers';
+import {mapPreferencesFromDb} from 'database/entities/Mappers';
 import IPreferencesStore from 'database/stores/preferences/IPreferencesStore';
 import IPreferencesManager from './IPreferencesManager';
 import ScoutAppError from '../../ScoutAppError';
@@ -37,6 +37,6 @@ export default class PreferencesManager implements IPreferencesManager {
     const preferences = await this.preferencesStore.getPreferences(user?.preferencesId);
     if (!preferences) throw new ScoutAppError('there is no such laundry');
 
-    return mapPreferencesFromDB(preferences);
+    return mapPreferencesFromDb(preferences);
   }
 }

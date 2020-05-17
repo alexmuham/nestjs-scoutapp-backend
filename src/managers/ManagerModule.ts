@@ -6,8 +6,6 @@ import {AuthModule} from './auth/AuthModule';
 import {ServicesModule} from 'services/ServicesModule';
 import IPlayerManager from './player/IPlayerManager';
 import PlayerManager from './player/PlayerManager';
-import INotificationsManager from './notifications/INotificationsManager';
-import NotificationsManager from './notifications/NotificationsManager';
 import IPreferencesManager from './preferences/IPreferencesManager';
 import PreferencesManager from './preferences/PreferencesManager';
 
@@ -37,7 +35,6 @@ import PreferencesManager from './preferences/PreferencesManager';
     IAccountManager,
     AuthModule,
     IPlayerManager,
-    IFileManager,
     IPreferencesManager,
   ],
 })

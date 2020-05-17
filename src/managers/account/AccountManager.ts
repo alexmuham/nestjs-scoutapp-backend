@@ -1,7 +1,7 @@
 import {Injectable} from '@nestjs/common';
 import IUserStore from '../../database/stores/user/IUserStore';
 import IAccountManager from './IAccountManager';
-import {mapAccountFromDB} from '../../database/entities/Mappers';
+import {mapAccountFromDb} from '../../database/entities/Mappers';
 import ScoutAppError from '../../ScoutAppError';
 import IPreferencesStore from 'database/stores/preferences/IPreferencesStore';
 
@@ -19,6 +19,6 @@ export default class AccountManager implements IAccountManager {
       dbUser.preferencesId,
     );
     if (!dbPreferences) throw new ScoutAppError('Preferences is not found');
-    return mapAccountFromDB(dbUser, dbPreferences);
+    return mapAccountFromDb(dbUser, dbPreferences);
   }
 }

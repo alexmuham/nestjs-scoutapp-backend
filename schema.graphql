@@ -46,11 +46,9 @@ type Player {
 }
 
 type Query {
-  myAccount: Account!
-  myNotificationsSettings: Notifications!
+  account: Account!
   playerById(playerId: String!): Player!
   getPlayers: [Player!]!
-  account: Account!
   preferences: Preferences!
 }
 

@@ -3,7 +3,7 @@ import IPlayerManager from './IPlayerManager';
 import IPlayerStore from 'database/stores/player/IPlayerStore';
 import CSVResponse from 'api/entities/CSVResponse';
 import ScoutAppError from '../../ScoutAppError';
-import {mapPlayerFormDB, mapPlayersFormDB} from '../../database/entities/Mappers';
+import {mapPlayerFormDb, mapPlayersFormDb} from '../../database/entities/Mappers';
 
 @Injectable()
 export default class PlayerManager implements IPlayerManager {
@@ -28,7 +28,6 @@ export default class PlayerManager implements IPlayerManager {
         player.national_position_ranking,
         player.national_overall_ranking,
         player.college_commitment,
-        // player.statistics,
       );
     });
   }
@@ -36,12 +35,12 @@ export default class PlayerManager implements IPlayerManager {
   async getPlayerById(playerId: string) {
     const player = await this.playerStore.getPlayerById(playerId);
     if (!player) throw new ScoutAppError('');
-    return mapPlayerFormDB(player);
+    return mapPlayerFormDb(player);
   }
 
   async getPlayers() {
     const players = await this.playerStore.getPlayers();
     if (!players || players.length < 1) throw new ScoutAppError('');
-    return mapPlayersFormDB(players);
+    return mapPlayersFormDb(players);
   }
 }

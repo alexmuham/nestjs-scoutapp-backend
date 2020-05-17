@@ -5,8 +5,6 @@ import GQLAccount from './account/Account';
 import Preferences from 'entities/Preferences';
 import GQLPlayer from './player/Player';
 import Player from 'entities/Player';
-import Notifications from 'entities/Notifications';
-import GQLNotifications from './user/Notifications';
 import GQLPreferences from './user/Preferences';
 
 export const mapUserToGQL = (user: User): GQLUser => {

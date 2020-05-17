@@ -7,7 +7,6 @@ import {EnhancersModule} from 'enhancers/EnhancersModule';
 import {APP_PIPE} from '@nestjs/core';
 import {RouterModule} from 'router/RouterModule';
 import {PlayerResolver} from './resolvers/PlayerResolver';
-import {NotificationsResolver} from './resolvers/NotificationsResolver';
 import {PreferencesResolver} from './resolvers/PreferencesResolver';
 
 @Module({
@@ -30,7 +29,6 @@ import {PreferencesResolver} from './resolvers/PreferencesResolver';
     },
     AccountResolver,
     PlayerResolver,
-    NotificationsResolver,
     PreferencesResolver,
   ],
 })

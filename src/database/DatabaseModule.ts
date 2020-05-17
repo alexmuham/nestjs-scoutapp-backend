@@ -4,14 +4,16 @@ import {ConfigModule} from 'services/config/ConfigModule';
 import {IConfigService} from '@spryrocks/config-node';
 import {
   //
-  Player, User, LocalLogin, Session} from 'database/entities';
-import Notifications from './entities/Notifications';
+  Player,
+  User,
+  LocalLogin,
+  Session,
+} from 'database/entities';
 import Preferences from './entities/Preferences';
 
 const entities = [
   //
   Preferences,
-  File,
   User,
   LocalLogin,
   Session,

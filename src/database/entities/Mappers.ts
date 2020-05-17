@@ -1,15 +1,12 @@
-import DBUser from './User';
-import DBPlayer from './Player';
+import DbUser from './User';
+import DbPlayer from './Player';
 import User from 'entities/User';
 import Account from 'entities/Account';
 import Preferences from 'entities/Preferences';
 import Player from 'entities/Player';
-import DbUser from './User';
-import DbNotifications from './Notifications';
-import Notifications from '../../entities/Notifications';
 import DbPreferences from './Preferences';
 
-export const mapPreferencesFromDB = (preferences: DbPreferences): Preferences => ({
+export const mapPreferencesFromDb = (preferences: DbPreferences): Preferences => ({
   id: preferences.id,
   enableFriendRequestNotification:
     preferences.enableFriendRequestNotification || undefined,
@@ -19,7 +16,7 @@ export const mapPreferencesFromDB = (preferences: DbPreferences): Preferences =>
   sendNotificationsToEmail: preferences.sendNotificationsToEmail || undefined,
 });
 
-export const mapUserFromDb = (user: DBUser): User => ({
+export const mapUserFromDb = (user: DbUser): User => ({
   id: user.id,
   firstName: user.firstName,
   lastName: user.lastName,
@@ -29,19 +26,15 @@ export const mapUserFromDb = (user: DBUser): User => ({
   education: user.education,
 });
 
-export const mapPreferencesFromDB = (user: DBUser): Preferences => ({
-  allowNotifications: user.allowNotifications,
-});
-
-export const mapAccountFromDB = (
+export const mapAccountFromDb = (
   account: DbUser,
   preferences: DbPreferences,
 ): Account => ({
   user: mapUserFromDb(account),
-  preferences: mapPreferencesFromDB(preferences),
+  preferences: mapPreferencesFromDb(preferences),
 });
 
-export const mapPlayerFormDB = (player: DBPlayer): Player => ({
+export const mapPlayerFormDb = (player: DbPlayer): Player => ({
   id: player.id,
   name: player.name,
   weight: player.weight,
@@ -61,8 +54,8 @@ export const mapPlayerFormDB = (player: DBPlayer): Player => ({
   bats: player.bats,
 });
 
-export const mapPlayersFormDB = (players: DBPlayer[]): Player[] => {
+export const mapPlayersFormDb = (players: DbPlayer[]): Player[] => {
   return players.map((player) => {
-    return mapPlayerFormDB(player);
+    return mapPlayerFormDb(player);
   });
 };
