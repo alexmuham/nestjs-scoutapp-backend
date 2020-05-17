@@ -1,8 +1,6 @@
 {
   "name": "scoutapp",
   "version": "0.0.1",
-  "repository": "https://gitlab.com/spry-rocks/modules/spry-rocks-modules-react-api.git",
-  "author": "maximzhemerenko <maxim.zhemerenko@spryrocks.com>",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
