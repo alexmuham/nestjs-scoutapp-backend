@@ -30,6 +30,6 @@ function* fetchSession({payload}: Action<NavigationPayload>) {
 }
 
 export default function* () {
-  yield all([takeEvery(types.UPDATE_USER_PROFILE, updateAccount)]);
+  yield all([takeEvery(types.UPDATE_USER_PROFILE, updateMyAccount)]);
   yield all([takeEvery(types.FETCH_SESSION, fetchSession)]);
 }

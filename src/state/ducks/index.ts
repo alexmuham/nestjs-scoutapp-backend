@@ -20,7 +20,6 @@ export const rootReducer = combineReducers<State>({
   preferences: preferencesReducer,
   prospect: prospectReducer,
   player: playerReducer,
-  notifications: notificationsReducer,
 });
 
 export function* rootSaga() {
@@ -33,7 +32,6 @@ export function* rootSaga() {
     prospectSage(),
     playerSage(),
     errorSaga(),
-    notificationsSaga(),
     preferencesSaga(),
   ]);
 }

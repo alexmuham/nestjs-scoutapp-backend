@@ -5,9 +5,8 @@ import {PreferencesContainer} from '../../entities/PreferencesContainer';
 import Preferences from '../../../entities/Preferences';
 
 const fetchPreferencesCompleted: ReducerNextThrow<PreferencesContainer, Preferences> = {
-  next: (state, {payload}) => ({...state, ...success({account: payload})}),
-  // @ts-ignore
-  throw: (_, {payload}) => failed(payload),
+  next: (state, {payload}) => ({...state, preferences: success(payload)}),
+  throw: (_, {payload}) => ({preferences: failed(payload)}),
 };
 
 export default handleActions<any>(

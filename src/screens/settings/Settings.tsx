@@ -75,7 +75,6 @@ const Settings: React.FC = () => {
     );
   };
 
-  // @ts-ignore
   return (
     <View style={styles.flex}>
       <MenuBar

@@ -65,14 +65,6 @@ export const mapPlayersFromGQL = (players: GQLPlayer[]): Player[] => {
   return players.map((player) => mapPlayerFromGQL(player));
 };
 
-export const mapAccountFromGQL = (
-    configuration: ApiConfiguration,
-    account: any,
-): Account => ({
-  info: mapAdditionalUserInfoFromGQL(account.info),
-  user: mapUserFromGQL(configuration, account.user),
-});
-
 export const mapPreferencesFromGQL = (preferences: any): Preferences => ({
   id: preferences.id,
   enableFriendRequestNotification: preferences.enableFriendRequestNotification,

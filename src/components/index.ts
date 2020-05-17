@@ -7,9 +7,6 @@ import LoadableWrapper from './require/LoadableWrapper';
 import RequireLoadable from './require/RequireLoadable';
 import RequireSession from './require/RequireSession';
 import LineProperty from './lineProperty/LineProperty';
-import RequireLoadable from './require/RequireLoadable';
-import ActivityIndicatorFill from './activityIndicator/ActivityIndicator';
-import ErrorPlaceholder from './error/ErrorPlaceholder';
 
 export {
   //
@@ -22,7 +19,4 @@ export {
   RequireLoadable,
   RequireSession,
   LineProperty,
-  RequireLoadable,
-  ActivityIndicatorFill,
-  ErrorPlaceholder,
 };

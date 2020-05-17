@@ -4,7 +4,6 @@ import {actions as authActions} from '../ducks/auth';
 import {actions as settingsActions} from '../ducks/settings';
 import UpdateUserRequest from '../ducks/session/models';
 import {snackBarActions} from '../ducks/snackBar';
-import {actions as authActions} from '../ducks/auth';
 import {actions as sessionActions} from '../ducks/session';
 import {actions as prospectActions} from '../ducks/prospect';
 import {actions as playerActions} from '../ducks/player';
@@ -12,8 +11,6 @@ import {actions as routerActions} from '../ducks/router';
 import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
-import {snackBarActions} from '../ducks/snackBar';
-import {useHistory} from 'react-router-native';
 import UpdatePreferences from '../../api/entities/UpdatePreferences';
 
 export function useAuthActions() {

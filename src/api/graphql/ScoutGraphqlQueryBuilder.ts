@@ -1,17 +1,19 @@
-import {createQuery, createQueryWithVariables} from '@spryrocks/react-api/graphql/Query';
 import {
-  createMutationWithVariables,
   createQuery,
+  createQueryWithVariables,
+  createMutationWithVariables,
 } from '@spryrocks/react-api/graphql/Query';
 import {gql} from 'apollo-boost';
-import {Account, Player, QueryPlayerByIdArgs} from './types';
-import {Account, Notifications} from './types';
-import {Account, MutationUpdateNotificationsSettingsArgs, Notifications} from './types';
-import {Account, MutationUpdatePreferencesArgs, Preferences} from './types';
+import {
+  Account,
+  Player,
+  QueryPlayerByIdArgs,
+  MutationUpdatePreferencesArgs,
+  Preferences,
+} from './types';
 
 const UserFragment = () => gql`
   fragment User on User {
-    allowNotifications
     education
     email
     firstName
@@ -43,17 +45,17 @@ const PlayerFragment = () => gql`
 `;
 
 export const myAccountQuery = createQuery<{myAccount: Account}, Account>(
-    gql`
+  gql`
     ${UserFragment()}
     query myAccount {
-      myAccount {
+      account {
         user {
           ...User
         }
       }
     }
   `,
-    ({myAccount}) => myAccount,
+  ({myAccount}) => myAccount,
 );
 
 export const preferencesQuery = createQuery<{preferences: Preferences}, Preferences>(
@@ -99,10 +101,6 @@ export const playersQuery = createQuery<{getPlayers: [Player]}, [Player]>(
   ({getPlayers}) => getPlayers,
 );
 
-export const mutationUpdateNotificationsSettings = createMutationWithVariables<
-  MutationUpdateNotificationsSettingsArgs,
-  Notifications,
-  Notifications
 export const mutationUpdatePreferences = createMutationWithVariables<
   MutationUpdatePreferencesArgs,
   Preferences,

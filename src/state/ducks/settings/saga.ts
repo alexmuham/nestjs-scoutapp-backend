@@ -4,7 +4,7 @@ import {Action} from 'redux-actions';
 import {actions as alertActions} from '../alert';
 import {ScoutApi} from 'api';
 import Preferences from 'entities/Preferences';
-import {actions} from './index';
+import actions from './actions';
 import {snackBarActions} from '../snackBar';
 import UpdatePreferences from 'api/entities/UpdatePreferences';
 

@@ -9,6 +9,7 @@ import {useProspectActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
 import styles from './Prospect.styles';
 import {useGuard} from 'state/hooks/UseGuard';
+import {useHistory} from 'react-router';
 
 const Prospect: React.FC = () => {
   const actions = useProspectActions();
@@ -21,10 +22,14 @@ const Prospect: React.FC = () => {
   }, []);
 
   const {prospect} = useSelector((state: State) => state);
+  const history = useHistory();
 
   return (
     <View style={styles.container}>
-      <MenuBar leftIcons={[MenuBarItems.Settings]} rightIcons={[MenuBarItems.Friends]} />
+      <MenuBar
+        leftIcons={[MenuBarItems.Settings(history)]}
+        rightIcons={[MenuBarItems.Friends(history)]}
+      />
       <RequireLoadable data={prospect}>
         {(players) => <PlayerList players={players.players} title={t('prospect')} />}
       </RequireLoadable>

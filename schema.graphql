@@ -2,6 +2,26 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Player {
+  id: ID!
+  name: String!
+  externalId: String!
+  height: String!
+  weight: String!
+  bats: String!
+  throws: String!
+  graduatingClass: String!
+  primaryPosition: String!
+  highSchool: String!
+  contactPhone: String!
+  highSchoolContactPhone: String!
+  statePositionRanking: String!
+  stateOverallRanking: String!
+  nationalPositionRanking: String!
+  nationalOverallRanking: String!
+  collegeCommitment: String!
+}
+
 type User {
   id: ID!
   firstName: String!
@@ -10,6 +30,7 @@ type User {
   preferencesId: String!
   phoneNumber: String!
   education: String!
+  players: [Player!]
 }
 
 type Preferences {
@@ -27,9 +48,14 @@ type Account {
 
 type Query {
   account: Account!
+  playerById(playerId: String!): Player!
+  getPlayers: [Player!]!
+  playersFromUser: [Player!]!
   preferences: Preferences!
 }
 
 type Mutation {
+  addPlayerToUser(playerId: String!): Boolean!
+  deletePlayersToUser(playersIds: [String!]!): Boolean!
   updatePreferences(sendNotificationsToEmail: Boolean, enableMessageNotification: Boolean, enablePlayerMatchingNotification: Boolean, enableFriendRequestNotification: Boolean): Preferences!
 }

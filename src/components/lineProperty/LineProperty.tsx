@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, ViewStyle, ViewProps, Text} from 'react-native';
-// @ts-ignore
 import styles from './LineProperty.styles';
 
 interface LinePropertyProps extends ViewProps {

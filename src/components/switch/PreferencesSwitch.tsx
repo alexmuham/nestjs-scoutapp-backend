@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import {Switch} from 'react-native-switch';
 import styles from './PreferencesSwitch.styles';
 import {ViewProps} from 'react-native';
