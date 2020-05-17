@@ -1,6 +1,12 @@
-import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+} from 'typeorm';
 import Player from './Player';
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import Preferences from './Preferences';
 
 @Entity()

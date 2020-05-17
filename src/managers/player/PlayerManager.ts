@@ -4,7 +4,6 @@ import IPlayerStore from 'database/stores/player/IPlayerStore';
 import CSVResponse from 'api/entities/CSVResponse';
 import ScoutAppError from '../../ScoutAppError';
 import {mapPlayerFormDb, mapPlayersFormDb} from '../../database/entities/Mappers';
-import {mapPlayerFormDB, mapPlayersFormDB} from 'database/entities/Mappers';
 import IUserStore from 'database/stores/user/IUserStore';
 import {ID} from 'entities/Common';
 
@@ -66,6 +65,6 @@ export default class PlayerManager implements IPlayerManager {
   async getPlayersFromUser(userId: string) {
     const user = await this.userStore.getUserById(userId);
     if (!user?.players) throw new ScoutAppError('');
-    return mapPlayersFormDB(user.players);
+    return mapPlayersFormDb(user.players);
   }
 }

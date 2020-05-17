@@ -1,6 +1,7 @@
 import {ID} from './Common';
 import Player from './Player';
 import {Field} from '@nestjs/graphql';
+import {IsString} from 'class-validator';
 
 export default class User {
   constructor(

@@ -27,14 +27,18 @@ type User {
   firstName: String!
   lastName: String!
   email: String!
-  allowNotifications: Boolean!
+  preferencesId: String!
   phoneNumber: String!
   education: String!
   players: [Player!]
 }
 
 type Preferences {
-  allowNotifications: Boolean!
+  id: String!
+  enableFriendRequestNotification: Boolean!
+  enablePlayerMatchingNotification: Boolean!
+  enableMessageNotification: Boolean!
+  sendNotificationsToEmail: Boolean!
 }
 
 type Account {
@@ -43,13 +47,15 @@ type Account {
 }
 
 type Query {
-  myAccount: Account!
+  account: Account!
   playerById(playerId: String!): Player!
   getPlayers: [Player!]!
   playersFromUser: [Player!]!
+  preferences: Preferences!
 }
 
 type Mutation {
   addPlayerToUser(playerId: String!): Boolean!
   deletePlayersToUser(playersIds: [String!]!): Boolean!
+  updatePreferences(sendNotificationsToEmail: Boolean, enableMessageNotification: Boolean, enablePlayerMatchingNotification: Boolean, enableFriendRequestNotification: Boolean): Preferences!
 }
