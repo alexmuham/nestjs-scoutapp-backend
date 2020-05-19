@@ -4,7 +4,7 @@ import ForgotPassword from './forgotPassword/ForgotPassword';
 import {Route} from 'react-router-native';
 import React from 'react';
 import {View} from 'react-native';
-import styles from '../main/Main.styles';
+import styles from './Auth.styles';
 
 const Auth: React.FC = () => {
   return (

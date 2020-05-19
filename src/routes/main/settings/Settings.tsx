@@ -1,19 +1,16 @@
 import React, {useEffect} from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import {MenuBar} from 'components';
-import {MenuBarItems} from 'navigation';
+import {ScrollView, Text, View, TouchableOpacity, Image} from 'react-native';
+import {RequireLoadable} from 'components';
 import LineProperty from 'components/lineProperty/LineProperty';
 import styles from './Settings.styles';
 import {useSettingsActions} from 'state/hooks/UseActions';
 import {useSelector} from 'state/hooks';
 import PreferencesSwitch from 'components/switch/PreferencesSwitch';
 import {useTranslation} from 'react-i18next';
-import {useHistory} from 'react-router';
+import {Arrow} from './assets';
 
 const Settings: React.FC = () => {
   const {t} = useTranslation('settings');
-
-  const history = useHistory();
 
   const actions = useSettingsActions();
 
@@ -27,7 +24,6 @@ const Settings: React.FC = () => {
     titleKey: string;
     value: boolean;
     onPress: (value: boolean) => void;
-    enabled: boolean;
   }) => (
     <>
       <LineProperty
@@ -38,59 +34,69 @@ const Settings: React.FC = () => {
     </>
   );
 
+  const renderLink = () => {
+    return (
+      <View style={styles.rightImageContainer}>
+        <Image source={Arrow} style={styles.rightImageContainer} />
+      </View>
+    );
+  };
+
+  const LinkLine = (props: {titleKey: string}) => (
+    <View style={styles.preferencesContainer}>
+      <TouchableOpacity>
+        <LineProperty
+          text={() => <Text>{t(props.titleKey)}</Text>}
+          element={() => renderLink()}
+        />
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
     <View style={styles.flex}>
-      <MenuBar
-        leftIcons={[MenuBarItems.Friends(history)]}
-        rightIcons={[MenuBarItems.Settings(history)]}
-      />
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Notification settings</Text>
-        <View style={styles.preferencesContainer}>
-          <SwitchLine
-            titleKey="Player(s) matching"
-            value={preferences.enablePlayerMatchingNotification}
-            onPress={(value) =>
-              actions.updatePreferences({enablePlayerMatchingNotification: value})
-            }
-          />
-
-          {/*  <LineProperty */}
-          {/*    text={() => renderTextForLineProperty('Messages')} */}
-          {/*    element={() => */}
-          {/*      renderSwitch( */}
-          {/*        'enableMessageNotification', */}
-          {/*        preferences.enableMessageNotification, */}
-          {/*      ) */}
-          {/*    } */}
-          {/*  /> */}
-          {/*  <View style={styles.horizontalLine} /> */}
-          {/*  <LineProperty */}
-          {/*    text={() => renderTextForLineProperty('Send preferences to email')} */}
-          {/*    element={() => */}
-          {/*      renderSwitch( */}
-          {/*        'sendNotificationsToEmail', */}
-          {/*        preferences.sendNotificationsToEmail, */}
-          {/*      ) */}
-          {/*    } */}
-          {/*  /> */}
-          {/* </View> */}
-          {/* <View style={styles.preferencesContainer}> */}
-          {/*  <TouchableOpacity> */}
-          {/*    <LineProperty */}
-          {/*      text={() => renderTextForLineProperty('Edit Profile')} */}
-          {/*      element={() => renderLink()} */}
-          {/*    /> */}
-          {/*  </TouchableOpacity> */}
-          {/* </View> */}
-          {/* <View style={styles.preferencesContainer}> */}
-          {/*  <TouchableOpacity> */}
-          {/*    <LineProperty */}
-          {/*      text={() => renderTextForLineProperty('Log Out')} */}
-          {/*      element={() => renderLink()} */}
-          {/*    /> */}
-          {/*  </TouchableOpacity> */}
-        </View>
+        <RequireLoadable data={preferences}>
+          {(preferences) => {
+            return (
+              <>
+                <View style={styles.preferencesContainer}>
+                  <SwitchLine
+                    titleKey="Friend Request"
+                    value={preferences.enableFriendRequestNotification}
+                    onPress={(value) =>
+                      actions.updatePreferences({enableFriendRequestNotification: value})
+                    }
+                  />
+                  <SwitchLine
+                    titleKey="Player(s) matching"
+                    value={preferences.enablePlayerMatchingNotification}
+                    onPress={(value) =>
+                      actions.updatePreferences({enablePlayerMatchingNotification: value})
+                    }
+                  />
+                  <SwitchLine
+                    titleKey="Messages"
+                    value={preferences.enableMessageNotification}
+                    onPress={(value) =>
+                      actions.updatePreferences({enableMessageNotification: value})
+                    }
+                  />
+                  <SwitchLine
+                    titleKey="Send notifications to email"
+                    value={preferences.sendNotificationsToEmail}
+                    onPress={(value) =>
+                      actions.updatePreferences({sendNotificationsToEmail: value})
+                    }
+                  />
+                </View>
+                <LinkLine titleKey="Edit Profile" />
+                <LinkLine titleKey="Log Out" />
+              </>
+            );
+          }}
+        </RequireLoadable>
       </ScrollView>
     </View>
   );
