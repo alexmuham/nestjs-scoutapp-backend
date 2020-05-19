@@ -54,7 +54,6 @@ export default class AuthManager extends IAuthManager {
     const user = await this.userStore.createUser({
       firstName,
       email,
-      allowNotifications: true,
       lastName,
       phoneNumber,
       education,
