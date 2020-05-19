@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 import {NativeRouter, Redirect, Route, Switch, MemoryRouter} from 'react-router-native';
-import AppRoute from './AppRoute';
-import Auth from 'routes/auth';
+import Auth from 'routes/auth/Auth';
 import Main from 'routes/main/Main';
-import Layout from '../navigation/layouts';
 import {View} from 'react-native';
 import {useAuthActions} from '../state/hooks/UseActions';
 import styles from './Router.styles';
@@ -17,7 +15,6 @@ const Logout = () => {
 };
 
 const Router: React.FC = () => {
-  const {AuthLayout} = Layout;
   return (
     <MemoryRouter>
       <NativeRouter>
@@ -33,30 +30,7 @@ const Router: React.FC = () => {
               <Main />
             </Route>
             <Route path="/auth">
-              <AppRoute
-                exact
-                path="/auth"
-                component={Auth.LogIn}
-                layout={Layout.AuthLayout}
-              />
-              <AppRoute
-                exact
-                path="/auth/registration"
-                component={Auth.Registration}
-                layout={AuthLayout}
-              />
-              <AppRoute
-                exact
-                path="/auth/forgotPassword"
-                component={Auth.ForgotPassword}
-                layout={AuthLayout}
-              />
-              <AppRoute
-                exact
-                path="/auth/login"
-                component={Auth.LogIn}
-                layout={AuthLayout}
-              />
+              <Auth />
             </Route>
           </Switch>
         </View>
