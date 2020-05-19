@@ -82,9 +82,7 @@ export function useSettingsActions() {
   const dispatch = useDispatch();
 
   return {
-    fetchPreferences: () => {
-      dispatch(settingsActions.fetchPreferences());
-    },
+    fetchPreferences: () => dispatch(settingsActions.fetchPreferences()),
     updatePreferences: (request: UpdatePreferences) =>
       dispatch(settingsActions.updatePreferences(request)),
   };

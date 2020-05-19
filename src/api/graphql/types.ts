@@ -50,6 +50,14 @@ export type Preferences = {
   sendNotificationsToEmail: Scalars['Boolean'];
 };
 
+export type UpdatePreferencesRequest = {
+   __typename?: 'Preferences';
+  enableFriendRequestNotification?: Maybe<Scalars['Boolean']>;
+  enablePlayerMatchingNotification?: Maybe<Scalars['Boolean']>;
+  enableMessageNotification?: Maybe<Scalars['Boolean']>;
+  sendNotificationsToEmail?: Maybe<Scalars['Boolean']>;
+};
+
 export type Account = {
    __typename?: 'Account';
   user: User;

@@ -13,6 +13,7 @@ import {
   MutationDeletePlayersToUserArgs,
   MutationAddPlayerToUserArgs,
 } from './types';
+import UpdatePreferences from '../entities/UpdatePreferences';
 
 const UserFragment = () => gql`
   fragment User on User {
@@ -46,6 +47,16 @@ const PlayerFragment = () => gql`
   }
 `;
 
+const PreferencesFragment = () => gql`
+  fragment Preferences on Preferences {
+    id
+    enableFriendRequestNotification
+    enablePlayerMatchingNotification
+    enableMessageNotification
+    sendNotificationsToEmail
+  }
+`;
+
 export const myAccountQuery = createQuery<{myAccount: Account}, Account>(
   gql`
     ${UserFragment()}
@@ -62,13 +73,10 @@ export const myAccountQuery = createQuery<{myAccount: Account}, Account>(
 
 export const preferencesQuery = createQuery<{preferences: Preferences}, Preferences>(
   gql`
+    ${PreferencesFragment()}
     query preferences {
       preferences {
-        id
-        enableFriendRequestNotification
-        enableMessageNotification
-        enablePlayerMatchingNotification
-        sendNotificationsToEmail
+        ...Preferences
       }
     }
   `,
@@ -143,15 +151,16 @@ export const userPlayersQuery = createQuery<{playersFromUser: [Player]}, [Player
 
 export const mutationUpdatePreferences = createMutationWithVariables<
   MutationUpdatePreferencesArgs,
-  Preferences,
-  Preferences
+  UpdatePreferences,
+  UpdatePreferences
 >(
   gql`
+    ${PreferencesFragment()}
     mutation updatePreferences(
-      $enableFriendRequestNotification: Boolean!
-      $enablePlayerMatchingNotification: Boolean!
-      $enableMessageNotifications: Boolean!
-      $sendNotificationsToEmail: Boolean!
+      $enableFriendRequestNotification: Boolean
+      $enablePlayerMatchingNotification: Boolean
+      $enableMessageNotifications: Boolean
+      $sendNotificationsToEmail: Boolean
     ) {
       updatePreferences(
         enableFriendRequestNotification: $enableFriendRequestNotification
@@ -159,11 +168,7 @@ export const mutationUpdatePreferences = createMutationWithVariables<
         enableMessageNotification: $enableMessageNotifications
         sendNotificationsToEmail: $sendNotificationsToEmail
       ) {
-        id
-        enableFriendRequestNotification
-        enableMessageNotification
-        enablePlayerMatchingNotification
-        sendNotificationsToEmail
+        ...Preferences
       }
     }
   `,

@@ -36,7 +36,7 @@ const LineProperty: React.FC<LinePropertyProps> = ({
             ...rightContainerStyle,
           }}
         >
-          {element}
+          {element()}
         </View>
       </View>
     </View>
