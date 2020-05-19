@@ -45,26 +45,28 @@ export default class PreferencesStore extends IPreferencesStore {
   ): Promise<Preferences> {
     const user = await this.userRepository.findOne(userId);
     if (!user) throw new ScoutAppError('User not exists');
-    if (enableFriendRequestNotification) {
-      await this.repository.update(user?.preferencesId, {
+
+    if (typeof enableFriendRequestNotification === 'boolean') {
+      await this.repository.update(user.preferencesId, {
         enableFriendRequestNotification,
       });
     }
-    if (enablePlayerMatchingNotification) {
-      await this.repository.update(user?.preferencesId, {
+    if (typeof enablePlayerMatchingNotification === 'boolean') {
+      await this.repository.update(user.preferencesId, {
         enablePlayerMatchingNotification,
       });
     }
-    if (enableMessageNotification) {
-      await this.repository.update(user?.preferencesId, {
+    if (typeof enableMessageNotification === 'boolean') {
+      await this.repository.update(user.preferencesId, {
         enableMessageNotification,
       });
     }
-    if (sendNotificationsToEmail) {
-      await this.repository.update(user?.preferencesId, {
+    if (typeof sendNotificationsToEmail === 'boolean') {
+      await this.repository.update(user.preferencesId, {
         sendNotificationsToEmail,
       });
     }
+
     return this.getPreferencesOrFail(user?.preferencesId);
   }
 
