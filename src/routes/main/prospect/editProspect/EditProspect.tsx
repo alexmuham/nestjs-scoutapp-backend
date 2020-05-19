@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {MenuBar, RequireLoadable, TransitionBar} from 'components';
+import {MenuBar, RequireLoadable} from 'components';
 import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
 import PlayerList from 'components/playerList/PlayerList';
@@ -43,7 +43,6 @@ const EditProspect: React.FC = () => {
           />
         )}
       </RequireLoadable>
-      <TransitionBar style={styles.transitionBar} activeProspect />
     </View>
   );
 };
