@@ -1,7 +1,4 @@
 import React, {useEffect} from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {RequireLoadable} from 'components';
-import React, {useEffect} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {MenuBar} from 'components';
 import {MenuBarItems} from 'navigation';
@@ -11,6 +8,7 @@ import {useSettingsActions} from 'state/hooks/UseActions';
 import {useSelector} from 'state/hooks';
 import PreferencesSwitch from 'components/switch/PreferencesSwitch';
 import {useTranslation} from 'react-i18next';
+import {useHistory} from 'react-router';
 
 const Settings: React.FC = () => {
   const {t} = useTranslation('settings');
@@ -29,6 +27,7 @@ const Settings: React.FC = () => {
     titleKey: string;
     value: boolean;
     onPress: (value: boolean) => void;
+    enabled: boolean;
   }) => (
     <>
       <LineProperty
