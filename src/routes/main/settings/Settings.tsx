@@ -1,6 +1,6 @@
-import React, {useEffect, Suspense} from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {MenuBar} from 'components';
+import {MenuBar, RequireLoadable} from 'components';
 import {MenuBarItems} from 'navigation';
 import LineProperty from 'components/lineProperty/LineProperty';
 import styles from './Settings.styles';
@@ -18,26 +18,38 @@ const Settings: React.FC = () => {
     actions.fetchPreferences();
   }, []);
 
-  const preferences = useSelector((state) => state.preferences);
+  const {preferences} = useSelector((state) => state);
 
   const renderTextForLineProperty = (title: string) => {
     return <Text>{title}</Text>;
   };
 
-  const changeEnableFriendRequestNotification = {
-    enableFriendRequestNotification: !preferences.enableFriendRequestNotification,
+  const changeEnableFriendRequestNotification = (
+    enableFriendRequestNotification: boolean,
+  ) => {
+    return {
+      enableFriendRequestNotification: !enableFriendRequestNotification,
+    };
   };
 
-  const changeEnablePlayerMatchingNotification = {
-    enablePlayerMatchingNotification: !preferences.enablePlayerMatchingNotification,
+  const changeEnablePlayerMatchingNotification = (
+    enablePlayerMatchingNotification: boolean,
+  ) => {
+    return {
+      enablePlayerMatchingNotification: !enablePlayerMatchingNotification,
+    };
   };
 
-  const changeEnableMessageNotification = {
-    enableMessageNotification: !preferences.enableMessageNotification,
+  const changeEnableMessageNotification = (enableMessageNotification: boolean) => {
+    return {
+      enableMessageNotification: !enableMessageNotification,
+    };
   };
 
-  const changeSendNotificationsToEmail = {
-    sendNotificationsToEmail: !preferences.sendNotificationsToEmail,
+  const changeSendNotificationsToEmail = (sendNotificationsToEmail: boolean) => {
+    return {
+      enablePlayerMatchingNotification: !sendNotificationsToEmail,
+    };
   };
 
   const renderSwitch = (
@@ -54,13 +66,17 @@ const Settings: React.FC = () => {
         onPress={() => {
           switch (name) {
             case 'enableFriendRequestNotification':
-              return actions.updatePreferences(changeEnableFriendRequestNotification);
+              return actions.updatePreferences(
+                changeEnableFriendRequestNotification(dbState),
+              );
             case 'enablePlayerMatchingNotification':
-              return actions.updatePreferences(changeEnablePlayerMatchingNotification);
+              return actions.updatePreferences(
+                changeEnablePlayerMatchingNotification(dbState),
+              );
             case 'enableMessageNotification':
-              return actions.updatePreferences(changeEnableMessageNotification);
+              return actions.updatePreferences(changeEnableMessageNotification(dbState));
             case 'sendNotificationsToEmail':
-              return actions.updatePreferences(changeSendNotificationsToEmail);
+              return actions.updatePreferences(changeSendNotificationsToEmail(dbState));
           }
         }}
       />
@@ -83,69 +99,72 @@ const Settings: React.FC = () => {
       />
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Notification settings</Text>
-        <Suspense fallback={<Text>Loading...</Text>}>
-          <View>
-            <View>
-              <View style={styles.preferencesContainer}>
-                <LineProperty
-                  text={() => renderTextForLineProperty('Friend Request')}
-                  element={() =>
-                    renderSwitch(
-                      'enableFriendRequestNotification',
-                      preferences.enableFriendRequestNotification,
-                    )
-                  }
-                />
-                <View style={styles.horizontalLine} />
-                <LineProperty
-                  text={() => renderTextForLineProperty('Player(s) matching')}
-                  element={() =>
-                    renderSwitch(
-                      'enablePlayerMatchingNotification',
-                      preferences.enablePlayerMatchingNotification,
-                    )
-                  }
-                />
-                <View style={styles.horizontalLine} />
-                <LineProperty
-                  text={() => renderTextForLineProperty('Messages')}
-                  element={() =>
-                    renderSwitch(
-                      'enableMessageNotification',
-                      preferences.enableMessageNotification,
-                    )
-                  }
-                />
-                <View style={styles.horizontalLine} />
-                <LineProperty
-                  text={() => renderTextForLineProperty('Send preferences to email')}
-                  element={() =>
-                    renderSwitch(
-                      'sendNotificationsToEmail',
-                      preferences.sendNotificationsToEmail,
-                    )
-                  }
-                />
-              </View>
-              <View style={styles.preferencesContainer}>
-                <TouchableOpacity>
+        <RequireLoadable data={preferences}>
+          {(preferences) => {
+            return (
+              <View>
+                <View style={styles.preferencesContainer}>
                   <LineProperty
-                    text={() => renderTextForLineProperty('Edit Profile')}
-                    element={() => renderLink()}
+                    text={() => renderTextForLineProperty('Friend Request')}
+                    element={() =>
+                      renderSwitch(
+                        'enableFriendRequestNotification',
+                        preferences.enableFriendRequestNotification,
+                      )
+                    }
                   />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.preferencesContainer}>
-                <TouchableOpacity>
+                  <View style={styles.horizontalLine} />
                   <LineProperty
-                    text={() => renderTextForLineProperty('Log Out')}
-                    element={() => renderLink()}
+                    text={() => renderTextForLineProperty('Player(s) matching')}
+                    element={() =>
+                      renderSwitch(
+                        'enablePlayerMatchingNotification',
+                        preferences.enablePlayerMatchingNotification,
+                      )
+                    }
                   />
-                </TouchableOpacity>
+                  <View style={styles.horizontalLine} />
+                  <LineProperty
+                    text={() => renderTextForLineProperty('Messages')}
+                    element={() =>
+                      renderSwitch(
+                        'enableMessageNotification',
+                        preferences.enableMessageNotification,
+                      )
+                    }
+                  />
+                  <View style={styles.horizontalLine} />
+
+                  <LineProperty
+                    text={() => renderTextForLineProperty('Send preferences to email')}
+                    element={() =>
+                      renderSwitch(
+                        'sendNotificationsToEmail',
+                        preferences.sendNotificationsToEmail,
+                      )
+                    }
+                  />
+                </View>
+                <View style={styles.preferencesContainer}>
+                  <TouchableOpacity>
+                    <LineProperty
+                      text={() => renderTextForLineProperty('Edit Profile')}
+                      element={() => renderLink()}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.preferencesContainer}>
+                  <TouchableOpacity>
+                    <LineProperty
+                      text={() => renderTextForLineProperty('Log Out')}
+                      element={() => renderLink()}
+                    />
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
-          </View>
-        </Suspense>
+            );
+          }}
+        </RequireLoadable>
       </ScrollView>
     </View>
   );

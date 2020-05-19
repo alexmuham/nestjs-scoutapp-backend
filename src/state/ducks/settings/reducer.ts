@@ -1,8 +1,13 @@
 import {handleActions, ReducerNextThrow} from 'redux-actions';
 import types from './types';
-import {failed, loading, success} from '../../entities/LoadableContainer';
-import Preferences from '../../../entities/Preferences';
-import {empty, LoadableContainer} from '../../../entities/LoadableContainer';
+import {
+  failed,
+  loading,
+  success,
+  empty,
+  LoadableContainer,
+} from 'entities/LoadableContainer';
+import Preferences from 'entities/Preferences';
 
 type ReducerState = LoadableContainer<Preferences>;
 

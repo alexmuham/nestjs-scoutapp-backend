@@ -39,7 +39,7 @@ const PlayerCard: React.FC = () => {
         rightIcons={[MenuBarItems.Friends(history)]}
       />
       <RequireLoadable data={player}>
-        {({player}) => {
+        {(player) => {
           return (
             <ScrollView>
               <View style={styles.container}>
