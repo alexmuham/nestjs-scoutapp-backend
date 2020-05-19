@@ -49,6 +49,12 @@ const Router: React.FC = () => {
                 component={Main.PlayerCard}
                 layout={MainLayout}
               />
+              <AppRoute
+                exact
+                path="/main/settings"
+                component={Main.Settings}
+                layout={MainLayout}
+              />
             </Route>
             <Route path="/auth">
               <AppRoute
