@@ -4,14 +4,14 @@ import styles from './PreferencesSwitch.styles';
 import {ViewProps} from 'react-native';
 
 interface SwitchProps extends ViewProps {
-  switchState?: boolean;
-  onPress?: () => void;
+  value?: boolean;
+  onPress?: (value: boolean) => void;
 }
 
-const PreferencesSwitch: React.FC<SwitchProps> = ({switchState, onPress}) => {
+const PreferencesSwitch: React.FC<SwitchProps> = ({value, onPress}) => {
   return (
     <Switch
-      value={switchState}
+      value={value}
       onValueChange={onPress}
       backgroundActive="#A61911"
       backgroundInactive="#D4D1D1"
