@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 12.35,
     elevation: 19,
+    marginBottom: 20,
   },
   item: {
     paddingHorizontal: 10,

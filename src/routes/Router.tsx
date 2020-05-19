@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {NativeRouter, Redirect, Route, Switch, MemoryRouter} from 'react-router-native';
 import AppRoute from './AppRoute';
 import Auth from 'routes/auth';
-import Main from 'routes/main';
+import Main from 'routes/main/Main';
 import Layout from '../navigation/layouts';
 import {View} from 'react-native';
 import {useAuthActions} from '../state/hooks/UseActions';
@@ -18,7 +18,6 @@ const Logout = () => {
 
 const Router: React.FC = () => {
   const {AuthLayout} = Layout;
-  const {MainLayout} = Layout;
   return (
     <MemoryRouter>
       <NativeRouter>
@@ -31,42 +30,7 @@ const Router: React.FC = () => {
               <Logout />
             </Route>
             <Route path="/main">
-              <AppRoute
-                exact
-                path="/main"
-                component={Main.Prospect}
-                layout={Layout.AuthLayout}
-              />
-              <AppRoute
-                exact
-                path="/main/settings"
-                component={Main.Settings}
-                layout={MainLayout}
-              />
-              <AppRoute
-                exact
-                path="/main/prospect"
-                component={Main.Prospect}
-                layout={MainLayout}
-              />
-              <AppRoute
-                exact
-                path="/main/editProspect"
-                component={Main.EditProspect}
-                layout={MainLayout}
-              />
-              <AppRoute
-                exact
-                path="/main/player:id"
-                component={Main.PlayerCard}
-                layout={MainLayout}
-              />
-              <AppRoute
-                exact
-                path="/main/settings"
-                component={Main.Settings}
-                layout={MainLayout}
-              />
+              <Main />
             </Route>
             <Route path="/auth">
               <AppRoute
