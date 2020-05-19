@@ -28,12 +28,17 @@ function navigateToMain({payload}: Action<NavigationPayload>) {
 function navigateToProspect({payload}: Action<NavigationPayload>) {
   payload.history.push('/main/prospect');
 }
+
 function navigateToPlayer({payload}: Action<NavigateToPlayer>) {
-  payload.history.push(`/main/player:${payload.playerId}`);
+  payload.history.push(`/main/player${payload.playerId}`);
 }
 
 function navigateToSettings({payload}: Action<NavigationPayload>) {
   payload.history.push('/settings');
+}
+
+function navigateToEditProspect({payload}: Action<NavigationPayload>) {
+  payload.history.push('/main/editProspect');
 }
 
 export default function* () {
@@ -45,5 +50,6 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_PROSPECT, navigateToProspect),
     takeEvery(types.NAVIGATE_TO_PLAYER, navigateToPlayer),
     takeEvery(types.NAVIGATE_TO_SETTINGS, navigateToSettings),
+    takeEvery(types.NAVIGATE_TO_EDIT_PROSPECT, navigateToEditProspect),
   ]);
 }

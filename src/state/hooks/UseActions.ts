@@ -41,6 +41,15 @@ export function useRouterActions() {
     navigateToPlayer: (playerId: string) => {
       dispatch(routerActions.navigateToPlayer({history, playerId}));
     },
+    navigateToEditProspect: () => {
+      dispatch(routerActions.navigateToEditProspect({history}));
+    },
+    goBack: () => {
+      dispatch(routerActions.goBack({history}));
+    },
+    navigateToProspect: () => {
+      dispatch(routerActions.navigateToProspect({history}));
+    },
   };
 }
 
@@ -49,8 +58,11 @@ export function useProspectActions() {
   const history = useHistory();
 
   return {
-    fetchPlayers: () => {
-      dispatch(prospectActions.fetchPlayers({history}));
+    fetchUserPlayers: () => {
+      dispatch(prospectActions.fetchUserPlayers({history}));
+    },
+    deletePlayers: (playersIds: string[]) => {
+      dispatch(prospectActions.deletePlayers({playersIds, history}));
     },
   };
 }

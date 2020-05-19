@@ -9,16 +9,16 @@ import {
   success,
 } from 'entities/LoadableContainer';
 
-type ReducerState = LoadableContainer<Player[]>;
+type ReducerState = LoadableContainer<{players: Player[]}>;
 
-const playersFetched: ReducerNextThrow<ReducerState, Player[]> = {
-  next: (_, {payload}) => success(payload),
+const playersFetched: ReducerNextThrow<ReducerState, {players: Player[]}> = {
+  next: (_, {payload}) => success({players: payload.players}),
   throw: (_, {payload}) => failed(payload),
 };
 
 export default handleActions<ReducerState, any>(
   {
-    [types.FETCH_PLAYERS]: (state) => loading(state),
+    [types.FETCH_USER_PLAYERS]: (state) => loading(state),
     [types.FETCH_PLAYERS_COMPLETE]: playersFetched,
   },
   empty(),

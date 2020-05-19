@@ -45,6 +45,12 @@ const Router: React.FC = () => {
               />
               <AppRoute
                 exact
+                path="/main/editProspect"
+                component={Main.EditProspect}
+                layout={MainLayout}
+              />
+              <AppRoute
+                exact
                 path="/main/player:id"
                 component={Main.PlayerCard}
                 layout={MainLayout}

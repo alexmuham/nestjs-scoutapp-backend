@@ -10,6 +10,8 @@ import {
   QueryPlayerByIdArgs,
   MutationUpdatePreferencesArgs,
   Preferences,
+  MutationDeletePlayersToUserArgs,
+  MutationAddPlayerToUserArgs,
 } from './types';
 
 const UserFragment = () => gql`
@@ -99,6 +101,44 @@ export const playersQuery = createQuery<{getPlayers: [Player]}, [Player]>(
     }
   `,
   ({getPlayers}) => getPlayers,
+);
+
+export const deletePlayerMutation = createMutationWithVariables<
+  MutationDeletePlayersToUserArgs,
+  {deletePlayersToUser: boolean},
+  boolean
+>(
+  gql`
+    mutation deletePlayersToUser($playersIds: [String!]!) {
+      deletePlayersToUser(playersIds: $playersIds)
+    }
+  `,
+  ({deletePlayersToUser}) => deletePlayersToUser,
+);
+
+export const addPlayerMutation = createMutationWithVariables<
+  MutationAddPlayerToUserArgs,
+  {addPlayerToUser: boolean},
+  boolean
+>(
+  gql`
+    mutation addPlayerToUser($playerId: String!) {
+      addPlayerToUser(playerId: $playerId)
+    }
+  `,
+  ({addPlayerToUser}) => addPlayerToUser,
+);
+
+export const userPlayersQuery = createQuery<{playersFromUser: [Player]}, [Player]>(
+  gql`
+    ${PlayerFragment()}
+    query playersFromUser {
+      playersFromUser {
+        ...Player
+      }
+    }
+  `,
+  ({playersFromUser}) => playersFromUser,
 );
 
 export const mutationUpdatePreferences = createMutationWithVariables<

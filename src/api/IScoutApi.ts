@@ -15,7 +15,9 @@ export interface IScoutApi {
   forgotPassword(request: ForgotPasswordRequest): Promise<void>;
   updateFirebaseToken(request: UpdateFirebaseTokenRequest): Promise<void>;
   getPlayerById(playerId: string): Promise<Player>;
-  getPlayers(): Promise<Player[]>;
+  getUserPlayers(): Promise<Player[]>;
   preferences(): Promise<Preferences>;
   updatePreferences(request: UpdatePreferences): Promise<Preferences>;
+  deletePlayers(playersIds: string[]): Promise<void>;
+  addPlayer(playerId: string): Promise<void>;
 }

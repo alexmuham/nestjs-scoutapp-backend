@@ -9,10 +9,10 @@ import {
   empty,
 } from 'entities/LoadableContainer';
 
-type ReducerState = LoadableContainer<Player>;
+type ReducerState = LoadableContainer<{player: Player}>;
 
 const playersFetched: ReducerNextThrow<ReducerState, Player> = {
-  next: (_, {payload}) => success(payload),
+  next: (_, {payload}) => success({player: payload}),
   throw: (_, {payload}) => failed(payload),
 };
 

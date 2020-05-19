@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import * as Item from './assets';
 import styles from './TransitionBar.styles';
+import {useRouterActions} from '../../state/hooks/UseActions';
 
 interface TransitionBarProps {
   style?: ViewStyle;
@@ -26,22 +27,50 @@ const TransitionBar: React.FC<TransitionBarProps> = ({
   activeSearch = false,
   activeShedule = false,
 }) => {
+  const routerActions = useRouterActions();
+
   const renderComponent = (
     status: boolean,
     emptyImage: ImageSourcePropType,
     activeImage: ImageSourcePropType,
+    navigateAction: () => void,
   ) => (
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity style={styles.item} onPress={() => navigateAction()}>
       {!status ? <Image source={emptyImage} /> : <Image source={activeImage} />}
     </TouchableOpacity>
   );
   return (
     <View style={{...styles.container, ...style}}>
-      {renderComponent(activeShedule, Item.Shedule, Item.ActiveShedule)}
-      {renderComponent(activeSearch, Item.Search, Item.ActiveSearch)}
-      {renderComponent(activeProspect, Item.Prospect, Item.ActiveProspect)}
-      {renderComponent(activeNotification, Item.Notification, Item.ActiveNotification)}
-      {renderComponent(activeBigBord, Item.BigBord, Item.ActiveBigBord)}
+      {renderComponent(
+        activeShedule,
+        Item.Shedule,
+        Item.ActiveShedule,
+        routerActions.navigateToProspect,
+      )}
+      {renderComponent(
+        activeSearch,
+        Item.Search,
+        Item.ActiveSearch,
+        routerActions.navigateToProspect,
+      )}
+      {renderComponent(
+        activeProspect,
+        Item.Prospect,
+        Item.ActiveProspect,
+        routerActions.navigateToProspect,
+      )}
+      {renderComponent(
+        activeNotification,
+        Item.Notification,
+        Item.ActiveNotification,
+        routerActions.navigateToProspect,
+      )}
+      {renderComponent(
+        activeBigBord,
+        Item.BigBord,
+        Item.ActiveBigBord,
+        routerActions.navigateToProspect,
+      )}
     </View>
   );
 };

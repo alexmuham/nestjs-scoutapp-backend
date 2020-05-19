@@ -10,6 +10,6 @@ export default interface State {
   auth: Auth;
   snackBar: SnackBar;
   prospect: LoadableContainer<{players: Player[]}>;
-  player: LoadableContainer<Player>;
+  player: LoadableContainer<{player: Player}>;
   preferences: Preferences;
 }

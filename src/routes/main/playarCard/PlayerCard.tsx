@@ -1,23 +1,21 @@
 import React, {useEffect} from 'react';
 import {MenuBar, RequireLoadable, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
-import {ID} from 'entities/Common';
 import {Text, View} from 'react-native';
 import {usePlayerActions} from 'state/hooks/UseActions';
 import {useSelector} from 'react-redux';
 import State from 'state/entities/State';
 import styles from './PlayerCard.styles';
 import {useHistory} from 'react-router';
+import {useParams} from 'react-router-native';
 
-interface PlayerCardProps {
-  playerId: ID;
-}
-
-const PlayerCard: React.FC<PlayerCardProps> = ({playerId}) => {
+const PlayerCard: React.FC = () => {
   const actions = usePlayerActions();
 
+  const {id} = useParams();
+
   useEffect(() => {
-    actions.fetchPlayer(playerId);
+    actions.fetchPlayer(id);
   }, []);
 
   const {player} = useSelector((state: State) => state);
@@ -29,15 +27,15 @@ const PlayerCard: React.FC<PlayerCardProps> = ({playerId}) => {
         leftIcons={[MenuBarItems.Settings(history)]}
         rightIcons={[MenuBarItems.Friends(history)]}
       />
-      <View style={styles.container}>
-        <RequireLoadable data={player}>
-          {(data) => (
-            <>
-              <Text>{data.name}</Text>
-            </>
-          )}
-        </RequireLoadable>
-      </View>
+      <RequireLoadable data={player}>
+        {({player}) => {
+          return (
+            <View style={styles.container}>
+              <Text>{player.name}</Text>
+            </View>
+          );
+        }}
+      </RequireLoadable>
       <TransitionBar />
     </View>
   );

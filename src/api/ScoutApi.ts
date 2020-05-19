@@ -82,14 +82,22 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
     );
   }
 
-  public async getPlayers() {
+  public async getUserPlayers() {
     return this.wrapApiCall(async () =>
-      mapPlayersFromGQL(await this.graphqlApi.queryPlayers()),
+      mapPlayersFromGQL(await this.graphqlApi.queryUserPlayers()),
     );
   }
 
   protected async refreshToken(refreshToken: string): Promise<AuthInfo> {
     const session = await this.restApi.refresh({refreshToken});
     return {accessToken: session.jwt, refreshToken: session.refreshToken};
+  }
+
+  public async deletePlayers(playersIds: string[]) {
+    await this.wrapApiCall(async () => this.graphqlApi.mutationDeletePlayers(playersIds));
+  }
+
+  public async addPlayer(playerId: string) {
+    await this.wrapApiCall(async () => this.graphqlApi.mutationAddPlayer(playerId));
   }
 }

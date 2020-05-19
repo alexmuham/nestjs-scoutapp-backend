@@ -1,19 +1,19 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {MenuBar, RequireLoadable, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
+import PlayerList from 'components/playerList/PlayerList';
 import {useSelector} from 'react-redux';
 import State from 'state/entities/State';
-import {useProspectActions, useRouterActions} from 'state/hooks/UseActions';
+import {useProspectActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
-import styles from './Prospect.styles';
+import styles from './EsitProspect.styles';
 import {useGuard} from 'state/hooks/UseGuard';
 import {useHistory} from 'react-router';
-import PlayerList from 'components/playerList/PlayerList';
 
-const Prospect: React.FC = () => {
+const EditProspect: React.FC = () => {
   const actions = useProspectActions();
-  const routerActions = useRouterActions();
+  const [playersIds, setPlayersIds] = useState<string[]>([]);
   const {t} = useTranslation('prospect');
 
   useGuard({requireAuthenticated: true});
@@ -36,8 +36,10 @@ const Prospect: React.FC = () => {
           <PlayerList
             players={players}
             title={t('prospect')}
-            mode="list"
-            navigateActions={routerActions.navigateToEditProspect}
+            editAction={() => actions.deletePlayers(playersIds)}
+            playersIds={playersIds}
+            setPlayersIds={setPlayersIds}
+            mode="edit"
           />
         )}
       </RequireLoadable>
@@ -46,4 +48,4 @@ const Prospect: React.FC = () => {
   );
 };
 
-export default Prospect;
+export default EditProspect;
