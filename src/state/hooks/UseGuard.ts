@@ -4,22 +4,15 @@ import {useHistory} from 'react-router-native';
 
 export function useGuard(authorization: {requireAuthenticated: boolean}) {
   const history = useHistory();
-
-  if (!authorization.requireAuthenticated) {
-    useEffect(() => {
-      AuthInfoKeeper.isAuthenticated().then((isAuthenticated) => {
+  useEffect(() => {
+    AuthInfoKeeper.isAuthenticated().then((isAuthenticated) => {
+      if (!authorization.requireAuthenticated) {
         if (isAuthenticated) {
           history.push('/main');
         }
-      });
-    }, []);
-  } else {
-    useEffect(() => {
-      AuthInfoKeeper.isAuthenticated().then((isAuthenticated) => {
-        if (!isAuthenticated) {
-          history.push('/auth');
-        }
-      });
-    }, []);
-  }
+      } else if (!isAuthenticated) {
+        history.push('/auth');
+      }
+    });
+  }, []);
 }

@@ -6,7 +6,6 @@ import AuthCard from '../components/authCard/AuthCard';
 import styles from '../registration/Registration.styles';
 import AuthInputField from '../components/authInputField/AuthInputField';
 import TextLink from '../components/textLink/TextLink';
-import {useGuard} from 'state/hooks/UseGuard';
 
 const LogIn: React.FC = () => {
   const {t} = useTranslation('Login');
@@ -14,8 +13,6 @@ const LogIn: React.FC = () => {
   const [email, setEmail] = useState('');
 
   const [password, setPassword] = useState('');
-
-  useGuard({requireAuthenticated: false});
 
   const bottomText = () => (
     <View style={styles.bottomTextContainer}>

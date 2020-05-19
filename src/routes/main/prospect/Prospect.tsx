@@ -7,7 +7,6 @@ import State from 'state/entities/State';
 import {useProspectActions, useRouterActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
 import styles from './Prospect.styles';
-import {useGuard} from 'state/hooks/UseGuard';
 import {useHistory} from 'react-router';
 import PlayerList from 'components/playerList/PlayerList';
 
@@ -15,8 +14,6 @@ const Prospect: React.FC = () => {
   const actions = useProspectActions();
   const routerActions = useRouterActions();
   const {t} = useTranslation('prospect');
-
-  useGuard({requireAuthenticated: true});
 
   useEffect(() => {
     actions.fetchUserPlayers();
