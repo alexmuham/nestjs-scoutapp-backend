@@ -9,6 +9,7 @@ import {ApiExceptionInterceptor} from 'enhancers/interceptors/ApiExceptionInterc
 import {RouterModule} from 'router/RouterModule';
 import {HealthController} from 'api/HealthController';
 import {CSVController} from './csv/CSVController';
+import {FilesController} from './file/FileController';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import {CSVController} from './csv/CSVController';
     AuthController,
     HealthController,
     CSVController,
+    FilesController,
   ],
   exports: [],
 })

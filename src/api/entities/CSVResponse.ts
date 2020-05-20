@@ -1,31 +1,31 @@
-export interface result {
+export interface ranking {
   top: string;
   percentile: string;
   average: string;
 }
 
 export interface PercentileRankings {
-  FB: result | undefined;
-  C: result | undefined;
-  '1B': result | undefined;
-  '10 SPL': result | undefined;
-  '60': result | undefined;
-  IF: result | undefined;
-  Pop: result | undefined;
+  FB?: ranking;
+  C?: ranking;
+  '1B'?: ranking;
+  '10 SPL'?: ranking;
+  '60'?: ranking;
+  IF?: ranking;
+  Pop?: ranking;
 }
 
-interface PGEventResults {
-  fastball_velocity: string | null;
-  '10_yd_split': string | null;
-  infield_velocity: string | null;
-  exit_velocity: string | null;
-  '60_yd_dash': string | null;
+export interface PGEventResults {
+  fastball_velocity: string;
+  '10_yd_split': string;
+  infield_velocity: string;
+  exit_velocity: string;
+  '60_yd_dash': string;
 }
 
-interface statistic {
-  Percentile_rankings: PercentileRankings | {};
-  PG_event_results: PGEventResults | {};
-  Career_progressions: object | {};
+export interface Statistic {
+  Percentile_rankings: PercentileRankings;
+  PG_event_results: PGEventResults;
+  Career_progressions: object;
 }
 
 export default interface CSVResponse {
@@ -45,5 +45,5 @@ export default interface CSVResponse {
   national_position_ranking: string;
   national_overall_ranking: string;
   college_commitment: string;
-  statistics: statistic;
+  statistics: string;
 }

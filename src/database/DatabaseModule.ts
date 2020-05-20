@@ -3,23 +3,29 @@ import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
 import {ConfigModule} from 'services/config/ConfigModule';
 import {IConfigService} from '@spryrocks/config-node';
 import {
-  //
   Player,
   User,
   LocalLogin,
   Session,
+  CareerProgressions,
+  PGEventResults,
+  PercentileRankings,
+  File,
+  RankingsValue,
 } from 'database/entities';
 import Preferences from './entities/Preferences';
-import File from './entities/File';
 
 const entities = [
-  //
   Preferences,
   User,
   LocalLogin,
   Session,
   Player,
   File,
+  CareerProgressions,
+  PGEventResults,
+  PercentileRankings,
+  RankingsValue,
 ];
 
 const options = (configService: IConfigService): TypeOrmModuleOptions => ({

@@ -1,4 +1,7 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import CareerProgressions from './CareerProgressions';
+import PercentileRankings from './PercentileRankings';
+import PGEventResults from './PGEventResults';
 
 @Entity()
 export default class Player {
@@ -20,7 +23,12 @@ export default class Player {
     nationalPositionRanking: string,
     nationalOverallRanking: string,
     collegeCommitment: string,
-    // statistics: object,
+    careerProgressions: CareerProgressions,
+    careerProgressionsId: string,
+    percentileRankings: PercentileRankings,
+    percentileRankingsId: string,
+    pGEventResults: PGEventResults,
+    pGEventResultsId: string,
   ) {
     this.id = id;
     this.name = name;
@@ -39,7 +47,12 @@ export default class Player {
     this.nationalPositionRanking = nationalPositionRanking;
     this.nationalOverallRanking = nationalOverallRanking;
     this.collegeCommitment = collegeCommitment;
-    // this.statistics = statistics;
+    this.careerProgressions = careerProgressions;
+    this.careerProgressionsId = careerProgressionsId;
+    this.percentileRankings = percentileRankings;
+    this.percentileRankingsId = percentileRankingsId;
+    this.pGEventResults = pGEventResults;
+    this.pGEventResultsId = pGEventResultsId;
   }
 
   @PrimaryGeneratedColumn('uuid')
@@ -93,6 +106,24 @@ export default class Player {
   @Column()
   collegeCommitment: string;
 
-  // @Column()
-  // statistics: object;
+  @ManyToOne(() => CareerProgressions, {nullable: true})
+  @JoinColumn()
+  careerProgressions?: CareerProgressions;
+
+  @Column({nullable: true})
+  careerProgressionsId?: string;
+
+  @ManyToOne(() => PercentileRankings, {nullable: true})
+  @JoinColumn()
+  percentileRankings?: PercentileRankings;
+
+  @Column({nullable: true})
+  percentileRankingsId?: string;
+
+  @ManyToOne(() => PGEventResults, {nullable: true})
+  @JoinColumn()
+  pGEventResults?: PGEventResults;
+
+  @Column({nullable: true})
+  pGEventResultsId?: string;
 }
