@@ -3,12 +3,13 @@ import LogIn from './login/LogIn';
 import ForgotPassword from './forgotPassword/ForgotPassword';
 import {Route} from 'react-router-native';
 import React from 'react';
-import {View} from 'react-native';
-import styles from './Auth.styles';
+import {useGuard} from '../../state/hooks/UseGuard';
 
 const Auth: React.FC = () => {
+  useGuard({requireAuthenticated: false});
+
   return (
-    <View style={styles.container}>
+    <>
       <Route exact path="/auth">
         <LogIn />
       </Route>
@@ -21,7 +22,7 @@ const Auth: React.FC = () => {
       <Route exact path="/auth/login">
         <LogIn />
       </Route>
-    </View>
+    </>
   );
 };
 
