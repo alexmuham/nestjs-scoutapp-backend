@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {RequireLoadable} from 'components';
 import {View} from 'react-native';
 import PlayerList from 'components/playerList/PlayerList';
@@ -15,10 +15,6 @@ const EditProspect: React.FC = () => {
   const {t} = useTranslation('prospect');
 
   useGuard({requireAuthenticated: true});
-
-  useEffect(() => {
-    actions.fetchUserPlayers();
-  }, []);
 
   const {prospect} = useSelector((state: State) => state);
 

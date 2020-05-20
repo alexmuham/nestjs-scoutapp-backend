@@ -14,8 +14,8 @@ const Main: React.FC = () => {
   return (
     <View style={styles.container}>
       <MenuBar
-        leftIcons={[MenuBarItems.Friends(history)]}
-        rightIcons={[MenuBarItems.Settings(history)]}
+        leftIcons={[MenuBarItems.Settings(history)]}
+        rightIcons={[MenuBarItems.Friends(history)]}
       />
 
       <Route exact path="/main">
@@ -25,7 +25,7 @@ const Main: React.FC = () => {
       <Route exact path="/main/prospect">
         <Prospect />
       </Route>
-      <Route exact path="main/prospect/edit">
+      <Route exact path="/main/prospect/edit">
         <EditProspect />
       </Route>
       <Route exact path="/main/player:id">

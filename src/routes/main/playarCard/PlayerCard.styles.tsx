@@ -40,11 +40,11 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   playerImages: {
-    flex: 0.9,
+    flex: 1,
     alignItems: 'flex-start',
   },
   info: {
-    flex: 1.1,
+    flex: 1,
   },
   renderInfoContainer: {
     flexDirection: 'row',

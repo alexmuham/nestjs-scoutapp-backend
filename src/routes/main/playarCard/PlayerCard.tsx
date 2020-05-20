@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
-import {MenuBar, RequireLoadable, TransitionBar} from 'components';
-import {MenuBarItems} from 'navigation';
+import {RequireLoadable} from 'components';
 import {
   Image,
   ImageSourcePropType,
@@ -13,7 +12,6 @@ import {usePlayerActions, useRouterActions} from 'state/hooks/UseActions';
 import {useSelector} from 'react-redux';
 import State from 'state/entities/State';
 import styles from './PlayerCard.styles';
-import {useHistory} from 'react-router';
 import {useParams} from 'react-router-native';
 import * as PlayerImages from './assets';
 import {useTranslation} from 'react-i18next';
@@ -30,7 +28,6 @@ const PlayerCard: React.FC = () => {
   }, []);
 
   const {player} = useSelector((state: State) => state);
-  const history = useHistory();
 
   const renderInfo = (title: string, item: string | undefined) => (
     <View style={styles.renderInfoContainer}>
@@ -58,12 +55,8 @@ const PlayerCard: React.FC = () => {
 
   return (
     <View style={styles.flexOne}>
-      <MenuBar
-        leftIcons={[MenuBarItems.Settings(history)]}
-        rightIcons={[MenuBarItems.Friends(history)]}
-      />
       <RequireLoadable data={player}>
-        {({player}) => {
+        {(player) => {
           return (
             <ScrollView>
               <View style={styles.container}>
@@ -157,7 +150,6 @@ const PlayerCard: React.FC = () => {
           );
         }}
       </RequireLoadable>
-      <TransitionBar />
     </View>
   );
 };
