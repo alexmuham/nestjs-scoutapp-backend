@@ -57,7 +57,7 @@ const PreferencesFragment = () => gql`
   }
 `;
 
-export const myAccountQuery = createQuery<{myAccount: Account}, Account>(
+export const accountQuery = createQuery<{account: Account}, Account>(
   gql`
     ${UserFragment()}
     query myAccount {
@@ -68,7 +68,7 @@ export const myAccountQuery = createQuery<{myAccount: Account}, Account>(
       }
     }
   `,
-  ({myAccount}) => myAccount,
+  ({account}) => account,
 );
 
 export const preferencesQuery = createQuery<{preferences: Preferences}, Preferences>(

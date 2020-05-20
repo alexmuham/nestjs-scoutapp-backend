@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {MenuBar, RequireLoadable} from 'components';
-import {MenuBarItems} from 'navigation';
+import {RequireLoadable} from 'components';
 import {View} from 'react-native';
 import PlayerList from 'components/playerList/PlayerList';
 import {useSelector} from 'react-redux';
@@ -9,7 +8,6 @@ import {useProspectActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
 import styles from './EsitProspect.styles';
 import {useGuard} from 'state/hooks/UseGuard';
-import {useHistory} from 'react-router';
 
 const EditProspect: React.FC = () => {
   const actions = useProspectActions();
@@ -23,14 +21,9 @@ const EditProspect: React.FC = () => {
   }, []);
 
   const {prospect} = useSelector((state: State) => state);
-  const history = useHistory();
 
   return (
     <View style={styles.container}>
-      <MenuBar
-        leftIcons={[MenuBarItems.Settings(history)]}
-        rightIcons={[MenuBarItems.Friends(history)]}
-      />
       <RequireLoadable data={prospect}>
         {({players}) => (
           <PlayerList

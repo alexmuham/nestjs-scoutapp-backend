@@ -5,7 +5,7 @@ import RestApi from 'api/rest/RestApi';
 import ApiConfiguration from '@spryrocks/react-api/ApiConfiguration';
 import ScoutGraphqlApi from 'api/graphql/ScoutGraphqlApi';
 import {
-  mapMyAccountFromGQL,
+  mapAccountFromGQL,
   mapPlayerFromGQL,
   mapPlayersFromGQL,
   mapPreferencesFromGQL,
@@ -46,7 +46,7 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
 
   public async account() {
     return this.wrapApiCall(async () =>
-      mapMyAccountFromGQL(await this.graphqlApi.queryAccount()),
+      mapAccountFromGQL(await this.graphqlApi.queryAccount()),
     );
   }
 

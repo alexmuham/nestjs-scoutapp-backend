@@ -10,10 +10,10 @@ import UpdatePreferences from 'api/entities/UpdatePreferences';
 
 function* updatePreferences({payload}: Action<UpdatePreferences>) {
   try {
-    const preferences: Preferences = yield ScoutApi.updatePreferences(payload);
-    yield put(actions.fetchPreferencesCompleted(preferences));
+    const preferences = yield ScoutApi.updatePreferences(payload);
+    yield put(actions.updatePreferencesCompleted(preferences));
   } catch (e) {
-    yield put(actions.fetchPreferencesCompleted(e));
+    yield put(actions.updatePreferencesCompleted(e));
     yield put(alertActions.showError(e));
   }
 }

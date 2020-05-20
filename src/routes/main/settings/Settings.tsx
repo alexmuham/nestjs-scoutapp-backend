@@ -18,7 +18,7 @@ const Settings: React.FC = () => {
     actions.fetchPreferences();
   }, []);
 
-  const {preferences} = useSelector((state) => state);
+  const preferences = useSelector((state) => state.preferences);
 
   const SwitchLine = (props: {
     titleKey: string;
@@ -65,29 +65,37 @@ const Settings: React.FC = () => {
                   <SwitchLine
                     titleKey="Friend Request"
                     value={preferences.enableFriendRequestNotification}
-                    onPress={(value) =>
-                      actions.updatePreferences({enableFriendRequestNotification: value})
+                    onPress={() =>
+                      actions.updatePreferences({
+                        enableFriendRequestNotification: !preferences.enableFriendRequestNotification,
+                      })
                     }
                   />
                   <SwitchLine
                     titleKey="Player(s) matching"
                     value={preferences.enablePlayerMatchingNotification}
-                    onPress={(value) =>
-                      actions.updatePreferences({enablePlayerMatchingNotification: value})
+                    onPress={() =>
+                      actions.updatePreferences({
+                        enablePlayerMatchingNotification: !preferences.enablePlayerMatchingNotification,
+                      })
                     }
                   />
                   <SwitchLine
                     titleKey="Messages"
                     value={preferences.enableMessageNotification}
-                    onPress={(value) =>
-                      actions.updatePreferences({enableMessageNotification: value})
+                    onPress={() =>
+                      actions.updatePreferences({
+                        enableMessageNotification: !preferences.enableMessageNotification,
+                      })
                     }
                   />
                   <SwitchLine
                     titleKey="Send notifications to email"
                     value={preferences.sendNotificationsToEmail}
-                    onPress={(value) =>
-                      actions.updatePreferences({sendNotificationsToEmail: value})
+                    onPress={() =>
+                      actions.updatePreferences({
+                        sendNotificationsToEmail: !preferences.sendNotificationsToEmail,
+                      })
                     }
                   />
                 </View>

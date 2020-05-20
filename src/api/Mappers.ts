@@ -8,7 +8,8 @@ import User from 'entities/User';
 import {
   User as GQLUser,
   Player as GQLPlayer,
-  Account as GQLAccout,
+  Account as GQLAccount,
+  Preferences as GQLPreferences,
 } from './graphql/types';
 import Player from 'entities/Player';
 
@@ -37,7 +38,7 @@ export const mapUserFromGQL = (user: GQLUser): User => ({
   firstName: user.firstName,
 });
 
-export const mapMyAccountFromGQL = (account: GQLAccout): Account => ({
+export const mapAccountFromGQL = (account: GQLAccount): Account => ({
   user: mapUserFromGQL(account.user),
 });
 
@@ -65,7 +66,7 @@ export const mapPlayersFromGQL = (players: GQLPlayer[]): Player[] => {
   return players.map((player) => mapPlayerFromGQL(player));
 };
 
-export const mapPreferencesFromGQL = (preferences: any): Preferences => ({
+export const mapPreferencesFromGQL = (preferences: GQLPreferences): Preferences => ({
   id: preferences.id,
   enableFriendRequestNotification: preferences.enableFriendRequestNotification,
   enablePlayerMatchingNotification: preferences.enablePlayerMatchingNotification,

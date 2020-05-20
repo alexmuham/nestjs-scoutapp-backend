@@ -8,7 +8,7 @@ import {errorActions} from '../error';
 import {Action} from 'redux-actions';
 import {NavigationPayload} from '../router/actions';
 
-function* updateMyAccount({payload}: Action<NavigationPayload>) {
+function* updateAccount({payload}: Action<NavigationPayload>) {
   try {
     // const account: Account = yield ScoutApi.updateUserProfile(payload);
     // yield put(actions.updateUserProfileCompleted(account));
@@ -30,6 +30,6 @@ function* fetchSession({payload}: Action<NavigationPayload>) {
 }
 
 export default function* () {
-  yield all([takeEvery(types.UPDATE_USER_PROFILE, updateMyAccount)]);
+  yield all([takeEvery(types.UPDATE_USER_PROFILE, updateAccount)]);
   yield all([takeEvery(types.FETCH_SESSION, fetchSession)]);
 }
