@@ -22,12 +22,10 @@ export const mapUserToGQL = (user: User): GQLUser => {
 
 export const mapPreferencesToGQL = (preferences: Preferences): GQLPreferences => ({
   id: preferences.id,
-  enableFriendRequestNotification:
-    preferences.enableFriendRequestNotification || undefined,
-  enablePlayerMatchingNotification:
-    preferences.enablePlayerMatchingNotification || undefined,
-  enableMessageNotification: preferences.enableMessageNotification || undefined,
-  sendNotificationsToEmail: preferences.sendNotificationsToEmail || undefined,
+  enableFriendRequestNotification: preferences.enableFriendRequestNotification,
+  enablePlayerMatchingNotification: preferences.enablePlayerMatchingNotification,
+  enableMessageNotification: preferences.enableMessageNotification,
+  sendNotificationsToEmail: preferences.sendNotificationsToEmail,
 });
 
 export const mapAccountToGQL = (account: Account): GQLAccount => ({

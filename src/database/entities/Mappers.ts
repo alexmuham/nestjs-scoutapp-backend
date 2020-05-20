@@ -8,12 +8,10 @@ import DbPreferences from './Preferences';
 
 export const mapPreferencesFromDb = (preferences: DbPreferences): Preferences => ({
   id: preferences.id,
-  enableFriendRequestNotification:
-    preferences.enableFriendRequestNotification || undefined,
-  enablePlayerMatchingNotification:
-    preferences.enablePlayerMatchingNotification || undefined,
-  enableMessageNotification: preferences.enableMessageNotification || undefined,
-  sendNotificationsToEmail: preferences.sendNotificationsToEmail || undefined,
+  enableFriendRequestNotification: preferences.enableFriendRequestNotification,
+  enablePlayerMatchingNotification: preferences.enablePlayerMatchingNotification,
+  enableMessageNotification: preferences.enableMessageNotification,
+  sendNotificationsToEmail: preferences.sendNotificationsToEmail,
 });
 
 export const mapUserFromDb = (user: DbUser): User => ({

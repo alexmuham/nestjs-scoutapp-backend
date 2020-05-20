@@ -4,10 +4,10 @@ import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 export default class Preferences {
   constructor(
     id: string,
-    enableFriendRequestNotification?: boolean,
-    enablePlayerMatchingNotification?: boolean,
-    enableMessageNotification?: boolean,
-    sendNotificationsToEmail?: boolean,
+    enableFriendRequestNotification: boolean,
+    enablePlayerMatchingNotification: boolean,
+    enableMessageNotification: boolean,
+    sendNotificationsToEmail: boolean,
   ) {
     this.id = id;
     this.enableFriendRequestNotification = enableFriendRequestNotification;
@@ -20,14 +20,14 @@ export default class Preferences {
   id: string;
 
   @Column()
-  enableFriendRequestNotification?: boolean;
+  enableFriendRequestNotification: boolean;
 
   @Column()
-  enablePlayerMatchingNotification?: boolean;
+  enablePlayerMatchingNotification: boolean;
 
   @Column()
-  enableMessageNotification?: boolean;
+  enableMessageNotification: boolean;
 
   @Column()
-  sendNotificationsToEmail?: boolean;
+  sendNotificationsToEmail: boolean;
 }

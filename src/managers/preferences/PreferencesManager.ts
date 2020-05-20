@@ -35,7 +35,7 @@ export default class PreferencesManager implements IPreferencesManager {
     if (!user) throw new ScoutAppError('User not exist');
 
     const preferences = await this.preferencesStore.getPreferences(user?.preferencesId);
-    if (!preferences) throw new ScoutAppError('there is no such laundry');
+    if (!preferences) throw new ScoutAppError('Preferences not exist');
 
     return mapPreferencesFromDb(preferences);
   }

@@ -4,10 +4,10 @@ import {Field, ObjectType} from '@nestjs/graphql';
 export default class Preferences {
   constructor(
     id: string,
-    enableFriendRequestNotification?: boolean,
-    enablePlayerMatchingNotification?: boolean,
-    enableMessageNotification?: boolean,
-    sendNotificationsToEmail?: boolean,
+    enableFriendRequestNotification: boolean,
+    enablePlayerMatchingNotification: boolean,
+    enableMessageNotification: boolean,
+    sendNotificationsToEmail: boolean,
   ) {
     this.id = id;
     this.enableFriendRequestNotification = enableFriendRequestNotification;
@@ -20,14 +20,14 @@ export default class Preferences {
   id: string;
 
   @Field(() => Boolean)
-  enableFriendRequestNotification?: boolean;
+  enableFriendRequestNotification: boolean;
 
   @Field(() => Boolean)
-  enablePlayerMatchingNotification?: boolean;
+  enablePlayerMatchingNotification: boolean;
 
   @Field(() => Boolean)
-  enableMessageNotification?: boolean;
+  enableMessageNotification: boolean;
 
   @Field(() => Boolean)
-  sendNotificationsToEmail?: boolean;
+  sendNotificationsToEmail: boolean;
 }
