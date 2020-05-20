@@ -2083,10 +2083,10 @@
   dependencies:
     prettier "^2.0.5"
 
-"@spryrocks/react-api@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@spryrocks/react-api/-/react-api-0.1.1.tgz#21a724f74889525df0cf73e220d1f7e082e193d4"
-  integrity sha512-W3UBAmspYSLNWTDVbCVD6eDtb9voan2l1zofx3RlDZmelxDn80ydRFuIi+/pJmYBKaZ3sp+wdxdEshY4N1vHSA==
+"@spryrocks/react-api@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@spryrocks/react-api/-/react-api-0.1.2.tgz#a3cd46a45a52c0cb705beb86eddd7deb04e3a28e"
+  integrity sha512-xzyiSLig8fi5LKgPa5wPQ7ZBi70B8s7CkBYcw5yBMu8VbgEicUQpBJ3H1G8qxS35KsdBRq/uD0n0WXk8/QtEUw==
   dependencies:
     apollo-boost "^0.4.7"
     apollo-client "^2.6.8"
