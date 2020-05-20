@@ -38,7 +38,7 @@ function navigateToSettings({payload}: Action<NavigationPayload>) {
 }
 
 function navigateToEditProspect({payload}: Action<NavigationPayload>) {
-  payload.history.push('/main/editProspect');
+  payload.history.push('main/prospect/edit');
 }
 
 export default function* () {

@@ -7,7 +7,7 @@ import styles from './Main.styles';
 import {MenuBar, TransitionBar} from '../../components';
 import {MenuBarItems} from '../../navigation';
 import {View} from 'react-native';
-import {Route, useHistory} from 'react-router';
+import {Route, useHistory, Redirect} from 'react-router';
 
 const Main: React.FC = () => {
   const history = useHistory();
@@ -19,9 +19,13 @@ const Main: React.FC = () => {
       />
 
       <Route exact path="/main">
+        <Redirect to="/main/prospect" />
+      </Route>
+
+      <Route exact path="/main/prospect">
         <Prospect />
       </Route>
-      <Route exact path="/main/editProspect">
+      <Route exact path="main/prospect/edit">
         <EditProspect />
       </Route>
       <Route exact path="/main/player:id">
