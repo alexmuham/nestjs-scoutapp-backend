@@ -16,6 +16,7 @@ const playersFetched: ReducerNextThrow<ReducerState, Player> = {
   throw: (_, {payload}) => failed(payload),
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default handleActions<ReducerState, any>(
   {
     [types.FETCH_PLAYER]: (state) => loading(state),

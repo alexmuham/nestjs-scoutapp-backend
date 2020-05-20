@@ -3,6 +3,7 @@ import LanguageDetector from './LanguageDetector';
 import {logError} from 'utils/Logger';
 
 export default {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initAsync: async (resources: any) => {
     try {
       const language = LanguageDetector.getCurrentLocale();

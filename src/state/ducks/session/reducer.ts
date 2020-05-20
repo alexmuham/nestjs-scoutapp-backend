@@ -9,6 +9,7 @@ const initialState: SessionContainer = {
   ...empty(),
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const setSessionExists: ReducerNextThrow<SessionContainer, any> = {
   next: (state, {payload}) => ({...state, exists: payload}),
 };
@@ -23,6 +24,7 @@ const updateAccountCompleted: ReducerNextThrow<SessionContainer, Account> = {
   throw: (state, {payload}) => ({...state, ...failed(payload)}),
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default handleActions<SessionContainer, any>(
   {
     [types.SET_SESSION_EXISTS]: setSessionExists,

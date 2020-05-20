@@ -2,6 +2,7 @@ import {Action, handleActions} from 'redux-actions';
 import types from './types';
 import {Auth} from 'state/entities/Auth';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default handleActions<Auth, any>(
   {
     [types.LOGIN_USER]: (state) => ({...state, isBusy: true}),

@@ -67,6 +67,7 @@ export default class ConfigService implements IConfigService {
 
   private static readConfigFile(file: string): Dictionary {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const config: Dictionary | undefined = (resources as any)[file];
       if (!config) return {};
       return config;

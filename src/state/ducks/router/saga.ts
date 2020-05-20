@@ -11,6 +11,7 @@ function goBack({payload}: Action<NavigationPayload>) {
 }
 
 function* accountEntered({payload}: Action<NavigationPayload>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const session: LoadableContainer<any> = yield select((state: State) => state.session);
   if (!session.isSuccess && !session.isLoading) {
     yield put(sessionActions.fetchSession(payload));

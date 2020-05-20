@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {AnyAction} from 'redux';
 import {createAction} from 'redux-actions';
 import types from './types';

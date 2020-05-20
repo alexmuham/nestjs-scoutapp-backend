@@ -2049,22 +2049,22 @@
   dependencies:
     "@spryrocks/config-core" "^1.0.0-alpha.5"
 
-"@spryrocks/eslint-config-react@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config-react/-/eslint-config-react-0.1.3.tgz#750315594338c7fd9ff7dff34778a0c640e40fd0"
-  integrity sha512-tatayqPxKZqZ23wXcmKR9pHNvQ0ZC/MDEQy2esvWw90Oo9EY1dUwxdcg1Vos4MzytqTTR5hMuhpeqloZ/RXqlw==
+"@spryrocks/eslint-config-react@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config-react/-/eslint-config-react-0.1.4.tgz#7451c747d3c957f910629c5ff7b94f8bfbda2f5f"
+  integrity sha512-TleGilPO5QhiIRODDMMRveSc7gtdQ4rbnsoXR271fr3CaIkL5hZQmg8fQnwPF1FZKuP5e7vwD+lQseYN1rWjQw==
   dependencies:
-    "@spryrocks/eslint-config" "^0.1.2"
+    "@spryrocks/eslint-config" "^0.1.3"
     eslint-config-airbnb-typescript "^7.2.1"
     eslint-plugin-jsx-a11y "^6.2.3"
     eslint-plugin-no-inline-styles "^1.0.5"
     eslint-plugin-react "^7.19.0"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@spryrocks/eslint-config@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config/-/eslint-config-0.1.2.tgz#70b6a97220051c66ada4dada5b2890ed33ad3553"
-  integrity sha512-gz8TjNNm+Tgc/aAp9ObbzToYIdF2FW5c5FSC+pWsnJ+TIu7WkIBCkaMSqJE258lr0pvjssUHhjwhMAvgevpelA==
+"@spryrocks/eslint-config@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config/-/eslint-config-0.1.3.tgz#1713eee4db2d35d101e6a65ba17f7b75e06e4d7e"
+  integrity sha512-15m8vu62isS7Enhy2q5ZYJ8BJjPxwSA1iRyyZqroZbLy4ndxuTe5nBX1CMRNzJH0Qs6Ek59+8OL8kASHY3oMIA==
   dependencies:
     "@spryrocks/prettier-config" "^0.1.1"
     "@typescript-eslint/eslint-plugin" "^2.31.0"

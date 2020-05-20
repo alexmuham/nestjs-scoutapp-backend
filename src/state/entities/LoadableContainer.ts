@@ -55,6 +55,7 @@ export const success = <TData>(data: TData): LoadableContainer<TData> => ({
   ...data,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const failed = <TData>(error: any): LoadableContainer<TData> => ({
   isEmpty: false,
   isSuccess: false,

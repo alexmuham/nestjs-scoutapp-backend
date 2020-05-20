@@ -7,6 +7,7 @@ import Config from 'app/Config';
 
 export const getHeaders = () => {
   const token = ScoutApiTokenHolder.getToken();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const headers: any = {
     platform: Config.getPlatform(),
   };
