@@ -40,6 +40,15 @@ export class PlayerResolver {
     return true;
   }
 
+  @Mutation(() => Boolean)
+  async deletePlayerToUser(
+    @Args({name: 'playerId', type: () => String}) playerId: string,
+    @CurrentSession() {userId}: Session,
+  ) {
+    await this.playerManager.deletePlayerToUser(playerId, userId);
+    return true;
+  }
+
   @Query(() => [Player])
   async playersFromUser(@CurrentSession() {userId}: Session) {
     return mapPlayersToGQL(await this.playerManager.getPlayersFromUser(userId));

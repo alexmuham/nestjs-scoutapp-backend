@@ -62,6 +62,10 @@ export default class PlayerManager implements IPlayerManager {
     );
   }
 
+  async deletePlayerToUser(playerId: string, userId: ID) {
+    await this.userStore.deletePlayerToUser(playerId, userId);
+  }
+
   async getPlayersFromUser(userId: string) {
     const user = await this.userStore.getUserById(userId);
     if (!user?.players) throw new ScoutAppError('');

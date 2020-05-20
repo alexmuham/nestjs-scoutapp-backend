@@ -10,6 +10,8 @@ import IPlayerStore from './player/IPlayerStore';
 import PlayerStore from './player/PlayerStore';
 import IPreferencesStore from './preferences/IPreferencesStore';
 import PreferencesStore from './preferences/PreferencesStore';
+import IFileStore from './file/IFileStore';
+import FileStore from './file/FileStore';
 
 @Module({
   imports: [
@@ -37,6 +39,10 @@ import PreferencesStore from './preferences/PreferencesStore';
       provide: IPreferencesStore,
       useClass: PreferencesStore,
     },
+    {
+      provide: IFileStore,
+      useClass: FileStore,
+    },
   ],
   exports: [
     //
@@ -45,6 +51,7 @@ import PreferencesStore from './preferences/PreferencesStore';
     IUserStore,
     IPlayerStore,
     IPreferencesStore,
+    IFileStore,
   ],
 })
 export class StoresModule {}

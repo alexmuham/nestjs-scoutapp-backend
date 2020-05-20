@@ -10,6 +10,7 @@ import {
   Session,
 } from 'database/entities';
 import Preferences from './entities/Preferences';
+import File from './entities/File';
 
 const entities = [
   //
@@ -18,6 +19,7 @@ const entities = [
   LocalLogin,
   Session,
   Player,
+  File,
 ];
 
 const options = (configService: IConfigService): TypeOrmModuleOptions => ({

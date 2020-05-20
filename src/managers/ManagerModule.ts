@@ -3,14 +3,14 @@ import {StoresModule} from 'database/stores/StoresModule';
 import IAccountManager from './account/IAccountManager';
 import AccountManager from './account/AccountManager';
 import {AuthModule} from './auth/AuthModule';
-import IFileManager from './file/IFileManager';
-import FileManager from './file/FileManager';
 import {StorageModule} from 'services/storage/StorageModule';
 import {ServicesModule} from 'services/ServicesModule';
 import IPlayerManager from './player/IPlayerManager';
 import PlayerManager from './player/PlayerManager';
 import IPreferencesManager from './preferences/IPreferencesManager';
 import PreferencesManager from './preferences/PreferencesManager';
+import IFileManager from './file/IFileManager';
+import FileManager from './file/FileManager';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import PreferencesManager from './preferences/PreferencesManager';
     AuthModule,
     ServicesModule,
     StoresModule,
-    StorageModule
+    StorageModule,
   ],
   providers: [
     {
