@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   topContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    justifyContent: 'space-between',
   },
   name: {
     fontSize: 35,
@@ -20,13 +20,19 @@ const styles = StyleSheet.create({
   backContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: 10,
+  },
+  backTouchableOpacity: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   back: {
     color: '#A61911',
     fontSize: 25,
   },
   contact: {
-    paddingRight: 10,
+    paddingRight: 20,
   },
   playerInfo: {
     flex: 1,
@@ -34,10 +40,11 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   playerImages: {
-    flex: 1,
+    flex: 0.9,
+    alignItems: 'flex-start',
   },
   info: {
-    flex: 1,
+    flex: 1.1,
   },
   renderInfoContainer: {
     flexDirection: 'row',
@@ -46,8 +53,80 @@ const styles = StyleSheet.create({
     backgroundColor: '#E8E8E8',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10,
-    height: '90%',
+    height: 200,
+    width: 150,
+  },
+  smallImagesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  smallImage: {
+    backgroundColor: '#E8E8E8',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+    marginTop: 10,
+    width: 30,
+    height: 40,
+  },
+  additionalInfo: {
+    flex: 1,
+    paddingTop: 10,
+  },
+  additionalInfoTitle: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    paddingBottom: 3,
+  },
+  additionalInfoLeftItem: {
+    width: '60%',
+  },
+  additionalInfoRightItem: {
+    width: '40%',
+  },
+  additionalInfoContext: {
+    paddingVertical: 5,
+    flexDirection: 'row',
+  },
+  additionalInfoTContext: {
+    paddingTop: 5,
+  },
+  bottomContainer: {
+    paddingTop: 20,
+  },
+  reportsItem: {
+    backgroundColor: '#FFF',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  bottomContainerText: {
+    fontSize: 23,
+  },
+  reportsItemContainer: {
+    paddingVertical: 20,
+    paddingLeft: 5,
+  },
+  upcomingGamesContainer: {
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  upcomingGamesText: {
+    color: '#C0C0C0',
+    fontSize: 17,
   },
 });
 
