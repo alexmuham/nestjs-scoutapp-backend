@@ -74,6 +74,7 @@ type Preferences {
   enablePlayerMatchingNotification: Boolean!
   enableMessageNotification: Boolean!
   sendNotificationsToEmail: Boolean!
+  players: [String!]!
 }
 
 type Account {

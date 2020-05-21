@@ -105,6 +105,7 @@ export const mapPreferencesToGQL = (preferences: Preferences): GQLPreferences =>
   enablePlayerMatchingNotification: preferences.enablePlayerMatchingNotification,
   enableMessageNotification: preferences.enableMessageNotification,
   sendNotificationsToEmail: preferences.sendNotificationsToEmail,
+  players: preferences.players ? preferences.players : [],
 });
 
 export const mapAccountToGQL = (account: Account): GQLAccount => ({

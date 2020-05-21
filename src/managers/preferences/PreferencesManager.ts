@@ -31,12 +31,12 @@ export default class PreferencesManager implements IPreferencesManager {
   }
 
   async getPreferences(id: string) {
-    const user = await this.userStore.getUser(id);
+    const user = await this.userStore.getUserById(id);
     if (!user) throw new ScoutAppError('User not exist');
 
     const preferences = await this.preferencesStore.getPreferences(user?.preferencesId);
     if (!preferences) throw new ScoutAppError('Preferences not exist');
 
-    return mapPreferencesFromDb(preferences);
+    return mapPreferencesFromDb(preferences, user.players);
   }
 }

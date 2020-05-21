@@ -8,12 +8,14 @@ export default class Preferences {
     enablePlayerMatchingNotification: boolean,
     enableMessageNotification: boolean,
     sendNotificationsToEmail: boolean,
+    players: string[],
   ) {
     this.id = id;
     this.enableFriendRequestNotification = enableFriendRequestNotification;
     this.enablePlayerMatchingNotification = enablePlayerMatchingNotification;
     this.enableMessageNotification = enableMessageNotification;
     this.sendNotificationsToEmail = sendNotificationsToEmail;
+    this.players = players;
   }
 
   @Field(() => String)
@@ -30,4 +32,7 @@ export default class Preferences {
 
   @Field(() => Boolean)
   sendNotificationsToEmail: boolean;
+
+  @Field(() => [String])
+  players?: string[];
 }

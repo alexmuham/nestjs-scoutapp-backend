@@ -13,7 +13,7 @@ export default class AccountManager implements IAccountManager {
   ) {}
 
   async getAccount(myUserId: string) {
-    const dbUser = await this.userStore.getUser(myUserId);
+    const dbUser = await this.userStore.getUserById(myUserId);
     if (!dbUser) throw new ScoutAppError('User is not found');
     const dbPreferences = await this.preferencesStore.getPreferences(
       dbUser.preferencesId,
