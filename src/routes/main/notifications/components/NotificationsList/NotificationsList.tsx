@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ViewProps, FlatList} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import styles from './NotificationsList.styles';
 
 interface INotificationItem {
