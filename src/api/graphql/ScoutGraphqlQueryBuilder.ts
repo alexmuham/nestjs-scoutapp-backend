@@ -12,17 +12,60 @@ import {
   Preferences,
   MutationDeletePlayersToUserArgs,
   MutationAddPlayerToUserArgs,
+  MutationDeletePlayerToUserArgs,
 } from './types';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
-const UserFragment = () => gql`
-  fragment User on User {
-    education
-    email
-    firstName
+const CareerProgressionsFragment = () => gql`
+  fragment CareerProgressions on CareerProgressions {
     id
-    lastName
-    phoneNumber
+  }
+`;
+
+const PGEventResultsFragment = () => gql`
+  fragment PGEventResults on PGEventResults {
+    exitVelocity
+    fastballVelocity
+    id
+    infieldVelocity
+    sixtyYdDash
+    tenYdSplit
+  }
+`;
+
+const RankingFragment = () => gql`
+  fragment Ranking on Ranking {
+    id
+    average
+    percentile
+    top
+  }
+`;
+
+const PercentileRankingsFragment = () => gql`
+  fragment PercentileRankings on PercentileRankings {
+    C {
+      ...Ranking
+    }
+    FB {
+      ...Ranking
+    }
+    IF {
+      ...Ranking
+    }
+    id
+    oneB {
+      ...Ranking
+    }
+    pop {
+      ...Ranking
+    }
+    sixty {
+      ...Ranking
+    }
+    tenSPL {
+      ...Ranking
+    }
   }
 `;
 
@@ -44,6 +87,30 @@ const PlayerFragment = () => gql`
     stateOverallRanking
     throws
     weight
+    careerProgressions {
+      ...CareerProgressions
+    }
+    images
+    percentileRankings {
+      ...PercentileRankings
+    }
+    pGEventResults {
+      ...PGEventResults
+    }
+  }
+`;
+
+const UserFragment = () => gql`
+  fragment User on User {
+    education
+    email
+    firstName
+    id
+    lastName
+    phoneNumber
+    players {
+      ...Player
+    }
   }
 `;
 
@@ -54,12 +121,18 @@ const PreferencesFragment = () => gql`
     enablePlayerMatchingNotification
     enableMessageNotification
     sendNotificationsToEmail
+    players
   }
 `;
 
 export const accountQuery = createQuery<{account: Account}, Account>(
   gql`
     ${UserFragment()}
+    ${PlayerFragment()}
+    ${PercentileRankingsFragment()}
+    ${RankingFragment()}
+    ${PGEventResultsFragment()}
+    ${CareerProgressionsFragment()}
     query myAccount {
       account {
         user {
@@ -90,6 +163,10 @@ export const playerByIdQuery = createQueryWithVariables<
 >(
   gql`
     ${PlayerFragment()}
+    ${PercentileRankingsFragment()}
+    ${RankingFragment()}
+    ${PGEventResultsFragment()}
+    ${CareerProgressionsFragment()}
     query playerById($playerId: String!) {
       playerById(playerId: $playerId) {
         ...Player
@@ -102,6 +179,10 @@ export const playerByIdQuery = createQueryWithVariables<
 export const playersQuery = createQuery<{getPlayers: [Player]}, [Player]>(
   gql`
     ${PlayerFragment()}
+    ${PercentileRankingsFragment()}
+    ${RankingFragment()}
+    ${PGEventResultsFragment()}
+    ${CareerProgressionsFragment()}
     query getPlayers {
       getPlayers {
         ...Player
@@ -111,7 +192,7 @@ export const playersQuery = createQuery<{getPlayers: [Player]}, [Player]>(
   ({getPlayers}) => getPlayers,
 );
 
-export const deletePlayerMutation = createMutationWithVariables<
+export const deletePlayersMutation = createMutationWithVariables<
   MutationDeletePlayersToUserArgs,
   {deletePlayersToUser: boolean},
   boolean
@@ -122,6 +203,19 @@ export const deletePlayerMutation = createMutationWithVariables<
     }
   `,
   ({deletePlayersToUser}) => deletePlayersToUser,
+);
+
+export const deletePlayerMutation = createMutationWithVariables<
+  MutationDeletePlayerToUserArgs,
+  {deletePlayerToUser: boolean},
+  boolean
+>(
+  gql`
+    mutation deletePlayersToUser($playerId: String!) {
+      deletePlayerToUser(playerId: $playerId)
+    }
+  `,
+  ({deletePlayerToUser}) => deletePlayerToUser,
 );
 
 export const addPlayerMutation = createMutationWithVariables<
@@ -140,6 +234,10 @@ export const addPlayerMutation = createMutationWithVariables<
 export const userPlayersQuery = createQuery<{playersFromUser: [Player]}, [Player]>(
   gql`
     ${PlayerFragment()}
+    ${PercentileRankingsFragment()}
+    ${RankingFragment()}
+    ${PGEventResultsFragment()}
+    ${CareerProgressionsFragment()}
     query playersFromUser {
       playersFromUser {
         ...Player

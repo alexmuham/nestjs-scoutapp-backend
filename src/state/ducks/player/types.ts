@@ -3,4 +3,6 @@ const prefix = 'PLAYER_';
 export default {
   FETCH_PLAYER: `${prefix}FETCH_PLAYER`,
   FETCH_PLAYER_COMPLETE: `${prefix}FETCH_PLAYER_COMPLETE`,
+  AAD_PLAYER_TO_USER: `${prefix}AAD_PLAYER_TO_USER`,
+  DELETE_PLAYER_FROM_USER: `${prefix}DELETE_PLAYER_FROM_USER`,
 };

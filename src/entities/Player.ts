@@ -1,3 +1,7 @@
+import CareerProgressions from 'entities/CareerProgressions';
+import PercentileRankings from 'entities/PercentileRankings';
+import PGEventResults from 'entities/PGEventResults';
+
 export default interface Player {
   id: string;
   name: string;
@@ -16,4 +20,8 @@ export default interface Player {
   nationalPositionRanking: string;
   nationalOverallRanking: string;
   collegeCommitment: string;
+  careerProgressions?: CareerProgressions;
+  percentileRankings?: PercentileRankings;
+  pGEventResults?: PGEventResults;
+  images: string[];
 }

@@ -19,5 +19,6 @@ export interface IScoutApi {
   preferences(): Promise<Preferences>;
   updatePreferences(request: UpdatePreferences): Promise<Preferences>;
   deletePlayers(playersIds: string[]): Promise<void>;
+  deletePlayer(playerId: string): Promise<void>;
   addPlayer(playerId: string): Promise<void>;
 }

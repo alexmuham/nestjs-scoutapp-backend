@@ -21,9 +21,19 @@ function* fetchPlayerComplete({payload, error}: Action<Players>) {
   }
 }
 
+function* addPlayerToUser({payload}: Action<FetchPlayer>) {
+  yield ScoutApi.addPlayer(payload.playerId);
+}
+
+function* deletePlayerFromUser({payload}: Action<FetchPlayer>) {
+  yield ScoutApi.deletePlayer(payload.playerId);
+}
+
 export default function* () {
   yield all([
     takeEvery(types.FETCH_PLAYER, fetchPlayer),
     takeEvery(types.FETCH_PLAYER_COMPLETE, fetchPlayerComplete),
+    takeEvery(types.AAD_PLAYER_TO_USER, addPlayerToUser),
+    takeEvery(types.DELETE_PLAYER_FROM_USER, deletePlayerFromUser),
   ]);
 }

@@ -97,6 +97,10 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
     await this.wrapApiCall(async () => this.graphqlApi.mutationDeletePlayers(playersIds));
   }
 
+  public async deletePlayer(playerId: string) {
+    await this.wrapApiCall(async () => this.graphqlApi.mutationDeletePlayer(playerId));
+  }
+
   public async addPlayer(playerId: string) {
     await this.wrapApiCall(async () => this.graphqlApi.mutationAddPlayer(playerId));
   }

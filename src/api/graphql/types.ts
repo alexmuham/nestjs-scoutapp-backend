@@ -8,6 +8,41 @@ export type Scalars = {
   Float: number;
 };
 
+export type CareerProgressions = {
+   __typename?: 'CareerProgressions';
+  id: Scalars['String'];
+};
+
+export type Ranking = {
+   __typename?: 'Ranking';
+  id: Scalars['String'];
+  top: Scalars['String'];
+  percentile: Scalars['String'];
+  average: Scalars['String'];
+};
+
+export type PercentileRankings = {
+   __typename?: 'PercentileRankings';
+  id: Scalars['String'];
+  FB?: Maybe<Ranking>;
+  C?: Maybe<Ranking>;
+  oneB?: Maybe<Ranking>;
+  tenSPL?: Maybe<Ranking>;
+  sixty?: Maybe<Ranking>;
+  IF?: Maybe<Ranking>;
+  pop?: Maybe<Ranking>;
+};
+
+export type PgEventResults = {
+   __typename?: 'PGEventResults';
+  id: Scalars['String'];
+  fastballVelocity?: Maybe<Scalars['String']>;
+  tenYdSplit?: Maybe<Scalars['String']>;
+  infieldVelocity?: Maybe<Scalars['String']>;
+  exitVelocity?: Maybe<Scalars['String']>;
+  sixtyYdDash?: Maybe<Scalars['String']>;
+};
+
 export type Player = {
    __typename?: 'Player';
   id: Scalars['ID'];
@@ -27,6 +62,10 @@ export type Player = {
   nationalPositionRanking: Scalars['String'];
   nationalOverallRanking: Scalars['String'];
   collegeCommitment: Scalars['String'];
+  careerProgressions?: Maybe<CareerProgressions>;
+  percentileRankings?: Maybe<PercentileRankings>;
+  pGEventResults?: Maybe<PgEventResults>;
+  images: Array<Scalars['String']>;
 };
 
 export type User = {
@@ -48,14 +87,7 @@ export type Preferences = {
   enablePlayerMatchingNotification: Scalars['Boolean'];
   enableMessageNotification: Scalars['Boolean'];
   sendNotificationsToEmail: Scalars['Boolean'];
-};
-
-export type UpdatePreferencesRequest = {
-   __typename?: 'Preferences';
-  enableFriendRequestNotification?: Maybe<Scalars['Boolean']>;
-  enablePlayerMatchingNotification?: Maybe<Scalars['Boolean']>;
-  enableMessageNotification?: Maybe<Scalars['Boolean']>;
-  sendNotificationsToEmail?: Maybe<Scalars['Boolean']>;
+  players: Array<Scalars['String']>;
 };
 
 export type Account = {
@@ -82,6 +114,8 @@ export type Mutation = {
    __typename?: 'Mutation';
   addPlayerToUser: Scalars['Boolean'];
   deletePlayersToUser: Scalars['Boolean'];
+  deletePlayerToUser: Scalars['Boolean'];
+  addPlayerImage: Scalars['Boolean'];
   updatePreferences: Preferences;
 };
 
@@ -93,6 +127,17 @@ export type MutationAddPlayerToUserArgs = {
 
 export type MutationDeletePlayersToUserArgs = {
   playersIds: Array<Scalars['String']>;
+};
+
+
+export type MutationDeletePlayerToUserArgs = {
+  playerId: Scalars['String'];
+};
+
+
+export type MutationAddPlayerImageArgs = {
+  playerId: Scalars['String'];
+  imageId: Scalars['String'];
 };
 
 

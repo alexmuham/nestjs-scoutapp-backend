@@ -75,6 +75,12 @@ export function usePlayerActions() {
     fetchPlayer: (playerId: string) => {
       dispatch(playerActions.fetchPlayer({playerId, history}));
     },
+    addPlayerToUser: (playerId: string) => {
+      dispatch(playerActions.addPlayerToUser({playerId, history}));
+    },
+    deletePlayerFromUser: (playerId: string) => {
+      dispatch(playerActions.deletePlayerFromUser({playerId, history}));
+    },
   };
 }
 

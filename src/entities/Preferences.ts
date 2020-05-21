@@ -4,4 +4,5 @@ export default interface Preferences {
   enablePlayerMatchingNotification: boolean;
   enableMessageNotification: boolean;
   sendNotificationsToEmail: boolean;
+  players: string[];
 }
