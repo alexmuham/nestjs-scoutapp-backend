@@ -1,3 +1,4 @@
+import Notifications from './notifications/Notifications';
 import React from 'react';
 import styles from './Main.styles';
 import {MenuBar, TransitionBar} from 'components';
@@ -42,6 +43,10 @@ const Main: React.FC = () => {
       <Route exact path="/main/friends/edit">
         <EditFriends />
       </Route>
+      <Route exact path="/main/notifications">
+        <Notifications />
+      </Route>
+
       <TransitionBar activeProspect />
     </View>
   );
