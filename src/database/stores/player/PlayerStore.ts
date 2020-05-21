@@ -2,7 +2,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import IPlayerStore from './IPlayerStore';
 import {Injectable} from '@nestjs/common';
-import {CareerProgressions, Player, RankingsValue} from 'database/entities';
+import {CareerProgressions, Player, Ranking} from 'database/entities';
 import DbPercentileRankings from 'database/entities/PercentileRankings';
 import DbPGEventResults from 'database/entities/PGEventResults';
 
@@ -17,8 +17,8 @@ export default class PlayerStore implements IPlayerStore {
     private readonly percentileRankingsRepository: Repository<DbPercentileRankings>,
     @InjectRepository(DbPGEventResults)
     private readonly PGEventResultsRepository: Repository<DbPGEventResults>,
-    @InjectRepository(RankingsValue)
-    private readonly RankingsRepository: Repository<RankingsValue>,
+    @InjectRepository(Ranking)
+    private readonly RankingsRepository: Repository<Ranking>,
   ) {}
 
   async addCareerProgressions() {
@@ -123,11 +123,21 @@ export default class PlayerStore implements IPlayerStore {
   }
 
   async getPlayerById(playerId: string) {
-    return this.repository.findOne(playerId);
+    return this.repository.findOne(playerId, {
+      relations: ['careerProgressions', 'pGEventResults'],
+    });
   }
 
   async getPlayerByIdOrThrow(id: string) {
-    return this.repository.findOneOrFail(id);
+    return this.repository.findOneOrFail(id, {
+      relations: ['careerProgressions', 'pGEventResults'],
+    });
+  }
+
+  async getPercentileRankingsById(id: string) {
+    return this.percentileRankingsRepository.findOne(id, {
+      relations: ['FB', 'C', 'oneB', 'tenSPL', 'sixty', 'IF', 'pop'],
+    });
   }
 
   async getPlayers() {

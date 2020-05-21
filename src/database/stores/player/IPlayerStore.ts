@@ -1,4 +1,4 @@
-import {Player, RankingsValue} from 'database/entities';
+import {Player, Ranking} from 'database/entities';
 import DbPercentileRankings from 'database/entities/PercentileRankings';
 import DbCareerProgressions from 'database/entities/CareerProgressions';
 import DbPGEventResults from 'database/entities/PGEventResults';
@@ -40,7 +40,7 @@ export default abstract class IPlayerStore {
     top?: string,
     percentile?: string,
     average?: string,
-  ): Promise<RankingsValue>;
+  ): Promise<Ranking>;
 
   abstract addPGEventResults(
     tenYdSplit?: string,
@@ -55,6 +55,10 @@ export default abstract class IPlayerStore {
   abstract getPlayerById(playerId: string): Promise<Player | undefined>;
 
   abstract getPlayerByIdOrThrow(playerId: string): Promise<Player>;
+
+  abstract getPercentileRankingsById(
+    id: string,
+  ): Promise<DbPercentileRankings | undefined>;
 
   abstract getPlayers(): Promise<Player[] | undefined>;
 }

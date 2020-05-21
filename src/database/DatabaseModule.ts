@@ -11,7 +11,7 @@ import {
   PGEventResults,
   PercentileRankings,
   File,
-  RankingsValue,
+  Ranking,
 } from 'database/entities';
 import Preferences from './entities/Preferences';
 
@@ -25,7 +25,7 @@ const entities = [
   CareerProgressions,
   PGEventResults,
   PercentileRankings,
-  RankingsValue,
+  Ranking,
 ];
 
 const options = (configService: IConfigService): TypeOrmModuleOptions => ({

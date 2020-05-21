@@ -1,4 +1,7 @@
 import {Field, ID, ObjectType} from '@nestjs/graphql';
+import CareerProgressions from './CareerProgressions';
+import PercentileRankings from './PercentileRankings';
+import PGEventResults from './PGEventResults';
 
 @ObjectType()
 export default class Player {
@@ -20,6 +23,9 @@ export default class Player {
     nationalPositionRanking: string,
     nationalOverallRanking: string,
     collegeCommitment: string,
+    careerProgressions: CareerProgressions | undefined,
+    percentileRankings: PercentileRankings | undefined,
+    pGEventResults: PGEventResults | undefined,
   ) {
     this.id = id;
     this.name = name;
@@ -38,6 +44,9 @@ export default class Player {
     this.nationalPositionRanking = nationalPositionRanking;
     this.nationalOverallRanking = nationalOverallRanking;
     this.collegeCommitment = collegeCommitment;
+    this.careerProgressions = careerProgressions;
+    this.percentileRankings = percentileRankings;
+    this.pGEventResults = pGEventResults;
   }
 
   @Field(() => ID)
@@ -90,4 +99,13 @@ export default class Player {
 
   @Field(() => String)
   collegeCommitment: string;
+
+  @Field(() => CareerProgressions, {nullable: true})
+  careerProgressions: CareerProgressions | undefined;
+
+  @Field(() => PercentileRankings, {nullable: true})
+  percentileRankings: PercentileRankings | undefined;
+
+  @Field(() => PGEventResults, {nullable: true})
+  pGEventResults: PGEventResults | undefined;
 }

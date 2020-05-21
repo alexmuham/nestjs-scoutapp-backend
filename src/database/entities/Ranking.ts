@@ -1,7 +1,7 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
-export default class RankingsValue {
+export default class Ranking {
   constructor(id: string, top: string, percentile: string, average: string) {
     this.id = id;
     this.top = top;

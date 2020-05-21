@@ -1,23 +1,23 @@
 import {Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne} from 'typeorm';
-import RankingsValue from './RankingsValue';
+import Ranking from './Ranking';
 
 @Entity()
 export default class PercentileRankings {
   constructor(
     id: string,
-    FB: RankingsValue,
+    FB: Ranking,
     FBId: string,
-    C: RankingsValue,
+    C: Ranking,
     CId: string,
-    oneB: RankingsValue,
+    oneB: Ranking,
     oneBId: string,
-    tenSPL: RankingsValue,
+    tenSPL: Ranking,
     tenSPLId: string,
-    sixty: RankingsValue,
+    sixty: Ranking,
     sixtyId: string,
-    IF: RankingsValue,
+    IF: Ranking,
     IFId: string,
-    pop: RankingsValue,
+    pop: Ranking,
     popId: string,
   ) {
     this.id = id;
@@ -40,51 +40,51 @@ export default class PercentileRankings {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => RankingsValue, {nullable: true})
+  @ManyToOne(() => Ranking, {nullable: true})
   @JoinColumn()
-  FB?: RankingsValue;
+  FB?: Ranking;
 
   @Column('text', {nullable: true})
   FBId?: string;
 
-  @ManyToOne(() => RankingsValue, {nullable: true})
+  @ManyToOne(() => Ranking, {nullable: true})
   @JoinColumn()
-  C?: RankingsValue;
+  C?: Ranking;
 
   @Column('text', {nullable: true})
   CId?: string;
 
-  @ManyToOne(() => RankingsValue, {nullable: true})
+  @ManyToOne(() => Ranking, {nullable: true})
   @JoinColumn()
-  oneB?: RankingsValue;
+  oneB?: Ranking;
 
   @Column('text', {nullable: true})
   oneBId: string;
 
-  @ManyToOne(() => RankingsValue, {nullable: true})
+  @ManyToOne(() => Ranking, {nullable: true})
   @JoinColumn()
-  tenSPL?: RankingsValue;
+  tenSPL?: Ranking;
 
   @Column('text', {nullable: true})
   tenSPLId?: string;
 
-  @ManyToOne(() => RankingsValue, {nullable: true})
+  @ManyToOne(() => Ranking, {nullable: true})
   @JoinColumn()
-  sixty?: RankingsValue;
+  sixty?: Ranking;
 
   @Column('text', {nullable: true})
   sixtyId?: string;
 
-  @ManyToOne(() => RankingsValue, {nullable: true})
+  @ManyToOne(() => Ranking, {nullable: true})
   @JoinColumn()
-  IF?: RankingsValue;
+  IF?: Ranking;
 
   @Column('text', {nullable: true})
   IFId?: string;
 
-  @ManyToOne(() => RankingsValue, {nullable: true})
+  @ManyToOne(() => Ranking, {nullable: true})
   @JoinColumn()
-  pop?: RankingsValue;
+  pop?: Ranking;
 
   @Column('text', {nullable: true})
   popId?: string;

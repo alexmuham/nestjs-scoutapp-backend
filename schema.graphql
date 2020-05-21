@@ -2,6 +2,37 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type CareerProgressions {
+  id: String!
+}
+
+type Ranking {
+  id: String!
+  top: String!
+  percentile: String!
+  average: String!
+}
+
+type PercentileRankings {
+  id: String!
+  FB: Ranking
+  C: Ranking
+  oneB: Ranking
+  tenSPL: Ranking
+  sixty: Ranking
+  IF: Ranking
+  pop: Ranking
+}
+
+type PGEventResults {
+  id: String!
+  fastballVelocity: String
+  tenYdSplit: String
+  infieldVelocity: String
+  exitVelocity: String
+  sixtyYdDash: String
+}
+
 type Player {
   id: ID!
   name: String!
@@ -20,6 +51,9 @@ type Player {
   nationalPositionRanking: String!
   nationalOverallRanking: String!
   collegeCommitment: String!
+  careerProgressions: CareerProgressions
+  percentileRankings: PercentileRankings
+  pGEventResults: PGEventResults
 }
 
 type User {

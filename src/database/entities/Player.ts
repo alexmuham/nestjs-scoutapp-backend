@@ -111,19 +111,19 @@ export default class Player {
   careerProgressions?: CareerProgressions;
 
   @Column({nullable: true})
-  careerProgressionsId?: string;
+  careerProgressionsId: string;
 
   @ManyToOne(() => PercentileRankings, {nullable: true})
   @JoinColumn()
   percentileRankings?: PercentileRankings;
 
   @Column({nullable: true})
-  percentileRankingsId?: string;
+  percentileRankingsId: string;
 
   @ManyToOne(() => PGEventResults, {nullable: true})
   @JoinColumn()
   pGEventResults?: PGEventResults;
 
   @Column({nullable: true})
-  pGEventResultsId?: string;
+  pGEventResultsId: string;
 }

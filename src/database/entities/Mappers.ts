@@ -1,10 +1,56 @@
 import DbUser from './User';
 import DbPlayer from './Player';
+import DbPreferences from './Preferences';
+import DbPercentileRankings from './PercentileRankings';
+import DbRaking from './Ranking';
+import DbCareerProgressions from './CareerProgressions';
+import DbPGEventResults from './PGEventResults';
+import PercentileRankings, {Ranking} from 'entities/PercentileRankings';
 import User from 'entities/User';
 import Account from 'entities/Account';
 import Preferences from 'entities/Preferences';
 import Player from 'entities/Player';
-import DbPreferences from './Preferences';
+import CareerProgressions from 'entities/CareerProgressions';
+import PGEventResults from 'entities/PGEventResults';
+
+export const mapRankingFormDb = (raking: DbRaking): Ranking => ({
+  id: raking.id,
+  average: raking.average,
+  percentile: raking.percentile,
+  top: raking.top,
+});
+
+export const mapPercentileRankingsFormDb = (
+  percentileRankings: DbPercentileRankings,
+): PercentileRankings => ({
+  id: percentileRankings.id,
+  IF: percentileRankings.IF ? mapRankingFormDb(percentileRankings.IF) : undefined,
+  FB: percentileRankings.FB ? mapRankingFormDb(percentileRankings.FB) : undefined,
+  C: percentileRankings.C ? mapRankingFormDb(percentileRankings.C) : undefined,
+  oneB: percentileRankings.oneB ? mapRankingFormDb(percentileRankings.oneB) : undefined,
+  pop: percentileRankings.pop ? mapRankingFormDb(percentileRankings.pop) : undefined,
+  sixty: percentileRankings.sixty
+    ? mapRankingFormDb(percentileRankings.sixty)
+    : undefined,
+  tenSPL: percentileRankings.tenSPL
+    ? mapRankingFormDb(percentileRankings.tenSPL)
+    : undefined,
+});
+
+export const mapCareerProgressionsFormDb = (
+  careerProgressions: DbCareerProgressions,
+): CareerProgressions => ({
+  id: careerProgressions.id,
+});
+
+export const mapPGEventResults = (pGEventResults: DbPGEventResults): PGEventResults => ({
+  id: pGEventResults.id,
+  exitVelocity: pGEventResults.exitVelocity,
+  fastballVelocity: pGEventResults.fastballVelocity,
+  infieldVelocity: pGEventResults.infieldVelocity,
+  sixtyYdDash: pGEventResults.sixtyYdDash,
+  tenYdSplit: pGEventResults.tenYdSplit,
+});
 
 export const mapPreferencesFromDb = (preferences: DbPreferences): Preferences => ({
   id: preferences.id,
@@ -33,7 +79,10 @@ export const mapAccountFromDb = (
   preferences: mapPreferencesFromDb(preferences),
 });
 
-export const mapPlayerFormDb = (player: DbPlayer): Player => ({
+export const mapPlayerFormDb = (
+  player: DbPlayer,
+  percentileRankings?: DbPercentileRankings,
+): Player => ({
   id: player.id,
   name: player.name,
   weight: player.weight,
@@ -51,6 +100,15 @@ export const mapPlayerFormDb = (player: DbPlayer): Player => ({
   contactPhone: player.contactPhone,
   collegeCommitment: player.collegeCommitment,
   bats: player.bats,
+  careerProgressions: player.careerProgressions
+    ? mapCareerProgressionsFormDb(player.careerProgressions)
+    : undefined,
+  percentileRankings: percentileRankings
+    ? mapPercentileRankingsFormDb(percentileRankings)
+    : undefined,
+  pGEventResults: player.pGEventResults
+    ? mapPGEventResults(player.pGEventResults)
+    : undefined,
 });
 
 export const mapPlayersFormDb = (players: DbPlayer[]): Player[] => {

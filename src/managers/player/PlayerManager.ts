@@ -113,7 +113,10 @@ export default class PlayerManager implements IPlayerManager {
   async getPlayerById(playerId: string) {
     const player = await this.playerStore.getPlayerById(playerId);
     if (!player) throw new ScoutAppError('');
-    return mapPlayerFormDb(player);
+    const percentileRankings = await this.playerStore.getPercentileRankingsById(
+      player.percentileRankingsId,
+    );
+    return mapPlayerFormDb(player, percentileRankings);
   }
 
   async getPlayers() {

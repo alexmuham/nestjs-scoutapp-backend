@@ -1,4 +1,7 @@
 import {IsObject, IsString} from 'class-validator';
+import PGEventResults from './PGEventResults';
+import PercentileRankings from './PercentileRankings';
+import CareerProgressions from './CareerProgressions';
 
 export default class Player {
   constructor(
@@ -19,7 +22,9 @@ export default class Player {
     nationalPositionRanking: string,
     nationalOverallRanking: string,
     collegeCommitment: string,
-    statistics?: object,
+    careerProgressions: CareerProgressions,
+    percentileRankings: PercentileRankings,
+    pGEventResults: PGEventResults,
   ) {
     this.id = id;
     this.name = name;
@@ -38,7 +43,9 @@ export default class Player {
     this.nationalPositionRanking = nationalPositionRanking;
     this.nationalOverallRanking = nationalOverallRanking;
     this.collegeCommitment = collegeCommitment;
-    this.statistics = statistics;
+    this.careerProgressions = careerProgressions;
+    this.percentileRankings = percentileRankings;
+    this.pGEventResults = pGEventResults;
   }
 
   @IsString()
@@ -93,5 +100,11 @@ export default class Player {
   collegeCommitment: string;
 
   @IsObject()
-  statistics?: object;
+  careerProgressions?: CareerProgressions;
+
+  @IsObject()
+  percentileRankings?: PercentileRankings;
+
+  @IsObject()
+  pGEventResults?: PGEventResults;
 }

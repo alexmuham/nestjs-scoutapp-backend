@@ -6,7 +6,7 @@ import PercentileRankings from './PercentileRankings';
 import CareerProgressions from './CareerProgressions';
 import PGEventResults from './PGEventResults';
 import File from './File';
-import RankingsValue from './RankingsValue';
+import Ranking from './Ranking';
 
 export {
   LocalLogin,
@@ -17,5 +17,5 @@ export {
   CareerProgressions,
   PGEventResults,
   File,
-  RankingsValue,
+  Ranking,
 };
