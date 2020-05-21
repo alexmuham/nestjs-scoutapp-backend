@@ -53,4 +53,13 @@ export class PlayerResolver {
   async playersFromUser(@CurrentSession() {userId}: Session) {
     return mapPlayersToGQL(await this.playerManager.getPlayersFromUser(userId));
   }
+
+  @Mutation(() => Boolean)
+  async addPlayerImage(
+    @Args({name: 'imageId', type: () => String}) imageId: string,
+    @Args({name: 'playerId', type: () => String}) playerId: string,
+  ) {
+    await this.playerManager.addPlayerImage(imageId, playerId);
+    return true;
+  }
 }

@@ -1,4 +1,4 @@
-import {Player, Ranking} from 'database/entities';
+import {File, Player, Ranking} from 'database/entities';
 import DbPercentileRankings from 'database/entities/PercentileRankings';
 import DbCareerProgressions from 'database/entities/CareerProgressions';
 import DbPGEventResults from 'database/entities/PGEventResults';
@@ -61,4 +61,6 @@ export default abstract class IPlayerStore {
   ): Promise<DbPercentileRankings | undefined>;
 
   abstract getPlayers(): Promise<Player[] | undefined>;
+
+  abstract addPlayerImage(image: File, playerId: string): Promise<void>;
 }

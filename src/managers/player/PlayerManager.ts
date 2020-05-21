@@ -6,10 +6,15 @@ import ScoutAppError from '../../ScoutAppError';
 import {mapPlayerFormDb, mapPlayersFormDb} from '../../database/entities/Mappers';
 import IUserStore from 'database/stores/user/IUserStore';
 import {ID} from 'entities/Common';
+import IFileStore from '../../database/stores/file/IFileStore';
 
 @Injectable()
 export default class PlayerManager implements IPlayerManager {
-  constructor(private playerStore: IPlayerStore, private userStore: IUserStore) {}
+  constructor(
+    private playerStore: IPlayerStore,
+    private userStore: IUserStore,
+    private fileStore: IFileStore,
+  ) {}
 
   async uploadPlayersData(players: [CSVResponse]) {
     players.map(async (player) => {
@@ -149,5 +154,11 @@ export default class PlayerManager implements IPlayerManager {
     const user = await this.userStore.getUserById(userId);
     if (!user?.players) throw new ScoutAppError('');
     return mapPlayersFormDb(user.players);
+  }
+
+  async addPlayerImage(imageId: string, playerId: string) {
+    const file = await this.fileStore.getFile({id: imageId});
+    if (!file) throw new ScoutAppError('');
+    await this.playerStore.addPlayerImage(file, playerId);
   }
 }

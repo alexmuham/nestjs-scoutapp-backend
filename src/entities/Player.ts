@@ -1,4 +1,4 @@
-import {IsObject, IsString} from 'class-validator';
+import {ArrayMaxSize, IsObject, IsString} from 'class-validator';
 import PGEventResults from './PGEventResults';
 import PercentileRankings from './PercentileRankings';
 import CareerProgressions from './CareerProgressions';
@@ -25,6 +25,7 @@ export default class Player {
     careerProgressions: CareerProgressions,
     percentileRankings: PercentileRankings,
     pGEventResults: PGEventResults,
+    images: string[],
   ) {
     this.id = id;
     this.name = name;
@@ -46,6 +47,7 @@ export default class Player {
     this.careerProgressions = careerProgressions;
     this.percentileRankings = percentileRankings;
     this.pGEventResults = pGEventResults;
+    this.images = images;
   }
 
   @IsString()
@@ -107,4 +109,7 @@ export default class Player {
 
   @IsObject()
   pGEventResults?: PGEventResults;
+
+  @ArrayMaxSize(5)
+  images?: string[];
 }

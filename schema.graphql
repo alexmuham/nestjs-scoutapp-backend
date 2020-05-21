@@ -54,6 +54,7 @@ type Player {
   careerProgressions: CareerProgressions
   percentileRankings: PercentileRankings
   pGEventResults: PGEventResults
+  images: [String!]!
 }
 
 type User {
@@ -92,5 +93,6 @@ type Mutation {
   addPlayerToUser(playerId: String!): Boolean!
   deletePlayersToUser(playersIds: [String!]!): Boolean!
   deletePlayerToUser(playerId: String!): Boolean!
+  addPlayerImage(playerId: String!, imageId: String!): Boolean!
   updatePreferences(sendNotificationsToEmail: Boolean, enableMessageNotification: Boolean, enablePlayerMatchingNotification: Boolean, enableFriendRequestNotification: Boolean): Preferences!
 }

@@ -80,6 +80,7 @@ export const mapPlayerToGQL = (player: Player): GQLPlayer => ({
   careerProgressions: player.careerProgressions
     ? mapCareerProgressionsToGQL(player.careerProgressions)
     : undefined,
+  images: player.images ? player.images : [],
 });
 
 export const mapPlayersToGQL = (players: Player[]): GQLPlayer[] =>

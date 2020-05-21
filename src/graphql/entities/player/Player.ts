@@ -26,6 +26,7 @@ export default class Player {
     careerProgressions: CareerProgressions | undefined,
     percentileRankings: PercentileRankings | undefined,
     pGEventResults: PGEventResults | undefined,
+    images: string[],
   ) {
     this.id = id;
     this.name = name;
@@ -47,6 +48,7 @@ export default class Player {
     this.careerProgressions = careerProgressions;
     this.percentileRankings = percentileRankings;
     this.pGEventResults = pGEventResults;
+    this.images = images;
   }
 
   @Field(() => ID)
@@ -108,4 +110,7 @@ export default class Player {
 
   @Field(() => PGEventResults, {nullable: true})
   pGEventResults: PGEventResults | undefined;
+
+  @Field(() => [String])
+  images: string[];
 }

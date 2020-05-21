@@ -12,6 +12,7 @@ import Preferences from 'entities/Preferences';
 import Player from 'entities/Player';
 import CareerProgressions from 'entities/CareerProgressions';
 import PGEventResults from 'entities/PGEventResults';
+import File from './File';
 
 export const mapRankingFormDb = (raking: DbRaking): Ranking => ({
   id: raking.id,
@@ -43,7 +44,9 @@ export const mapCareerProgressionsFormDb = (
   id: careerProgressions.id,
 });
 
-export const mapPGEventResults = (pGEventResults: DbPGEventResults): PGEventResults => ({
+export const mapPGEventResultsFormDb = (
+  pGEventResults: DbPGEventResults,
+): PGEventResults => ({
   id: pGEventResults.id,
   exitVelocity: pGEventResults.exitVelocity,
   fastballVelocity: pGEventResults.fastballVelocity,
@@ -52,32 +55,14 @@ export const mapPGEventResults = (pGEventResults: DbPGEventResults): PGEventResu
   tenYdSplit: pGEventResults.tenYdSplit,
 });
 
-export const mapPreferencesFromDb = (preferences: DbPreferences): Preferences => ({
-  id: preferences.id,
-  enableFriendRequestNotification: preferences.enableFriendRequestNotification,
-  enablePlayerMatchingNotification: preferences.enablePlayerMatchingNotification,
-  enableMessageNotification: preferences.enableMessageNotification,
-  sendNotificationsToEmail: preferences.sendNotificationsToEmail,
-});
+export const mapUserAdditionalImagesFromDB = (images: File[]) => images.map((i) => i.id);
 
-export const mapUserFromDb = (user: DbUser): User => ({
-  id: user.id,
-  firstName: user.firstName,
-  lastName: user.lastName,
-  phoneNumber: user.phoneNumber,
-  preferencesId: user.preferencesId,
-  email: user.email,
-  education: user.education,
-  players: user.players,
-});
-
-export const mapAccountFromDb = (
-  account: DbUser,
-  preferences: DbPreferences,
-): Account => ({
-  user: mapUserFromDb(account),
-  preferences: mapPreferencesFromDb(preferences),
-});
+export const mapPlayerImagesFromDB = (images: File[]) => {
+  const files = images.filter((item) => item !== null);
+  if (files.length > 0) {
+    return mapUserAdditionalImagesFromDB(files);
+  }
+};
 
 export const mapPlayerFormDb = (
   player: DbPlayer,
@@ -107,8 +92,9 @@ export const mapPlayerFormDb = (
     ? mapPercentileRankingsFormDb(percentileRankings)
     : undefined,
   pGEventResults: player.pGEventResults
-    ? mapPGEventResults(player.pGEventResults)
+    ? mapPGEventResultsFormDb(player.pGEventResults)
     : undefined,
+  images: player.images ? mapPlayerImagesFromDB(player.images) : [],
 });
 
 export const mapPlayersFormDb = (players: DbPlayer[]): Player[] => {
@@ -116,3 +102,30 @@ export const mapPlayersFormDb = (players: DbPlayer[]): Player[] => {
     return mapPlayerFormDb(player);
   });
 };
+
+export const mapPreferencesFromDb = (preferences: DbPreferences): Preferences => ({
+  id: preferences.id,
+  enableFriendRequestNotification: preferences.enableFriendRequestNotification,
+  enablePlayerMatchingNotification: preferences.enablePlayerMatchingNotification,
+  enableMessageNotification: preferences.enableMessageNotification,
+  sendNotificationsToEmail: preferences.sendNotificationsToEmail,
+});
+
+export const mapUserFromDb = (user: DbUser): User => ({
+  id: user.id,
+  firstName: user.firstName,
+  lastName: user.lastName,
+  phoneNumber: user.phoneNumber,
+  preferencesId: user.preferencesId,
+  email: user.email,
+  education: user.education,
+  players: user.players ? mapPlayersFormDb(user.players) : [],
+});
+
+export const mapAccountFromDb = (
+  account: DbUser,
+  preferences: DbPreferences,
+): Account => ({
+  user: mapUserFromDb(account),
+  preferences: mapPreferencesFromDb(preferences),
+});

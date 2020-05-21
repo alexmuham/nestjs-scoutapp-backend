@@ -2,7 +2,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import IPlayerStore from './IPlayerStore';
 import {Injectable} from '@nestjs/common';
-import {CareerProgressions, Player, Ranking} from 'database/entities';
+import {CareerProgressions, File, Player, Ranking} from 'database/entities';
 import DbPercentileRankings from 'database/entities/PercentileRankings';
 import DbPGEventResults from 'database/entities/PGEventResults';
 
@@ -124,7 +124,7 @@ export default class PlayerStore implements IPlayerStore {
 
   async getPlayerById(playerId: string) {
     return this.repository.findOne(playerId, {
-      relations: ['careerProgressions', 'pGEventResults'],
+      relations: ['careerProgressions', 'pGEventResults', 'images'],
     });
   }
 
@@ -142,5 +142,9 @@ export default class PlayerStore implements IPlayerStore {
 
   async getPlayers() {
     return this.repository.find();
+  }
+
+  async addPlayerImage(image: File, id: string): Promise<void> {
+    await this.repository.save({id, images: [image]});
   }
 }
