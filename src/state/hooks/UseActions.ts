@@ -8,6 +8,7 @@ import {actions as sessionActions} from '../ducks/session';
 import {actions as prospectActions} from '../ducks/prospect';
 import {actions as playerActions} from '../ducks/player';
 import {actions as routerActions} from '../ducks/router';
+import {actions as imagePickerActions} from '../ducks/imagePicker';
 import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
@@ -38,18 +39,13 @@ export function useRouterActions() {
   const history = useHistory();
 
   return {
-    navigateToPlayer: (playerId: string) => {
-      dispatch(routerActions.navigateToPlayer({history, playerId}));
-    },
-    navigateToEditProspect: () => {
-      dispatch(routerActions.navigateToEditProspect({history}));
-    },
-    goBack: () => {
-      dispatch(routerActions.goBack({history}));
-    },
-    navigateToProspect: () => {
-      dispatch(routerActions.navigateToProspect({history}));
-    },
+    navigateToPlayer: (playerId: string) =>
+      dispatch(routerActions.navigateToPlayer({history, playerId})),
+    navigateToEditProspect: () =>
+      dispatch(routerActions.navigateToEditProspect({history})),
+    goBack: () => dispatch(routerActions.goBack({history})),
+    navigateToProspect: () => dispatch(routerActions.navigateToProspect({history})),
+    navigateToImagePicker: () => dispatch(routerActions.navigateToImagePicker({history})),
   };
 }
 
@@ -98,5 +94,14 @@ export function useSnackBarActions() {
   const dispatch = useDispatch();
   return {
     closeSnackBar: () => dispatch(snackBarActions.clearSnackbar()),
+  };
+}
+
+export function useImagePickerActions() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  return {
+    openImagePickerPopUp: (imageUrl: string) =>
+      dispatch(imagePickerActions.openImagePickerPopUp({imageUrl, history})),
   };
 }

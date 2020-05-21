@@ -20,3 +20,4 @@ declare module '*.ttf' {
 }
 
 declare module 'react-native-switch';
+declare module 'react-native-modals';

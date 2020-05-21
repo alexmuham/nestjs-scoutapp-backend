@@ -8,6 +8,7 @@ import {MenuBar, TransitionBar} from '../../components';
 import {MenuBarItems} from '../../navigation';
 import {View} from 'react-native';
 import {Route, useHistory, Redirect} from 'react-router';
+import ImagePicker from './imagePicker/ImagePicker';
 
 const Main: React.FC = () => {
   const history = useHistory();
@@ -33,6 +34,9 @@ const Main: React.FC = () => {
       </Route>
       <Route exact path="/main/settings">
         <Settings />
+      </Route>
+      <Route exact path="/main/imagePicker">
+        <ImagePicker />
       </Route>
 
       <TransitionBar activeProspect />

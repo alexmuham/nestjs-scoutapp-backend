@@ -122,7 +122,7 @@ const PlayerCard: React.FC = () => {
                       <View style={styles.playerImages}>
                         <TouchableOpacity
                           style={styles.playerAvatar}
-                          onPress={() => undefined}
+                          onPress={() => routerAction.navigateToImagePicker()}
                         >
                           <Image source={PlayerImages.EmptyImage} />
                         </TouchableOpacity>

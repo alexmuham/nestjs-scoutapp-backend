@@ -16,6 +16,10 @@ export default class RestApi extends ApiBase {
     return this.post<Session>('auth/login', request);
   }
 
+  public async uploadFile(uri: string) {
+    return this.postFile(uri);
+  }
+
   public async refresh(refreshRequest: RefreshRequest) {
     return this.post<Session>('auth/refresh', refreshRequest);
   }

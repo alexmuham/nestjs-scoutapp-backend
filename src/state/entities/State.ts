@@ -12,4 +12,5 @@ export default interface State {
   prospect: LoadableContainer<{players: Player[]}>;
   player: LoadableContainer<Player>;
   preferences: LoadableContainer<Preferences>;
+  imagePicker: {imageUrl: string};
 }

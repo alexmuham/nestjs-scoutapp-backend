@@ -42,6 +42,10 @@ function navigateToEditProspect({payload}: Action<NavigationPayload>) {
   payload.history.push('/main/prospect/edit');
 }
 
+function navigateToImagePicker({payload}: Action<NavigationPayload>) {
+  payload.history.push('/main/imagePicker');
+}
+
 export default function* () {
   yield all([
     takeEvery(types.GO_BACK, goBack),
@@ -52,5 +56,6 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_PLAYER, navigateToPlayer),
     takeEvery(types.NAVIGATE_TO_SETTINGS, navigateToSettings),
     takeEvery(types.NAVIGATE_TO_EDIT_PROSPECT, navigateToEditProspect),
+    takeEvery(types.NAVIGATE_TO_IMAGE_PICKER, navigateToImagePicker),
   ]);
 }

@@ -50,6 +50,10 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
     );
   }
 
+  public async uploadFile(uri: string) {
+    return this.restApi.uploadFile(uri);
+  }
+
   public async preferences() {
     return this.wrapApiCall(async () =>
       mapPreferencesFromGQL(await this.graphqlApi.queryPreferences()),
