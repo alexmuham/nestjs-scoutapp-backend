@@ -2,29 +2,33 @@ import React from 'react';
 import {View, Text, ViewProps, FlatList} from 'react-native';
 import styles from './NotificationsList.styles';
 
-interface INotificationsList extends ViewProps {
-    data: Array<IDayNotifications>
-    currentPage: string
+interface INotificationItem {
+    body: string;
+    time: string;
+    isNew: boolean;
+    type?: "friends" | "players" | undefined;
 }
 
-interface IDayNotifications extends ViewProps {
-    date: string,
-    data: Array<INotificationMessage>,
-    activePage: string
+// interface INotificationDataByDay {
+//     date: string;
+//     data: Array<INotificationItem>;
+// }
+
+// interface INotificationListProps {
+//     data: Array<INotificationDataByDay>;
+//     currentPage: string;
+// }
+
+interface INotificBlockByDayProps {
+    date: string;
+    data: Array<INotificationItem>;
+    activePage: string;
 }
 
-interface INotificationMessage extends ViewProps {
-    body: string,
-    time: string,
-    type: 'friends' | 'players',
-    isNew: boolean
-}
-
-const NotificationMessage: React.FC<INotificationMessage> =
+const NotificationMessage: React.FC<INotificationItem> =
     ({
          body,
-         time,
-         type,   //тут в зависимости от типа будет по разному отображаться уведомление
+         time,  //тут в зависимости от типа будет по разному отображаться уведомление
          isNew
      }) => {
     return (
@@ -39,7 +43,7 @@ const NotificationMessage: React.FC<INotificationMessage> =
 }
 
 
-const NotificBlockByDay: React.FC<IDayNotifications> = ({data, date, activePage}) => {
+const NotificBlockByDay: React.FC<INotificBlockByDayProps> = ({data, date, activePage}) => {
     const dataFiltrByType = activePage === 'all' ? data : data.filter(item => item.type === activePage);
     return (
         <View>
@@ -56,7 +60,7 @@ const NotificBlockByDay: React.FC<IDayNotifications> = ({data, date, activePage}
     )
 }
 
-const NotificationsList: React.FC<INotificationsList> = ({data, currentPage}) => {
+const NotificationsList: React.FC<any> = ({data, currentPage}) => { //должно быть <INotificationListProps> но возникает ошибка ts, хотя в приложении работает, пытался пофиксить, но так и не смог
     return (
         <View  style={styles.daysContainer}>
             <FlatList
