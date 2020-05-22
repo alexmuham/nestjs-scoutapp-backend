@@ -157,13 +157,13 @@ export default class PlayerManager implements IPlayerManager {
 
   async getPlayersFromUser(userId: string) {
     const user = await this.userStore.getUserById(userId);
-    if (!user?.players) throw new ScoutAppError('');
+    if (!user) throw new ScoutAppError('This user does not exist.');
     return mapPlayersFormDb(user.players);
   }
 
   async addPlayerImage(imageId: string, playerId: string) {
     const file = await this.fileStore.getFile({id: imageId});
-    if (!file) throw new ScoutAppError('');
+    if (!file) throw new ScoutAppError('This file does not exist.');
     await this.playerStore.addPlayerImage(file, playerId);
   }
 }

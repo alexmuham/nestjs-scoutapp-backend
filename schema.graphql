@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Preferences {
+  id: String!
+  enableFriendRequestNotification: Boolean!
+  enablePlayerMatchingNotification: Boolean!
+  enableMessageNotification: Boolean!
+  sendNotificationsToEmail: Boolean!
+  players: [String!]!
+}
+
 type CareerProgressions {
   id: String!
   progress: String!
@@ -69,15 +78,6 @@ type User {
   players: [Player!]
 }
 
-type Preferences {
-  id: String!
-  enableFriendRequestNotification: Boolean!
-  enablePlayerMatchingNotification: Boolean!
-  enableMessageNotification: Boolean!
-  sendNotificationsToEmail: Boolean!
-  players: [String!]!
-}
-
 type Account {
   user: User!
   preferences: Preferences!
@@ -85,6 +85,8 @@ type Account {
 
 type Query {
   account: Account!
+  friends: [User!]!
+  friendById(friendId: String!): User!
   playerById(playerId: String!): Player!
   getPlayers: [Player!]!
   playersFromUser: [Player!]!
@@ -92,6 +94,8 @@ type Query {
 }
 
 type Mutation {
+  addFriend(friendId: String!): Boolean!
+  deleteFriend(friendId: String!): Boolean!
   addPlayerToUser(playerId: String!): Boolean!
   deletePlayersToUser(playersIds: [String!]!): Boolean!
   deletePlayerToUser(playerId: String!): Boolean!

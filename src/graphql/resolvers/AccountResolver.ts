@@ -1,11 +1,12 @@
-import {Query, Resolver} from '@nestjs/graphql';
+import {Args, Mutation, Query, Resolver} from '@nestjs/graphql';
 import IAccountManager from '../../managers/account/IAccountManager';
 import Account from '../entities/account/Account';
 import {UseGuards} from '@nestjs/common';
-import AuthGuard from '../../enhancers/guards/AuthGuard';
-import CurrentSession from '../../enhancers/decorators/CurrentSession';
+import AuthGuard from 'enhancers/guards/AuthGuard';
+import CurrentSession from 'enhancers/decorators/CurrentSession';
 import Session from '../../entities/Session';
-import {mapAccountToGQL} from '../entities/Mappers';
+import {mapAccountToGQL, mapUsersToGQL, mapUserToGQL} from '../entities/Mappers';
+import User from '../entities/user/User';
 
 @Resolver()
 @UseGuards(AuthGuard)
@@ -15,5 +16,36 @@ export class AccountResolver {
   @Query(() => Account)
   async account(@CurrentSession() {userId}: Session) {
     return mapAccountToGQL(await this.accountManager.getAccount(userId));
+  }
+
+  @Query(() => [User])
+  async friends(@CurrentSession() {userId}: Session) {
+    return mapUsersToGQL(await this.accountManager.getFriends(userId));
+  }
+
+  @Query(() => User)
+  async friendById(
+    @CurrentSession() {userId}: Session,
+    @Args({name: 'friendId', type: () => String}) friendId: string,
+  ) {
+    return mapUserToGQL(await this.accountManager.getFriendById(userId, friendId));
+  }
+
+  @Mutation(() => Boolean)
+  async addFriend(
+    @CurrentSession() {userId}: Session,
+    @Args({name: 'friendId', type: () => String}) friendId: string,
+  ) {
+    await this.accountManager.addFriend(userId, friendId);
+    return true;
+  }
+
+  @Mutation(() => Boolean)
+  async deleteFriend(
+    @CurrentSession() {userId}: Session,
+    @Args({name: 'friendId', type: () => String}) friendId: string,
+  ) {
+    await this.accountManager.deleteFriend(userId, friendId);
+    return true;
   }
 }

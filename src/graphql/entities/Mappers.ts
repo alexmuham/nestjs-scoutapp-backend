@@ -100,6 +100,9 @@ export const mapUserToGQL = (user: User): GQLUser => {
   };
 };
 
+export const mapUsersToGQL = (users: User[]): GQLUser[] =>
+  users.map((user) => mapUserToGQL(user));
+
 export const mapPreferencesToGQL = (preferences: Preferences): GQLPreferences => ({
   id: preferences.id,
   enableFriendRequestNotification: preferences.enableFriendRequestNotification,

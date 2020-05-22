@@ -31,6 +31,22 @@ export default class UserStore implements IUserStore {
   }
 
   async getUserById(id: string) {
-    return this.repository.findOne(id, {relations: ['players']});
+    return this.repository.findOne(id, {relations: ['players', 'friends']});
+  }
+
+  async addFriend(id: string, friend: User) {
+    await this.repository.save({id, friends: [friend]});
+  }
+
+  async deleteFriend(userId: string, friendId: string) {
+    await this.repository
+      .createQueryBuilder()
+      .relation(User, 'friends')
+      .of([userId, friendId])
+      .remove(friendId);
+  }
+
+  async getFriendById(friendId: string) {
+    return this.repository.findOne({where: {id: friendId}, relations: ['players']});
   }
 }

@@ -136,6 +136,12 @@ export const mapUserFromDb = (user: DbUser): User => ({
   players: user.players ? mapPlayersFormDb(user.players) : [],
 });
 
+export const mapUsersFromDb = (users: DbUser[]): User[] => {
+  return users.map((user) => {
+    return mapUserFromDb(user);
+  });
+};
+
 export const mapAccountFromDb = (
   account: DbUser,
   preferences: DbPreferences,

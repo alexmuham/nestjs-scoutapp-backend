@@ -10,4 +10,10 @@ export default abstract class IUserStore {
   abstract deletePlayerToUser(players: string, userId: ID): Promise<void>;
 
   abstract getUserById(userId: ID): Promise<User | undefined>;
+
+  abstract addFriend(userId: ID, friend: User): Promise<void>;
+
+  abstract deleteFriend(userId: ID, friendId: string): Promise<void>;
+
+  abstract getFriendById(userId: ID, friendId: string): Promise<User | undefined>;
 }
