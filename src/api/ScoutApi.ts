@@ -9,6 +9,8 @@ import {
   mapPlayerFromGQL,
   mapPlayersFromGQL,
   mapPreferencesFromGQL,
+  mapUserFromGQL,
+  mapUsersFromGQL,
 } from 'api/Mappers';
 import ForgotPasswordRequest from 'api/entities/ForgotPasswordRequest';
 import ApiDelegate, {AuthInfo} from '@spryrocks/react-api/ApiDelegate';
@@ -113,5 +115,26 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
     await this.wrapApiCall(async () =>
       this.graphqlApi.mutationAddPlayerImage(playerId, imageId),
     );
+  }
+
+  public async addFriend(friendId: string) {
+    await this.wrapApiCall(async () => this.graphqlApi.mutationAddFriend(friendId));
+  }
+
+  public async deleteFriend(friendId: string) {
+    await this.wrapApiCall(async () => this.graphqlApi.mutationDeleteFriend(friendId));
+  }
+
+  public async getFriend(friendId: string) {
+    return this.wrapApiCall(async () =>
+      mapUserFromGQL(await this.graphqlApi.queryFriend(friendId)),
+    );
+  }
+
+  public async getFriends() {
+    return this.wrapApiCall(async () => {
+      const friends = await this.graphqlApi.queryFriends();
+      return friends ? mapUsersFromGQL(friends) : [];
+    });
   }
 }

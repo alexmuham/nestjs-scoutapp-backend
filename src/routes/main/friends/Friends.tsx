@@ -1,24 +1,24 @@
 import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
-import styles from './Friends.styles';
-import {useSettingsActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
+import {RequireLoadable, FriedList} from 'components';
+import {useFriendsActions} from 'state/hooks/UseActions';
+import {useSelector} from '../../../state/hooks';
 
 const Friends: React.FC = () => {
   const {t} = useTranslation('friends');
 
-  const actions = useSettingsActions();
+  const actions = useFriendsActions();
 
   useEffect(() => {
-    actions.fetchPreferences();
+    actions.fetchFriends();
   }, []);
 
+  const {friends} = useSelector((state) => state);
+
   return (
-    <View style={styles.flex}>
-      <View>
-        <Text>{t('friends')}</Text>
-      </View>
-    </View>
+    <RequireLoadable data={friends}>
+      {({friends}) => <FriedList friends={friends} title={t('friends')} mode="list" />}
+    </RequireLoadable>
   );
 };
 

@@ -14,6 +14,10 @@ import {
   MutationAddPlayerToUserArgs,
   MutationDeletePlayerToUserArgs,
   MutationAddPlayerImageArgs,
+  MutationAddFriendArgs,
+  MutationDeleteFriendArgs,
+  QueryFriendByIdArgs,
+  User,
 } from './types';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
@@ -286,4 +290,68 @@ export const addPlayerImageMutation = createMutationWithVariables<
     }
   `,
   ({addPlayerImage}) => addPlayerImage,
+);
+
+export const addFriendMutation = createMutationWithVariables<
+  MutationAddFriendArgs,
+  {addFriend: boolean},
+  boolean
+>(
+  gql`
+    mutation addFriend($friendId: String!) {
+      addFriend(friendId: $friendId)
+    }
+  `,
+  ({addFriend}) => addFriend,
+);
+
+export const deleteFriendMutation = createMutationWithVariables<
+  MutationDeleteFriendArgs,
+  {deleteFriend: boolean},
+  boolean
+>(
+  gql`
+    mutation deleteFriend($friendId: String!) {
+      deleteFriend(friendId: $friendId)
+    }
+  `,
+  ({deleteFriend}) => deleteFriend,
+);
+
+export const friendQuery = createQueryWithVariables<
+  QueryFriendByIdArgs,
+  {friendById: User},
+  User
+>(
+  gql`
+    ${UserFragment()}
+    ${PlayerFragment()}
+    ${PercentileRankingsFragment()}
+    ${RankingFragment()}
+    ${PGEventResultsFragment()}
+    ${CareerProgressionsFragment()}
+    query friendById($friendId: String!) {
+      friendById(friendId: $friendId) {
+        ...User
+      }
+    }
+  `,
+  ({friendById}) => friendById,
+);
+
+export const friendsQuery = createQuery<{friendById: [User]}, [User]>(
+  gql`
+    ${UserFragment()}
+    ${PlayerFragment()}
+    ${PercentileRankingsFragment()}
+    ${RankingFragment()}
+    ${PGEventResultsFragment()}
+    ${CareerProgressionsFragment()}
+    query friends {
+      friends {
+        ...User
+      }
+    }
+  `,
+  ({friendById}) => friendById,
 );

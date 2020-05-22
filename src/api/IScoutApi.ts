@@ -7,6 +7,7 @@ import Player from 'entities/Player';
 import Session from '@spryrocks/react-auth/Session';
 import Preferences from 'entities/Preferences';
 import UpdatePreferences from './entities/UpdatePreferences';
+import User from '../entities/User';
 
 export interface IScoutApi {
   register(request: RegisterRequest): Promise<Session>;
@@ -36,4 +37,12 @@ export interface IScoutApi {
   uploadFile(uri: string): Promise<void>;
 
   addPlayerImage(playerId: string, imageId: string): Promise<void>;
+
+  getFriend(friendId: string): Promise<User>;
+
+  getFriends(): Promise<User[]>;
+
+  addFriend(friendId: string): Promise<void>;
+
+  deleteFriend(friendId: string): Promise<void>;
 }

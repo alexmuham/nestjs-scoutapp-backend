@@ -7,6 +7,7 @@ import LoadableWrapper from './require/LoadableWrapper';
 import RequireLoadable from './require/RequireLoadable';
 import RequireSession from './require/RequireSession';
 import LineProperty from './lineProperty/LineProperty';
+import FriedList from './friendsList/FriendList';
 
 export {
   //
@@ -19,4 +20,5 @@ export {
   RequireLoadable,
   RequireSession,
   LineProperty,
+  FriedList,
 };

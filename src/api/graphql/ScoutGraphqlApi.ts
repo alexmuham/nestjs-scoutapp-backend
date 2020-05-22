@@ -9,6 +9,10 @@ import {
   addPlayerMutation,
   deletePlayersMutation,
   addPlayerImageMutation,
+  addFriendMutation,
+  deleteFriendMutation,
+  friendQuery,
+  friendsQuery,
 } from './ScoutGraphqlQueryBuilder';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
@@ -47,5 +51,21 @@ export default class ScoutGraphqlApi extends GraphqlApiBase {
 
   public async mutationAddPlayerImage(playerId: string, imageId: string) {
     return this.mutation(addPlayerImageMutation({playerId, imageId}));
+  }
+
+  public async mutationAddFriend(friendId: string) {
+    return this.mutation(addFriendMutation({friendId}));
+  }
+
+  public async mutationDeleteFriend(friendId: string) {
+    return this.mutation(deleteFriendMutation({friendId}));
+  }
+
+  public async queryFriend(friendId: string) {
+    return this.mutation(friendQuery({friendId}));
+  }
+
+  public async queryFriends() {
+    return this.mutation(friendsQuery());
   }
 }

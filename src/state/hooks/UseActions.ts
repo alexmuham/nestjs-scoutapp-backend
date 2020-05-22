@@ -9,6 +9,7 @@ import {actions as prospectActions} from '../ducks/prospect';
 import {actions as playerActions} from '../ducks/player';
 import {actions as routerActions} from '../ducks/router';
 import {actions as imagePickerActions} from '../ducks/imagePicker';
+import {actions as friendsAcrions} from '../ducks/friends';
 import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
@@ -104,5 +105,13 @@ export function useImagePickerActions() {
   return {
     addImageToPlayer: (playerId: string, imageUri: string) =>
       dispatch(imagePickerActions.addImageToPlayer({playerId, imageUri, history})),
+  };
+}
+
+export function useFriendsActions() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  return {
+    fetchFriends: () => dispatch(friendsAcrions.fetchFriends({history})),
   };
 }

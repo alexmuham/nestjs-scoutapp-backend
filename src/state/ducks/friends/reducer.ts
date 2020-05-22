@@ -7,20 +7,20 @@ import {
   loading,
   success,
 } from 'entities/LoadableContainer';
-import Players from '../../entities/Players';
+import Friends from 'entities/Friends';
 
-type ReducerState = LoadableContainer<Players>;
+type ReducerState = LoadableContainer<Friends>;
 
-const playersFetched: ReducerNextThrow<ReducerState, Players> = {
-  next: (_, {payload}) => success({players: payload.players}),
+const friendsFetched: ReducerNextThrow<ReducerState, Friends> = {
+  next: (_, {payload}) => success({friends: payload.friends}),
   throw: (_, {payload}) => failed(payload),
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default handleActions<ReducerState, any>(
   {
-    [types.FETCH_USER_PLAYERS]: (state) => loading(state),
-    [types.FETCH_PLAYERS_COMPLETE]: playersFetched,
+    [types.FETCH_FRIENDS]: (state) => loading(state),
+    [types.FETCH_FRIENDS_COMPLETE]: friendsFetched,
   },
   empty(),
 );

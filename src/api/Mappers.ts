@@ -124,6 +124,10 @@ export const mapUserFromGQL = (user: GQLUser): User => ({
   firstName: user.firstName,
 });
 
+export const mapUsersFromGQL = (users: GQLUser[]): User[] => {
+  return users.map((user) => mapUserFromGQL(user));
+};
+
 export const mapAccountFromGQL = (account: GQLAccount): Account => ({
   user: mapUserFromGQL(account.user),
 });

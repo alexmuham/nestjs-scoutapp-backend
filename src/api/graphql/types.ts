@@ -8,6 +8,16 @@ export type Scalars = {
   Float: number;
 };
 
+export type Preferences = {
+   __typename?: 'Preferences';
+  id: Scalars['String'];
+  enableFriendRequestNotification: Scalars['Boolean'];
+  enablePlayerMatchingNotification: Scalars['Boolean'];
+  enableMessageNotification: Scalars['Boolean'];
+  sendNotificationsToEmail: Scalars['Boolean'];
+  players: Array<Scalars['String']>;
+};
+
 export type CareerProgressions = {
    __typename?: 'CareerProgressions';
   id: Scalars['String'];
@@ -81,16 +91,6 @@ export type User = {
   players?: Maybe<Array<Player>>;
 };
 
-export type Preferences = {
-   __typename?: 'Preferences';
-  id: Scalars['String'];
-  enableFriendRequestNotification: Scalars['Boolean'];
-  enablePlayerMatchingNotification: Scalars['Boolean'];
-  enableMessageNotification: Scalars['Boolean'];
-  sendNotificationsToEmail: Scalars['Boolean'];
-  players: Array<Scalars['String']>;
-};
-
 export type Account = {
    __typename?: 'Account';
   user: User;
@@ -100,10 +100,17 @@ export type Account = {
 export type Query = {
    __typename?: 'Query';
   account: Account;
+  friends?: Maybe<Array<User>>;
+  friendById?: Maybe<User>;
   playerById: Player;
   getPlayers: Array<Player>;
   playersFromUser: Array<Player>;
   preferences: Preferences;
+};
+
+
+export type QueryFriendByIdArgs = {
+  friendId: Scalars['String'];
 };
 
 
@@ -113,11 +120,23 @@ export type QueryPlayerByIdArgs = {
 
 export type Mutation = {
    __typename?: 'Mutation';
+  addFriend: Scalars['Boolean'];
+  deleteFriend: Scalars['Boolean'];
   addPlayerToUser: Scalars['Boolean'];
   deletePlayersToUser: Scalars['Boolean'];
   deletePlayerToUser: Scalars['Boolean'];
   addPlayerImage: Scalars['Boolean'];
   updatePreferences: Preferences;
+};
+
+
+export type MutationAddFriendArgs = {
+  friendId: Scalars['String'];
+};
+
+
+export type MutationDeleteFriendArgs = {
+  friendId: Scalars['String'];
 };
 
 
