@@ -4,16 +4,14 @@ import styles from './ProfileTypeManager.styles';
 import * as Profile from '../../assets/index';
 
 const ProfileTypeManager: React.FC = () => {
-
-    return (
-        <View>
-            <TouchableOpacity style={styles.touchAble} onPress={() => console.log('clicked')}>
-                <Text style={styles.title}>Profile Type Manager</Text>
-                <Image style={styles.arrow} source={Profile.Arrow}/>
-            </TouchableOpacity>
-        </View>
-
-    )
-}
+  return (
+    <View>
+      <TouchableOpacity style={styles.touchAble}>
+        <Text style={styles.title}>Profile Type Manager</Text>
+        <Image style={styles.arrow} source={Profile.Arrow} />
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 export default ProfileTypeManager;
