@@ -21,6 +21,7 @@ export default class User {
     preferencesId: string,
     education: string,
     players: Player[],
+    friends: User[],
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -31,6 +32,7 @@ export default class User {
     this.preferencesId = preferencesId;
     this.education = education;
     this.players = players;
+    this.friends = friends;
   }
 
   @PrimaryGeneratedColumn('uuid')
@@ -60,4 +62,8 @@ export default class User {
 
   @Column()
   education: string;
+
+  @ManyToMany(() => User, {nullable: false})
+  @JoinTable()
+  friends: User[];
 }

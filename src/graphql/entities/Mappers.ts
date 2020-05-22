@@ -40,6 +40,7 @@ export const mapCareerProgressionsToGQL = (
   careerProgressions: CareerProgressions,
 ): GQLCareerProgressions => ({
   id: careerProgressions.id,
+  progress: careerProgressions.progress,
 });
 
 export const mapPGEventResultsToGQL = (

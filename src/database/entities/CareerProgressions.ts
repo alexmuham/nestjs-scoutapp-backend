@@ -1,22 +1,15 @@
-import {
-  Entity,
-  // Column,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export default class CareerProgressions {
-  constructor(
-    id: string,
-    // careerProgressionsObject: object
-  ) {
+  constructor(id: string, progress: string) {
     this.id = id;
-    // this.careerProgressionsObject = careerProgressionsObject;
+    this.progress = progress;
   }
 
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  // @Column({nullable: true})
-  // careerProgressionsObject?: object;
+  @Column({nullable: true})
+  progress: string;
 }

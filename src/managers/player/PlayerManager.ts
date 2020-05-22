@@ -17,7 +17,8 @@ export default class PlayerManager implements IPlayerManager {
   ) {}
 
   async uploadPlayersData(players: [CSVResponse]) {
-    players.map(async (player) => {
+    const firstHundredPlayers = players.slice(0, 100);
+    firstHundredPlayers.map(async (player) => {
       const json = player.statistics;
 
       const statistics: Statistic = JSON.parse(json);
@@ -89,7 +90,11 @@ export default class PlayerManager implements IPlayerManager {
         infieldVelocity,
       );
 
-      const careerProgressionsValue = await this.playerStore.addCareerProgressions();
+      const progress = JSON.stringify(statistics.Career_progressions).toString();
+
+      const careerProgressionsValue = await this.playerStore.addCareerProgressions(
+        progress,
+      );
 
       return this.playerStore.uploadPlayersData(
         player.name,

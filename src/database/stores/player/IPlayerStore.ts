@@ -50,7 +50,7 @@ export default abstract class IPlayerStore {
     infieldVelocity?: string,
   ): Promise<DbPGEventResults>;
 
-  abstract addCareerProgressions(): Promise<DbCareerProgressions>;
+  abstract addCareerProgressions(progress: string): Promise<DbCareerProgressions>;
 
   abstract getPlayerById(playerId: string): Promise<Player | undefined>;
 

@@ -42,6 +42,7 @@ export const mapCareerProgressionsFormDb = (
   careerProgressions: DbCareerProgressions,
 ): CareerProgressions => ({
   id: careerProgressions.id,
+  progress: careerProgressions.progress,
 });
 
 export const mapPGEventResultsFormDb = (

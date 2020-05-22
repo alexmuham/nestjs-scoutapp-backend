@@ -21,8 +21,8 @@ export default class PlayerStore implements IPlayerStore {
     private readonly RankingsRepository: Repository<Ranking>,
   ) {}
 
-  async addCareerProgressions() {
-    const newCareerProgressions = this.careerProgressionsRepository.create({});
+  async addCareerProgressions(progress: string) {
+    const newCareerProgressions = this.careerProgressionsRepository.create({progress});
     await this.careerProgressionsRepository.insert(newCareerProgressions);
     return newCareerProgressions;
   }
