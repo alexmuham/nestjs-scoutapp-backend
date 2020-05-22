@@ -1,14 +1,10 @@
-import PlayerCard from './playarCard/PlayerCard';
-import Prospect from './prospect/Prospect';
-import EditProspect from './prospect/editProspect/EditProspect';
-import Settings from './settings/Settings';
 import React from 'react';
 import styles from './Main.styles';
-import {MenuBar, TransitionBar} from '../../components';
-import {MenuBarItems} from '../../navigation';
+import {MenuBar, TransitionBar} from 'components';
+import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
 import {Route, useHistory, Redirect} from 'react-router';
-import ImagePicker from './imagePicker/ImagePicker';
+import {Prospect, Settings, PlayerCard, EditProspect, Friends} from 'routes/main';
 
 const Main: React.FC = () => {
   const history = useHistory();
@@ -29,16 +25,15 @@ const Main: React.FC = () => {
       <Route exact path="/main/prospect/edit">
         <EditProspect />
       </Route>
-      <Route exact path="/main/player:id">
+      <Route path="/main/player:id">
         <PlayerCard />
       </Route>
       <Route exact path="/main/settings">
         <Settings />
       </Route>
-      <Route exact path="/main/imagePicker">
-        <ImagePicker />
+      <Route exact path="/main/friends">
+        <Friends />
       </Route>
-
       <TransitionBar activeProspect />
     </View>
   );

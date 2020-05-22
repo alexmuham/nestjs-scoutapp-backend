@@ -13,12 +13,14 @@ import {
   MutationDeletePlayersToUserArgs,
   MutationAddPlayerToUserArgs,
   MutationDeletePlayerToUserArgs,
+  MutationAddPlayerImageArgs,
 } from './types';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
 const CareerProgressionsFragment = () => gql`
   fragment CareerProgressions on CareerProgressions {
     id
+    progress
   }
 `;
 
@@ -271,4 +273,17 @@ export const mutationUpdatePreferences = createMutationWithVariables<
     }
   `,
   (updatePreferences) => updatePreferences,
+);
+
+export const addPlayerImageMutation = createMutationWithVariables<
+  MutationAddPlayerImageArgs,
+  {addPlayerImage: boolean},
+  boolean
+>(
+  gql`
+    mutation addPlayerImage($playerId: String!, $imageId: String!) {
+      addPlayerImage(playerId: $playerId, imageId: $imageId)
+    }
+  `,
+  ({addPlayerImage}) => addPlayerImage,
 );

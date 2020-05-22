@@ -16,5 +16,5 @@ export default {
   navigateToEditProspect: createAction<NavigationPayload>(
     types.NAVIGATE_TO_EDIT_PROSPECT,
   ),
-  navigateToImagePicker: createAction<NavigationPayload>(types.NAVIGATE_TO_IMAGE_PICKER),
+  navigateToImagePicker: createAction<NavigateToPlayer>(types.NAVIGATE_TO_IMAGE_PICKER),
 };

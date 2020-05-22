@@ -10,15 +10,30 @@ import UpdatePreferences from './entities/UpdatePreferences';
 
 export interface IScoutApi {
   register(request: RegisterRequest): Promise<Session>;
+
   login(request: LoginRequest): Promise<Session>;
+
   account(): Promise<Account>;
+
   forgotPassword(request: ForgotPasswordRequest): Promise<void>;
+
   updateFirebaseToken(request: UpdateFirebaseTokenRequest): Promise<void>;
+
   getPlayerById(playerId: string): Promise<Player>;
+
   getUserPlayers(): Promise<Player[]>;
+
   preferences(): Promise<Preferences>;
+
   updatePreferences(request: UpdatePreferences): Promise<Preferences>;
+
   deletePlayers(playersIds: string[]): Promise<void>;
+
   deletePlayer(playerId: string): Promise<void>;
+
   addPlayer(playerId: string): Promise<void>;
+
+  uploadFile(uri: string): Promise<void>;
+
+  addPlayerImage(playerId: string, imageId: string): Promise<void>;
 }

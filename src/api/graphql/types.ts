@@ -11,6 +11,7 @@ export type Scalars = {
 export type CareerProgressions = {
    __typename?: 'CareerProgressions';
   id: Scalars['String'];
+  progress: Scalars['String'];
 };
 
 export type Ranking = {

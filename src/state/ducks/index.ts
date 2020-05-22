@@ -10,10 +10,7 @@ import {saga as alertSaga} from './alert';
 import {reducer as snackBarReducer} from 'state/ducks/snackBar';
 import {reducer as prospectReducer, saga as prospectSage} from 'state/ducks/prospect';
 import {reducer as playerReducer, saga as playerSage} from 'state/ducks/player';
-import {
-  reducer as imagePickerReducer,
-  saga as imagePickerSaga,
-} from 'state/ducks/imagePicker';
+import {saga as imagePickerSaga} from 'state/ducks/imagePicker';
 import {saga as errorSaga} from 'state/ducks/error';
 
 import {all} from 'redux-saga/effects';
@@ -27,7 +24,6 @@ export const rootReducer = combineReducers<State>({
   preferences: preferencesReducer,
   prospect: prospectReducer,
   player: playerReducer,
-  imagePicker: imagePickerReducer,
 });
 
 export function* rootSaga() {

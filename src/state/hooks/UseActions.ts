@@ -45,7 +45,8 @@ export function useRouterActions() {
       dispatch(routerActions.navigateToEditProspect({history})),
     goBack: () => dispatch(routerActions.goBack({history})),
     navigateToProspect: () => dispatch(routerActions.navigateToProspect({history})),
-    navigateToImagePicker: () => dispatch(routerActions.navigateToImagePicker({history})),
+    navigateToImagePicker: (playerId: string) =>
+      dispatch(routerActions.navigateToImagePicker({playerId, history})),
   };
 }
 
@@ -101,7 +102,7 @@ export function useImagePickerActions() {
   const dispatch = useDispatch();
   const history = useHistory();
   return {
-    openImagePickerPopUp: (imageUrl: string) =>
-      dispatch(imagePickerActions.openImagePickerPopUp({imageUrl, history})),
+    addImageToPlayer: (playerId: string, imageUri: string) =>
+      dispatch(imagePickerActions.addImageToPlayer({playerId, imageUri, history})),
   };
 }

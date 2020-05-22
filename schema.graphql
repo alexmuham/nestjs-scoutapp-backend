@@ -4,6 +4,7 @@
 
 type CareerProgressions {
   id: String!
+  progress: String!
 }
 
 type Ranking {

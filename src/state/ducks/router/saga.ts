@@ -42,8 +42,8 @@ function navigateToEditProspect({payload}: Action<NavigationPayload>) {
   payload.history.push('/main/prospect/edit');
 }
 
-function navigateToImagePicker({payload}: Action<NavigationPayload>) {
-  payload.history.push('/main/imagePicker');
+function navigateToImagePicker({payload}: Action<NavigateToPlayer>) {
+  payload.history.push(`/main/player${payload.playerId}/imagePicker`);
 }
 
 export default function* () {

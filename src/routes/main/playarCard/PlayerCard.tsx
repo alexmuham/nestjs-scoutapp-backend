@@ -3,6 +3,7 @@ import {RequireLoadable} from 'components';
 import {
   Image,
   ImageSourcePropType,
+  Modal,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -16,9 +17,10 @@ import {
 import {useSelector} from 'react-redux';
 import State from 'state/entities/State';
 import styles from './PlayerCard.styles';
-import {useParams} from 'react-router-native';
+import {Route, useParams} from 'react-router-native';
 import * as PlayerImages from './assets';
 import {useTranslation} from 'react-i18next';
+import ImagePicker from '../imagePicker/ImagePicker';
 
 const PlayerCard: React.FC = () => {
   const actions = usePlayerActions();
@@ -122,7 +124,7 @@ const PlayerCard: React.FC = () => {
                       <View style={styles.playerImages}>
                         <TouchableOpacity
                           style={styles.playerAvatar}
-                          onPress={() => routerAction.navigateToImagePicker()}
+                          onPress={() => routerAction.navigateToImagePicker(player.id)}
                         >
                           <Image source={PlayerImages.EmptyImage} />
                         </TouchableOpacity>
@@ -202,6 +204,11 @@ const PlayerCard: React.FC = () => {
           </RequireLoadable>
         )}
       </RequireLoadable>
+      <Route path="/main/player:id/imagePicker">
+        <Modal presentationStyle="overFullScreen" animationType="slide" transparent>
+          <ImagePicker />
+        </Modal>
+      </Route>
     </View>
   );
 };
