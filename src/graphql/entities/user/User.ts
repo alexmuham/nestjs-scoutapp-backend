@@ -12,6 +12,7 @@ export default class User {
     phoneNumber: string,
     education: string,
     players: Player[] | undefined,
+    image: string | undefined,
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -21,6 +22,7 @@ export default class User {
     this.phoneNumber = phoneNumber;
     this.education = education;
     this.players = players;
+    this.image = image;
   }
 
   @Field(() => ID)
@@ -46,4 +48,7 @@ export default class User {
 
   @Field(() => [Player], {nullable: true})
   players: Player[] | undefined;
+
+  @Field(() => String, {nullable: true})
+  image: string | undefined;
 }

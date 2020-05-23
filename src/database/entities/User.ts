@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import Player from './Player';
 import Preferences from './Preferences';
+import File from './File';
 
 @Entity()
 export default class User {
@@ -22,6 +23,8 @@ export default class User {
     education: string,
     players: Player[],
     friends: User[],
+    image: File,
+    imageId: string,
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -33,6 +36,8 @@ export default class User {
     this.education = education;
     this.players = players;
     this.friends = friends;
+    this.image = image;
+    this.imageId = imageId;
   }
 
   @PrimaryGeneratedColumn('uuid')
@@ -66,4 +71,10 @@ export default class User {
   @ManyToMany(() => User, {nullable: false})
   @JoinTable()
   friends: User[];
+
+  @Column({nullable: true})
+  imageId?: string;
+
+  @ManyToOne(() => File, {nullable: true})
+  image?: File;
 }

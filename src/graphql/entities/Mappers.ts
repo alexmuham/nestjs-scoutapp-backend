@@ -97,6 +97,7 @@ export const mapUserToGQL = (user: User): GQLUser => {
     email: user.email,
     preferencesId: user.preferencesId,
     players: user.players ? mapPlayersToGQL(user.players) : undefined,
+    image: user.image,
   };
 };
 

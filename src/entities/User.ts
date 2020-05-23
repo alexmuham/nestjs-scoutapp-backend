@@ -1,6 +1,5 @@
 import {ID} from './Common';
 import Player from './Player';
-import {Field} from '@nestjs/graphql';
 import {IsString} from 'class-validator';
 
 export default class User {
@@ -13,6 +12,7 @@ export default class User {
     phoneNumber: string,
     education: string,
     players: Player[],
+    image: string,
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -22,28 +22,31 @@ export default class User {
     this.phoneNumber = phoneNumber;
     this.education = education;
     this.players = players;
+    this.image = image;
   }
 
   id: ID;
 
-  @Field()
+  @IsString()
   firstName: string;
 
-  @Field()
+  @IsString()
   lastName: string;
 
-  @Field(() => [Player])
   players?: Player[];
 
-  @Field()
+  @IsString()
   email: string;
 
   @IsString()
   preferencesId: string;
 
-  @Field()
+  @IsString()
   phoneNumber: string;
 
-  @Field()
+  @IsString()
   education: string;
+
+  @IsString()
+  image: string | undefined;
 }

@@ -76,6 +76,7 @@ type User {
   phoneNumber: String!
   education: String!
   players: [Player!]
+  image: String
 }
 
 type Account {

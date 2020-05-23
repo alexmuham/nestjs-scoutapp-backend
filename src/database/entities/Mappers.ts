@@ -134,6 +134,7 @@ export const mapUserFromDb = (user: DbUser): User => ({
   email: user.email,
   education: user.education,
   players: user.players ? mapPlayersFormDb(user.players) : [],
+  image: user.image ? user.image.id : user.imageId,
 });
 
 export const mapUsersFromDb = (users: DbUser[]): User[] => {
