@@ -33,7 +33,7 @@ const Main: React.FC = () => {
       <Route exact path="/main/settings">
         <Settings />
       </Route>
-      <Route exact path="/main/friends">
+      <Route path="/main/friends">
         <Friends />
       </Route>
       <Route path="/main/friend:id">

@@ -23,6 +23,8 @@ interface PlayerListProps {
   mode: 'list' | 'edit';
   editAction?: () => void;
   deleteAction?: (id: string) => void;
+  inviteAction?: () => void;
+  friendActAction?: (id: string) => void;
 }
 
 const FriedList: React.FC<PlayerListProps> = ({
@@ -33,13 +35,15 @@ const FriedList: React.FC<PlayerListProps> = ({
   mode,
   editAction,
   deleteAction,
+  friendActAction,
+  inviteAction,
 }) => {
   const {t} = useTranslation('playerList');
 
   const playerList = (friend: User) => {
     switch (mode) {
       case 'list': {
-        return <FriendItem friend={friend} />;
+        return <FriendItem friend={friend} friendActAction={friendActAction} />;
       }
       case 'edit': {
         return <EditFriendItem friend={friend} deleteActions={deleteAction} />;
@@ -66,7 +70,7 @@ const FriedList: React.FC<PlayerListProps> = ({
       <View style={styles.title}>
         <Text style={styles.titleText}>{title}</Text>
         {mode === 'list' && (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={inviteAction}>
             <Image source={FriendListImages.Invite} />
           </TouchableOpacity>
         )}

@@ -8,6 +8,7 @@ import RequireLoadable from './require/RequireLoadable';
 import RequireSession from './require/RequireSession';
 import LineProperty from './lineProperty/LineProperty';
 import FriedList from './friendsList/FriendList';
+import PopUpContainer from './popUpContainer/PopUpContainer';
 
 export {
   //
@@ -21,4 +22,5 @@ export {
   RequireSession,
   LineProperty,
   FriedList,
+  PopUpContainer,
 };

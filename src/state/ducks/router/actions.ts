@@ -20,4 +20,8 @@ export default {
   navigateToImagePicker: createAction<NavigateToPlayer>(types.NAVIGATE_TO_IMAGE_PICKER),
   navigateToFriend: createAction<NavigateToFriend>(types.NAVIGATE_TO_FRIEND),
   navigateToEditFriends: createAction<NavigationPayload>(types.NAVIGATE_TO_EDIT_FRIENDS),
+  navigateToInvitePopUp: createAction<NavigationPayload>(types.NAVIGATE_TO_INVITE_POP_UP),
+  navigateToFriendActPopUp: createAction<NavigateToFriend>(
+    types.NAVIGATE_TO_FRIEND_ACT_POP_UP,
+  ),
 };

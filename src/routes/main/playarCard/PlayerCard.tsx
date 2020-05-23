@@ -20,7 +20,7 @@ import styles from './PlayerCard.styles';
 import {Route, useParams} from 'react-router-native';
 import * as PlayerImages from './assets';
 import {useTranslation} from 'react-i18next';
-import ImagePicker from '../imagePicker/ImagePicker';
+import {ImagePicker} from '../popUp';
 
 const PlayerCard: React.FC = () => {
   const actions = usePlayerActions();

@@ -1,21 +1,19 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './Friend.styles';
-import {useRouterActions} from 'state/hooks/UseActions';
 import User from 'entities/User';
 
 interface ItemProps {
   friend: User;
+  friendActAction?: (id: string) => void;
 }
 
-const FriendItem: React.FC<ItemProps> = ({friend}) => {
-  const actions = useRouterActions();
-
+const FriendItem: React.FC<ItemProps> = ({friend, friendActAction}) => {
   const {id, firstName, lastName, image} = friend; // TODO ADD IMAGE
 
   return (
     <TouchableOpacity
-      onPress={() => actions.navigateToFriend(id)}
+      onPress={friendActAction ? () => friendActAction(id) : () => undefined}
       style={styles.container}
     >
       <View style={styles.contextContainer}>

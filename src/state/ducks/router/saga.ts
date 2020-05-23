@@ -54,6 +54,14 @@ function navigateToEditFriends({payload}: Action<NavigationPayload>) {
   payload.history.push('/main/friends/edit');
 }
 
+function navigateToInvitePopUp({payload}: Action<NavigationPayload>) {
+  payload.history.push('/main/friends/invite');
+}
+
+function navigateToFriendActPopUp({payload}: Action<NavigateToFriend>) {
+  payload.history.push(`/main/friends/friendAct${payload.friendId}`);
+}
+
 export default function* () {
   yield all([
     takeEvery(types.GO_BACK, goBack),
@@ -67,5 +75,7 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_IMAGE_PICKER, navigateToImagePicker),
     takeEvery(types.NAVIGATE_TO_FRIEND, navigateToFriend),
     takeEvery(types.NAVIGATE_TO_EDIT_FRIENDS, navigateToEditFriends),
+    takeEvery(types.NAVIGATE_TO_INVITE_POP_UP, navigateToInvitePopUp),
+    takeEvery(types.NAVIGATE_TO_FRIEND_ACT_POP_UP, navigateToFriendActPopUp),
   ]);
 }

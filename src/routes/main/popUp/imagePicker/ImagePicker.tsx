@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from 'components/index';
+import {Button, PopUpContainer} from 'components';
 import showImagePicker from 'utils/ImagePickerUtil';
 import {useImagePickerActions, useRouterActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
@@ -20,32 +20,30 @@ const ImagePicker: React.FC = () => {
     }
   };
   return (
-    <View style={styles.flex}>
-      <View style={styles.container}>
-        <View style={styles.topButton}>
-          <Button
-            visualStyle="none"
-            textStyle={styles.button}
-            title={t('camera')}
-            onPress={() => avatarPress('camera')}
-          />
-          <Button
-            textStyle={styles.button}
-            visualStyle="none"
-            title={t('gallery')}
-            onPress={() => avatarPress('gallery')}
-          />
-        </View>
-        <View style={styles.cancelButton}>
-          <Button
-            visualStyle="none"
-            title={t('cancel')}
-            textStyle={styles.cancelButtonText}
-            onPress={() => routerActions.goBack()}
-          />
-        </View>
+    <PopUpContainer style={styles.container}>
+      <View style={styles.topButton}>
+        <Button
+          visualStyle="none"
+          textStyle={styles.button}
+          title={t('camera')}
+          onPress={() => avatarPress('camera')}
+        />
+        <Button
+          textStyle={styles.button}
+          visualStyle="none"
+          title={t('gallery')}
+          onPress={() => avatarPress('gallery')}
+        />
       </View>
-    </View>
+      <View style={styles.cancelButton}>
+        <Button
+          visualStyle="none"
+          title={t('cancel')}
+          textStyle={styles.cancelButtonText}
+          onPress={() => routerActions.goBack()}
+        />
+      </View>
+    </PopUpContainer>
   );
 };
 
