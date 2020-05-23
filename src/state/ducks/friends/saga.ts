@@ -5,7 +5,6 @@ import {Action} from 'redux-actions';
 import {ScoutApi} from 'api';
 import {NavigationPayload} from '../router/actions';
 import {errorActions} from '../error';
-import {routerActions} from '../router';
 import Friends from 'entities/Friends';
 
 function* fetchFriends({payload}: Action<NavigationPayload>) {
@@ -23,10 +22,10 @@ function* fetchFriendsComplete({payload, error}: Action<Friends>) {
   }
 }
 
-function* deleteFriends({payload}: Action<DeleteFriends>) {
+function* deleteFriend({payload}: Action<DeleteFriends>) {
   try {
-    yield payload.friendsIds.map((id) => ScoutApi.deleteFriend(id));
-    yield put(routerActions.goBack({history: payload.history}));
+    yield ScoutApi.deleteFriend(payload.friendId);
+    yield put(actions.fetchFriends({history: payload.history}));
   } catch (e) {
     yield put(errorActions.handleError(e));
   }
@@ -36,6 +35,6 @@ export default function* () {
   yield all([
     takeEvery(types.FETCH_FRIENDS, fetchFriends),
     takeEvery(types.FETCH_FRIENDS_COMPLETE, fetchFriendsComplete),
-    takeEvery(types.DELETE_FRIENDS, deleteFriends),
+    takeEvery(types.DELETE_FRIEND, deleteFriend),
   ]);
 }

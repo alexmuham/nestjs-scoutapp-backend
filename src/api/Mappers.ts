@@ -122,6 +122,8 @@ export const mapUserFromGQL = (user: GQLUser): User => ({
   phoneNumber: user.phoneNumber,
   lastName: user.lastName,
   firstName: user.firstName,
+  image: user.image ? user.image : undefined,
+  players: user.players ? mapPlayersFromGQL(user.players) : undefined,
 });
 
 export const mapUsersFromGQL = (users: GQLUser[]): User[] => {

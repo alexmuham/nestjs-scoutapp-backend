@@ -1,3 +1,5 @@
+import Player from './Player';
+
 export default interface User {
   id: string;
   email: string;
@@ -5,4 +7,6 @@ export default interface User {
   lastName: string;
   education: string;
   phoneNumber: string;
+  image?: string;
+  players?: Player[];
 }

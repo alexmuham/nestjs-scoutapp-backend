@@ -48,6 +48,9 @@ export function useRouterActions() {
     navigateToProspect: () => dispatch(routerActions.navigateToProspect({history})),
     navigateToImagePicker: (playerId: string) =>
       dispatch(routerActions.navigateToImagePicker({playerId, history})),
+    navigateToFriend: (friendId: string) =>
+      dispatch(routerActions.navigateToFriend({history, friendId})),
+    navigateToEditFriends: () => dispatch(routerActions.navigateToEditFriends({history})),
   };
 }
 
@@ -113,5 +116,7 @@ export function useFriendsActions() {
   const history = useHistory();
   return {
     fetchFriends: () => dispatch(friendsAcrions.fetchFriends({history})),
+    deleteFriend: (id: string) =>
+      dispatch(friendsAcrions.deleteFriend({friendId: id, history})),
   };
 }

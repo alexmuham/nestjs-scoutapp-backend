@@ -117,6 +117,7 @@ const UserFragment = () => gql`
     players {
       ...Player
     }
+    image
   }
 `;
 
@@ -339,7 +340,7 @@ export const friendQuery = createQueryWithVariables<
   ({friendById}) => friendById,
 );
 
-export const friendsQuery = createQuery<{friendById: [User]}, [User]>(
+export const friendsQuery = createQuery<{friends: [User]}, [User]>(
   gql`
     ${UserFragment()}
     ${PlayerFragment()}
@@ -353,5 +354,5 @@ export const friendsQuery = createQuery<{friendById: [User]}, [User]>(
       }
     }
   `,
-  ({friendById}) => friendById,
+  ({friends}) => friends,
 );

@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {RequireLoadable, FriedList} from 'components';
 import {useFriendsActions, useRouterActions} from 'state/hooks/UseActions';
-import {useSelector} from '../../../state/hooks';
+import {useSelector} from 'state/hooks';
 
-const Friends: React.FC = () => {
+const EditFriends: React.FC = () => {
   const {t} = useTranslation('friends');
 
   const actions = useFriendsActions();
@@ -22,12 +22,13 @@ const Friends: React.FC = () => {
         <FriedList
           friends={friends}
           title={t('friends')}
-          mode="list"
-          navigateActions={() => routerActions.navigateToEditFriends()}
+          mode="edit"
+          editAction={routerActions.goBack}
+          deleteAction={actions.deleteFriend}
         />
       )}
     </RequireLoadable>
   );
 };
 
-export default Friends;
+export default EditFriends;

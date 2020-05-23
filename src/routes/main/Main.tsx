@@ -5,6 +5,8 @@ import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
 import {Route, useHistory, Redirect} from 'react-router';
 import {Prospect, Settings, PlayerCard, EditProspect, Friends} from 'routes/main';
+import FriendCard from './friend/FriendCard';
+import EditFriends from './friends/editFriends/EditFriends';
 
 const Main: React.FC = () => {
   const history = useHistory();
@@ -33,6 +35,12 @@ const Main: React.FC = () => {
       </Route>
       <Route exact path="/main/friends">
         <Friends />
+      </Route>
+      <Route path="/main/friend:id">
+        <FriendCard />
+      </Route>
+      <Route exact path="/main/friends/edit">
+        <EditFriends />
       </Route>
       <TransitionBar activeProspect />
     </View>

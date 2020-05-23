@@ -89,6 +89,7 @@ export type User = {
   phoneNumber: Scalars['String'];
   education: Scalars['String'];
   players?: Maybe<Array<Player>>;
+  image?: Maybe<Scalars['String']>;
 };
 
 export type Account = {
@@ -100,8 +101,8 @@ export type Account = {
 export type Query = {
    __typename?: 'Query';
   account: Account;
-  friends?: Maybe<Array<User>>;
-  friendById?: Maybe<User>;
+  friends: Array<User>;
+  friendById: User;
   playerById: Player;
   getPlayers: Array<Player>;
   playersFromUser: Array<Player>;

@@ -76,6 +76,7 @@ type User {
   phoneNumber: String!
   education: String!
   players: [Player!]
+  image: String
 }
 
 type Account {
@@ -85,8 +86,8 @@ type Account {
 
 type Query {
   account: Account!
-  friends: [User!]
-  friendById(friendId: String!): User
+  friends: [User!]!
+  friendById(friendId: String!): User!
   playerById(playerId: String!): Player!
   getPlayers: [Player!]!
   playersFromUser: [Player!]!

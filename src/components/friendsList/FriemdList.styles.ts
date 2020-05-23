@@ -1,72 +1,41 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  list: {
-    marginTop: 20,
-    flexDirection: 'row',
-    paddingBottom: 3,
-    borderBottomWidth: 1,
-    marginBottom: 10,
-    marginRight: 5,
-  },
-  playerListContainer: {
-    flex: 1,
-  },
-  number: {
-    marginRight: 7,
-  },
-  name: {
-    textAlign: 'center',
-    width: '34%',
-  },
-  position: {
-    width: '12%',
-    textAlign: 'center',
-  },
-  team: {
-    width: '12%',
-    textAlign: 'center',
-  },
-  class: {
-    width: '8%',
-    textAlign: 'center',
-  },
-  commited: {
-    width: '20%',
-    textAlign: 'center',
-  },
-  rating: {
-    width: '7%',
-    textAlign: 'center',
-  },
   topContainer: {
     paddingTop: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
   },
-  numberOfPlayersText: {
+  numberOfFriendsText: {
     color: '#A61911',
-  },
-  playerList: {
-    marginTop: 10,
+    fontSize: 20,
+    marginRight: 5,
   },
   editContainer: {
     flexDirection: 'row',
-    marginRight: 20,
-  },
-  edit: {
-    marginRight: 5,
+    alignItems: 'center',
   },
   container: {
     flex: 1,
-    marginLeft: 10,
+    marginHorizontal: 20,
   },
   title: {
     paddingTop: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   titleText: {
     color: '#A61911',
     fontSize: 30,
+  },
+  friendList: {
+    marginHorizontal: 5,
+    flex: 1,
   },
 });
 

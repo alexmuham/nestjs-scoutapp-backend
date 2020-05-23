@@ -1,6 +1,6 @@
 import {all, put, select, takeEvery} from 'redux-saga/effects';
 import types from './types';
-import {NavigateToPlayer, NavigationPayload} from './actions';
+import {NavigateToFriend, NavigateToPlayer, NavigationPayload} from './actions';
 import {Action} from 'redux-actions';
 import State from 'state/entities/State';
 import {actions as sessionActions} from 'state/ducks/session';
@@ -46,6 +46,14 @@ function navigateToImagePicker({payload}: Action<NavigateToPlayer>) {
   payload.history.push(`/main/player${payload.playerId}/imagePicker`);
 }
 
+function navigateToFriend({payload}: Action<NavigateToFriend>) {
+  payload.history.push(`/main/friend${payload.friendId}`);
+}
+
+function navigateToEditFriends({payload}: Action<NavigationPayload>) {
+  payload.history.push('/main/friends/edit');
+}
+
 export default function* () {
   yield all([
     takeEvery(types.GO_BACK, goBack),
@@ -57,5 +65,7 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_SETTINGS, navigateToSettings),
     takeEvery(types.NAVIGATE_TO_EDIT_PROSPECT, navigateToEditProspect),
     takeEvery(types.NAVIGATE_TO_IMAGE_PICKER, navigateToImagePicker),
+    takeEvery(types.NAVIGATE_TO_FRIEND, navigateToFriend),
+    takeEvery(types.NAVIGATE_TO_EDIT_FRIENDS, navigateToEditFriends),
   ]);
 }

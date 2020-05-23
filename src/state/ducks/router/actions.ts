@@ -4,6 +4,7 @@ import * as H from 'history';
 
 export type NavigationPayload = {history: H.History};
 export type NavigateToPlayer = {playerId: string} & NavigationPayload;
+export type NavigateToFriend = {friendId: string} & NavigationPayload;
 
 export default {
   goBack: createAction<NavigationPayload>(types.GO_BACK),
@@ -17,4 +18,6 @@ export default {
     types.NAVIGATE_TO_EDIT_PROSPECT,
   ),
   navigateToImagePicker: createAction<NavigateToPlayer>(types.NAVIGATE_TO_IMAGE_PICKER),
+  navigateToFriend: createAction<NavigateToFriend>(types.NAVIGATE_TO_FRIEND),
+  navigateToEditFriends: createAction<NavigationPayload>(types.NAVIGATE_TO_EDIT_FRIENDS),
 };
