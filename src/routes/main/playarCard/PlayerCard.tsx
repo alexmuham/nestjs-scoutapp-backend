@@ -205,7 +205,7 @@ const PlayerCard: React.FC = () => {
         )}
       </RequireLoadable>
       <Route path="/main/player:id/imagePicker">
-        <Modal presentationStyle="overFullScreen" animationType="slide" transparent>
+        <Modal animationType="fade" transparent>
           <ImagePicker />
         </Modal>
       </Route>
