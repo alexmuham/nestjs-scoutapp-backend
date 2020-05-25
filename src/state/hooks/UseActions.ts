@@ -51,8 +51,8 @@ export function useRouterActions() {
     navigateToFriend: (friendId: string) =>
       dispatch(routerActions.navigateToFriend({history, friendId})),
     navigateToEditFriends: () => dispatch(routerActions.navigateToEditFriends({history})),
-    navigateToFriendActPopUp: (friendId: string) =>
-      dispatch(routerActions.navigateToFriendActPopUp({friendId, history})),
+    navigateToMassage: (friendId: string) =>
+      dispatch(routerActions.navigateToMassage({friendId, history})),
     navigateToInvitePopUp: () => dispatch(routerActions.navigateToInvitePopUp({history})),
   };
 }

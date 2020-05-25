@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {RequireLoadable, FriedList} from 'components';
 import {useFriendsActions, useRouterActions} from 'state/hooks/UseActions';
 import {useSelector} from 'state/hooks';
 import {Modal, View} from 'react-native';
-import {FriendAct, Invite} from '../popUp';
+import {Invite} from '../popUp';
 import {Route} from 'react-router-native';
 import styles from './Friends.styles';
 
@@ -13,6 +13,8 @@ const Friends: React.FC = () => {
 
   const actions = useFriendsActions();
   const routerActions = useRouterActions();
+
+  const [searchValue, setSearch] = useState<string>('');
 
   useEffect(() => {
     actions.fetchFriends();
@@ -24,26 +26,26 @@ const Friends: React.FC = () => {
     <View style={styles.flexOne}>
       <RequireLoadable data={friends}>
         {({friends}) => (
-          <FriedList
-            friends={friends}
-            title={t('friends')}
-            mode="list"
-            navigateActions={() => routerActions.navigateToEditFriends()}
-            inviteAction={() => routerActions.navigateToInvitePopUp()}
-            friendActAction={routerActions.navigateToFriendActPopUp}
-          />
+          <>
+            <FriedList
+              friends={friends}
+              title={t('friends')}
+              mode="list"
+              navigateActions={() => routerActions.navigateToEditFriends()}
+              inviteAction={() => routerActions.navigateToInvitePopUp()}
+              massageActions={routerActions.navigateToMassage}
+              searchValue={searchValue}
+              onChangeText={setSearch}
+              placeholder={t('search')}
+            />
+            <Route path="/main/friends/invite">
+              <Modal animationType="fade" transparent>
+                <Invite />
+              </Modal>
+            </Route>
+          </>
         )}
       </RequireLoadable>
-      <Route path="/main/friends/invite">
-        <Modal presentationStyle="overFullScreen" animationType="slide" transparent>
-          <Invite />
-        </Modal>
-      </Route>
-      <Route path="/main/friends/friendAct:id">
-        <Modal presentationStyle="overFullScreen" animationType="slide" transparent>
-          <FriendAct />
-        </Modal>
-      </Route>
     </View>
   );
 };

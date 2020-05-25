@@ -51,15 +51,15 @@ function navigateToFriend({payload}: Action<NavigateToFriend>) {
 }
 
 function navigateToEditFriends({payload}: Action<NavigationPayload>) {
-  payload.history.push('/main/friends/edit');
+  payload.history.push('/main/friendsEdit');
 }
 
 function navigateToInvitePopUp({payload}: Action<NavigationPayload>) {
   payload.history.push('/main/friends/invite');
 }
 
-function navigateToFriendActPopUp({payload}: Action<NavigateToFriend>) {
-  payload.history.push(`/main/friends/friendAct${payload.friendId}`);
+function navigateToMasage({payload}: Action<NavigateToFriend>) {
+  payload.history.push(`/main/friends/massage${payload.friendId}`);
 }
 
 export default function* () {
@@ -76,6 +76,6 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_FRIEND, navigateToFriend),
     takeEvery(types.NAVIGATE_TO_EDIT_FRIENDS, navigateToEditFriends),
     takeEvery(types.NAVIGATE_TO_INVITE_POP_UP, navigateToInvitePopUp),
-    takeEvery(types.NAVIGATE_TO_FRIEND_ACT_POP_UP, navigateToFriendActPopUp),
+    takeEvery(types.NAVIGATE_TO_MASSAGE, navigateToMasage),
   ]);
 }

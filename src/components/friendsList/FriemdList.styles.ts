@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   topContainer: {
-    paddingTop: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -36,6 +35,9 @@ const styles = StyleSheet.create({
   friendList: {
     marginHorizontal: 5,
     flex: 1,
+  },
+  inputFieldContainer: {
+    paddingTop: 15,
   },
 });
 

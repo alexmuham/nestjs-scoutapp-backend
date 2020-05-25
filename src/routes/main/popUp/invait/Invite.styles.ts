@@ -2,8 +2,8 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    width: '80%',
-    height: '30%',
+    width: '90%',
+    height: '25%',
   },
   title: {
     paddingBottom: 20,
@@ -12,14 +12,21 @@ const styles = StyleSheet.create({
     fontSize: 23,
   },
   inputFieldContainer: {
-    width: '80%',
+    width: '85%',
     paddingBottom: 20,
   },
   bottomContainer: {
     width: '80%',
+    flexDirection: 'row',
   },
-  send: {
-    paddingBottom: 20,
+  cancelButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cancelButtonText: {
+    color: 'black',
+    justifyContent: 'center',
+    paddingHorizontal: 30,
   },
 });
 

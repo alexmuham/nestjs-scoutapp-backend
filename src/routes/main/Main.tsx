@@ -6,7 +6,7 @@ import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
 import {Route, useHistory, Redirect} from 'react-router';
 import {Prospect, Settings, PlayerCard, EditProspect, Friends} from 'routes/main';
-import FriendCard from './friend/FriendCard';
+import Massage from './massage/Massage';
 import EditFriends from './friends/editFriends/EditFriends';
 
 const Main: React.FC = () => {
@@ -34,14 +34,14 @@ const Main: React.FC = () => {
       <Route exact path="/main/settings">
         <Settings />
       </Route>
+      <Route exact path="/main/friendsEdit">
+        <EditFriends />
+      </Route>
       <Route path="/main/friends">
         <Friends />
       </Route>
-      <Route path="/main/friend:id">
-        <FriendCard />
-      </Route>
-      <Route exact path="/main/friends/edit">
-        <EditFriends />
+      <Route exact path="/main/friends/massage:id">
+        <Massage />
       </Route>
       <Route exact path="/main/notifications">
         <Notifications />

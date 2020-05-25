@@ -27,16 +27,13 @@ const Invite: React.FC = () => {
       </View>
       <View style={styles.bottomContainer}>
         <Button
-          style={styles.send}
-          visualStyle="solid"
-          onPress={() => undefined}
-          title={t('send')}
-        />
-        <Button
-          visualStyle="solid"
+          visualStyle="none"
           onPress={() => routerAction.goBack()}
           title={t('cancel')}
+          style={styles.cancelButton}
+          textStyle={styles.cancelButtonText}
         />
+        <Button visualStyle="solid" onPress={() => undefined} title={t('invite')} />
       </View>
     </PopUpContainer>
   );

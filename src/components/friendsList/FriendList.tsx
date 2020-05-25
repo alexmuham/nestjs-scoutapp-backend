@@ -13,7 +13,7 @@ import {useTranslation} from 'react-i18next';
 import * as FriendListImages from './assets';
 import User from 'entities/User';
 import FriendItem from './friendItem/FriendItem';
-import EditFriendItem from './friendEditItem/EditFriendItem';
+import InputField from '../inputField/InputField';
 
 interface PlayerListProps {
   friends: User[];
@@ -24,7 +24,10 @@ interface PlayerListProps {
   editAction?: () => void;
   deleteAction?: (id: string) => void;
   inviteAction?: () => void;
-  friendActAction?: (id: string) => void;
+  massageActions?: (id: string) => void;
+  placeholder?: string;
+  onChangeText?: (text: string) => void;
+  searchValue?: string;
 }
 
 const FriedList: React.FC<PlayerListProps> = ({
@@ -35,31 +38,24 @@ const FriedList: React.FC<PlayerListProps> = ({
   mode,
   editAction,
   deleteAction,
-  friendActAction,
+  massageActions,
   inviteAction,
+  placeholder,
+  searchValue,
+  onChangeText,
 }) => {
   const {t} = useTranslation('playerList');
 
-  const playerList = (friend: User) => {
-    switch (mode) {
-      case 'list': {
-        return <FriendItem friend={friend} friendActAction={friendActAction} />;
-      }
-      case 'edit': {
-        return <EditFriendItem friend={friend} deleteActions={deleteAction} />;
-      }
-      default: {
-        return <></>;
-      }
-    }
-  };
-
-  const renderItem = (text: string, image: ImageSourcePropType, action?: () => void) => {
+  const renderItem = (
+    text: string,
+    image: ImageSourcePropType | undefined,
+    action?: () => void,
+  ) => {
     return (
       <TouchableOpacity style={styles.editContainer} onPress={action}>
         <>
           <Text style={styles.numberOfFriendsText}>{text}</Text>
-          <Image source={image} />
+          {image && <Image source={image} />}
         </>
       </TouchableOpacity>
     );
@@ -75,16 +71,33 @@ const FriedList: React.FC<PlayerListProps> = ({
           </TouchableOpacity>
         )}
       </View>
+      <View style={styles.inputFieldContainer}>
+        <InputField
+          placeholder={placeholder}
+          value={searchValue}
+          onChangeText={onChangeText}
+        />
+      </View>
       <View style={styles.topContainer}>
         <Text style={styles.numberOfFriendsText}>{`${friends.length} ${t(
           'friends',
         )}`}</Text>
         {mode === 'list' &&
           renderItem(t('editList'), FriendListImages.Arrow, navigateActions)}
-        {mode === 'edit' && renderItem(t('save'), FriendListImages.Arrow, editAction)}
+        {mode === 'edit' && renderItem(t('save'), undefined, editAction)}
       </View>
       <View style={styles.friendList}>
-        <FlatList data={friends} renderItem={({item}) => playerList(item)} />
+        <FlatList
+          data={friends}
+          renderItem={({item}) => (
+            <FriendItem
+              friend={item}
+              deleteActions={deleteAction}
+              massageActions={massageActions}
+              mode={mode}
+            />
+          )}
+        />
       </View>
     </View>
   );

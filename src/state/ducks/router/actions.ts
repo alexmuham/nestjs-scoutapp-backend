@@ -21,7 +21,5 @@ export default {
   navigateToFriend: createAction<NavigateToFriend>(types.NAVIGATE_TO_FRIEND),
   navigateToEditFriends: createAction<NavigationPayload>(types.NAVIGATE_TO_EDIT_FRIENDS),
   navigateToInvitePopUp: createAction<NavigationPayload>(types.NAVIGATE_TO_INVITE_POP_UP),
-  navigateToFriendActPopUp: createAction<NavigateToFriend>(
-    types.NAVIGATE_TO_FRIEND_ACT_POP_UP,
-  ),
+  navigateToMassage: createAction<NavigateToFriend>(types.NAVIGATE_TO_MASSAGE),
 };

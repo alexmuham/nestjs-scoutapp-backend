@@ -2,6 +2,10 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  borderBottom: {
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
   },
@@ -28,6 +32,10 @@ const styles = StyleSheet.create({
   },
   firstName: {
     paddingRight: 10,
+  },
+  deleteFriend: {
+    justifyContent: 'center',
+    padding: 20,
   },
 });
 
