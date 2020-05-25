@@ -51,6 +51,9 @@ const Main: React.FC = () => {
       <Route exact path="/main/notifications">
         <Notifications />
       </Route>
+      <Route exact path="/main/search">
+        <Search />
+      </Route>
       <TransitionBar activeProspect />
     </View>
   );
