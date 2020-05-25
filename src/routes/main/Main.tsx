@@ -5,7 +5,7 @@ import {MenuBar, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
 import {Route, useHistory, Redirect} from 'react-router';
-import {Prospect, Settings, PlayerCard, EditProspect, Friends} from 'routes/main';
+import {Prospect, Settings, PlayerCard, EditProspect, Friends, Search} from 'routes/main';
 import Massage from './massage/Massage';
 import EditFriends from './friends/editFriends/EditFriends';
 
@@ -43,10 +43,12 @@ const Main: React.FC = () => {
       <Route exact path="/main/friends/massage:id">
         <Massage />
       </Route>
+      <Route exact path="/main/search">
+        <Search />
+      </Route>
       <Route exact path="/main/notifications">
         <Notifications />
       </Route>
-
       <TransitionBar activeProspect />
     </View>
   );

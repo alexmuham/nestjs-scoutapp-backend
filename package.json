@@ -22,6 +22,7 @@
     "graphql-generate": "graphql-codegen"
   },
   "dependencies": {
+    "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/async-storage": "^2.0.0-rc.3",
     "@react-native-community/async-storage-backend-legacy": "^2.0.0-rc.3",
     "@redux-saga/core": "^1.1.3",

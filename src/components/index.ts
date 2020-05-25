@@ -9,6 +9,9 @@ import RequireSession from './require/RequireSession';
 import LineProperty from './lineProperty/LineProperty';
 import FriedList from './friendsList/FriendList';
 import PopUpContainer from './popUpContainer/PopUpContainer';
+import InputField from './inputField/InputField';
+import Slider from './slider/Slider';
+import List from './list/List';
 
 export {
   //
@@ -23,4 +26,7 @@ export {
   LineProperty,
   FriedList,
   PopUpContainer,
+  InputField,
+  Slider,
+  List,
 };

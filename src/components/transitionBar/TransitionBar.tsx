@@ -51,7 +51,7 @@ const TransitionBar: React.FC<TransitionBarProps> = ({
         activeSearch,
         Item.Search,
         Item.ActiveSearch,
-        routerActions.navigateToProspect,
+        routerActions.navigateToSearch,
       )}
       {renderComponent(
         activeProspect,

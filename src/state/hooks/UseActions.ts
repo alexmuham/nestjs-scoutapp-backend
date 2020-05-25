@@ -46,6 +46,7 @@ export function useRouterActions() {
       dispatch(routerActions.navigateToEditProspect({history})),
     goBack: () => dispatch(routerActions.goBack({history})),
     navigateToProspect: () => dispatch(routerActions.navigateToProspect({history})),
+    navigateToSearch: () => dispatch(routerActions.navigateToSearch({history})),
     navigateToImagePicker: (playerId: string) =>
       dispatch(routerActions.navigateToImagePicker({playerId, history})),
     navigateToFriend: (friendId: string) =>

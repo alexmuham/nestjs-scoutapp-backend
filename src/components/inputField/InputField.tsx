@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, TextInput, View, ViewProps} from 'react-native';
+import {Image, TextInput, View, ViewProps, ViewStyle} from 'react-native';
 import styles from './InputField.styles';
 import * as InputFieldImages from './assets';
 
@@ -7,6 +7,7 @@ interface AuthInputFieldProps extends ViewProps {
   placeholder?: string;
   onChangeText?: (text: string) => void;
   value?: string;
+  style?: ViewStyle;
 }
 
 const InputField: React.FC<AuthInputFieldProps> = ({
