@@ -95,6 +95,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
+  activeItemStyles: {
+    padding: 5,
+  },
+  batThrow: {
+    flexDirection: 'row',
+  },
 });
 
 export default styles;

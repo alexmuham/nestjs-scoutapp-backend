@@ -8,7 +8,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {InputField, Slider} from 'components';
+import {InputField, Dropdown, Slider} from 'components';
 import styles from './Search.styles';
 import {useTranslation} from 'react-i18next';
 import * as SearchImages from './assets';
@@ -27,6 +27,10 @@ const Search: React.FC = () => {
   const [positionValue, setPosition] = useState<string[]>([]);
 
   const [commitmentValue, setCommitment] = useState<string>('');
+
+  const [throwValue, setThrow] = useState<string>('');
+
+  const [batsValue, setBats] = useState<string>('');
 
   const renderPositionItem = (position: string, style?: ViewStyle) => {
     const active = positionValue.some((item) => item === position);
@@ -158,6 +162,22 @@ const Search: React.FC = () => {
             <View style={{...styles.positionContainer}}>
               <View>
                 <Text style={styles.positionTitle}>{t('bat/throw')}</Text>
+              </View>
+              <View style={styles.batThrow}>
+                <Dropdown
+                  data={['R', 'L', 'S']}
+                  activeItemStyles={styles.activeItemStyles}
+                  setActiveElement={setBats}
+                  activeElement={batsValue}
+                />
+              </View>
+              <View>
+                <Dropdown
+                  data={['R', 'L', 'B']}
+                  activeItemStyles={styles.activeItemStyles}
+                  setActiveElement={setThrow}
+                  activeElement={throwValue}
+                />
               </View>
             </View>
             <View>
