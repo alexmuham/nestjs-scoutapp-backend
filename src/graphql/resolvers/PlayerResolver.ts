@@ -62,4 +62,39 @@ export class PlayerResolver {
     await this.playerManager.addPlayerImage(imageId, playerId);
     return true;
   }
+
+  @Query(() => [Player])
+  async playersBySearchParameters(
+    @Args({name: 'name', type: () => String, nullable: true}) name: string,
+    @Args({name: 'height', type: () => [Number]}) height: number[],
+    @Args({name: 'weight', type: () => [Number]}) weight: number[],
+    @Args({name: 'position', type: () => [String], nullable: true}) position: string[],
+    @Args({name: 'graduatingClass', type: () => [Number]}) graduatingClass: number[],
+    @Args({name: 'commitment', type: () => String, nullable: true}) commitment: string,
+    @Args({name: 'bat', type: () => String, nullable: true}) bat: string,
+    @Args({name: 'playerThrows', type: () => String, nullable: true})
+    playerThrows: string,
+    @Args({name: 'sixtyTime', type: () => [Number]}) sixtyTime: number[],
+    @Args({name: 'positionVelocity', type: () => String, nullable: true})
+    positionVelocity: string,
+    @Args({name: 'tenYard', type: () => [Number]}) tenYard: number[],
+    @Args({name: 'exitVelocity', type: () => [Number]}) exitVelocity: number[],
+  ) {
+    return mapPlayersToGQL(
+      await this.playerManager.getPlayersBySearchParameters(
+        name,
+        height,
+        weight,
+        position,
+        graduatingClass,
+        commitment,
+        bat,
+        playerThrows,
+        sixtyTime,
+        positionVelocity,
+        tenYard,
+        exitVelocity,
+      ),
+    );
+  }
 }

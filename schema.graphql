@@ -91,6 +91,7 @@ type Query {
   playerById(playerId: String!): Player!
   getPlayers: [Player!]!
   playersFromUser: [Player!]!
+  playersBySearchParameters(exitVelocity: [Float!]!, tenYard: [Float!]!, positionVelocity: String, sixtyTime: [Float!]!, playerThrows: String, bat: String, commitment: String, graduatingClass: [Float!]!, position: [String!], weight: [Float!]!, height: [Float!]!, name: String): [Player!]!
   preferences: Preferences!
 }
 

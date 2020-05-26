@@ -141,7 +141,9 @@ export default class PlayerStore implements IPlayerStore {
   }
 
   async getPlayers() {
-    return this.repository.find();
+    return this.repository.find({
+      relations: ['careerProgressions', 'pGEventResults'],
+    });
   }
 
   async addPlayerImage(image: File, id: string): Promise<void> {

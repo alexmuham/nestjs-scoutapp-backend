@@ -3,10 +3,10 @@ import IPlayerManager from './IPlayerManager';
 import IPlayerStore from 'database/stores/player/IPlayerStore';
 import CSVResponse, {Statistic} from 'api/entities/CSVResponse';
 import ScoutAppError from '../../ScoutAppError';
-import {mapPlayerFormDb, mapPlayersFormDb} from '../../database/entities/Mappers';
+import {mapPlayerFormDb, mapPlayersFormDb} from 'database/entities/Mappers';
 import IUserStore from 'database/stores/user/IUserStore';
 import {ID} from 'entities/Common';
-import IFileStore from '../../database/stores/file/IFileStore';
+import IFileStore from 'database/stores/file/IFileStore';
 
 @Injectable()
 export default class PlayerManager implements IPlayerManager {
@@ -165,5 +165,96 @@ export default class PlayerManager implements IPlayerManager {
     const file = await this.fileStore.getFile({id: imageId});
     if (!file) throw new ScoutAppError('This file does not exist.');
     await this.playerStore.addPlayerImage(file, playerId);
+  }
+
+  async getPlayersBySearchParameters(
+    name: string | undefined,
+    height: number[],
+    weight: number[],
+    position: string[] | undefined,
+    graduatingClass: number[],
+    commitment: string | undefined,
+    bat: string | undefined,
+    playerThrows: string | undefined,
+    sixtyTime: number[],
+    positionVelocity: string | undefined,
+    tenYard: number[],
+    exitVelocity: number[],
+  ) {
+    const players = await this.playerStore.getPlayers();
+    if (!players || players.length < 1) throw new ScoutAppError('');
+    const playersByName = !name
+      ? players
+      : players.filter((player) => player.name.slice(0, name.length) === name);
+
+    const playersByHeight = playersByName.filter((player) => {
+      const foot = +player.height.slice(0, 1) * 30.48;
+      const inch = +player.height.slice(3, player.height.length) * 2.54;
+      const playerHeight = +(foot + inch).toFixed(2);
+      return playerHeight >= height[0] * 30.48 && playerHeight <= height[1] * 30.48;
+    });
+
+    const playerByWeight = playersByHeight.filter(
+      (player) => +player.weight >= weight[0] && +player.weight <= weight[1],
+    );
+
+    const playerByPosition = playerByWeight;
+    //   !position
+    // ? playerByWeight
+    // : playerByWeight.filter((player) => {
+    //     let data;
+    //     for (let i = 0; i < position.length; i += 1) {
+    //       data = player.primaryPosition === position[i];
+    //     }
+    //     return data;
+    //   });
+
+    const playerByGraduatingClass = playerByPosition.filter(
+      (player) =>
+        +player.graduatingClass >= graduatingClass[0] &&
+        +player.graduatingClass <= graduatingClass[1],
+    );
+
+    const playerByCommitment = !commitment
+      ? playerByGraduatingClass
+      : playerByGraduatingClass.filter(
+          (player) => player.collegeCommitment === commitment,
+        );
+
+    const playerByBat = !bat
+      ? playerByCommitment
+      : playerByCommitment.filter((player) => player.bats === bat);
+
+    const playerByThrow = !playerThrows
+      ? playerByBat
+      : playerByBat.filter((player) => player.throws === playerThrows);
+
+    const playerBySixtyTime = playerByThrow.filter((player) => {
+      return (
+        player.pGEventResults &&
+        +player.pGEventResults.sixtyYdDash >= sixtyTime[0] &&
+        +player.pGEventResults.sixtyYdDash <= sixtyTime[1]
+      );
+    });
+
+    const playerByPositionVelocity = !positionVelocity // TODO ADD POSITION VELOCITY
+      ? playerBySixtyTime
+      : playerBySixtyTime;
+
+    const playerByTenYard = playerByPositionVelocity.filter(
+      (player) =>
+        player.pGEventResults &&
+        +player.pGEventResults.tenYdSplit >= tenYard[0] &&
+        +player.pGEventResults.tenYdSplit <= tenYard[1],
+    );
+
+    const playerByExitVelocity = playerByTenYard.filter(
+      (player) =>
+        player.pGEventResults &&
+        +player.pGEventResults.exitVelocity >= exitVelocity[0] &&
+        +player.pGEventResults.exitVelocity <= exitVelocity[1],
+    );
+
+    return mapPlayersFormDb(playerByExitVelocity);
   }
 }

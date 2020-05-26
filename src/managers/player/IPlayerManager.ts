@@ -18,4 +18,19 @@ export default abstract class IPlayerManager {
   abstract getPlayersFromUser(userId: ID): Promise<Player[]>;
 
   abstract addPlayerImage(imageId: string, playerId: string): Promise<void>;
+
+  abstract getPlayersBySearchParameters(
+    name: string | undefined,
+    height: number[],
+    weight: number[],
+    position: string[] | undefined,
+    graduatingClass: number[],
+    commitment: string | undefined,
+    bat: string | undefined,
+    playerThrows: string | undefined,
+    sixtyTime: number[],
+    positionVelocity: string | undefined,
+    tenYard: number[],
+    exitVelocity: number[],
+  ): Promise<Player[]>;
 }
