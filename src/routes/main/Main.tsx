@@ -42,17 +42,12 @@ const Main: React.FC = () => {
       </Route>
       <Route exact path="/main/friends/massage:id">
         <Massage />
-      <Route exact path="/main/friends/massage:id">
-        <Massage />
       </Route>
       <Route exact path="/main/search">
         <Search />
       </Route>
       <Route exact path="/main/notifications">
         <Notifications />
-      </Route>
-      <Route exact path="/main/search">
-        <Search />
       </Route>
       <TransitionBar activeProspect />
     </View>
