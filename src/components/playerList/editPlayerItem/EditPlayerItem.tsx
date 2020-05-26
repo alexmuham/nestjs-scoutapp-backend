@@ -39,7 +39,7 @@ const EditPlayerItem: React.FC<EditItemProps> = ({
       style={styles.container}
     >
       <View style={styles.player}>
-        {star ? (
+        {!star ? (
           <Image style={styles.star} source={PlayerList.Star} />
         ) : (
           <Image style={styles.star} source={PlayerList.EmptyStar} />

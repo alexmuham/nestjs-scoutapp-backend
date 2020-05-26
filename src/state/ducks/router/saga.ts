@@ -66,6 +66,10 @@ function navigateToSearch({payload}: Action<NavigationPayload>) {
   payload.history.push(`/main/search`);
 }
 
+function navigateToPlayersListFromSearch({payload}: Action<NavigationPayload>) {
+  payload.history.push(`/main/search/playerList`);
+}
+
 export default function* () {
   yield all([
     takeEvery(types.GO_BACK, goBack),
@@ -82,5 +86,9 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_INVITE_POP_UP, navigateToInvitePopUp),
     takeEvery(types.NAVIGATE_TO_MASSAGE, navigateToMassage),
     takeEvery(types.NAVIGATE_TO_SEARCH, navigateToSearch),
+    takeEvery(
+      types.NAVIGATE_TO_PLAYERS_LIST_FROM_SEARCH,
+      navigateToPlayersListFromSearch,
+    ),
   ]);
 }

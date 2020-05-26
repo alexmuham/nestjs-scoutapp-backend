@@ -3,7 +3,7 @@ import LogIn from './login/LogIn';
 import ForgotPassword from './forgotPassword/ForgotPassword';
 import {Route} from 'react-router-native';
 import React from 'react';
-import {useGuard} from '../../state/hooks/UseGuard';
+import {useGuard} from 'state/hooks/UseGuard';
 
 const Auth: React.FC = () => {
   useGuard({requireAuthenticated: false});

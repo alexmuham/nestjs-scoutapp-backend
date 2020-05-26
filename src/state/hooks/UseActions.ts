@@ -9,7 +9,8 @@ import {actions as prospectActions} from '../ducks/prospect';
 import {actions as playerActions} from '../ducks/player';
 import {actions as routerActions} from '../ducks/router';
 import {actions as imagePickerActions} from '../ducks/imagePicker';
-import {actions as friendsAcrions} from '../ducks/friends';
+import {actions as friendsActions} from '../ducks/friends';
+import {actions as searchActions} from '../ducks/search';
 import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
@@ -55,6 +56,8 @@ export function useRouterActions() {
     navigateToMassage: (friendId: string) =>
       dispatch(routerActions.navigateToMassage({friendId, history})),
     navigateToInvitePopUp: () => dispatch(routerActions.navigateToInvitePopUp({history})),
+    navigateToPlayersListFromSearch: () =>
+      dispatch(routerActions.navigateToPlayersListFromSearch({history})),
   };
 }
 
@@ -68,6 +71,17 @@ export function useProspectActions() {
     },
     deletePlayers: (playersIds: string[]) => {
       dispatch(prospectActions.deletePlayers({playersIds, history}));
+    },
+  };
+}
+
+export function useSearchActions() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  return {
+    searchPlayers: () => {
+      dispatch(searchActions.searchPlayers({history}));
     },
   };
 }
@@ -119,8 +133,8 @@ export function useFriendsActions() {
   const dispatch = useDispatch();
   const history = useHistory();
   return {
-    fetchFriends: () => dispatch(friendsAcrions.fetchFriends({history})),
+    fetchFriends: () => dispatch(friendsActions.fetchFriends({history})),
     deleteFriend: (id: string) =>
-      dispatch(friendsAcrions.deleteFriend({friendId: id, history})),
+      dispatch(friendsActions.deleteFriend({friendId: id, history})),
   };
 }

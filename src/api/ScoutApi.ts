@@ -137,4 +137,10 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
       return friends ? mapUsersFromGQL(friends) : [];
     });
   }
+
+  public async getPlayers() {
+    return this.wrapApiCall(async () =>
+      mapPlayersFromGQL(await this.graphqlApi.queryPlayers()),
+    );
+  }
 }

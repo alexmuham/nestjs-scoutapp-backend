@@ -15,4 +15,5 @@ export default interface State {
   player: LoadableContainer<Player>;
   preferences: LoadableContainer<Preferences>;
   friends: LoadableContainer<Friends>;
+  search: LoadableContainer<Players>;
 }

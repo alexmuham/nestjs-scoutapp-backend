@@ -1,13 +1,21 @@
-import Notifications from './notifications/Notifications';
 import React from 'react';
 import styles from './Main.styles';
 import {MenuBar, TransitionBar} from 'components';
 import {MenuBarItems} from 'navigation';
 import {View} from 'react-native';
 import {Route, useHistory, Redirect} from 'react-router';
-import {Prospect, Settings, PlayerCard, EditProspect, Friends, Search} from 'routes/main';
-import Massage from './massage/Massage';
-import EditFriends from './friends/editFriends/EditFriends';
+import {
+  Prospect,
+  Settings,
+  PlayerCard,
+  EditProspect,
+  Friends,
+  Search,
+  EditFriends,
+  Massage,
+  Notifications,
+  SearchPlayerList,
+} from 'routes/main';
 
 const Main: React.FC = () => {
   const history = useHistory();
@@ -45,6 +53,9 @@ const Main: React.FC = () => {
       </Route>
       <Route exact path="/main/search">
         <Search />
+      </Route>
+      <Route exact path="/main/search/playerList">
+        <SearchPlayerList />
       </Route>
       <Route exact path="/main/notifications">
         <Notifications />

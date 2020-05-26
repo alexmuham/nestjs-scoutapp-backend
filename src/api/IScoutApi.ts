@@ -45,4 +45,6 @@ export interface IScoutApi {
   addFriend(friendId: string): Promise<void>;
 
   deleteFriend(friendId: string): Promise<void>;
+
+  getPlayers(): Promise<Player[]>;
 }

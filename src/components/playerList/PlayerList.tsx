@@ -21,7 +21,7 @@ interface PlayerListProps {
   title?: string;
   styleContainer?: ViewStyle;
   navigateActions?: () => void;
-  mode: 'list' | 'edit';
+  mode: 'list' | 'edit' | 'search';
   editAction?: () => void;
   starValue?: boolean;
   playersIds?: string[];
@@ -56,6 +56,9 @@ const PlayerList: React.FC<PlayerListProps> = ({
             number={number}
           />
         );
+      }
+      case 'search': {
+        return <PlayerItem player={player} number={number} />;
       }
       default: {
         return <></>;

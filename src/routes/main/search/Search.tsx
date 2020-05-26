@@ -13,11 +13,13 @@ import {Dropdown} from '@spryrocks/dropdown-react-native';
 import styles from './Search.styles';
 import {useTranslation} from 'react-i18next';
 import * as SearchImages from './assets';
+// import SearchRequest from 'entities/SearchRequest';
+import {useSearchActions} from '../../../state/hooks/UseActions';
 
 const Search: React.FC = () => {
   const {t} = useTranslation('search');
   const [searchValue, setSearch] = useState<string>('');
-  const [externalSearchValue, setExternalSearch] = useState<boolean>(true);
+  const [externalSearchValue, setExternalSearch] = useState<boolean>(false);
 
   const [heightValue, setHeight] = useState<number[]>([5, 7]);
 
@@ -40,6 +42,8 @@ const Search: React.FC = () => {
   const [positionVelocityValue, setPositionVelocity] = useState<string>('');
 
   const [exitVelocityValue, setExitVelocityValue] = useState<number[]>([60, 100]);
+
+  const actions = useSearchActions();
 
   const renderPositionItem = (position: string, style?: ViewStyle) => {
     const active = positionValue.some((item) => item === position);
@@ -72,13 +76,28 @@ const Search: React.FC = () => {
     );
   };
 
+  // const confirmSearch = (): SearchRequest => ({
+  //   bat: batsValue === '-' ? undefined : batsValue,
+  //   class: classValue,
+  //   commitment: commitmentValue.length < 1 ? undefined : commitmentValue,
+  //   exitVelocity: exitVelocityValue,
+  //   height: heightValue,
+  //   name: searchValue.length < 1 ? undefined : searchValue,
+  //   position: positionValue,
+  //   positionVelocity: positionVelocityValue === '-' ? 'undefined' : positionVelocityValue,
+  //   sixtyTime: sixtyTimeValue,
+  //   tenYard: tenYardValue,
+  //   throw: throwValue === '-' ? undefined : throwValue,
+  //   weight: weightValue,
+  // });
+
   const button = () => (
     <View style={styles.buttonContainer}>
       <Button
         style={styles.button}
         visualStyle="solid"
         title={t('search')}
-        onPress={() => undefined}
+        onPress={() => actions.searchPlayers()}
       />
     </View>
   );

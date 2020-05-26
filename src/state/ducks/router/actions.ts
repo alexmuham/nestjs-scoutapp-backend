@@ -23,4 +23,7 @@ export default {
   navigateToEditFriends: createAction<NavigationPayload>(types.NAVIGATE_TO_EDIT_FRIENDS),
   navigateToInvitePopUp: createAction<NavigationPayload>(types.NAVIGATE_TO_INVITE_POP_UP),
   navigateToMassage: createAction<NavigateToFriend>(types.NAVIGATE_TO_MASSAGE),
+  navigateToPlayersListFromSearch: createAction<NavigationPayload>(
+    types.NAVIGATE_TO_PLAYERS_LIST_FROM_SEARCH,
+  ),
 };

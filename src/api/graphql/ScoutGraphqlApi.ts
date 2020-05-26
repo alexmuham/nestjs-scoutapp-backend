@@ -13,6 +13,7 @@ import {
   deleteFriendMutation,
   friendQuery,
   friendsQuery,
+  playersQuery,
 } from './ScoutGraphqlQueryBuilder';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
@@ -67,5 +68,9 @@ export default class ScoutGraphqlApi extends GraphqlApiBase {
 
   public async queryFriends() {
     return this.mutation(friendsQuery());
+  }
+
+  public async queryPlayers() {
+    return this.query(playersQuery());
   }
 }
