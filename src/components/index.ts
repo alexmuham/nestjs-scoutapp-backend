@@ -11,7 +11,6 @@ import FriedList from './friendsList/FriendList';
 import PopUpContainer from './popUpContainer/PopUpContainer';
 import InputField from './inputField/InputField';
 import Slider from './slider/Slider';
-import Dropdown from './dropdown/Dropdown';
 
 export {
   //
@@ -28,5 +27,4 @@ export {
   PopUpContainer,
   InputField,
   Slider,
-  Dropdown,
 };
