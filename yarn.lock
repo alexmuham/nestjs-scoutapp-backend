@@ -2054,6 +2054,11 @@
   dependencies:
     "@spryrocks/config-core" "^1.0.0-alpha.5"
 
+"@spryrocks/dropdown-react-native@0.0.1-alpha.0":
+  version "0.0.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@spryrocks/dropdown-react-native/-/dropdown-react-native-0.0.1-alpha.0.tgz#82f695e29d36dd5cc52f565a1353b59541d8be83"
+  integrity sha512-uGTXFaJfTc72DfDorub84mhxx9ul9nmlLIe+QJ7UDcpNyTy/IcyofdKfqGd18hucjPsENzoIF7MQLsSOBMFg/w==
+
 "@spryrocks/eslint-config-react@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@spryrocks/eslint-config-react/-/eslint-config-react-0.1.4.tgz#7451c747d3c957f910629c5ff7b94f8bfbda2f5f"

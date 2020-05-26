@@ -8,7 +8,8 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {InputField, Dropdown, Slider, Button} from 'components';
+import {InputField, Slider, Button} from 'components';
+import {Dropdown} from '@spryrocks/dropdown-react-native';
 import styles from './Search.styles';
 import {useTranslation} from 'react-i18next';
 import * as SearchImages from './assets';
