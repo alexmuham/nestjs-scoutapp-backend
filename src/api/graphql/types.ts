@@ -106,6 +106,7 @@ export type Query = {
   playerById: Player;
   getPlayers: Array<Player>;
   playersFromUser: Array<Player>;
+  playersBySearchParameters: Array<Player>;
   preferences: Preferences;
 };
 
@@ -117,6 +118,22 @@ export type QueryFriendByIdArgs = {
 
 export type QueryPlayerByIdArgs = {
   playerId: Scalars['String'];
+};
+
+
+export type QueryPlayersBySearchParametersArgs = {
+  exitVelocity: Array<Scalars['Float']>;
+  tenYard: Array<Scalars['Float']>;
+  positionVelocity?: Maybe<Scalars['String']>;
+  sixtyTime: Array<Scalars['Float']>;
+  playerThrows?: Maybe<Scalars['String']>;
+  bat?: Maybe<Scalars['String']>;
+  commitment?: Maybe<Scalars['String']>;
+  graduatingClass: Array<Scalars['Float']>;
+  position?: Maybe<Array<Scalars['String']>>;
+  weight: Array<Scalars['Float']>;
+  height: Array<Scalars['Float']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {

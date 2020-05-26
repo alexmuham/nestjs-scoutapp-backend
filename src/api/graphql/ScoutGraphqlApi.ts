@@ -14,6 +14,7 @@ import {
   friendQuery,
   friendsQuery,
   playersQuery,
+  playersBySearchParametersQuery,
 } from './ScoutGraphqlQueryBuilder';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
@@ -72,5 +73,37 @@ export default class ScoutGraphqlApi extends GraphqlApiBase {
 
   public async queryPlayers() {
     return this.query(playersQuery());
+  }
+
+  public async queryPlayersBySearchParameters(
+    name: string | undefined,
+    height: number[],
+    weight: number[],
+    position: string[] | undefined,
+    graduatingClass: number[],
+    commitment: string | undefined,
+    bat: string | undefined,
+    playerThrows: string | undefined,
+    sixtyTime: number[],
+    positionVelocity: string | undefined,
+    tenYard: number[],
+    exitVelocity: number[],
+  ) {
+    return this.query(
+      playersBySearchParametersQuery({
+        bat,
+        commitment,
+        exitVelocity,
+        graduatingClass,
+        height,
+        name,
+        playerThrows,
+        position,
+        positionVelocity,
+        sixtyTime,
+        tenYard,
+        weight,
+      }),
+    );
   }
 }

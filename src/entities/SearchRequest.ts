@@ -3,10 +3,10 @@ export default interface SearchRequest {
   height: number[];
   weight: number[];
   position?: string[];
-  class: number[];
+  graduatingClass: number[];
   commitment?: string;
   bat?: string;
-  throw?: string;
+  playerThrow?: string;
   sixtyTime: number[];
   tenYard: number[];
   positionVelocity?: string;

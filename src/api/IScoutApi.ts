@@ -47,4 +47,19 @@ export interface IScoutApi {
   deleteFriend(friendId: string): Promise<void>;
 
   getPlayers(): Promise<Player[]>;
+
+  getPlayersBySearchParameters(
+    name: string | undefined,
+    height: number[],
+    weight: number[],
+    position: string[] | undefined,
+    graduatingClass: number[],
+    commitment: string | undefined,
+    bat: string | undefined,
+    playerThrows: string | undefined,
+    sixtyTime: number[],
+    positionVelocity: string | undefined,
+    tenYard: number[],
+    exitVelocity: number[],
+  ): Promise<Player[]>;
 }

@@ -13,7 +13,7 @@ import {Dropdown} from '@spryrocks/dropdown-react-native';
 import styles from './Search.styles';
 import {useTranslation} from 'react-i18next';
 import * as SearchImages from './assets';
-// import SearchRequest from 'entities/SearchRequest';
+import SearchRequest from 'entities/SearchRequest';
 import {useSearchActions} from '../../../state/hooks/UseActions';
 
 const Search: React.FC = () => {
@@ -76,20 +76,20 @@ const Search: React.FC = () => {
     );
   };
 
-  // const confirmSearch = (): SearchRequest => ({
-  //   bat: batsValue === '-' ? undefined : batsValue,
-  //   class: classValue,
-  //   commitment: commitmentValue.length < 1 ? undefined : commitmentValue,
-  //   exitVelocity: exitVelocityValue,
-  //   height: heightValue,
-  //   name: searchValue.length < 1 ? undefined : searchValue,
-  //   position: positionValue,
-  //   positionVelocity: positionVelocityValue === '-' ? 'undefined' : positionVelocityValue,
-  //   sixtyTime: sixtyTimeValue,
-  //   tenYard: tenYardValue,
-  //   throw: throwValue === '-' ? undefined : throwValue,
-  //   weight: weightValue,
-  // });
+  const confirmSearch = (): SearchRequest => ({
+    bat: batsValue === '-' ? undefined : batsValue,
+    graduatingClass: classValue,
+    commitment: commitmentValue.length < 1 ? undefined : commitmentValue,
+    exitVelocity: exitVelocityValue,
+    height: heightValue,
+    name: searchValue.length < 1 ? undefined : searchValue,
+    position: positionValue,
+    positionVelocity: positionVelocityValue === '-' ? 'undefined' : positionVelocityValue,
+    sixtyTime: sixtyTimeValue,
+    tenYard: tenYardValue,
+    playerThrow: throwValue === '-' ? undefined : throwValue,
+    weight: weightValue,
+  });
 
   const button = () => (
     <View style={styles.buttonContainer}>
@@ -97,7 +97,7 @@ const Search: React.FC = () => {
         style={styles.button}
         visualStyle="solid"
         title={t('search')}
-        onPress={() => actions.searchPlayers()}
+        onPress={() => actions.searchPlayers(confirmSearch())}
       />
     </View>
   );

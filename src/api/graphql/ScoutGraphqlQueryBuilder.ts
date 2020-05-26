@@ -18,6 +18,7 @@ import {
   MutationDeleteFriendArgs,
   QueryFriendByIdArgs,
   User,
+  QueryPlayersBySearchParametersArgs,
 } from './types';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
@@ -355,4 +356,50 @@ export const friendsQuery = createQuery<{friends: [User]}, [User]>(
     }
   `,
   ({friends}) => friends,
+);
+
+export const playersBySearchParametersQuery = createQueryWithVariables<
+  QueryPlayersBySearchParametersArgs,
+  {playersBySearchParameters: [Player]},
+  [Player]
+>(
+  gql`
+    ${PlayerFragment()}
+    ${PercentileRankingsFragment()}
+    ${RankingFragment()}
+    ${PGEventResultsFragment()}
+    ${CareerProgressionsFragment()}
+    query playersBySearchParameters(
+      $bat: String
+      $commitment: String
+      $exitVelocity: [Float!]!
+      $graduatingClass: [Float!]!
+      $height: [Float!]!
+      $name: String
+      $playerThrows: String
+      $position: [String!]
+      $positionVelocity: String
+      $sixtyTime: [Float!]!
+      $tenYard: [Float!]!
+      $weight: [Float!]!
+    ) {
+      playersBySearchParameters(
+        bat: $bat
+        commitment: $commitment
+        exitVelocity: $exitVelocity
+        graduatingClass: $graduatingClass
+        height: $height
+        name: $name
+        playerThrows: $playerThrows
+        position: $position
+        positionVelocity: $positionVelocity
+        sixtyTime: $sixtyTime
+        tenYard: $tenYard
+        weight: $weight
+      ) {
+        ...Player
+      }
+    }
+  `,
+  ({playersBySearchParameters}) => playersBySearchParameters,
 );

@@ -1,18 +1,45 @@
 import {all, takeEvery, put} from 'redux-saga/effects';
 import types from './types';
-import actions from './actions';
+import actions, {SearchPlayers} from './actions';
 import {Action} from 'redux-actions';
 import {ScoutApi} from 'api';
-import {NavigationPayload} from '../router/actions';
 import Player from 'entities/Player';
 import {errorActions} from '../error';
 import {routerActions} from '../router';
 
-function* searchPlayers({payload}: Action<NavigationPayload>) {
+function* searchPlayers({payload}: Action<SearchPlayers>) {
   try {
-    const players = yield ScoutApi.getPlayers();
-    yield put(actions.searchPlayersCompleted({players, payload}));
-    yield put(routerActions.navigateToPlayersListFromSearch({history: payload.history}));
+    const {history, request} = payload;
+    const {
+      name,
+      weight,
+      playerThrow,
+      tenYard,
+      sixtyTime,
+      positionVelocity,
+      position,
+      height,
+      exitVelocity,
+      commitment,
+      graduatingClass,
+      bat,
+    } = request;
+    const players = yield ScoutApi.getPlayersBySearchParameters(
+      name,
+      height,
+      weight,
+      position,
+      graduatingClass,
+      commitment,
+      bat,
+      playerThrow,
+      sixtyTime,
+      positionVelocity,
+      tenYard,
+      exitVelocity,
+    );
+    yield put(actions.searchPlayersCompleted({players, history}));
+    yield put(routerActions.navigateToPlayersListFromSearch({history}));
   } catch (e) {
     yield put(actions.searchPlayersCompleted(e));
   }

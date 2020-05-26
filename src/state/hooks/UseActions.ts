@@ -15,6 +15,7 @@ import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
 import UpdatePreferences from '../../api/entities/UpdatePreferences';
+import SearchRequest from '../../entities/SearchRequest';
 
 export function useAuthActions() {
   const dispatch = useDispatch();
@@ -80,8 +81,8 @@ export function useSearchActions() {
   const history = useHistory();
 
   return {
-    searchPlayers: () => {
-      dispatch(searchActions.searchPlayers({history}));
+    searchPlayers: (request: SearchRequest) => {
+      dispatch(searchActions.searchPlayers({history, request}));
     },
   };
 }
