@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, TextStyle, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {
+  ScrollView,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 import styles from './Dropdown.styles';
 
 interface ListProps {
@@ -35,20 +42,22 @@ const Dropdown: React.FC<ListProps> = ({
         <Text style={{...activeElementTextStyle}}>{activeElement || data[0]}</Text>
       </TouchableOpacity>
       {openList && (
-        <View style={{...styles.itemsContainer, ...itemsContainerStyle}}>
-          {data.map((item) => {
-            return (
-              <TouchableOpacity
-                style={{...styles.item, ...itemStyle}}
-                onPress={() => {
-                  setActiveElement(item);
-                  setOpenList(!openList);
-                }}
-              >
-                <Text style={{...itemTextStyle}}>{item}</Text>
-              </TouchableOpacity>
-            );
-          })}
+        <View style={{...itemsContainerStyle, ...styles.activeItem}}>
+          <ScrollView>
+            {data.map((item) => {
+              return (
+                <TouchableOpacity
+                  style={{...styles.item, ...itemStyle}}
+                  onPress={() => {
+                    setActiveElement(item);
+                    setOpenList(!openList);
+                  }}
+                >
+                  <Text style={{...itemTextStyle}}>{item}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
         </View>
       )}
     </View>

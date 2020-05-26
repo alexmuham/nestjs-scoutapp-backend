@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     width: '40%',
     paddingLeft: 10,
     paddingVertical: 5,
+    alignItems: 'center',
   },
   inputContainer: {
     flexDirection: 'row',

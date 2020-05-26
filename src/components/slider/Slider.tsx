@@ -1,6 +1,6 @@
 import React from 'react';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import {Image, Text, TextInput, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import styles from './Slider.styles';
 import * as SliderImage from './assets';
 
@@ -31,21 +31,13 @@ const Slider: React.FC<ScoutSliderProps> = ({
         <Text style={styles.titleText}>{title}</Text>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput
-          underlineColorAndroid="transparent"
-          placeholderTextColor="#929292"
-          style={styles.textInput}
-          value={firstMarkText}
-          onChangeText={() => undefined}
-        />
+        <View style={styles.textInput}>
+          <Text>{firstMarkText.toString()}</Text>
+        </View>
         <Image source={SliderImage.Stick} style={styles.stick} />
-        <TextInput
-          underlineColorAndroid="transparent"
-          placeholderTextColor="#929292"
-          style={styles.textInput}
-          value={secondMarkText}
-          onChangeText={() => undefined}
-        />
+        <View style={styles.textInput}>
+          <Text>{secondMarkText.toString()}</Text>
+        </View>
       </View>
       <View style={styles.sliderContainer}>
         <MultiSlider

@@ -8,7 +8,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {InputField, Dropdown, Slider} from 'components';
+import {InputField, Dropdown, Slider, Button} from 'components';
 import styles from './Search.styles';
 import {useTranslation} from 'react-i18next';
 import * as SearchImages from './assets';
@@ -31,6 +31,14 @@ const Search: React.FC = () => {
   const [throwValue, setThrow] = useState<string>('');
 
   const [batsValue, setBats] = useState<string>('');
+
+  const [sixtyTimeValue, setSixtyTime] = useState<number[]>([5, 9]);
+
+  const [tenYardValue, setTenYard] = useState<number[]>([1, 3]);
+
+  const [positionVelocityValue, setPositionVelocity] = useState<string>('');
+
+  const [exitVelocityValue, setExitVelocityValue] = useState<number[]>([60, 100]);
 
   const renderPositionItem = (position: string, style?: ViewStyle) => {
     const active = positionValue.some((item) => item === position);
@@ -63,6 +71,57 @@ const Search: React.FC = () => {
     );
   };
 
+  const button = () => (
+    <View style={styles.buttonContainer}>
+      <Button
+        style={styles.button}
+        visualStyle="solid"
+        title={t('search')}
+        onPress={() => undefined}
+      />
+    </View>
+  );
+
+  const batEntities = ['-', 'R', 'L', 'S'];
+  const throwEntities = ['-', 'R', 'L', 'B'];
+  const positionVelocityEntities = ['-', 'FB', 'C', '1B', '10SPL', '60', 'IF', 'POP'];
+
+  const dropdown = (
+    data: string[],
+    setActiveElement: (data: string) => void,
+    activeElement: string,
+  ) => (
+    <Dropdown
+      data={data}
+      activeItemStyles={styles.activeItemStyles}
+      setActiveElement={setActiveElement}
+      activeElement={activeElement}
+      itemsContainerStyle={styles.itemsContainerStyle}
+    />
+  );
+
+  const slider = (
+    min: number,
+    max: number,
+    values: number[],
+    setMultiSliderValue: (data: number[]) => void,
+    title: string,
+    firstMarkText: string,
+    secondMarkText: string,
+  ) => (
+    <View style={styles.searchContainer}>
+      <Slider
+        min={min}
+        max={max}
+        values={values}
+        setMultiSliderValue={setMultiSliderValue}
+        title={title}
+        firstMarkText={firstMarkText}
+        secondMarkText={secondMarkText}
+      />
+    </View>
+  );
+
   return (
     <View style={styles.flex}>
       <ScrollView>
@@ -92,28 +151,24 @@ const Search: React.FC = () => {
         </View>
         {externalSearchValue && (
           <View style={styles.searchContainer}>
-            <View style={styles.searchContainer}>
-              <Slider
-                min={heightValue[0]}
-                max={heightValue[1]}
-                values={heightValue}
-                setMultiSliderValue={setHeight}
-                title={t('height')}
-                firstMarkText={heightValue[0].toString()}
-                secondMarkText={heightValue[1].toString()}
-              />
-            </View>
-            <View style={styles.searchContainer}>
-              <Slider
-                min={weightValue[0]}
-                max={weightValue[1]}
-                values={weightValue}
-                setMultiSliderValue={setWeight}
-                title={t('weight')}
-                firstMarkText={weightValue[0].toString()}
-                secondMarkText={weightValue[1].toString()}
-              />
-            </View>
+            {slider(
+              heightValue[0],
+              heightValue[1],
+              heightValue,
+              setHeight,
+              t('height'),
+              heightValue[0].toString(),
+              heightValue[1].toString(),
+            )}
+            {slider(
+              weightValue[0],
+              weightValue[1],
+              weightValue,
+              setWeight,
+              t('weight'),
+              weightValue[0].toString(),
+              weightValue[1].toString(),
+            )}
             <View style={styles.positionContainer}>
               <View>
                 <Text style={styles.positionTitle}>{t('position')}</Text>
@@ -135,17 +190,15 @@ const Search: React.FC = () => {
                 {renderPositionItem('MIF', {marginLeft: 22})}
               </View>
             </View>
-            <View style={styles.searchContainer}>
-              <Slider
-                min={classValue[0]}
-                max={classValue[1]}
-                values={classValue}
-                setMultiSliderValue={setClass}
-                title={t('class')}
-                firstMarkText={classValue[0].toString()}
-                secondMarkText={classValue[1].toString()}
-              />
-            </View>
+            {slider(
+              classValue[0],
+              classValue[1],
+              classValue,
+              setClass,
+              t('class'),
+              classValue[0].toString(),
+              classValue[1].toString(),
+            )}
             <View style={styles.positionContainer}>
               <View>
                 <Text style={styles.positionTitle}>{t('commitment')}</Text>
@@ -160,32 +213,70 @@ const Search: React.FC = () => {
               />
             </View>
             <View style={{...styles.positionContainer}}>
-              <View>
-                <Text style={styles.positionTitle}>{t('bat/throw')}</Text>
-              </View>
               <View style={styles.batThrow}>
-                <Dropdown
-                  data={['R', 'L', 'S']}
-                  activeItemStyles={styles.activeItemStyles}
-                  setActiveElement={setBats}
-                  activeElement={batsValue}
-                />
-              </View>
-              <View>
-                <Dropdown
-                  data={['R', 'L', 'B']}
-                  activeItemStyles={styles.activeItemStyles}
-                  setActiveElement={setThrow}
-                  activeElement={throwValue}
-                />
+                <View style={styles.batContainer}>
+                  <View>
+                    <Text style={styles.positionTitle}>{t('bat')}</Text>
+                  </View>
+                  {dropdown(batEntities, setBats, batsValue)}
+                </View>
+                <View style={styles.trowContainer}>
+                  <View>
+                    <Text style={styles.positionTitle}>{t('throw')}</Text>
+                  </View>
+                  {dropdown(throwEntities, setThrow, throwValue)}
+                </View>
               </View>
             </View>
-            <View>
-              <Text>{t('position')}</Text>
+            <View style={styles.positionContainer}>
+              <View style={styles.positionContainer}>
+                <Text style={styles.title}>{t('position')}</Text>
+              </View>
+              {slider(
+                sixtyTimeValue[0],
+                sixtyTimeValue[1],
+                sixtyTimeValue,
+                setSixtyTime,
+                t('60time'),
+                sixtyTimeValue[0].toString(),
+                sixtyTimeValue[1].toString(),
+              )}
+              {slider(
+                tenYardValue[0],
+                tenYardValue[1],
+                tenYardValue,
+                setTenYard,
+                t('10YardSplit'),
+                tenYardValue[0].toString(),
+                tenYardValue[1].toString(),
+              )}
+              <View style={styles.positionVelocityContainer}>
+                <View>
+                  <View>
+                    <Text style={styles.positionTitle}>{t('positionVelocity')}</Text>
+                  </View>
+                  {dropdown(
+                    positionVelocityEntities,
+                    setPositionVelocity,
+                    positionVelocityValue,
+                  )}
+                </View>
+              </View>
+              {slider(
+                exitVelocityValue[0],
+                exitVelocityValue[1],
+                exitVelocityValue,
+                setExitVelocityValue,
+                t('exitVelocity'),
+                exitVelocityValue[0].toString(),
+                exitVelocityValue[1].toString(),
+              )}
             </View>
+            {externalSearchValue && button()}
           </View>
         )}
       </ScrollView>
+      {!externalSearchValue && button()}
     </View>
   );
 };

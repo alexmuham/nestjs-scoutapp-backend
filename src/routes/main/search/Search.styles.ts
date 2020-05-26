@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   inputPositionContainer: {
     flexDirection: 'row',
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   },
   positionContainer: {
     width: '90%',
-    paddingBottom: 10,
+    paddingBottom: 15,
   },
   positionTitle: {
     fontSize: 17,
@@ -97,9 +98,35 @@ const styles = StyleSheet.create({
   },
   activeItemStyles: {
     padding: 5,
+    paddingLeft: 10,
+    borderRadius: 10,
+  },
+  itemsContainerStyle: {
+    paddingLeft: 5,
+    borderRadius: 10,
+    marginTop: 5,
+    height: 100,
   },
   batThrow: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  batContainer: {
+    width: '40%',
+  },
+  trowContainer: {
+    width: '40%',
+  },
+  positionVelocityContainer: {
+    justifyContent: 'flex-end',
+    paddingBottom: 25,
+  },
+  button: {
+    width: '80%',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    bottom: 0,
   },
 });
 
