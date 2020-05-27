@@ -14,7 +14,7 @@ const ImagePicker: React.FC = () => {
   const {id} = useParams();
 
   const avatarPress = async (options: 'camera' | 'gallery') => {
-    const result = await showImagePicker(options); // TODO add permission (camera, gallery)
+    const result = await showImagePicker(options);
     if (!result.cancelled) {
       await actions.addImageToPlayer(id, result.uri);
     }

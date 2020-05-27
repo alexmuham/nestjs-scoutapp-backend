@@ -126,7 +126,7 @@ export function useImagePickerActions() {
   const history = useHistory();
   return {
     addImageToPlayer: (playerId: string, imageUri: string) =>
-      dispatch(imagePickerActions.addImageToPlayer({playerId, imageUri, history})),
+      dispatch(imagePickerActions.addImage({playerId, imageUri, history})),
   };
 }
 

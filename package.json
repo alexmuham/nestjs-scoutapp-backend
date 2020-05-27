@@ -27,6 +27,7 @@
     "@react-native-community/async-storage-backend-legacy": "^2.0.0-rc.3",
     "@redux-saga/core": "^1.1.3",
     "@spryrocks/config-react": "^1.0.0-alpha.7",
+    "@spryrocks/dropdown-react-native": "^0.0.2-alpha.0",
     "@spryrocks/react-api": "^0.1.3",
     "@spryrocks/react-auth": "^0.1.4",
     "apollo-boost": "^0.4.7",
@@ -43,7 +44,7 @@
     "react-i18next": "^10.13.1",
     "react-native": "0.62.2",
     "react-native-device-info": "^5.5.7",
-    "react-native-fast-image": "^8.1.5",
+    "react-native-fast-image": "^7.0.2",
     "react-native-image-crop-picker": "^0.31.1",
     "react-native-localize": "^1.4.0",
     "react-native-snackbar": "^2.2.0",
@@ -59,8 +60,7 @@
     "redux-saga": "^1.1.3",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3",
-    "yup": "0.28.5",
-    "@spryrocks/dropdown-react-native": "^0.0.2-alpha.0"
+    "yup": "0.28.5"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

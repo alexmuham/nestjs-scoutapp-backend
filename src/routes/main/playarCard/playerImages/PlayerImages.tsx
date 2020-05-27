@@ -1,18 +1,40 @@
 import React from 'react';
-import {Image, ImageSourcePropType, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  ImageSourcePropType,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import styles from '../PlayerCard.styles';
 import * as PlayerEmptyImages from '../assets';
 import Player from 'entities/Player';
+import {Image} from 'components';
 
 interface PlayerImages {
   routerActions: (id: string) => void;
   player: Player;
+  setImageIsLoading: (value: boolean) => void;
+  imageIsLoading: boolean;
+  images: string[];
 }
 
-const PlayerPhoto: React.FC<PlayerImages> = ({routerActions, player}) => {
+const PlayerPhoto: React.FC<PlayerImages> = ({
+  routerActions,
+  player,
+  imageIsLoading,
+  setImageIsLoading,
+  images,
+}) => {
   const renderSmallImage = (image: ImageSourcePropType | undefined) => (
-    <TouchableOpacity style={styles.smallImage} onPress={() => undefined}>
-      <Image source={image || PlayerEmptyImages.SmallEmptyImage} />
+    <TouchableOpacity style={styles.smallImage} onPress={() => routerActions(player.id)}>
+      <Image
+        style={styles.image}
+        source={image || PlayerEmptyImages.SmallEmptyImage}
+        onLoadStart={() => setImageIsLoading(true)}
+        onLoadEnd={() => setImageIsLoading(false)}
+      >
+        {imageIsLoading && <ActivityIndicator style={styles.imagePlaceholder} />}
+      </Image>
     </TouchableOpacity>
   );
 
@@ -23,10 +45,13 @@ const PlayerPhoto: React.FC<PlayerImages> = ({routerActions, player}) => {
         onPress={() => routerActions(player.id)}
       >
         <Image
-          source={
-            player.images[0] ? {uri: player.images[0]} : PlayerEmptyImages.EmptyImage
-          }
-        />
+          style={styles.image}
+          source={images[0] ? {uri: images[0]} : PlayerEmptyImages.EmptyImage}
+          onLoadStart={() => setImageIsLoading(true)}
+          onLoadEnd={() => setImageIsLoading(false)}
+        >
+          {imageIsLoading && <ActivityIndicator style={styles.imagePlaceholder} />}
+        </Image>
       </TouchableOpacity>
       <View style={styles.smallImagesContainer}>
         {renderSmallImage(player.images[1] ? {uri: player.images[1]} : undefined)}

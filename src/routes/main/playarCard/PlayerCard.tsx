@@ -24,6 +24,8 @@ const PlayerCard: React.FC = () => {
   const {id} = useParams();
   const {player, preferences} = useSelector((state: State) => state);
 
+  const [imageIsLoading, setImageIsLoading] = useState<boolean>(false);
+
   useEffect(() => {
     actions.fetchPlayer(id);
     preferenceActions.fetchPreferences();
@@ -109,8 +111,11 @@ const PlayerCard: React.FC = () => {
                     </View>
                     <View style={styles.playerInfo}>
                       <PlayerPhoto
+                        images={player.images}
                         routerActions={routerAction.navigateToImagePicker}
                         player={player}
+                        imageIsLoading={imageIsLoading}
+                        setImageIsLoading={setImageIsLoading}
                       />
                       <View style={styles.info}>
                         {renderInfo(t('class'), player.graduatingClass)}

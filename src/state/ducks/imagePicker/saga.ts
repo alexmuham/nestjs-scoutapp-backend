@@ -2,20 +2,23 @@ import types from './types';
 import {all, put, takeEvery} from 'redux-saga/effects';
 import {Action} from 'redux-actions';
 import {actions as routerActions} from 'state/ducks/router';
-import {addImage} from './actions';
+import {actions as playerActions} from 'state/ducks/player';
+import {addImageUri} from './actions';
 import {errorActions} from '../error';
-import {ScoutApi} from '../../../api';
+import {ScoutApi} from 'api';
 
-function* addImageToPlayer({payload}: Action<addImage>) {
+function* addImage({payload}: Action<addImageUri>) {
   try {
-    const imageId: string = yield ScoutApi.uploadFile(payload.imageUri);
-    yield ScoutApi.addPlayerImage(payload.playerId, imageId);
-    yield put(routerActions.goBack({history: payload.history}));
+    const {history, imageUri, playerId} = payload;
+    const imageId: string = yield ScoutApi.uploadFile(imageUri);
+    yield ScoutApi.addPlayerImage(playerId, imageId);
+    yield playerActions.fetchPlayer({playerId, history});
+    yield put(routerActions.goBack({history}));
   } catch (e) {
     yield put(yield put(errorActions.handleError(payload)));
   }
 }
 
 export default function* () {
-  yield all([takeEvery(types.ADD_IMAGE_TO_PLAYER, addImageToPlayer)]);
+  yield all([takeEvery(types.ADD_IMAGE, addImage)]);
 }

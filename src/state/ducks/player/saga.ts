@@ -8,7 +8,8 @@ import {errorActions} from '../error';
 
 function* fetchPlayer({payload}: Action<FetchPlayer>) {
   try {
-    const player = yield ScoutApi.getPlayerById(payload.playerId);
+    const {playerId} = payload;
+    const player = yield ScoutApi.getPlayerById(playerId);
     yield put(actions.fetchPlayerComplete(player));
   } catch (e) {
     yield put(yield put(errorActions.handleError(payload)));
