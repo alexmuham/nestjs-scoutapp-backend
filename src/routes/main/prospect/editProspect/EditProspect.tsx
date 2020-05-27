@@ -7,14 +7,11 @@ import State from 'state/entities/State';
 import {useProspectActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
 import styles from './EsitProspect.styles';
-import {useGuard} from 'state/hooks/UseGuard';
 
 const EditProspect: React.FC = () => {
   const actions = useProspectActions();
   const [playersIds, setPlayersIds] = useState<string[]>([]);
   const {t} = useTranslation('prospect');
-
-  useGuard({requireAuthenticated: true});
 
   const {prospect} = useSelector((state: State) => state);
 

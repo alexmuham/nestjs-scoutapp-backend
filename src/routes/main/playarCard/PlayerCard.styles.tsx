@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
   imagePlaceholder: {
     flex: 1,
   },
+  empty: {},
 });
 
 export default styles;

@@ -62,14 +62,19 @@ const PlayerCard: React.FC = () => {
       style={styles.smallImage}
       onPress={() => routerAction.navigateToImagePicker(id)}
     >
-      <Image
-        style={styles.image}
-        source={image || PlayerImages.SmallEmptyImage}
-        onLoadStart={() => setImageIsLoading(true)}
-        onLoadEnd={() => setImageIsLoading(false)}
-      >
-        {imageIsLoading && <ActivityIndicator style={styles.imagePlaceholder} />}
-      </Image>
+      {!image ? (
+        <RNImage source={PlayerImages.SmallEmptyImage} />
+      ) : (
+        <Image
+          style={styles.image}
+          source={image || PlayerImages.SmallEmptyImage}
+          onLoadStart={() => setImageIsLoading(true)}
+          onLoadEnd={() => setImageIsLoading(false)}
+        >
+          {' '}
+          :{imageIsLoading && <ActivityIndicator style={styles.imagePlaceholder} />}
+        </Image>
+      )}
     </TouchableOpacity>
   );
 
@@ -141,18 +146,20 @@ const PlayerCard: React.FC = () => {
                           style={styles.playerAvatar}
                           onPress={() => routerAction.navigateToImagePicker(player.id)}
                         >
-                          <Image
-                            style={styles.image}
-                            source={
-                              images[0] ? {uri: images[0]} : PlayerImages.EmptyImage
-                            }
-                            onLoadStart={() => setImageIsLoading(true)}
-                            onLoadEnd={() => setImageIsLoading(false)}
-                          >
-                            {imageIsLoading && (
-                              <ActivityIndicator style={styles.imagePlaceholder} />
-                            )}
-                          </Image>
+                          {images[0] ? (
+                            <Image
+                              style={styles.image}
+                              source={{uri: images[0]}}
+                              onLoadStart={() => setImageIsLoading(true)}
+                              onLoadEnd={() => setImageIsLoading(false)}
+                            >
+                              {imageIsLoading && (
+                                <ActivityIndicator style={styles.imagePlaceholder} />
+                              )}
+                            </Image>
+                          ) : (
+                            <RNImage source={PlayerImages.EmptyImage} />
+                          )}
                         </TouchableOpacity>
                         <View style={styles.smallImagesContainer}>
                           {renderSmallImage(

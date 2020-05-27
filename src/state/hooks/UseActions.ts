@@ -81,9 +81,8 @@ export function useSearchActions() {
   const history = useHistory();
 
   return {
-    searchPlayers: (request: SearchRequest) => {
-      dispatch(searchActions.searchPlayers({history, request}));
-    },
+    searchPlayers: (request: SearchRequest) =>
+      dispatch(searchActions.searchPlayers({history, request})),
   };
 }
 

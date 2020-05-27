@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   list: {
-    marginTop: 20,
+    paddingTop: 20,
     flexDirection: 'row',
     paddingBottom: 3,
     borderBottomWidth: 1,
@@ -17,26 +17,26 @@ const styles = StyleSheet.create({
   },
   name: {
     textAlign: 'center',
-    width: '34%',
+    width: 217,
   },
   position: {
-    width: '12%',
+    width: 50,
     textAlign: 'center',
   },
   team: {
-    width: '12%',
+    width: 50,
     textAlign: 'center',
   },
   class: {
-    width: '8%',
+    width: 100,
     textAlign: 'center',
   },
-  commited: {
-    width: '20%',
+  commitment: {
+    width: 150,
     textAlign: 'center',
   },
   rating: {
-    width: '7%',
+    width: 100,
     textAlign: 'center',
   },
   topContainer: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     color: '#A61911',
   },
   playerList: {
-    marginTop: 10,
+    paddingTop: 10,
   },
   editContainer: {
     flexDirection: 'row',

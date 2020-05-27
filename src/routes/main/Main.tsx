@@ -16,9 +16,11 @@ import {
   Notifications,
   SearchPlayerList,
 } from 'routes/main';
+import {useGuard} from 'state/hooks/UseGuard';
 
 const Main: React.FC = () => {
   const history = useHistory();
+  useGuard({requireAuthenticated: true});
   return (
     <View style={styles.container}>
       <MenuBar

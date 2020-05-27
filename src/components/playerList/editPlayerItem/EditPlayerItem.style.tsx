@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 5,
-    paddingRight: 150,
+    paddingRight: 10,
     margin: 5,
     marginLeft: 5,
     shadowColor: '#000',
@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
-
     elevation: 4,
     backgroundColor: '#FFF',
     borderRadius: 7,
@@ -26,26 +25,30 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   number: {
-    width: '7%',
+    width: 30,
   },
   name: {
-    width: '40%',
+    width: 150,
   },
   position: {
-    textAlign: 'left',
-    width: '15%',
+    textAlign: 'center',
+    width: 50,
   },
   team: {
-    width: '15%',
+    width: 50,
+    textAlign: 'center',
   },
   class: {
-    width: '15%',
+    width: 100,
+    textAlign: 'center',
   },
-  commited: {
-    width: '25%',
+  commitment: {
+    width: 150,
+    textAlign: 'center',
   },
   rating: {
-    width: '10%',
+    width: 100,
+    textAlign: 'center',
   },
 });
 

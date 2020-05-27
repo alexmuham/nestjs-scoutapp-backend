@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import styles from './PlayerList.styles';
 import * as playerListImages from './assets';
-import PlayerItem from './playerItem/PlayerItem';
 import {useTranslation} from 'react-i18next';
 import EditPlayerItem from './editPlayerItem/EditPlayerItem';
 
@@ -26,6 +25,9 @@ interface PlayerListProps {
   starValue?: boolean;
   playersIds?: string[];
   setPlayersIds?: (playersIds: string[]) => void;
+  deleteAction?: (playerId: string) => void;
+  addAction?: (playerId: string) => void;
+  yourPlayersIds?: string[];
 }
 
 const PlayerList: React.FC<PlayerListProps> = ({
@@ -38,27 +40,42 @@ const PlayerList: React.FC<PlayerListProps> = ({
   starValue,
   setPlayersIds,
   playersIds,
+  addAction,
+  deleteAction,
+  yourPlayersIds,
 }) => {
   const {t} = useTranslation('playerList');
 
   const playerList = (player: Player, number: number) => {
     switch (mode) {
       case 'list': {
-        return <PlayerItem player={player} number={number} />;
+        return <EditPlayerItem player={player} number={number} mode={mode} />;
       }
       case 'edit': {
         return (
           <EditPlayerItem
             player={player}
-            starValue={!!starValue}
             setPlayersIds={setPlayersIds}
             playersIds={playersIds}
             number={number}
+            mode={mode}
+            starValue={!!starValue}
           />
         );
       }
       case 'search': {
-        return <PlayerItem player={player} number={number} />;
+        return (
+          <EditPlayerItem
+            player={player}
+            setPlayersIds={setPlayersIds}
+            playersIds={playersIds}
+            number={number}
+            mode={mode}
+            addAction={addAction}
+            deleteAction={deleteAction}
+            yourPlayersIds={yourPlayersIds}
+          />
+        );
       }
       default: {
         return <></>;
@@ -99,7 +116,7 @@ const PlayerList: React.FC<PlayerListProps> = ({
                 <Text style={styles.position}>{t('pos')}</Text>
                 <Text style={styles.team}>{t('team')}</Text>
                 <Text style={styles.class}>{t('class')}</Text>
-                <Text style={styles.commited}>{t('commited')}</Text>
+                <Text style={styles.commitment}>{t('commitment')}</Text>
                 <Text style={styles.rating}>{t('OFP')}</Text>
               </View>
               <View>
