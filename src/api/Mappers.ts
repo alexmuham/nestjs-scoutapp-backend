@@ -19,6 +19,7 @@ import Player from 'entities/Player';
 import PercentileRankings, {Ranking} from 'entities/PercentileRankings';
 import CareerProgressions from 'entities/CareerProgressions';
 import PGEventResults from 'entities/PGEventResults';
+import {ApiConfiguration} from '@spryrocks/react-api';
 
 export const mapRankingFormGQL = (raking: GQLRanking): Ranking => ({
   id: raking.id,
@@ -26,6 +27,17 @@ export const mapRankingFormGQL = (raking: GQLRanking): Ranking => ({
   percentile: raking.percentile,
   top: raking.top,
 });
+
+export const mapImagesFromGQL = (
+  configuration: ApiConfiguration,
+  imagesIds: string[],
+): string[] => {
+  return imagesIds.map((imageId) => {
+    let baseUrl = `${configuration.url}:${configuration.port}`;
+    if (configuration.globalPrefix) baseUrl += configuration.globalPrefix;
+    return `${baseUrl}${configuration.rest.path}/files/${imageId}`;
+  });
+};
 
 export const mapPercentileRankingsFormGQL = (
   percentileRankings: GQLPercentileRankings,
@@ -65,7 +77,10 @@ export const mapPGEventResultsFormGQL = (
   tenYdSplit: pGEventResults.tenYdSplit ? pGEventResults.tenYdSplit : undefined,
 });
 
-export const mapPlayerFromGQL = (player: GQLPlayer): Player => ({
+export const mapPlayerFromGQL = (
+  player: GQLPlayer,
+  configuration: ApiConfiguration,
+): Player => ({
   id: player.id,
   name: player.name,
   weight: player.weight,
@@ -83,7 +98,7 @@ export const mapPlayerFromGQL = (player: GQLPlayer): Player => ({
   contactPhone: player.contactPhone,
   collegeCommitment: player.collegeCommitment,
   bats: player.bats,
-  images: player.images,
+  images: player.images ? mapImagesFromGQL(configuration, player.images) : player.images,
   careerProgressions: player.careerProgressions
     ? mapCareerProgressionsFormGQL(player.careerProgressions)
     : undefined,
@@ -95,8 +110,11 @@ export const mapPlayerFromGQL = (player: GQLPlayer): Player => ({
     : undefined,
 });
 
-export const mapPlayersFromGQL = (players: GQLPlayer[]): Player[] => {
-  return players.map((player) => mapPlayerFromGQL(player));
+export const mapPlayersFromGQL = (
+  players: GQLPlayer[],
+  configuration: ApiConfiguration,
+): Player[] => {
+  return players.map((player) => mapPlayerFromGQL(player, configuration));
 };
 
 export const mapRegisterRequestToApi = (
@@ -115,7 +133,7 @@ export const mapLoginRequestToApi = (loginRequest: LoginRequest): ApiLoginReques
   password: loginRequest.password,
 });
 
-export const mapUserFromGQL = (user: GQLUser): User => ({
+export const mapUserFromGQL = (user: GQLUser, configuration: ApiConfiguration): User => ({
   id: user.id,
   email: user.email,
   education: user.education,
@@ -123,15 +141,21 @@ export const mapUserFromGQL = (user: GQLUser): User => ({
   lastName: user.lastName,
   firstName: user.firstName,
   image: user.image ? user.image : undefined,
-  players: user.players ? mapPlayersFromGQL(user.players) : undefined,
+  players: user.players ? mapPlayersFromGQL(user.players, configuration) : undefined,
 });
 
-export const mapUsersFromGQL = (users: GQLUser[]): User[] => {
-  return users.map((user) => mapUserFromGQL(user));
+export const mapUsersFromGQL = (
+  users: GQLUser[],
+  configuration: ApiConfiguration,
+): User[] => {
+  return users.map((user) => mapUserFromGQL(user, configuration));
 };
 
-export const mapAccountFromGQL = (account: GQLAccount): Account => ({
-  user: mapUserFromGQL(account.user),
+export const mapAccountFromGQL = (
+  account: GQLAccount,
+  configuration: ApiConfiguration,
+): Account => ({
+  user: mapUserFromGQL(account.user, configuration),
 });
 
 export const mapPreferencesFromGQL = (preferences: GQLPreferences): Preferences => ({

@@ -1,14 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {RequireLoadable} from 'components';
-import {
-  Image,
-  ImageSourcePropType,
-  Modal,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, Modal, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {
   usePlayerActions,
   useRouterActions,
@@ -21,6 +13,7 @@ import {Route, useParams} from 'react-router-native';
 import * as PlayerImages from './assets';
 import {useTranslation} from 'react-i18next';
 import {ImagePicker} from '../popUp';
+import PlayerPhoto from './playerImages/PlayerImages';
 
 const PlayerCard: React.FC = () => {
   const actions = usePlayerActions();
@@ -41,12 +34,6 @@ const PlayerCard: React.FC = () => {
       <Text>{title}: </Text>
       {item ? <Text>{item}</Text> : <Text> -</Text>}
     </View>
-  );
-
-  const renderSmallImage = (image: ImageSourcePropType | undefined) => (
-    <TouchableOpacity style={styles.smallImage} onPress={() => undefined}>
-      <Image source={image || PlayerImages.SmallEmptyImage} />
-    </TouchableOpacity>
   );
 
   const renderAdditionalInfoItem = (title: string, item: string | undefined) => (
@@ -121,20 +108,10 @@ const PlayerCard: React.FC = () => {
                       )}
                     </View>
                     <View style={styles.playerInfo}>
-                      <View style={styles.playerImages}>
-                        <TouchableOpacity
-                          style={styles.playerAvatar}
-                          onPress={() => routerAction.navigateToImagePicker(player.id)}
-                        >
-                          <Image source={PlayerImages.EmptyImage} />
-                        </TouchableOpacity>
-                        <View style={styles.smallImagesContainer}>
-                          {renderSmallImage(undefined)}
-                          {renderSmallImage(undefined)}
-                          {renderSmallImage(undefined)}
-                          {renderSmallImage(undefined)}
-                        </View>
-                      </View>
+                      <PlayerPhoto
+                        routerActions={routerAction.navigateToImagePicker}
+                        player={player}
+                      />
                       <View style={styles.info}>
                         {renderInfo(t('class'), player.graduatingClass)}
                         {renderInfo(t('position'), player.primaryPosition)}

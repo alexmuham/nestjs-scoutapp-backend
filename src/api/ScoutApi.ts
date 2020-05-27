@@ -48,7 +48,7 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
 
   public async account() {
     return this.wrapApiCall(async () =>
-      mapAccountFromGQL(await this.graphqlApi.queryAccount()),
+      mapAccountFromGQL(await this.graphqlApi.queryAccount(), this.configuration),
     );
   }
 
@@ -84,13 +84,16 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
 
   public async getPlayerById(playerId: string) {
     return this.wrapApiCall(async () =>
-      mapPlayerFromGQL(await this.graphqlApi.queryPlayerById(playerId)),
+      mapPlayerFromGQL(
+        await this.graphqlApi.queryPlayerById(playerId),
+        this.configuration,
+      ),
     );
   }
 
   public async getUserPlayers() {
     return this.wrapApiCall(async () =>
-      mapPlayersFromGQL(await this.graphqlApi.queryUserPlayers()),
+      mapPlayersFromGQL(await this.graphqlApi.queryUserPlayers(), this.configuration),
     );
   }
 
@@ -127,20 +130,20 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
 
   public async getFriend(friendId: string) {
     return this.wrapApiCall(async () =>
-      mapUserFromGQL(await this.graphqlApi.queryFriend(friendId)),
+      mapUserFromGQL(await this.graphqlApi.queryFriend(friendId), this.configuration),
     );
   }
 
   public async getFriends() {
     return this.wrapApiCall(async () => {
       const friends = await this.graphqlApi.queryFriends();
-      return friends ? mapUsersFromGQL(friends) : [];
+      return friends ? mapUsersFromGQL(friends, this.configuration) : [];
     });
   }
 
   public async getPlayers() {
     return this.wrapApiCall(async () =>
-      mapPlayersFromGQL(await this.graphqlApi.queryPlayers()),
+      mapPlayersFromGQL(await this.graphqlApi.queryPlayers(), this.configuration),
     );
   }
 
@@ -174,6 +177,7 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
           tenYard,
           exitVelocity,
         ),
+        this.configuration,
       ),
     );
   }
