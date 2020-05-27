@@ -17,7 +17,8 @@ export default class FileManager extends IFileManager {
 
   async addFile(name: string, mimeType: string, buffer: Buffer) {
     const mediaLink = uuidv4();
-    const file = await this.fileStore.addFile(name, mimeType, mediaLink);
+    const date = new Date();
+    const file = await this.fileStore.addFile(name, mimeType, mediaLink, date);
     await this.fileStorage.addFile(mediaLink, buffer);
     return {id: file.id};
   }

@@ -13,8 +13,8 @@ export default class FileStore implements IFileStore {
     private readonly fileStore: Repository<File>,
   ) {}
 
-  async addFile(name: string, mimeType: string, mediaLink: string) {
-    const file = await this.fileStore.create({name, mimeType, mediaLink});
+  async addFile(name: string, mimeType: string, mediaLink: string, date: Date) {
+    const file = await this.fileStore.create({name, mimeType, mediaLink, date});
     await this.fileStore.insert(file);
     return file;
   }
