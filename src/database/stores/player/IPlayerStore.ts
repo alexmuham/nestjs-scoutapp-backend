@@ -62,5 +62,5 @@ export default abstract class IPlayerStore {
 
   abstract getPlayers(): Promise<Player[] | undefined>;
 
-  abstract addPlayerImage(image: File, playerId: string): Promise<void>;
+  abstract addPlayerImage(image: File[], playerId: string): Promise<void>;
 }

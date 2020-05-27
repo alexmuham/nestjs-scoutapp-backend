@@ -137,9 +137,9 @@ export default class PlayerManager implements IPlayerManager {
 
   async addPlayerToUser(playerId: string, userId: string) {
     const user = await this.userStore.getUserById(userId);
-    if (!user?.players) throw new ScoutAppError('');
+    if (!user) throw new ScoutAppError('This user does not exist.');
     const player = await this.playerStore.getPlayerById(playerId);
-    if (!player) throw new ScoutAppError('');
+    if (!player) throw new ScoutAppError('This player does not exist.');
     const {players} = user;
     await players.push(player);
     await this.userStore.addPlayerToUser(players, userId);
@@ -164,7 +164,21 @@ export default class PlayerManager implements IPlayerManager {
   async addPlayerImage(imageId: string, playerId: string) {
     const file = await this.fileStore.getFile({id: imageId});
     if (!file) throw new ScoutAppError('This file does not exist.');
-    await this.playerStore.addPlayerImage(file, playerId);
+    const player = await this.playerStore.getPlayerById(playerId);
+    if (!player) throw new ScoutAppError('This player does not exist.');
+    const playerImages = player.images;
+    playerImages.push(file);
+    await this.playerStore.addPlayerImage(playerImages, playerId);
+    if (playerImages.length > 5) {
+      const sortImagesByDate = player.images.sort((firstFile, secondFile) => {
+        const firstDate = new Date(firstFile.date);
+        const secondDate = new Date(secondFile.date);
+        return +secondDate - +firstDate;
+      });
+      await this.playerStore.addPlayerImage(sortImagesByDate.slice(0, 5), playerId);
+    } else {
+      await this.playerStore.addPlayerImage(playerImages, playerId);
+    }
   }
 
   async getPlayersBySearchParameters(

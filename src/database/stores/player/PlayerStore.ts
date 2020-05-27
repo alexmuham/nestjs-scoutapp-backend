@@ -21,6 +21,8 @@ export default class PlayerStore implements IPlayerStore {
     private readonly RankingsRepository: Repository<Ranking>,
   ) {}
 
+  public readonly allRelations = ['careerProgressions', 'pGEventResults', 'images'];
+
   async addCareerProgressions(progress: string) {
     const newCareerProgressions = this.careerProgressionsRepository.create({progress});
     await this.careerProgressionsRepository.insert(newCareerProgressions);
@@ -124,13 +126,13 @@ export default class PlayerStore implements IPlayerStore {
 
   async getPlayerById(playerId: string) {
     return this.repository.findOne(playerId, {
-      relations: ['careerProgressions', 'pGEventResults', 'images'],
+      relations: this.allRelations,
     });
   }
 
   async getPlayerByIdOrThrow(id: string) {
     return this.repository.findOneOrFail(id, {
-      relations: ['careerProgressions', 'pGEventResults'],
+      relations: this.allRelations,
     });
   }
 
@@ -142,11 +144,11 @@ export default class PlayerStore implements IPlayerStore {
 
   async getPlayers() {
     return this.repository.find({
-      relations: ['careerProgressions', 'pGEventResults'],
+      relations: this.allRelations,
     });
   }
 
-  async addPlayerImage(image: File, id: string): Promise<void> {
-    await this.repository.save({id, images: [image]});
+  async addPlayerImage(images: File[], id: string): Promise<void> {
+    await this.repository.save({id, images});
   }
 }
