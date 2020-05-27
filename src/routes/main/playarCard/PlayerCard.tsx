@@ -1,6 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {RequireLoadable} from 'components';
-import {Image, Modal, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {RequireLoadable, Image} from 'components';
+import {
+  ActivityIndicator,
+  Image as RNImage,
+  ImageSourcePropType,
+  Modal,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {
   usePlayerActions,
   useRouterActions,
@@ -13,7 +22,6 @@ import {Route, useParams} from 'react-router-native';
 import * as PlayerImages from './assets';
 import {useTranslation} from 'react-i18next';
 import {ImagePicker} from '../popUp';
-import PlayerPhoto from './playerImages/PlayerImages';
 
 const PlayerCard: React.FC = () => {
   const actions = usePlayerActions();
@@ -49,6 +57,22 @@ const PlayerCard: React.FC = () => {
     </View>
   );
 
+  const renderSmallImage = (image: ImageSourcePropType | undefined, id: string) => (
+    <TouchableOpacity
+      style={styles.smallImage}
+      onPress={() => routerAction.navigateToImagePicker(id)}
+    >
+      <Image
+        style={styles.image}
+        source={image || PlayerImages.SmallEmptyImage}
+        onLoadStart={() => setImageIsLoading(true)}
+        onLoadEnd={() => setImageIsLoading(false)}
+      >
+        {imageIsLoading && <ActivityIndicator style={styles.imagePlaceholder} />}
+      </Image>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.flexOne}>
       <RequireLoadable data={preferences}>
@@ -61,6 +85,8 @@ const PlayerCard: React.FC = () => {
                 preferences.players.some((id) => id === player.id),
               );
 
+              const {images, id} = player;
+
               const {pGEventResults} = player;
               return (
                 <ScrollView>
@@ -71,7 +97,7 @@ const PlayerCard: React.FC = () => {
                           style={styles.backTouchableOpacity}
                           onPress={() => routerAction.goBack()}
                         >
-                          <Image source={PlayerImages.Back} />
+                          <RNImage source={PlayerImages.Back} />
                           <Text style={styles.back}> {t('back')}</Text>
                         </TouchableOpacity>
                       </View>
@@ -80,10 +106,10 @@ const PlayerCard: React.FC = () => {
                           style={styles.contact}
                           onPress={() => undefined}
                         >
-                          <Image source={PlayerImages.Contact} />
+                          <RNImage source={PlayerImages.Contact} />
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => undefined}>
-                          <Image source={PlayerImages.Share} />
+                          <RNImage source={PlayerImages.Share} />
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -96,7 +122,7 @@ const PlayerCard: React.FC = () => {
                             setYourPlayer(!yourPlayer);
                           }}
                         >
-                          <Image source={PlayerImages.FullStar} />
+                          <RNImage source={PlayerImages.FullStar} />
                         </TouchableOpacity>
                       ) : (
                         <TouchableOpacity
@@ -105,18 +131,48 @@ const PlayerCard: React.FC = () => {
                             setYourPlayer(!yourPlayer);
                           }}
                         >
-                          <Image source={PlayerImages.EmptyStar} />
+                          <RNImage source={PlayerImages.EmptyStar} />
                         </TouchableOpacity>
                       )}
                     </View>
                     <View style={styles.playerInfo}>
-                      <PlayerPhoto
-                        images={player.images}
-                        routerActions={routerAction.navigateToImagePicker}
-                        player={player}
-                        imageIsLoading={imageIsLoading}
-                        setImageIsLoading={setImageIsLoading}
-                      />
+                      <View style={styles.playerImages}>
+                        <TouchableOpacity
+                          style={styles.playerAvatar}
+                          onPress={() => routerAction.navigateToImagePicker(player.id)}
+                        >
+                          <Image
+                            style={styles.image}
+                            source={
+                              images[0] ? {uri: images[0]} : PlayerImages.EmptyImage
+                            }
+                            onLoadStart={() => setImageIsLoading(true)}
+                            onLoadEnd={() => setImageIsLoading(false)}
+                          >
+                            {imageIsLoading && (
+                              <ActivityIndicator style={styles.imagePlaceholder} />
+                            )}
+                          </Image>
+                        </TouchableOpacity>
+                        <View style={styles.smallImagesContainer}>
+                          {renderSmallImage(
+                            player.images[1] ? {uri: player.images[1]} : undefined,
+                            id,
+                          )}
+                          {renderSmallImage(
+                            player.images[2] ? {uri: player.images[2]} : undefined,
+                            id,
+                          )}
+                          {renderSmallImage(
+                            player.images[3] ? {uri: player.images[3]} : undefined,
+                            id,
+                          )}
+                          {renderSmallImage(
+                            player.images[4] ? {uri: player.images[4]} : undefined,
+                            id,
+                          )}
+                        </View>
+                      </View>
                       <View style={styles.info}>
                         {renderInfo(t('class'), player.graduatingClass)}
                         {renderInfo(t('position'), player.primaryPosition)}
@@ -163,7 +219,7 @@ const PlayerCard: React.FC = () => {
                       </View>
                       <View style={styles.reportsItemContainer}>
                         <TouchableOpacity style={styles.reportsItem}>
-                          <Image source={PlayerImages.Plus} />
+                          <RNImage source={PlayerImages.Plus} />
                         </TouchableOpacity>
                       </View>
                     </View>

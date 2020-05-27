@@ -12,7 +12,7 @@ function* addImage({payload}: Action<addImageUri>) {
     const {history, imageUri, playerId} = payload;
     const imageId: string = yield ScoutApi.uploadFile(imageUri);
     yield ScoutApi.addPlayerImage(playerId, imageId);
-    yield playerActions.fetchPlayer({playerId, history});
+    yield put(playerActions.fetchPlayer({playerId, history}));
     yield put(routerActions.goBack({history}));
   } catch (e) {
     yield put(yield put(errorActions.handleError(payload)));
