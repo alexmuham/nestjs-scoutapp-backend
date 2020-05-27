@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
   player: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   star: {
     marginRight: 10,

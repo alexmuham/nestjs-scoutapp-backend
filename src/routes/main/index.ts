@@ -8,6 +8,7 @@ import Massage from './massage/Massage';
 import EditFriends from './friends/editFriends/EditFriends';
 import Notifications from './notifications/Notifications';
 import SearchPlayerList from './search/playerList/PlayerList';
+import Reports from './reports/Report';
 
 export {
   Friends,
@@ -20,4 +21,5 @@ export {
   Massage,
   Notifications,
   SearchPlayerList,
+  Reports,
 };

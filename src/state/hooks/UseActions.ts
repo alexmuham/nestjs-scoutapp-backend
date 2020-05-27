@@ -60,6 +60,8 @@ export function useRouterActions() {
     navigateToPlayersListFromSearch: () =>
       dispatch(routerActions.navigateToPlayersListFromSearch({history})),
     navigateToEditProfile: () => dispatch(routerActions.navigateToEditProfile({history})),
+    navigateToReports: (playerId: string) =>
+      dispatch(routerActions.navigateToReports({playerId, history})),
   };
 }
 

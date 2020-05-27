@@ -15,6 +15,7 @@ import {
   Massage,
   Notifications,
   SearchPlayerList,
+  Reports,
 } from 'routes/main';
 import {useGuard} from 'state/hooks/UseGuard';
 
@@ -40,6 +41,9 @@ const Main: React.FC = () => {
       </Route>
       <Route path="/main/player:id">
         <PlayerCard />
+      </Route>
+      <Route path="/main/player:id/reports">
+        <Reports />
       </Route>
       <Route exact path="/main/settings">
         <Settings />

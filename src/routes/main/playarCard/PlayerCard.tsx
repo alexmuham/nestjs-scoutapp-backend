@@ -225,7 +225,10 @@ const PlayerCard: React.FC = () => {
                         <Text style={styles.bottomContainerText}>{t('reports')}</Text>
                       </View>
                       <View style={styles.reportsItemContainer}>
-                        <TouchableOpacity style={styles.reportsItem}>
+                        <TouchableOpacity
+                          style={styles.reportsItem}
+                          onPress={() => routerAction.navigateToReports(player.id)}
+                        >
                           <RNImage source={PlayerImages.Plus} />
                         </TouchableOpacity>
                       </View>

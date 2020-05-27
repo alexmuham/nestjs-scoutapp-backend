@@ -74,6 +74,10 @@ function navigateToEditProfile({payload}: Action<NavigationPayload>) {
   payload.history.push(`/main/settings/editProfile`);
 }
 
+function navigateToReports({payload}: Action<NavigateToPlayer>) {
+  payload.history.push(`/main/player${payload.playerId}/reports`);
+}
+
 export default function* () {
   yield all([
     takeEvery(types.GO_BACK, goBack),
@@ -95,5 +99,6 @@ export default function* () {
       navigateToPlayersListFromSearch,
     ),
     takeEvery(types.NAVIGATE_TO_EDIT_PROFILE, navigateToEditProfile),
+    takeEvery(types.NAVIGATE_TO_REPORTS, navigateToReports),
   ]);
 }

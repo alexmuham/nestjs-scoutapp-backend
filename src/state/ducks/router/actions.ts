@@ -26,5 +26,6 @@ export default {
   navigateToPlayersListFromSearch: createAction<NavigationPayload>(
     types.NAVIGATE_TO_PLAYERS_LIST_FROM_SEARCH,
   ),
-  navigateToEditProfile: createAction(types.NAVIGATE_TO_EDIT_PROFILE),
+  navigateToEditProfile: createAction<NavigationPayload>(types.NAVIGATE_TO_EDIT_PROFILE),
+  navigateToReports: createAction<NavigateToPlayer>(types.NAVIGATE_TO_REPORTS),
 };
