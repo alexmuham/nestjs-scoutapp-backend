@@ -59,6 +59,7 @@ export function useRouterActions() {
     navigateToInvitePopUp: () => dispatch(routerActions.navigateToInvitePopUp({history})),
     navigateToPlayersListFromSearch: () =>
       dispatch(routerActions.navigateToPlayersListFromSearch({history})),
+    navigateToEditProfile: () => dispatch(routerActions.navigateToEditProfile({history})),
   };
 }
 

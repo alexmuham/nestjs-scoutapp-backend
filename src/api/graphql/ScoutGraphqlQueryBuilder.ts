@@ -265,13 +265,13 @@ export const mutationUpdatePreferences = createMutationWithVariables<
     mutation updatePreferences(
       $enableFriendRequestNotification: Boolean
       $enablePlayerMatchingNotification: Boolean
-      $enableMessageNotifications: Boolean
+      $enableMessageNotification: Boolean
       $sendNotificationsToEmail: Boolean
     ) {
       updatePreferences(
         enableFriendRequestNotification: $enableFriendRequestNotification
         enablePlayerMatchingNotification: $enablePlayerMatchingNotification
-        enableMessageNotification: $enableMessageNotifications
+        enableMessageNotification: $enableMessageNotification
         sendNotificationsToEmail: $sendNotificationsToEmail
       ) {
         ...Preferences

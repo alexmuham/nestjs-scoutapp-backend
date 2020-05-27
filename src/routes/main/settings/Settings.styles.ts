@@ -5,9 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  container: {
-    backgroundColor: '#E5E5E5',
-  },
+  container: {},
 
   title: {
     fontWeight: '600',
@@ -19,7 +17,6 @@ const styles = StyleSheet.create({
   },
 
   preferencesContainer: {
-    backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#EDEDED',
     paddingHorizontal: 12,

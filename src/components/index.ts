@@ -12,6 +12,7 @@ import PopUpContainer from './popUpContainer/PopUpContainer';
 import InputField from './inputField/InputField';
 import Slider from './slider/Slider';
 import Image from './image/Image';
+import PreferencesSwitch from './switch/PreferencesSwitch';
 
 export {
   //
@@ -29,4 +30,5 @@ export {
   InputField,
   Slider,
   Image,
+  PreferencesSwitch,
 };

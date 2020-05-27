@@ -3,16 +3,22 @@ import {ScrollView, Text, View, TouchableOpacity, Image} from 'react-native';
 import {RequireLoadable} from 'components';
 import LineProperty from 'components/lineProperty/LineProperty';
 import styles from './Settings.styles';
-import {useSettingsActions} from 'state/hooks/UseActions';
+import {
+  useAuthActions,
+  useRouterActions,
+  useSettingsActions,
+} from 'state/hooks/UseActions';
 import {useSelector} from 'state/hooks';
-import PreferencesSwitch from 'components/switch/PreferencesSwitch';
 import {useTranslation} from 'react-i18next';
 import {Arrow} from './assets';
+import NotificationSettings from './notificationSettings/NotificationSettings';
 
 const Settings: React.FC = () => {
   const {t} = useTranslation('settings');
 
   const actions = useSettingsActions();
+  const authActions = useAuthActions();
+  const routerActions = useRouterActions();
 
   useEffect(() => {
     actions.fetchPreferences();
@@ -20,34 +26,16 @@ const Settings: React.FC = () => {
 
   const preferences = useSelector((state) => state.preferences);
 
-  const SwitchLine = (props: {
-    titleKey: string;
-    value: boolean;
-    onPress: (value: boolean) => void;
-  }) => (
-    <>
-      <LineProperty
-        text={() => <Text>{t(props.titleKey)}</Text>}
-        element={() => <PreferencesSwitch value={props.value} onPress={props.onPress} />}
-      />
-      <View style={styles.horizontalLine} />
-    </>
-  );
-
-  const renderLink = () => {
-    return (
-      <View style={styles.rightImageContainer}>
-        <Image source={Arrow} style={styles.rightImageContainer} />
-      </View>
-    );
-  };
-
-  const LinkLine = (props: {titleKey: string}) => (
+  const linkLine = (titleKey: string, onPress: () => void) => (
     <View style={styles.preferencesContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <LineProperty
-          text={() => <Text>{t(props.titleKey)}</Text>}
-          element={() => renderLink()}
+          text={() => <Text>{titleKey}</Text>}
+          element={() => (
+            <View style={styles.rightImageContainer}>
+              <Image source={Arrow} style={styles.rightImageContainer} />
+            </View>
+          )}
         />
       </TouchableOpacity>
     </View>
@@ -59,48 +47,22 @@ const Settings: React.FC = () => {
         <Text style={styles.title}>Notification settings</Text>
         <RequireLoadable data={preferences}>
           {(preferences) => {
+            const {
+              enableFriendRequestNotification,
+              enableMessageNotification,
+              enablePlayerMatchingNotification,
+              sendNotificationsToEmail,
+            } = preferences;
             return (
               <>
-                <View style={styles.preferencesContainer}>
-                  <SwitchLine
-                    titleKey="Friend Request"
-                    value={preferences.enableFriendRequestNotification}
-                    onPress={() =>
-                      actions.updatePreferences({
-                        enableFriendRequestNotification: !preferences.enableFriendRequestNotification,
-                      })
-                    }
-                  />
-                  <SwitchLine
-                    titleKey="Player(s) matching"
-                    value={preferences.enablePlayerMatchingNotification}
-                    onPress={() =>
-                      actions.updatePreferences({
-                        enablePlayerMatchingNotification: !preferences.enablePlayerMatchingNotification,
-                      })
-                    }
-                  />
-                  <SwitchLine
-                    titleKey="Messages"
-                    value={preferences.enableMessageNotification}
-                    onPress={() =>
-                      actions.updatePreferences({
-                        enableMessageNotification: !preferences.enableMessageNotification,
-                      })
-                    }
-                  />
-                  <SwitchLine
-                    titleKey="Send notifications to email"
-                    value={preferences.sendNotificationsToEmail}
-                    onPress={() =>
-                      actions.updatePreferences({
-                        sendNotificationsToEmail: !preferences.sendNotificationsToEmail,
-                      })
-                    }
-                  />
-                </View>
-                <LinkLine titleKey="Edit Profile" />
-                <LinkLine titleKey="Log Out" />
+                {NotificationSettings({
+                  enableFriendRequestNotification,
+                  enableMessageNotification,
+                  enablePlayerMatchingNotification,
+                  sendNotificationsToEmail,
+                })}
+                {linkLine(t('editProfile'), () => routerActions.navigateToEditProfile())}
+                {linkLine(t('logOut'), () => authActions.logout())}
               </>
             );
           }}

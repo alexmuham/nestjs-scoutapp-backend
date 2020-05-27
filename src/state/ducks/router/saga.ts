@@ -70,6 +70,10 @@ function navigateToPlayersListFromSearch({payload}: Action<NavigationPayload>) {
   payload.history.push(`/main/search/playerList`);
 }
 
+function navigateToEditProfile({payload}: Action<NavigationPayload>) {
+  payload.history.push(`/main/settings/editProfile`);
+}
+
 export default function* () {
   yield all([
     takeEvery(types.GO_BACK, goBack),
@@ -90,5 +94,6 @@ export default function* () {
       types.NAVIGATE_TO_PLAYERS_LIST_FROM_SEARCH,
       navigateToPlayersListFromSearch,
     ),
+    takeEvery(types.NAVIGATE_TO_EDIT_PROFILE, navigateToEditProfile),
   ]);
 }
