@@ -47,6 +47,7 @@
     "react-native-fast-image": "^7.0.2",
     "react-native-image-crop-picker": "^0.31.1",
     "react-native-localize": "^1.4.0",
+    "react-native-masked-text": "^1.13.0",
     "react-native-snackbar": "^2.2.0",
     "react-native-status-bar-height": "^2.5.0",
     "react-native-switch": "^1.5.0",

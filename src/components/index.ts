@@ -13,6 +13,9 @@ import InputField from './inputField/InputField';
 import Slider from './slider/Slider';
 import Image from './image/Image';
 import PreferencesSwitch from './switch/PreferencesSwitch';
+import MaskInput from './maskInput/MaskInput';
+import ReportsHeader from './reportsHeader/ReportsHeader';
+import TextArea from './textInput/TextArea';
 
 export {
   //
@@ -31,4 +34,7 @@ export {
   Slider,
   Image,
   PreferencesSwitch,
+  MaskInput,
+  ReportsHeader,
+  TextArea,
 };

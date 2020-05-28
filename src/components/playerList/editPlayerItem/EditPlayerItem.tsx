@@ -63,7 +63,7 @@ const EditPlayerItem: React.FC<EditItemProps> = ({
   const starImage = (star: boolean, setYourPlayer: (value: boolean) => void) => {
     switch (mode) {
       case 'edit': {
-        return starEdit ? (
+        return !starEdit ? (
           <Image style={styles.star} source={PlayerList.Star} />
         ) : (
           <Image style={styles.star} source={PlayerList.EmptyStar} />

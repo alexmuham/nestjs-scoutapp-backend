@@ -9,6 +9,9 @@ import EditFriends from './friends/editFriends/EditFriends';
 import Notifications from './notifications/Notifications';
 import SearchPlayerList from './search/playerList/PlayerList';
 import Reports from './reports/Report';
+import GeneralReports from './reports/generalReports/GeneralReports';
+import ProReports from './reports/proReports/ProReports';
+import PitcherProReports from './reports/pitcherProReports/PitcherProReports';
 
 export {
   Friends,
@@ -22,4 +25,7 @@ export {
   Notifications,
   SearchPlayerList,
   Reports,
+  GeneralReports,
+  ProReports,
+  PitcherProReports,
 };

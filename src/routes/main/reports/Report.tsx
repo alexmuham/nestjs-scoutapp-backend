@@ -2,9 +2,13 @@ import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './Report.styles';
 import {useTranslation} from 'react-i18next';
+import {useRouterActions} from 'state/hooks/UseActions';
+import {useParams} from 'react-router-native';
 
 const Reports: React.FC = () => {
   const {t} = useTranslation('reports');
+  const routerActions = useRouterActions();
+  const {id} = useParams();
 
   const renderItem = (text: string, onPress: () => void) => {
     return (
@@ -24,9 +28,11 @@ const Reports: React.FC = () => {
           <Text>{t('SelectReportType')}</Text>
         </View>
         <View>
-          {renderItem(t('general'), () => undefined)}
-          {renderItem(t('pro'), () => undefined)}
-          {/* {renderItem(t('pitcherPro'), () => undefined)} */}
+          {renderItem(t('general'), () => routerActions.navigateToGeneralReports(id))}
+          {renderItem(t('pro'), () => routerActions.navigateToProReports(id))}
+          {renderItem(t('pitcherPro'), () =>
+            routerActions.navigateToPitcherProReports(id),
+          )}
         </View>
       </View>
     </View>

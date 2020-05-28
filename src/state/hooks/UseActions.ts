@@ -62,6 +62,12 @@ export function useRouterActions() {
     navigateToEditProfile: () => dispatch(routerActions.navigateToEditProfile({history})),
     navigateToReports: (playerId: string) =>
       dispatch(routerActions.navigateToReports({playerId, history})),
+    navigateToGeneralReports: (playerId: string) =>
+      dispatch(routerActions.navigateToGeneralReports({playerId, history})),
+    navigateToProReports: (playerId: string) =>
+      dispatch(routerActions.navigateToProReports({playerId, history})),
+    navigateToPitcherProReports: (playerId: string) =>
+      dispatch(routerActions.navigateToPitcherReports({playerId, history})),
   };
 }
 

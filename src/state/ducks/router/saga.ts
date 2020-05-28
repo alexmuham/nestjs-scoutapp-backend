@@ -1,6 +1,6 @@
 import {all, put, select, takeEvery} from 'redux-saga/effects';
 import types from './types';
-import {NavigateToFriend, NavigateToPlayer, NavigationPayload} from './actions';
+import {NavigateFromFriendId, NavigateFromPlayerId, NavigationPayload} from './actions';
 import {Action} from 'redux-actions';
 import State from 'state/entities/State';
 import {actions as sessionActions} from 'state/ducks/session';
@@ -30,7 +30,7 @@ function navigateToProspect({payload}: Action<NavigationPayload>) {
   payload.history.push('/main/prospect');
 }
 
-function navigateToPlayer({payload}: Action<NavigateToPlayer>) {
+function navigateToPlayer({payload}: Action<NavigateFromPlayerId>) {
   payload.history.push(`/main/player${payload.playerId}`);
 }
 
@@ -42,11 +42,11 @@ function navigateToEditProspect({payload}: Action<NavigationPayload>) {
   payload.history.push('/main/prospect/edit');
 }
 
-function navigateToImagePicker({payload}: Action<NavigateToPlayer>) {
+function navigateToImagePicker({payload}: Action<NavigateFromPlayerId>) {
   payload.history.push(`/main/player${payload.playerId}/imagePicker`);
 }
 
-function navigateToFriend({payload}: Action<NavigateToFriend>) {
+function navigateToFriend({payload}: Action<NavigateFromFriendId>) {
   payload.history.push(`/main/friend${payload.friendId}`);
 }
 
@@ -58,7 +58,7 @@ function navigateToInvitePopUp({payload}: Action<NavigationPayload>) {
   payload.history.push('/main/friends/invite');
 }
 
-function navigateToMassage({payload}: Action<NavigateToFriend>) {
+function navigateToMassage({payload}: Action<NavigateFromFriendId>) {
   payload.history.push(`/main/friends/massage${payload.friendId}`);
 }
 
@@ -74,8 +74,20 @@ function navigateToEditProfile({payload}: Action<NavigationPayload>) {
   payload.history.push(`/main/settings/editProfile`);
 }
 
-function navigateToReports({payload}: Action<NavigateToPlayer>) {
-  payload.history.push(`/main/player${payload.playerId}/reports`);
+function navigateToReports({payload}: Action<NavigateFromPlayerId>) {
+  payload.history.push(`/main/reports${payload.playerId}`);
+}
+
+function navigateToGeneralReports({payload}: Action<NavigateFromPlayerId>) {
+  payload.history.push(`/main/reports${payload.playerId}/general`);
+}
+
+function navigateToProReports({payload}: Action<NavigateFromPlayerId>) {
+  payload.history.push(`/main/reports${payload.playerId}/pro`);
+}
+
+function navigateToPitcherReports({payload}: Action<NavigateFromPlayerId>) {
+  payload.history.push(`/main/reports${payload.playerId}/pitcherPro`);
 }
 
 export default function* () {
@@ -100,5 +112,8 @@ export default function* () {
     ),
     takeEvery(types.NAVIGATE_TO_EDIT_PROFILE, navigateToEditProfile),
     takeEvery(types.NAVIGATE_TO_REPORTS, navigateToReports),
+    takeEvery(types.NAVIGATE_TO_GENERAL_REPORTS, navigateToGeneralReports),
+    takeEvery(types.NAVIGATE_TO_PRO_REPORTS, navigateToProReports),
+    takeEvery(types.NAVIGATE_TO_PITCHER_PRO_REPORTS, navigateToPitcherReports),
   ]);
 }

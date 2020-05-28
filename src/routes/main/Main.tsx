@@ -16,6 +16,9 @@ import {
   Notifications,
   SearchPlayerList,
   Reports,
+  GeneralReports,
+  ProReports,
+  PitcherProReports,
 } from 'routes/main';
 import {useGuard} from 'state/hooks/UseGuard';
 
@@ -42,8 +45,17 @@ const Main: React.FC = () => {
       <Route path="/main/player:id">
         <PlayerCard />
       </Route>
-      <Route path="/main/player:id/reports">
+      <Route exact path="/main/reports:id">
         <Reports />
+      </Route>
+      <Route exact path="/main/reports:id/general">
+        <GeneralReports />
+      </Route>
+      <Route exact path="/main/reports:id/pro">
+        <ProReports />
+      </Route>
+      <Route exact path="/main/reports:id/pitcherPro">
+        <PitcherProReports />
       </Route>
       <Route exact path="/main/settings">
         <Settings />
