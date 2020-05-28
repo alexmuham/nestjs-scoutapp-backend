@@ -25,6 +25,18 @@ const processSuccessfulResponse = (result: Image | Image[]): SuccessfulResponse 
   };
 };
 
+export const showVideoPicker = async (): Promise<ShowImagePickerResponse> => {
+  const options: Options = {
+    mediaType: 'video',
+  };
+  try {
+    const result = await ImageCropPicker.openPicker(options);
+    return processSuccessfulResponse(result);
+  } catch (e) {
+    return {cancelled: true};
+  }
+};
+
 const showImagePicker = async (
   pickOptions: 'camera' | 'gallery',
 ): Promise<ShowImagePickerResponse> => {

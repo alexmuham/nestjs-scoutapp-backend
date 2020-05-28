@@ -5,6 +5,7 @@ import {useTranslation} from 'react-i18next';
 import * as ReportsImages from '../assets';
 import {ReportsHeader, TextArea} from 'components';
 import {useRouterActions} from 'state/hooks/UseActions';
+import {showVideoPicker} from '../../../../utils/ImagePickerUtil';
 
 const GeneralReports: React.FC = () => {
   const {t} = useTranslation('general');
@@ -13,6 +14,13 @@ const GeneralReports: React.FC = () => {
   const [dateValue, setDateValue] = useState<string>('');
 
   const [notesValue, setNotes] = useState<string>('');
+
+  const attachVideo = async () => {
+    const result = await showVideoPicker();
+    if (!result.cancelled) {
+      // await actions.addVideoToGeneralPlayer(result.uri);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -38,7 +46,7 @@ const GeneralReports: React.FC = () => {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.attachVideo}>
+      <TouchableOpacity style={styles.attachVideo} onPress={() => attachVideo()}>
         <Image source={ReportsImages.AttachVideo} />
       </TouchableOpacity>
     </View>

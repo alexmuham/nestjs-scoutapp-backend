@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   textAreaContainer: {
-    minHeight: 350,
+    minHeight: 200,
     flex: 1,
   },
   attachVideo: {
