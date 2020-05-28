@@ -1,9 +1,8 @@
 import ISessionStore from './ISessionStore';
 import {InjectRepository} from '@nestjs/typeorm';
 import {In, IsNull, Not, Repository} from 'typeorm';
-import Session from 'database/entities/Session';
-import {Platform} from 'entities/Platform';
-import {ID} from 'entities/Common';
+import {Session} from 'database/entities';
+import {ID, Platform} from 'entities';
 import {FindConditions} from 'typeorm/find-options/FindConditions';
 import ScoutAppError from '../../../ScoutAppError';
 

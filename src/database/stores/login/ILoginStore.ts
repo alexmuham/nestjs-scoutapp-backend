@@ -1,5 +1,4 @@
-import LocalLogin from 'database/entities/LocalLogin';
-import User from 'database/entities/User';
+import {User, LocalLogin} from 'database/entities';
 import {ID} from 'entities/Common';
 
 export default abstract class ILoginStore {

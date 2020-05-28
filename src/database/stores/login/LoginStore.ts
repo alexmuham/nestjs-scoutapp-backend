@@ -1,8 +1,7 @@
 import ILoginStore from './ILoginStore';
-import User from '../../entities/User';
+import {User, LocalLogin} from 'database/entities';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
-import LocalLogin from '../../entities/LocalLogin';
 import {ID} from 'entities/Common';
 
 export default class LoginStore extends ILoginStore {

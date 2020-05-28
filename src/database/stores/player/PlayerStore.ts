@@ -2,9 +2,15 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import IPlayerStore from './IPlayerStore';
 import {Injectable} from '@nestjs/common';
-import {CareerProgressions, File, Player, Ranking} from 'database/entities';
-import DbPercentileRankings from 'database/entities/PercentileRankings';
-import DbPGEventResults from 'database/entities/PGEventResults';
+import {
+  CareerProgressions,
+  File,
+  Player,
+  Ranking,
+  PercentileRankings as DbPercentileRankings,
+  PGEventResults as DbPGEventResults,
+  Reports,
+} from 'database/entities';
 
 @Injectable()
 export default class PlayerStore implements IPlayerStore {
@@ -21,7 +27,12 @@ export default class PlayerStore implements IPlayerStore {
     private readonly RankingsRepository: Repository<Ranking>,
   ) {}
 
-  public readonly allRelations = ['careerProgressions', 'pGEventResults', 'images'];
+  public readonly allRelations = [
+    'careerProgressions',
+    'pGEventResults',
+    'images',
+    'reports',
+  ];
 
   async addCareerProgressions(progress: string) {
     const newCareerProgressions = this.careerProgressionsRepository.create({progress});
@@ -99,6 +110,7 @@ export default class PlayerStore implements IPlayerStore {
     percentileRankingsId: string,
     pGEventResultsId: string,
     careerProgressionsId: string,
+    reports: Reports,
   ) {
     const newPlayer = this.repository.create({
       name,
@@ -120,6 +132,7 @@ export default class PlayerStore implements IPlayerStore {
       percentileRankingsId,
       pGEventResultsId,
       careerProgressionsId,
+      reports,
     });
     await this.repository.insert(newPlayer);
   }

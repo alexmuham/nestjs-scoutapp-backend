@@ -1,5 +1,4 @@
-import Preferences from '../../entities/Preferences';
-import {ID} from '../../entities/Common';
+import {ID, Preferences} from 'entities';
 
 export default abstract class IPreferencesManager {
   abstract getPreferences(myUserId: ID): Promise<Preferences>;

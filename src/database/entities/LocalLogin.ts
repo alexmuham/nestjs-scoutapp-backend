@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import User from './User';
+import {User} from 'database/entities';
 
 @Entity()
 @Unique((l: LocalLogin) => [l.email])

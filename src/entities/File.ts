@@ -3,4 +3,5 @@ export default interface File {
   mediaLink: string;
   name: string;
   mimeType: string;
+  date: Date;
 }

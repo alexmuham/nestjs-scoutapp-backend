@@ -7,10 +7,13 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import CareerProgressions from './CareerProgressions';
-import PercentileRankings from './PercentileRankings';
-import PGEventResults from './PGEventResults';
-import File from './File';
+import {
+  PercentileRankings,
+  CareerProgressions,
+  PGEventResults,
+  File,
+  Reports,
+} from 'database/entities';
 
 @Entity()
 export default class Player {
@@ -39,6 +42,8 @@ export default class Player {
     pGEventResults: PGEventResults,
     pGEventResultsId: string,
     images: File[],
+    reports: Reports,
+    reportsId: string,
   ) {
     this.id = id;
     this.name = name;
@@ -64,6 +69,8 @@ export default class Player {
     this.pGEventResults = pGEventResults;
     this.pGEventResultsId = pGEventResultsId;
     this.images = images;
+    this.reports = reports;
+    this.reportsId = reportsId;
   }
 
   @PrimaryGeneratedColumn('uuid')
@@ -141,4 +148,11 @@ export default class Player {
   @ManyToMany(() => File, {nullable: false})
   @JoinTable()
   images: File[];
+
+  @ManyToOne(() => Reports, {nullable: false})
+  @JoinTable()
+  reports: Reports;
+
+  @Column({nullable: true})
+  reportsId: string;
 }

@@ -3,7 +3,7 @@ import {UseGuards} from '@nestjs/common';
 import AuthGuard from 'enhancers/guards/AuthGuard';
 import {mapPlayersToGQL, mapPlayerToGQL} from '../entities/Mappers';
 import IPlayerManager from 'managers/player/IPlayerManager';
-import Player from 'graphql/entities/player/Player';
+import {Player} from 'graphql/entities';
 import CurrentSession from 'enhancers/decorators/CurrentSession';
 import Session from 'entities/Session';
 

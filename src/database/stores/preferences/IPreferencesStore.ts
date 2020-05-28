@@ -1,5 +1,5 @@
-import Preferences from 'database/entities/Preferences';
-import {ID} from '../../../entities/Common';
+import {Preferences} from 'database/entities';
+import {ID} from 'entities';
 
 export default abstract class IPreferencesStore {
   abstract createPreferences(

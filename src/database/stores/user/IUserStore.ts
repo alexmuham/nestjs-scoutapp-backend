@@ -1,6 +1,5 @@
-import {ID} from 'entities/Common';
-import User from 'database/entities/User';
-import Player from 'database/entities/Player';
+import {ID} from 'entities';
+import {User, Player, Reports} from 'database/entities';
 
 export default abstract class IUserStore {
   abstract createUser(user: Partial<User>): Promise<User>;
@@ -16,4 +15,6 @@ export default abstract class IUserStore {
   abstract deleteFriend(userId: ID, friendId: string): Promise<void>;
 
   abstract getFriendById(userId: ID, friendId: string): Promise<User | undefined>;
+
+  abstract addReportToUser(reports: Reports[], userId: string): Promise<void>;
 }

@@ -1,6 +1,5 @@
 import CSVResponse from 'api/entities/CSVResponse';
-import Player from 'entities/Player';
-import {ID} from 'entities/Common';
+import {ID, Player} from 'entities';
 
 export default abstract class IPlayerManager {
   abstract uploadPlayersData(players: [CSVResponse]): Promise<void>;

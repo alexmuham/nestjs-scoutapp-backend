@@ -11,6 +11,8 @@ import IPreferencesManager from './preferences/IPreferencesManager';
 import PreferencesManager from './preferences/PreferencesManager';
 import IFileManager from './file/IFileManager';
 import FileManager from './file/FileManager';
+import IReportsManager from './reports/IReportsManager';
+import ReportsManager from './reports/ReportsManager';
 
 @Module({
   imports: [
@@ -37,6 +39,10 @@ import FileManager from './file/FileManager';
       provide: IFileManager,
       useClass: FileManager,
     },
+    {
+      provide: IReportsManager,
+      useClass: ReportsManager,
+    },
   ],
   exports: [
     //
@@ -45,6 +51,7 @@ import FileManager from './file/FileManager';
     IPlayerManager,
     IPreferencesManager,
     IFileManager,
+    IReportsManager,
   ],
 })
 export class ManagerModule {}

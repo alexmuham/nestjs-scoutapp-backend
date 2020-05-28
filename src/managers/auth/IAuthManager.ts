@@ -1,7 +1,4 @@
-import AuthResponse from '../../entities/AuthResponse';
-import Session from '../../entities/Session';
-import {ID} from 'entities/Common';
-import {Platform} from 'entities/Platform';
+import {Session, ID, Platform, AuthResponse} from 'entities';
 
 export default abstract class IAuthManager {
   abstract register(

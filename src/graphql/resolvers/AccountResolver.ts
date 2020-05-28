@@ -1,12 +1,11 @@
 import {Args, Mutation, Query, Resolver} from '@nestjs/graphql';
 import IAccountManager from '../../managers/account/IAccountManager';
-import Account from '../entities/account/Account';
 import {UseGuards} from '@nestjs/common';
 import AuthGuard from 'enhancers/guards/AuthGuard';
 import CurrentSession from 'enhancers/decorators/CurrentSession';
-import Session from '../../entities/Session';
+import {Session} from 'entities';
+import {Account, User} from '../entities';
 import {mapAccountToGQL, mapUsersToGQL, mapUserToGQL} from '../entities/Mappers';
-import User from '../entities/user/User';
 
 @Resolver()
 @UseGuards(AuthGuard)

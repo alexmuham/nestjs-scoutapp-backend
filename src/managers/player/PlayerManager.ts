@@ -1,12 +1,13 @@
 import {Injectable} from '@nestjs/common';
 import IPlayerManager from './IPlayerManager';
 import IPlayerStore from 'database/stores/player/IPlayerStore';
+import IUserStore from 'database/stores/user/IUserStore';
+import IFileStore from 'database/stores/file/IFileStore';
+import IReportsStore from 'database/stores/reports/IReportsStore';
+import {mapPlayerFormDb, mapPlayersFormDb} from 'database/entities/Mappers';
 import CSVResponse, {Statistic} from 'api/entities/CSVResponse';
 import ScoutAppError from '../../ScoutAppError';
-import {mapPlayerFormDb, mapPlayersFormDb} from 'database/entities/Mappers';
-import IUserStore from 'database/stores/user/IUserStore';
-import {ID} from 'entities/Common';
-import IFileStore from 'database/stores/file/IFileStore';
+import {ID} from 'entities';
 
 @Injectable()
 export default class PlayerManager implements IPlayerManager {
@@ -14,6 +15,7 @@ export default class PlayerManager implements IPlayerManager {
     private playerStore: IPlayerStore,
     private userStore: IUserStore,
     private fileStore: IFileStore,
+    private reportsStore: IReportsStore,
   ) {}
 
   async uploadPlayersData(players: [CSVResponse]) {
@@ -96,6 +98,8 @@ export default class PlayerManager implements IPlayerManager {
         progress,
       );
 
+      const reports = await this.reportsStore.createReports();
+
       return this.playerStore.uploadPlayersData(
         player.name,
         player.external_id,
@@ -116,6 +120,7 @@ export default class PlayerManager implements IPlayerManager {
         PercentileRankingsValue.id,
         PGEventResultsValue.id,
         careerProgressionsValue.id,
+        reports,
       );
     });
   }

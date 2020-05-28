@@ -1,4 +1,4 @@
-import {ID} from '../../entities/Common';
+import {ID} from 'entities';
 import {Buffer} from 'buffer';
 import {Readable} from 'stream';
 

@@ -1,7 +1,12 @@
-import {File, Player, Ranking} from 'database/entities';
-import DbPercentileRankings from 'database/entities/PercentileRankings';
-import DbCareerProgressions from 'database/entities/CareerProgressions';
-import DbPGEventResults from 'database/entities/PGEventResults';
+import {
+  File,
+  Player,
+  Ranking,
+  PercentileRankings as DbPercentileRankings,
+  CareerProgressions as DbCareerProgressions,
+  PGEventResults as DbPGEventResults,
+  Reports,
+} from 'database/entities';
 
 export default abstract class IPlayerStore {
   abstract uploadPlayersData(
@@ -24,6 +29,7 @@ export default abstract class IPlayerStore {
     percentileRankingsId: string,
     pGEventResultsId: string,
     careerProgressionsId: string,
+    reports: Reports,
   ): Promise<void>;
 
   abstract addPercentileRankings(

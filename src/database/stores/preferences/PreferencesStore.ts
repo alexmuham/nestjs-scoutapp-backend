@@ -1,10 +1,9 @@
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import IPreferencesStore from './IPreferencesStore';
-import Preferences from 'database/entities/Preferences';
-import {ID} from '../../../entities/Common';
+import {ID} from 'entities';
 import ScoutAppError from '../../../ScoutAppError';
-import User from 'database/entities/User';
+import {User, Preferences} from 'database/entities';
 
 export default class PreferencesStore extends IPreferencesStore {
   constructor(

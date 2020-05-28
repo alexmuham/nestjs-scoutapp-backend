@@ -1,10 +1,10 @@
 import {Args, Mutation, Query, Resolver} from '@nestjs/graphql';
 import IPreferencesManager from '../../managers/preferences/IPreferencesManager';
-import Preferences from '../entities/user/Preferences';
+import {Preferences} from '../entities';
 import {UseGuards} from '@nestjs/common';
-import AuthGuard from '../../enhancers/guards/AuthGuard';
-import CurrentSession from '../../enhancers/decorators/CurrentSession';
-import Session from '../../entities/Session';
+import AuthGuard from 'enhancers/guards/AuthGuard';
+import CurrentSession from 'enhancers/decorators/CurrentSession';
+import {Session} from 'entities';
 import {mapPreferencesToGQL} from '../entities/Mappers';
 
 @Resolver()

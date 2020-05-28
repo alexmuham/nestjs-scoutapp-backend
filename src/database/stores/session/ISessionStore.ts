@@ -1,6 +1,5 @@
-import Session from 'database/entities/Session';
-import {Platform} from 'entities/Platform';
-import {ID} from 'entities/Common';
+import {Session} from 'database/entities';
+import {ID, Platform} from 'entities';
 
 export default abstract class ISessionStore {
   abstract createSession(

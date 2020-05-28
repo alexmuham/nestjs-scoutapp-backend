@@ -1,5 +1,4 @@
-import Account from 'entities/Account';
-import User from 'entities/User';
+import {Account, User} from 'entities';
 
 export default abstract class IAccountManager {
   abstract getAccount(myUserId: string): Promise<Account>;

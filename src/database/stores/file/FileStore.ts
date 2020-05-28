@@ -1,4 +1,4 @@
-import File from '../../entities/File';
+import {File} from 'database/entities';
 import IFileStore from './IFileStore';
 import {Injectable} from '@nestjs/common';
 import {InjectConnection, InjectRepository} from '@nestjs/typeorm';
@@ -21,5 +21,9 @@ export default class FileStore implements IFileStore {
 
   async getFile(file: {id: string}) {
     return this.fileStore.findOne({where: {id: file.id}});
+  }
+
+  async getFileOrThrow(file: {id: string}) {
+    return this.fileStore.findOneOrFail({where: {id: file.id}});
   }
 }

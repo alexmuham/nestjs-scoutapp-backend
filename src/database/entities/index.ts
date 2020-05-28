@@ -7,6 +7,9 @@ import CareerProgressions from './CareerProgressions';
 import PGEventResults from './PGEventResults';
 import File from './File';
 import Ranking from './Ranking';
+import Preferences from './Preferences';
+import GeneralReports from './GeneralReports';
+import Reports from './Reports';
 
 export {
   LocalLogin,
@@ -18,4 +21,7 @@ export {
   PGEventResults,
   File,
   Ranking,
+  Preferences,
+  GeneralReports,
+  Reports,
 };

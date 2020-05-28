@@ -1,18 +1,24 @@
-import DbUser from './User';
-import DbPlayer from './Player';
-import DbPreferences from './Preferences';
-import DbPercentileRankings from './PercentileRankings';
-import DbRaking from './Ranking';
-import DbCareerProgressions from './CareerProgressions';
-import DbPGEventResults from './PGEventResults';
-import PercentileRankings, {Ranking} from 'entities/PercentileRankings';
-import User from 'entities/User';
-import Account from 'entities/Account';
-import Preferences from 'entities/Preferences';
-import Player from 'entities/Player';
-import CareerProgressions from 'entities/CareerProgressions';
-import PGEventResults from 'entities/PGEventResults';
-import File from './File';
+import {
+  Ranking as DbRaking,
+  User as DbUser,
+  Player as DbPlayer,
+  Preferences as DbPreferences,
+  PercentileRankings as DbPercentileRankings,
+  CareerProgressions as DbCareerProgressions,
+  PGEventResults as DbPGEventResults,
+  File as DbFile,
+} from 'database/entities';
+import {
+  User,
+  Account,
+  Preferences,
+  Player,
+  CareerProgressions,
+  PGEventResults,
+  File,
+  Ranking,
+  PercentileRankings,
+} from 'entities';
 
 export const mapRankingFormDb = (raking: DbRaking): Ranking => ({
   id: raking.id,
@@ -20,6 +26,20 @@ export const mapRankingFormDb = (raking: DbRaking): Ranking => ({
   percentile: raking.percentile,
   top: raking.top,
 });
+
+export const mapFileFromDb = (file: DbFile): File => ({
+  mediaLink: file.mediaLink,
+  id: file.id,
+  mimeType: file.mimeType,
+  name: file.name,
+  date: file.date,
+});
+
+export const mapFilesFormDb = (files: DbFile[]): File[] => {
+  return files.map((file) => {
+    return mapFileFromDb(file);
+  });
+};
 
 export const mapPercentileRankingsFormDb = (
   percentileRankings: DbPercentileRankings,

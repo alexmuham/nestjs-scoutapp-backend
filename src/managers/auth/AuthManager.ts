@@ -1,23 +1,18 @@
 import IAuthManager from './IAuthManager';
-import AuthResponse from '../../entities/AuthResponse';
 import IUserStore from 'database/stores/user/IUserStore';
-import {Injectable} from '@nestjs/common';
 import ILoginStore from 'database/stores/login/ILoginStore';
-import * as bcrypt from 'bcrypt';
-import DbUser from 'database/entities/User';
-import LocalLogin from 'database/entities/LocalLogin';
 import ISessionStore from 'database/stores/session/ISessionStore';
-import Session from 'database/entities/Session';
+import IPreferencesStore from 'database/stores/preferences/IPreferencesStore';
+import {Session, User as DbUser, LocalLogin} from 'database/entities';
 import {IJwtService} from './jwt/IJwtService';
 import {JwtPayload} from './jwt/JwtPayload';
 import {pbkdf2Sync, randomBytes} from 'crypto';
-import AppSession from 'entities/Session';
 import ScoutAppAuthError, {ScoutAppErrorType} from './ScoutAppAuthError';
 import {generate as generatePassword} from 'generate-password';
-import {ID} from 'entities/Common';
-import {Platform} from 'entities/Platform';
+import {Platform, ID, Session as AppSession, AuthResponse} from 'entities';
 import ScoutAppError from '../../ScoutAppError';
-import IPreferencesStore from 'database/stores/preferences/IPreferencesStore';
+import {Injectable} from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export default class AuthManager extends IAuthManager {

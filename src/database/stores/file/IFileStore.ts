@@ -1,4 +1,4 @@
-import File from '../../entities/File';
+import {File} from 'database/entities';
 
 export default abstract class IFileStore {
   abstract addFile(
@@ -9,4 +9,6 @@ export default abstract class IFileStore {
   ): Promise<File>;
 
   abstract getFile(file: {id: string}): Promise<File | undefined>;
+
+  abstract getFileOrThrow(file: {id: string}): Promise<File>;
 }
