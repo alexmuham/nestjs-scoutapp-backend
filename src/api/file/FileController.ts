@@ -20,9 +20,8 @@ export class FilesController {
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
-  @Ignore('Authorization', 'Platform')
+  @Ignore('Authorization')
   async uploadFile(@UploadedFile() file: UploadFileInfo): Promise<string> {
-    console.log(file, 'FILE');
     const image = await this.fileManager.addFile(
       file.originalname,
       file.mimetype,
