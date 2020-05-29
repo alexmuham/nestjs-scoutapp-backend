@@ -23,16 +23,12 @@ const GeneralReports: React.FC = () => {
 
   const [notesValue, setNotes] = useState<string>('');
 
-  const [uri, setUri] = useState<string[]>([]); // TODO REMOVE
-
   const {files} = useSelector((state) => state.genReports);
 
   const attachVideo = async () => {
     const result = await showVideoPicker();
     if (!result.cancelled) {
-      await uri.push(result.uri);
-      await setUri(uri);
-      // await actions.addVideoToGeneralReports(result.uri); //TODO FIXED
+      await actions.addVideoToGeneralReports(result.uri);
     }
   };
 
@@ -70,15 +66,15 @@ const GeneralReports: React.FC = () => {
               numberOfLines={100}
             />
           </View>
-          {/* {files && ( */}
-          <View>
-            <FlatList
-              horizontal
-              data={uri}
-              renderItem={({item}) => <VideoContainer uri={item} />}
-            />
-          </View>
-          {/* )} */}
+          {files && (
+            <View>
+              <FlatList
+                horizontal
+                data={files.filesUris}
+                renderItem={({item}) => <VideoContainer uri={item} />}
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
       <TouchableOpacity style={styles.attachVideo} onPress={() => attachVideo()}>

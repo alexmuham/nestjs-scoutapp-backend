@@ -71,8 +71,7 @@ const PlayerCard: React.FC = () => {
           onLoadStart={() => setImageIsLoading(true)}
           onLoadEnd={() => setImageIsLoading(false)}
         >
-          {' '}
-          :{imageIsLoading && <ActivityIndicator style={styles.imagePlaceholder} />}
+          {imageIsLoading && <ActivityIndicator style={styles.imagePlaceholder} />}
         </Image>
       )}
     </TouchableOpacity>
