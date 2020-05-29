@@ -13,9 +13,9 @@ export class ReportsResolver {
   @Mutation(() => Boolean)
   async addGeneralReports(
     @CurrentSession() {userId}: Session,
-    @Args({name: 'date', type: () => String}) date: string,
+    @Args({name: 'date', type: () => Date}) date: Date,
     @Args({name: 'notes', type: () => String}) notes: string,
-    @Args({name: 'videosIds', type: () => [String]}) videosIds: string[],
+    @Args({name: 'videosIds', type: () => [String], nullable: true}) videosIds: string[],
     @Args({name: 'playerId', type: () => String}) playerId: string,
   ) {
     await this.reportsManager.addGeneralReports(userId, date, notes, videosIds, playerId);

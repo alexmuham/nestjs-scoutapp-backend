@@ -103,5 +103,10 @@ type Mutation {
   deletePlayerToUser(playerId: String!): Boolean!
   addPlayerImage(playerId: String!, imageId: String!): Boolean!
   updatePreferences(sendNotificationsToEmail: Boolean, enableMessageNotification: Boolean, enablePlayerMatchingNotification: Boolean, enableFriendRequestNotification: Boolean): Preferences!
-  addGeneralReports(playerId: String!, videosIds: [String!]!, notes: String!, date: String!): Boolean!
+  addGeneralReports(playerId: String!, videosIds: [String!], notes: String!, date: DateTime!): Boolean!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime

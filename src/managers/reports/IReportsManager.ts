@@ -1,9 +1,9 @@
 export default abstract class IReportsManager {
   abstract addGeneralReports(
     userId: string,
-    date: string,
+    date: Date,
     notes: string,
-    videosIds: string[],
+    videosIds: string[] | undefined,
     playerId: string,
   ): Promise<void>;
 }

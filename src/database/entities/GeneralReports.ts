@@ -3,7 +3,7 @@ import File from './File';
 
 @Entity()
 export default class GeneralReports {
-  constructor(id: string, date: string, notes: string, videos: File[]) {
+  constructor(id: string, date: Date, notes: string, videos: File[]) {
     this.id = id;
     this.date = date;
     this.notes = notes;
@@ -14,7 +14,7 @@ export default class GeneralReports {
   id: string;
 
   @Column('text')
-  date: string;
+  date: Date;
 
   @Column('text')
   notes: string;

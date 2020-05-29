@@ -17,7 +17,7 @@ export default class ReportsManager implements IReportsManager {
 
   async addGeneralReports(
     userId: string,
-    date: string,
+    date: Date,
     notes: string,
     videosIds: string[],
     playerId: string,
@@ -28,7 +28,9 @@ export default class ReportsManager implements IReportsManager {
     const report = await this.reportsStore.getReportsById(player.reportsId);
     if (!user) throw new ScoutAppError('');
     if (!report) throw new ScoutAppError('');
-    const files = videosIds.map((id) => this.fileStore.getFileOrThrow({id}));
+    const files = videosIds
+      ? videosIds.map((id) => this.fileStore.getFileOrThrow({id}))
+      : [];
     await Promise.all(files)
       .then(async (files) => {
         const generalReports = await this.reportsStore.createGeneralReports(
@@ -39,9 +41,9 @@ export default class ReportsManager implements IReportsManager {
         const updateGenReports = report.generalReports ? report.generalReports : [];
         updateGenReports.push(generalReports);
         await this.reportsStore.addGenReport(updateGenReports, report.id);
-        const updateUserReports = user.reports ? user.reports : [];
-        updateUserReports.push(report);
-        await this.userStore.addReportToUser(updateUserReports, userId);
+        const updateUserGenReports = user.genReports ? user.genReports : [];
+        updateUserGenReports.push(generalReports);
+        await this.userStore.addGenReportToUser(updateUserGenReports, userId);
       })
       .catch((rej) => rej);
   }

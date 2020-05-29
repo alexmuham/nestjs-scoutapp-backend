@@ -4,7 +4,7 @@ export default abstract class IReportsStore {
   abstract createReports(): Promise<Reports>;
 
   abstract createGeneralReports(
-    date: string,
+    date: Date,
     notes: string,
     videosIds: File[],
   ): Promise<GeneralReports>;

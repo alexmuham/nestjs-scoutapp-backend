@@ -23,7 +23,7 @@ export default class ReportsStore extends IReportsStore {
     return newReports;
   }
 
-  async createGeneralReports(date: string, notes: string, videosIds: File[]) {
+  async createGeneralReports(date: Date, notes: string, videosIds: File[]) {
     const newGenReports = await this.generalRepository.create({
       date,
       notes,
