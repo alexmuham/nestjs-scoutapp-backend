@@ -156,5 +156,14 @@ export function useGeneralReportsActions() {
   return {
     addVideoToGeneralReports: (fileUri: string) =>
       dispatch(genReportsActions.addVideoToGeneralReports({fileUri, history})),
+    addGeneralReports: (
+      notes: string,
+      date: Date | undefined,
+      filesIds: string[] | undefined,
+      playerId: string,
+    ) =>
+      dispatch(
+        genReportsActions.addGeneralReports({history, notes, date, filesIds, playerId}),
+      ),
   };
 }

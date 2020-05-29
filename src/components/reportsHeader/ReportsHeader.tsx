@@ -13,12 +13,14 @@ interface ReportsHeaderProps {
   goBackAction: () => void;
   dateValue: string;
   setDateValue: (value: string) => void;
+  doneActions: () => void;
 }
 
 const ReportsHeader: React.FC<ReportsHeaderProps> = ({
   setDateValue,
   dateValue,
   goBackAction,
+  doneActions,
 }) => {
   const {t} = useTranslation('reports');
 
@@ -29,7 +31,7 @@ const ReportsHeader: React.FC<ReportsHeaderProps> = ({
           <Image source={ReportsImages.LeftArrow} />
           <Text style={styles.reportsText}>{t('reports')}</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => doneActions()}>
           <Text style={styles.reportsText}>{t('done')}</Text>
         </TouchableOpacity>
       </View>

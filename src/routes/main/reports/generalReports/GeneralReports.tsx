@@ -4,33 +4,47 @@ import styles from './GeneralReports.styles';
 import {useTranslation} from 'react-i18next';
 import * as ReportsImages from '../assets';
 import {ReportsHeader, TextArea, VideoContainer} from 'components';
-import {
-  // useGeneralReportsActions,
-  useRouterActions,
-} from 'state/hooks/UseActions';
+import {useGeneralReportsActions, useRouterActions} from 'state/hooks/UseActions';
 import {showVideoPicker} from 'utils/ImagePickerUtil';
-// import {useSelector} from 'state/hooks';
+import {useSelector} from 'state/hooks';
+import {useParams} from 'react-router-native';
+import {MaskService, TextInputMaskOptionProp} from 'react-native-masked-text';
+
+const MaskType = 'datetime';
+const MaskOptions: TextInputMaskOptionProp = {format: 'MM/DD/YYYY'};
 
 const GeneralReports: React.FC = () => {
   const {t} = useTranslation('general');
   const routerActions = useRouterActions();
-  // const actions = useGeneralReportsActions();
+  const actions = useGeneralReportsActions();
+  const {id} = useParams();
 
   const [dateValue, setDateValue] = useState<string>('');
 
   const [notesValue, setNotes] = useState<string>('');
 
-  const [uri, setUri] = useState<string[]>([]);
+  const [uri, setUri] = useState<string[]>([]); // TODO REMOVE
 
-  // const {files} = useSelector((state) => state.genReports);
+  const {files} = useSelector((state) => state.genReports);
 
   const attachVideo = async () => {
     const result = await showVideoPicker();
     if (!result.cancelled) {
       await uri.push(result.uri);
       await setUri(uri);
-      // await actions.addVideoToGeneralReports(result.uri);
+      // await actions.addVideoToGeneralReports(result.uri); //TODO FIXED
     }
+  };
+
+  const getDateByString = (value: string): Date | undefined => {
+    if (!MaskService.isValid(MaskType, value, MaskOptions)) return undefined;
+    const rawString = MaskService.toRawValue(MaskType, value, MaskOptions);
+    return new Date(rawString);
+  };
+
+  const confirm = () => {
+    const date = getDateByString(dateValue);
+    actions.addGeneralReports(notesValue, date, files ? files.filesIds : undefined, id);
   };
 
   return (
@@ -40,6 +54,7 @@ const GeneralReports: React.FC = () => {
           goBackAction={routerActions.goBack}
           dateValue={dateValue}
           setDateValue={setDateValue}
+          doneActions={confirm}
         />
         <View style={styles.notesContainer}>
           <View>

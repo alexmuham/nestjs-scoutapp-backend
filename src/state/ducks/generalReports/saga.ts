@@ -1,9 +1,11 @@
 import {all, takeEvery, put} from 'redux-saga/effects';
 import types from './types';
-import actions, {VideoPayload} from './actions';
+import actions, {GeneralReportsPayload, VideoPayload} from './actions';
 import {Action} from 'redux-actions';
 import {ScoutApi} from 'api';
 import {useSelector} from 'state/hooks';
+import {errorActions} from '../error';
+import {routerActions} from '../router';
 
 function* addVideoToGeneralReports({payload}: Action<VideoPayload>) {
   try {
@@ -28,7 +30,16 @@ function* addVideoToGeneralReports({payload}: Action<VideoPayload>) {
       }),
     );
   } catch (e) {
-    yield put(actions.addVideoCompleted(e));
+    yield put(errorActions.handleError(e));
+  }
+}
+
+function* addGeneralReports({payload}: Action<GeneralReportsPayload>) {
+  try {
+    const {history, playerId} = payload;
+    yield put(routerActions.navigateToPlayer({history, playerId}));
+  } catch (e) {
+    yield put(errorActions.handleError(e));
   }
 }
 
@@ -36,5 +47,6 @@ export default function* () {
   yield all([
     //
     takeEvery(types.ADD_VIDEO_TO_GENERAL_REPORTS, addVideoToGeneralReports),
+    takeEvery(types.ADD_GENERAL_REPORTS, addGeneralReports),
   ]);
 }
