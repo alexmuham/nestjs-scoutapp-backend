@@ -17,6 +17,8 @@ import MaskInput from './maskInput/MaskInput';
 import ReportsHeader from './reportsHeader/ReportsHeader';
 import TextArea from './textInput/TextArea';
 import VideoContainer from './video/VideoContainer';
+import RoleFuturePositionRound from './roleFuturePositionRound/RoleFututlePositionRpund';
+import ReportsInput from './reportsInput/ReportsInput';
 
 export {
   //
@@ -39,4 +41,6 @@ export {
   ReportsHeader,
   TextArea,
   VideoContainer,
+  RoleFuturePositionRound,
+  ReportsInput,
 };

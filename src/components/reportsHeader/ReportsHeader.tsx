@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View, ViewStyle} from 'react-native';
 import styles from './ReportsHeader.styles';
 import {useTranslation} from 'react-i18next';
 import * as ReportsImages from './assets';
@@ -13,7 +13,9 @@ interface ReportsHeaderProps {
   goBackAction: () => void;
   dateValue: string;
   setDateValue: (value: string) => void;
-  doneActions: () => void;
+  doneActions?: () => void;
+  mode: 'pro' | 'gen';
+  style?: ViewStyle;
 }
 
 const ReportsHeader: React.FC<ReportsHeaderProps> = ({
@@ -21,19 +23,28 @@ const ReportsHeader: React.FC<ReportsHeaderProps> = ({
   dateValue,
   goBackAction,
   doneActions,
+  mode,
+  style,
 }) => {
   const {t} = useTranslation('reports');
 
   return (
-    <View>
+    <View style={style}>
       <View style={styles.topContainer}>
         <TouchableOpacity style={styles.reports} onPress={() => goBackAction()}>
           <Image source={ReportsImages.LeftArrow} />
           <Text style={styles.reportsText}>{t('reports')}</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => doneActions()}>
-          <Text style={styles.reportsText}>{t('done')}</Text>
-        </TouchableOpacity>
+        {mode === 'gen' && doneActions && (
+          <TouchableOpacity onPress={() => doneActions()}>
+            <Text style={styles.reportsText}>{t('done')}</Text>
+          </TouchableOpacity>
+        )}
+        {mode === 'pro' && (
+          <View>
+            <Text style={styles.reportsText}>{t('draft')}</Text>
+          </View>
+        )}
       </View>
       <View>
         <MaskInput

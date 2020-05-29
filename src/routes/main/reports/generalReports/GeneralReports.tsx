@@ -51,6 +51,7 @@ const GeneralReports: React.FC = () => {
           dateValue={dateValue}
           setDateValue={setDateValue}
           doneActions={confirm}
+          mode="gen"
         />
         <View style={styles.notesContainer}>
           <View>
