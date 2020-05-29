@@ -16,6 +16,7 @@ import PreferencesSwitch from './switch/PreferencesSwitch';
 import MaskInput from './maskInput/MaskInput';
 import ReportsHeader from './reportsHeader/ReportsHeader';
 import TextArea from './textInput/TextArea';
+import VideoContainer from './video/VideoContainer';
 
 export {
   //
@@ -37,4 +38,5 @@ export {
   MaskInput,
   ReportsHeader,
   TextArea,
+  VideoContainer,
 };

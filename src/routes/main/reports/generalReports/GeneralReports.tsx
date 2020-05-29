@@ -3,34 +3,35 @@ import {FlatList, Image, ScrollView, Text, TouchableOpacity, View} from 'react-n
 import styles from './GeneralReports.styles';
 import {useTranslation} from 'react-i18next';
 import * as ReportsImages from '../assets';
-import {ReportsHeader, TextArea} from 'components';
-import {useGeneralReportsActions, useRouterActions} from 'state/hooks/UseActions';
+import {ReportsHeader, TextArea, VideoContainer} from 'components';
+import {
+  // useGeneralReportsActions,
+  useRouterActions,
+} from 'state/hooks/UseActions';
 import {showVideoPicker} from 'utils/ImagePickerUtil';
-import {useSelector} from 'state/hooks';
-import Video from 'react-native-video';
+// import {useSelector} from 'state/hooks';
 
 const GeneralReports: React.FC = () => {
   const {t} = useTranslation('general');
   const routerActions = useRouterActions();
-  const actions = useGeneralReportsActions();
+  // const actions = useGeneralReportsActions();
 
   const [dateValue, setDateValue] = useState<string>('');
 
   const [notesValue, setNotes] = useState<string>('');
 
-  // const [uri, setUri] = useState<string[]>([]);
+  const [uri, setUri] = useState<string[]>([]);
 
-  const {files} = useSelector((state) => state.genReports);
+  // const {files} = useSelector((state) => state.genReports);
 
   const attachVideo = async () => {
     const result = await showVideoPicker();
     if (!result.cancelled) {
-      // await uri.push(result.uri);
-      // await setUri(uri);
-      await actions.addVideoToGeneralReports(result.uri);
+      await uri.push(result.uri);
+      await setUri(uri);
+      // await actions.addVideoToGeneralReports(result.uri);
     }
   };
-  // console.log(files, 'FILES');
 
   return (
     <View style={styles.container}>
@@ -54,19 +55,15 @@ const GeneralReports: React.FC = () => {
               numberOfLines={100}
             />
           </View>
-          {files && (
-            <View>
-              <FlatList
-                horizontal
-                data={files.filesUris}
-                renderItem={({item}) => (
-                  <View>
-                    <Video source={{uri: item}} />
-                  </View>
-                )}
-              />
-            </View>
-          )}
+          {/* {files && ( */}
+          <View>
+            <FlatList
+              horizontal
+              data={uri}
+              renderItem={({item}) => <VideoContainer uri={item} />}
+            />
+          </View>
+          {/* )} */}
         </View>
       </ScrollView>
       <TouchableOpacity style={styles.attachVideo} onPress={() => attachVideo()}>

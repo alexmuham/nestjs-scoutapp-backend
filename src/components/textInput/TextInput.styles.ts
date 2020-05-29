@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     paddingHorizontal: 16,
     paddingTop: 10,
+    flex: 1,
   },
 });
 
