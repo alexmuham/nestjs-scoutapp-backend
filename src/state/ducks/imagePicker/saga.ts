@@ -15,7 +15,7 @@ function* addImage({payload}: Action<addImageUri>) {
     yield put(playerActions.fetchPlayer({playerId, history}));
     yield put(routerActions.goBack({history}));
   } catch (e) {
-    yield put(yield put(errorActions.handleError(payload)));
+    yield put(errorActions.handleError(e));
   }
 }
 

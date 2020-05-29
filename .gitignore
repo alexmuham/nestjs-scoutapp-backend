@@ -58,3 +58,5 @@ buck-out/
 /ios/Pods/
 
 .env*.local
+
+env.tmp.json
