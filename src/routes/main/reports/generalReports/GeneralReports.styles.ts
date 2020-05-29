@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   attachVideo: {
-    paddingVertical: 10,
+    paddingVertical: 15,
   },
   notesContainer: {
     paddingTop: 30,
@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
   notesText: {
     fontSize: 25,
     paddingLeft: 5,
+  },
+  videoContainer: {
+    marginRight: 20,
+    paddingTop: 10,
   },
 });
 

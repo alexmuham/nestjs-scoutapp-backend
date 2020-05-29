@@ -62,4 +62,11 @@ export interface IScoutApi {
     tenYard: number[],
     exitVelocity: number[],
   ): Promise<Player[]>;
+
+  addGeneralReports(
+    filesIds: string[] | undefined,
+    date: Date,
+    notes: string,
+    playerId: string,
+  ): Promise<void>;
 }

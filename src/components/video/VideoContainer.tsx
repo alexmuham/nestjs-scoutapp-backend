@@ -1,22 +1,31 @@
 import React, {useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, ViewStyle} from 'react-native';
 import Video from 'react-native-video';
 import styles from './VideoContainer.styles';
 
 interface VideoContainerProps {
   uri: string;
+  containerStyle?: ViewStyle;
+  videoStyle?: ViewStyle;
 }
 
-const VideoContainer: React.FC<VideoContainerProps> = ({uri}) => {
+const VideoContainer: React.FC<VideoContainerProps> = ({
+  uri,
+  containerStyle,
+  videoStyle,
+}) => {
   // const [duration, setDuration] = useState(0.0); //TODO add video player and add video deletion, add video opening in full screen
   // const [currentTime, setCurrentTime] = useState(0.0);
   const [paused, setPaused] = useState(true);
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => setPaused(!paused)}>
+    <TouchableOpacity
+      style={{...styles.container, ...containerStyle}}
+      onPress={() => setPaused(!paused)}
+    >
       <Video
         source={{uri}}
-        style={styles.video}
+        style={{...styles.video, ...videoStyle}}
         audioOnly={false}
         rate={1}
         paused={paused}

@@ -19,6 +19,7 @@ import {
   QueryFriendByIdArgs,
   User,
   QueryPlayersBySearchParametersArgs,
+  MutationAddGeneralReportsArgs,
 } from './types';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
@@ -402,4 +403,27 @@ export const playersBySearchParametersQuery = createQueryWithVariables<
     }
   `,
   ({playersBySearchParameters}) => playersBySearchParameters,
+);
+
+export const addGeneralReportsMutation = createMutationWithVariables<
+  MutationAddGeneralReportsArgs,
+  {addGeneralReports: boolean},
+  boolean
+>(
+  gql`
+    mutation addGeneralReports(
+      $date: DateTime!
+      $notes: String!
+      $playerId: String!
+      $videosIds: [String!]
+    ) {
+      addGeneralReports(
+        date: $date
+        notes: $notes
+        playerId: $playerId
+        videosIds: $videosIds
+      )
+    }
+  `,
+  ({addGeneralReports}) => addGeneralReports,
 );

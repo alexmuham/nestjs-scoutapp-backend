@@ -6,16 +6,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-};
-
-export type Preferences = {
-   __typename?: 'Preferences';
-  id: Scalars['String'];
-  enableFriendRequestNotification: Scalars['Boolean'];
-  enablePlayerMatchingNotification: Scalars['Boolean'];
-  enableMessageNotification: Scalars['Boolean'];
-  sendNotificationsToEmail: Scalars['Boolean'];
-  players: Array<Scalars['String']>;
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any;
 };
 
 export type CareerProgressions = {
@@ -92,6 +84,16 @@ export type User = {
   image?: Maybe<Scalars['String']>;
 };
 
+export type Preferences = {
+   __typename?: 'Preferences';
+  id: Scalars['String'];
+  enableFriendRequestNotification: Scalars['Boolean'];
+  enablePlayerMatchingNotification: Scalars['Boolean'];
+  enableMessageNotification: Scalars['Boolean'];
+  sendNotificationsToEmail: Scalars['Boolean'];
+  players: Array<Scalars['String']>;
+};
+
 export type Account = {
    __typename?: 'Account';
   user: User;
@@ -145,6 +147,7 @@ export type Mutation = {
   deletePlayerToUser: Scalars['Boolean'];
   addPlayerImage: Scalars['Boolean'];
   updatePreferences: Preferences;
+  addGeneralReports: Scalars['Boolean'];
 };
 
 
@@ -185,3 +188,12 @@ export type MutationUpdatePreferencesArgs = {
   enablePlayerMatchingNotification?: Maybe<Scalars['Boolean']>;
   enableFriendRequestNotification?: Maybe<Scalars['Boolean']>;
 };
+
+
+export type MutationAddGeneralReportsArgs = {
+  playerId: Scalars['String'];
+  videosIds?: Maybe<Array<Scalars['String']>>;
+  notes: Scalars['String'];
+  date: Scalars['DateTime'];
+};
+

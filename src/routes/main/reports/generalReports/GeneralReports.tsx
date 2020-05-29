@@ -71,7 +71,9 @@ const GeneralReports: React.FC = () => {
               <FlatList
                 horizontal
                 data={files.filesUris}
-                renderItem={({item}) => <VideoContainer uri={item} />}
+                renderItem={({item}) => (
+                  <VideoContainer uri={item} containerStyle={styles.videoContainer} />
+                )}
               />
             </View>
           )}

@@ -15,6 +15,7 @@ import {
   friendsQuery,
   playersQuery,
   playersBySearchParametersQuery,
+  addGeneralReportsMutation,
 } from './ScoutGraphqlQueryBuilder';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
@@ -104,6 +105,17 @@ export default class ScoutGraphqlApi extends GraphqlApiBase {
         tenYard,
         weight,
       }),
+    );
+  }
+
+  public async mutationAddGeneralReports(
+    filesIds: string[] | undefined,
+    date: Date,
+    notes: string,
+    playerId: string,
+  ) {
+    await this.mutation(
+      addGeneralReportsMutation({date, notes, playerId, videosIds: filesIds}),
     );
   }
 }

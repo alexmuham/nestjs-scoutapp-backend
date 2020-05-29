@@ -181,4 +181,15 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
       ),
     );
   }
+
+  public async addGeneralReports(
+    filesIds: string[] | undefined,
+    date: Date,
+    notes: string,
+    playerId: string,
+  ) {
+    return this.wrapApiCall(async () =>
+      this.graphqlApi.mutationAddGeneralReports(filesIds, date, notes, playerId),
+    );
+  }
 }

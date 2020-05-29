@@ -9,13 +9,29 @@ const addVideoCompleted = (
   {
     payload,
   }: Action<{
-    filesUris: string[];
-    filesIds: string[];
+    fileUri: string;
+    fileId: string;
   }>,
 ) => {
+  const {fileId, fileUri} = payload;
+  const {files} = state;
+  let filesUris = [];
+  let filesIds = [];
+  if (!files) {
+    filesUris.push(fileUri);
+    filesIds.push(fileId);
+  } else {
+    filesUris = files.filesUris;
+    filesUris.push(fileUri);
+    filesIds = files.filesIds;
+    filesIds.push(fileId);
+  }
   return {
     ...state,
-    files: payload,
+    files: {
+      filesIds,
+      filesUris,
+    },
   };
 };
 
