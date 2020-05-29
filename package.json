@@ -88,7 +88,9 @@
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "^2.0.5",
-    "react-test-renderer": "16.11.0"
+    "react-test-renderer": "16.11.0",
+    "redux-flipper": "^1.2.0",
+    "react-native-flipper": "^0.39.0"
   },
   "jest": {
     "preset": "react-native"
