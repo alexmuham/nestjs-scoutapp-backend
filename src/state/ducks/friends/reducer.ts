@@ -7,7 +7,7 @@ import {
   loading,
   success,
 } from 'entities/LoadableContainer';
-import Friends from 'entities/Friends';
+import {Friends} from 'state/entities';
 
 type ReducerState = LoadableContainer<Friends>;
 

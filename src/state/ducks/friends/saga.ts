@@ -5,7 +5,7 @@ import {Action} from 'redux-actions';
 import {ScoutApi} from 'api';
 import {NavigationPayload} from '../router/actions';
 import {errorActions} from '../error';
-import Friends from 'entities/Friends';
+import {Friends} from 'state/entities';
 
 function* fetchFriends({payload}: Action<NavigationPayload>) {
   try {

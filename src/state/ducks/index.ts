@@ -12,6 +12,10 @@ import {reducer as prospectReducer, saga as prospectSage} from 'state/ducks/pros
 import {reducer as playerReducer, saga as playerSage} from 'state/ducks/player';
 import {reducer as friendsReducer, saga as friendsSaga} from 'state/ducks/friends';
 import {reducer as searchReducer, saga as searchSaga} from 'state/ducks/search';
+import {
+  reducer as genReportsReduce,
+  saga as geReportsSaga,
+} from 'state/ducks/generalReports';
 import {saga as imagePickerSaga} from 'state/ducks/imagePicker';
 import {saga as errorSaga} from 'state/ducks/error';
 
@@ -28,6 +32,7 @@ export const rootReducer = combineReducers<State>({
   player: playerReducer,
   friends: friendsReducer,
   search: searchReducer,
+  genReports: genReportsReduce,
 });
 
 export function* rootSaga() {
@@ -44,5 +49,6 @@ export function* rootSaga() {
     imagePickerSaga(),
     friendsSaga(),
     searchSaga(),
+    geReportsSaga(),
   ]);
 }

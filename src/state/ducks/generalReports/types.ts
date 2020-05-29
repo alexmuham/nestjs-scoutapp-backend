@@ -1,0 +1,6 @@
+const prefix = 'GENERAL_REPORTS_';
+
+export default {
+  ADD_VIDEO_TO_GENERAL_REPORTS: `${prefix}ADD_VIDEO_TO_GENERAL_REPORTS`,
+  ADD_VIDEO_COMPLETED: `${prefix}ADD_VIDEO_COMPLETED`,
+};

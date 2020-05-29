@@ -1,6 +1,6 @@
 import {Action, handleActions} from 'redux-actions';
 import types from './types';
-import {Auth} from 'state/entities/Auth';
+import {Auth} from 'state/entities';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default handleActions<Auth, any>(

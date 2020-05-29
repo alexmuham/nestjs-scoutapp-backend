@@ -1,3 +1,10 @@
+export interface Ranking {
+  id: string;
+  top: string;
+  percentile: string;
+  average: string;
+}
+
 export default interface PercentileRankings {
   id: string;
   FB?: Ranking;
@@ -7,11 +14,4 @@ export default interface PercentileRankings {
   sixty?: Ranking;
   IF?: Ranking;
   pop?: Ranking;
-}
-
-export interface Ranking {
-  id: string;
-  top: string;
-  percentile: string;
-  average: string;
 }

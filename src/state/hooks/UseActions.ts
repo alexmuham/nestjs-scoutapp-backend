@@ -11,6 +11,7 @@ import {actions as routerActions} from '../ducks/router';
 import {actions as imagePickerActions} from '../ducks/imagePicker';
 import {actions as friendsActions} from '../ducks/friends';
 import {actions as searchActions} from '../ducks/search';
+import {actions as genReportsActions} from '../ducks/generalReports';
 import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
@@ -145,5 +146,15 @@ export function useFriendsActions() {
     fetchFriends: () => dispatch(friendsActions.fetchFriends({history})),
     deleteFriend: (id: string) =>
       dispatch(friendsActions.deleteFriend({friendId: id, history})),
+  };
+}
+
+export function useGeneralReportsActions() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  return {
+    addVideoToGeneralReports: (fileUri: string) =>
+      dispatch(genReportsActions.addVideoToGeneralReports({fileUri, history})),
   };
 }

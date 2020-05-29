@@ -50,7 +50,7 @@ const showImagePicker = async (
   switch (pickOptions) {
     case 'camera': {
       try {
-        const result = await ImageCropPicker.openPicker(options);
+        const result = await ImageCropPicker.openCamera(options);
         return processSuccessfulResponse(result);
       } catch (e) {
         return {cancelled: true};

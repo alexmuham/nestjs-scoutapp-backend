@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   },
   notesContainer: {
     paddingTop: 30,
+    flex: 1,
   },
   notesText: {
     fontSize: 25,

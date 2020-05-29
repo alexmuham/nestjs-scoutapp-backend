@@ -3,7 +3,7 @@ import types from './types';
 import actions, {FetchPlayer} from './actions';
 import {Action} from 'redux-actions';
 import {ScoutApi} from 'api';
-import {Players} from '../../entities/PlayerContainer';
+import {Players} from 'state/entities';
 import {errorActions} from '../error';
 
 function* fetchPlayer({payload}: Action<FetchPlayer>) {
