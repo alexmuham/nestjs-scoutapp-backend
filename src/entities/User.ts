@@ -1,5 +1,6 @@
 import {ID} from './Common';
 import Player from './Player';
+import Notification from './Notification';
 import {IsString} from 'class-validator';
 
 export default class User {
@@ -13,6 +14,7 @@ export default class User {
     education: string,
     players: Player[],
     image: string,
+    notifications: Notification[],
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -23,6 +25,7 @@ export default class User {
     this.education = education;
     this.players = players;
     this.image = image;
+    this.notifications = notifications;
   }
 
   id: ID;
@@ -34,6 +37,8 @@ export default class User {
   lastName: string;
 
   players?: Player[];
+
+  notifications?: Notification[];
 
   @IsString()
   email: string;

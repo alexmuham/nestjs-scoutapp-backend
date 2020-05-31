@@ -13,6 +13,8 @@ import IFileManager from './file/IFileManager';
 import FileManager from './file/FileManager';
 import IReportsManager from './reports/IReportsManager';
 import ReportsManager from './reports/ReportsManager';
+import INotificationManager from "./notifications/INotificationManager";
+import NotificationManager from "./notifications/NotificationManager";
 
 @Module({
   imports: [
@@ -43,6 +45,10 @@ import ReportsManager from './reports/ReportsManager';
       provide: IReportsManager,
       useClass: ReportsManager,
     },
+    {
+      provide: INotificationManager,
+      useClass: NotificationManager,
+    },
   ],
   exports: [
     //
@@ -52,6 +58,7 @@ import ReportsManager from './reports/ReportsManager';
     IPreferencesManager,
     IFileManager,
     IReportsManager,
+    INotificationManager
   ],
 })
 export class ManagerModule {}

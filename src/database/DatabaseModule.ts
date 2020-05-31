@@ -15,6 +15,7 @@ import {
   Preferences,
   GeneralReports,
   Reports,
+  Notification,
 } from 'database/entities';
 
 const entities = [
@@ -30,6 +31,7 @@ const entities = [
   Ranking,
   GeneralReports,
   Reports,
+  Notification,
 ];
 
 const options = (configService: IConfigService): TypeOrmModuleOptions => ({

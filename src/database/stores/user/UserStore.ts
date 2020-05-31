@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import IUserStore from './IUserStore';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
-import {Player, Reports, User} from 'database/entities';
+import {Player, Reports, User, Notification} from 'database/entities';
 
 @Injectable()
 export default class UserStore implements IUserStore {
@@ -11,7 +11,7 @@ export default class UserStore implements IUserStore {
     private readonly repository: Repository<User>,
   ) {}
 
-  public readonly allRelations = ['players', 'friends', 'reports'];
+  public readonly allRelations = ['players', 'friends', 'reports, notifications'];
 
   async createUser(user: Partial<User>) {
     const newUser = this.repository.create(user);
@@ -53,5 +53,17 @@ export default class UserStore implements IUserStore {
 
   async addReportToUser(reports: Reports[], userId: string) {
     await this.repository.save({id: userId, reports});
+  }
+
+  async addNotificationToUser(notifications: Notification[], id: string) {
+    await this.repository.save({id, notifications});
+  }
+
+  async deleteNotificationToUser(notificationId: string, userId: string) {
+    await this.repository
+        .createQueryBuilder()
+        .relation(User, 'notifications')
+        .of([userId, notificationId])
+        .remove(notificationId);
   }
 }

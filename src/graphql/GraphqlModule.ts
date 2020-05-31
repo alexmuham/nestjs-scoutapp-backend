@@ -6,6 +6,7 @@ import {
   PlayerResolver,
   PreferencesResolver,
   ReportsResolver,
+  NotificationResolver
 } from './resolvers';
 import {ManagerModule} from 'managers/ManagerModule';
 import {EnhancersModule} from 'enhancers/EnhancersModule';
@@ -34,6 +35,7 @@ import {RouterModule} from 'router/RouterModule';
     PlayerResolver,
     PreferencesResolver,
     ReportsResolver,
+    NotificationResolver,
   ],
 })
 export class GraphqlModule {}
