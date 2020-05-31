@@ -7,26 +7,26 @@ import {ID} from 'entities/Common';
 
 @Injectable()
 export default class NotificationStore implements INotificationStore {
-    constructor(
-        @InjectRepository(Notification)
-        private readonly repository: Repository<Notification>,
-    ) {}
+  constructor(
+    @InjectRepository(Notification)
+    private readonly repository: Repository<Notification>,
+  ) {}
 
-    async getNotifications() {
-        return await this.repository.find();
-    }
+  async getNotifications() {
+    return this.repository.find();
+  }
 
-    async getNotificationById(notificationId: string) {
-        return await this.repository.findOne(notificationId);
-    }
+  async getNotificationById(notificationId: string) {
+    return this.repository.findOne(notificationId);
+  }
 
-    async addNotification(notification: Notification) {
-        await this.repository.insert(notification);
-        return true;
-    }
+  async addNotification(notification: Notification) {
+    await this.repository.insert(notification);
+    return true;
+  }
 
-    async deleteNotification(notificationId: ID) {
-        await this.repository.delete(notificationId);
-        return true;
-    }
+  async deleteNotification(notificationId: ID) {
+    await this.repository.delete(notificationId);
+    return true;
+  }
 }

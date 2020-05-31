@@ -3,32 +3,32 @@ import {NotificationState} from '../../entities/Notification';
 
 @Entity()
 export default class Notification {
-    constructor(
-        id: string,
-        date: string,
-        state: NotificationState,
-        text: string,
-        route: string,
-    ) {
-        this.id = id;
-        this.date = date;
-        this.state = state;
-        this.text = text;
-        this.route = route;
-    }
+  constructor(
+    id: string,
+    date: string,
+    state: NotificationState,
+    text: string,
+    route: string,
+  ) {
+    this.id = id;
+    this.date = date;
+    this.state = state;
+    this.text = text;
+    this.route = route;
+  }
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    date: string;
+  @Column()
+  date: string;
 
-    @Column()
-    state: NotificationState;
+  @Column()
+  state: NotificationState;
 
-    @Column({nullable: true})
-    text?: string;
+  @Column({nullable: true})
+  text?: string;
 
-    @Column({nullable: true})
-    route?: string;
+  @Column({nullable: true})
+  route?: string;
 }

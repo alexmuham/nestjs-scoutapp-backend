@@ -10,7 +10,7 @@ import Ranking from './Ranking';
 import Preferences from './Preferences';
 import GeneralReports from './GeneralReports';
 import Reports from './Reports';
-import Notification from "./Notification";
+import Notification from './Notification';
 
 export {
   LocalLogin,
@@ -25,5 +25,5 @@ export {
   Preferences,
   GeneralReports,
   Reports,
-  Notification
+  Notification,
 };

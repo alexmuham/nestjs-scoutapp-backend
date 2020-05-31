@@ -21,5 +21,4 @@ export default abstract class IUserStore {
   abstract addNotificationToUser(notifications: Notification[], id: ID): Promise<void>;
 
   abstract deleteNotificationToUser(notificationId: ID, userId: ID): Promise<void>;
-
 }

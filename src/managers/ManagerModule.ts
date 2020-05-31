@@ -13,8 +13,8 @@ import IFileManager from './file/IFileManager';
 import FileManager from './file/FileManager';
 import IReportsManager from './reports/IReportsManager';
 import ReportsManager from './reports/ReportsManager';
-import INotificationManager from "./notifications/INotificationManager";
-import NotificationManager from "./notifications/NotificationManager";
+import INotificationManager from './notifications/INotificationManager';
+import NotificationManager from './notifications/NotificationManager';
 
 @Module({
   imports: [
@@ -58,7 +58,7 @@ import NotificationManager from "./notifications/NotificationManager";
     IPreferencesManager,
     IFileManager,
     IReportsManager,
-    INotificationManager
+    INotificationManager,
   ],
 })
 export class ManagerModule {}

@@ -61,9 +61,9 @@ export default class UserStore implements IUserStore {
 
   async deleteNotificationToUser(notificationId: string, userId: string) {
     await this.repository
-        .createQueryBuilder()
-        .relation(User, 'notifications')
-        .of([userId, notificationId])
-        .remove(notificationId);
+      .createQueryBuilder()
+      .relation(User, 'notifications')
+      .of([userId, notificationId])
+      .remove(notificationId);
   }
 }

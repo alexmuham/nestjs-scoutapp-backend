@@ -6,7 +6,7 @@ import {
   PlayerResolver,
   PreferencesResolver,
   ReportsResolver,
-  NotificationResolver
+  NotificationResolver,
 } from './resolvers';
 import {ManagerModule} from 'managers/ManagerModule';
 import {EnhancersModule} from 'enhancers/EnhancersModule';
