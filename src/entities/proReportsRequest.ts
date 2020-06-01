@@ -1,5 +1,5 @@
 export default interface ProReportsRequest {
-  dateValue: string;
+  dateValue: Date;
   position: string;
   round: string;
   games: string;
