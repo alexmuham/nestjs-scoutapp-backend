@@ -131,45 +131,51 @@ export default class ReportsManager implements IReportsManager {
     const report = await this.reportsStore.getReportsById(player.reportsId);
     if (!user) throw new ScoutAppError('');
     if (!report) throw new ScoutAppError('');
-    const OFPP =
-      hittingAbilityP +
-      hitAppTypeP +
-      powerFreqP +
-      rawPwrP +
-      runningAbilityP +
-      baseStealerP +
-      armStrengthP +
-      fieldingAbilityP +
-      handsP +
-      rangeP +
-      feetP +
-      canHePlayP;
-    const OFPF =
-      hittingAbilityF +
-      hitAppTypeF +
-      powerFreqF +
-      rawPwrF +
-      runningAbilityF +
-      baseStealerF +
-      armStrengthF +
-      fieldingAbilityF +
-      handsF +
-      rangeF +
-      feetF +
-      canHePlayF;
-    const OFPAdj =
-      hittingAbilityAdj +
-      hitAppTypeAbj +
-      powerFreqAbj +
-      rawPwrAbj +
-      runningAbilityAbj +
-      baseStealerAbj +
-      armStrengthAbj +
-      fieldingAbilityAbj +
-      handsAbj +
-      rangeAbj +
-      feetAbj +
-      canHePlayAbj;
+    const OFPP = (
+      (+hittingAbilityP +
+        +hitAppTypeP +
+        +powerFreqP +
+        +rawPwrP +
+        +runningAbilityP +
+        +baseStealerP +
+        +armStrengthP +
+        +fieldingAbilityP +
+        +handsP +
+        +rangeP +
+        +feetP +
+        +canHePlayP) /
+      12
+    ).toFixed(2);
+    const OFPF = (
+      (+hittingAbilityF +
+        +hitAppTypeF +
+        +powerFreqF +
+        +rawPwrF +
+        +runningAbilityF +
+        +baseStealerF +
+        +armStrengthF +
+        +fieldingAbilityF +
+        +handsF +
+        +rangeF +
+        +feetF +
+        +canHePlayF) /
+      12
+    ).toFixed(2);
+    const OFPAdj = (
+      (+hittingAbilityAdj +
+        +hitAppTypeAbj +
+        +powerFreqAbj +
+        +rawPwrAbj +
+        +runningAbilityAbj +
+        +baseStealerAbj +
+        +armStrengthAbj +
+        +fieldingAbilityAbj +
+        +handsAbj +
+        +rangeAbj +
+        +feetAbj +
+        +canHePlayAbj) /
+      12
+    ).toFixed(2);
     const proReport = await this.reportsStore.createProReports(
       date,
       matchDate,
