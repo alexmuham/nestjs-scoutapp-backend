@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Notification {
+  id: ID!
+  date: String!
+  state: String!
+  text: String!
+  route: String!
+}
+
 type CareerProgressions {
   id: String!
   progress: String!
@@ -67,6 +75,7 @@ type User {
   phoneNumber: String!
   education: String!
   players: [Player!]
+  notifications: [Notification!]
   image: String
 }
 
@@ -93,6 +102,7 @@ type Query {
   playersFromUser: [Player!]!
   playersBySearchParameters(exitVelocity: [Float!]!, tenYard: [Float!]!, positionVelocity: String, sixtyTime: [Float!]!, playerThrows: String, bat: String, commitment: String, graduatingClass: [Float!]!, position: [String!], weight: [Float!]!, height: [Float!]!, name: String): [Player!]!
   preferences: Preferences!
+  getNotifications: [Notification!]!
 }
 
 type Mutation {
@@ -104,6 +114,9 @@ type Mutation {
   addPlayerImage(playerId: String!, imageId: String!): Boolean!
   updatePreferences(sendNotificationsToEmail: Boolean, enableMessageNotification: Boolean, enablePlayerMatchingNotification: Boolean, enableFriendRequestNotification: Boolean): Preferences!
   addGeneralReports(playerId: String!, videosIds: [String!], notes: String!, date: DateTime!): Boolean!
+  addNotification: Boolean!
+  addNotificationToUser(notificationId: String!): Boolean!
+  deleteNotificationToUser(notificationId: String!): Boolean!
 }
 
 """

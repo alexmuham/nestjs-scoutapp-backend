@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
 } from 'typeorm';
-import {File, GeneralReports, Notification,  Player, Preferences} from 'database/entities';
+import {File, GeneralReports, Notification, Player, Preferences} from 'database/entities';
 
 @Entity()
 export default class User {
