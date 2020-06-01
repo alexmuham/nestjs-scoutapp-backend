@@ -12,6 +12,7 @@ import Reports from './reports/Report';
 import GeneralReports from './reports/generalReports/GeneralReports';
 import ProReports from './reports/proReports/ProReports';
 import PitcherProReports from './reports/pitcherProReports/PitcherProReports';
+import BigBoard from './bigBoard/BigBoard';
 
 export {
   Friends,
@@ -28,4 +29,5 @@ export {
   GeneralReports,
   ProReports,
   PitcherProReports,
+  BigBoard,
 };

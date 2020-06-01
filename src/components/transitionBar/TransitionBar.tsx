@@ -17,6 +17,7 @@ interface TransitionBarProps {
   activeProspect?: boolean;
   activeNotification?: boolean;
   activeBigBord?: boolean;
+  activeNotificaions?: boolean;
 }
 
 const TransitionBar: React.FC<TransitionBarProps> = ({
@@ -63,13 +64,13 @@ const TransitionBar: React.FC<TransitionBarProps> = ({
         activeNotification,
         Item.Notification,
         Item.ActiveNotification,
-        routerActions.navigateToProspect,
+        routerActions.navigateToNotifications,
       )}
       {renderComponent(
         activeBigBord,
         Item.BigBord,
         Item.ActiveBigBord,
-        routerActions.navigateToProspect,
+        routerActions.navigateToBigBoard,
       )}
     </View>
   );

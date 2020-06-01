@@ -17,6 +17,7 @@ import {
   reducer as genReportsReduce,
   saga as geReportsSaga,
 } from 'state/ducks/generalReports';
+import {reducer as bigBoardReducer, saga as bigBoardSaga} from 'state/ducks/bigBoard';
 import {saga as imagePickerSaga} from 'state/ducks/imagePicker';
 import {saga as errorSaga} from 'state/ducks/error';
 
@@ -34,6 +35,7 @@ export const rootReducer = combineReducers<State>({
   friends: friendsReducer,
   search: searchReducer,
   genReports: genReportsReduce,
+  bigBoard: bigBoardReducer,
 });
 
 export function* rootSaga() {
@@ -52,5 +54,6 @@ export function* rootSaga() {
     searchSaga(),
     geReportsSaga(),
     proReportsSaga(),
+    bigBoardSaga(),
   ]);
 }

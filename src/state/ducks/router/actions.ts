@@ -18,6 +18,10 @@ export default {
   navigateToEditProspect: createAction<NavigationPayload>(
     types.NAVIGATE_TO_EDIT_PROSPECT,
   ),
+  navigateToNotifications: createAction<NavigationPayload>(
+    types.NAVIGATE_TO_NOTIFICATIONS,
+  ),
+  navigateToBigBoard: createAction<NavigationPayload>(types.NAVIGATE_TO_BIG_BOARD),
   navigateToImagePicker: createAction<NavigateFromPlayerId>(
     types.NAVIGATE_TO_IMAGE_PICKER,
   ),

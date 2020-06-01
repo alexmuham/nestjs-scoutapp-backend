@@ -13,6 +13,7 @@ import {actions as friendsActions} from '../ducks/friends';
 import {actions as searchActions} from '../ducks/search';
 import {actions as genReportsActions} from '../ducks/generalReports';
 import {actions as proReportsActions} from '../ducks/proReports';
+import {actions as bigBoardActions} from '../ducks/bigBoard';
 import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
@@ -71,6 +72,9 @@ export function useRouterActions() {
       dispatch(routerActions.navigateToProReports({playerId, history})),
     navigateToPitcherProReports: (playerId: string) =>
       dispatch(routerActions.navigateToPitcherReports({playerId, history})),
+    navigateToNotifications: () =>
+      dispatch(routerActions.navigateToNotifications({history})),
+    navigateToBigBoard: () => dispatch(routerActions.navigateToBigBoard({history})),
   };
 }
 
@@ -177,5 +181,13 @@ export function useProReportsActions() {
   return {
     addProReports: (request: proReportsRequest) =>
       dispatch(proReportsActions.addProReports({request, history})),
+  };
+}
+
+export function useBigBoard() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  return {
+    fetchPlayers: () => dispatch(bigBoardActions.fetchBigBoard({history})),
   };
 }

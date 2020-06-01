@@ -90,6 +90,14 @@ function navigateToPitcherReports({payload}: Action<NavigateFromPlayerId>) {
   payload.history.push(`/main/reports${payload.playerId}/pitcherPro`);
 }
 
+function navigateToNotifications({payload}: Action<NavigationPayload>) {
+  payload.history.push('/main/notifications');
+}
+
+function navigateToBigBoard({payload}: Action<NavigationPayload>) {
+  payload.history.push('/main/bigBoard');
+}
+
 export default function* () {
   yield all([
     takeEvery(types.GO_BACK, goBack),
@@ -115,5 +123,7 @@ export default function* () {
     takeEvery(types.NAVIGATE_TO_GENERAL_REPORTS, navigateToGeneralReports),
     takeEvery(types.NAVIGATE_TO_PRO_REPORTS, navigateToProReports),
     takeEvery(types.NAVIGATE_TO_PITCHER_PRO_REPORTS, navigateToPitcherReports),
+    takeEvery(types.NAVIGATE_TO_NOTIFICATIONS, navigateToNotifications),
+    takeEvery(types.NAVIGATE_TO_BIG_BOARD, navigateToBigBoard),
   ]);
 }

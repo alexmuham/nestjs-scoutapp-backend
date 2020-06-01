@@ -19,5 +19,6 @@ export default interface State {
   preferences: LoadableContainer<Preferences>;
   friends: LoadableContainer<Friends>;
   search: LoadableContainer<Players>;
+  bigBoard: LoadableContainer<Players>;
   genReports: GenReports;
 }

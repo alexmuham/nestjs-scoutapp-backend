@@ -19,6 +19,7 @@ import {
   GeneralReports,
   ProReports,
   PitcherProReports,
+  BigBoard,
 } from 'routes/main';
 import {useGuard} from 'state/hooks/UseGuard';
 
@@ -78,6 +79,10 @@ const Main: React.FC = () => {
       <Route exact path="/main/notifications">
         <Notifications />
       </Route>
+      <Route exact path="/main/bigBoard">
+        <BigBoard />
+      </Route>
+
       <TransitionBar activeProspect />
     </View>
   );
