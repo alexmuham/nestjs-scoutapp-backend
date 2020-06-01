@@ -1,5 +1,5 @@
 import {ID} from 'entities';
-import {User, Player, GeneralReports, Notification} from 'database/entities';
+import {User, Player, GeneralReports, Notification, ProReports} from 'database/entities';
 
 export default abstract class IUserStore {
   abstract createUser(user: Partial<User>): Promise<User>;
@@ -24,4 +24,6 @@ export default abstract class IUserStore {
     genReports: GeneralReports[],
     userId: string,
   ): Promise<void>;
+
+  abstract addProReportToUser(proReports: ProReports[], userId: string): Promise<void>;
 }

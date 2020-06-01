@@ -6,7 +6,14 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
 } from 'typeorm';
-import {File, GeneralReports, Notification, Player, Preferences} from 'database/entities';
+import {
+  File,
+  GeneralReports,
+  Notification,
+  Player,
+  Preferences,
+  ProReports,
+} from 'database/entities';
 
 @Entity()
 export default class User {
@@ -25,6 +32,7 @@ export default class User {
     imageId: string,
     genReports: GeneralReports[],
     notifications: Notification[],
+    proReports: ProReports[],
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -40,6 +48,7 @@ export default class User {
     this.imageId = imageId;
     this.genReports = genReports;
     this.notifications = notifications;
+    this.proReports = proReports;
   }
 
   @PrimaryGeneratedColumn('uuid')
@@ -87,4 +96,8 @@ export default class User {
   @ManyToMany(() => GeneralReports, {nullable: false})
   @JoinTable()
   genReports: GeneralReports[];
+
+  @ManyToMany(() => ProReports, {nullable: false})
+  @JoinTable()
+  proReports: ProReports[];
 }

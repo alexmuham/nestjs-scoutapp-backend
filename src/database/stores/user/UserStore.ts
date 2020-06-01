@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import IUserStore from './IUserStore';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
-import {GeneralReports, Player, User, Notification} from 'database/entities';
+import {GeneralReports, Player, User, Notification, ProReports} from 'database/entities';
 
 @Injectable()
 export default class UserStore implements IUserStore {
@@ -53,6 +53,10 @@ export default class UserStore implements IUserStore {
 
   async addGenReportToUser(genReports: GeneralReports[], userId: string) {
     await this.repository.save({id: userId, genReports});
+  }
+
+  async addProReportToUser(proReports: ProReports[], userId: string) {
+    await this.repository.save({id: userId, proReports});
   }
 
   async addNotificationToUser(notifications: Notification[], id: string) {

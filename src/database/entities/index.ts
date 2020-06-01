@@ -11,6 +11,7 @@ import Preferences from './Preferences';
 import GeneralReports from './GeneralReports';
 import Reports from './Reports';
 import Notification from './Notification';
+import ProReports from './ProReports';
 
 export {
   LocalLogin,
@@ -26,4 +27,5 @@ export {
   GeneralReports,
   Reports,
   Notification,
+  ProReports,
 };

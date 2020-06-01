@@ -16,6 +16,7 @@ import {
   GeneralReports,
   Reports,
   Notification,
+  ProReports,
 } from 'database/entities';
 
 const entities = [
@@ -32,6 +33,7 @@ const entities = [
   GeneralReports,
   Reports,
   Notification,
+  ProReports,
 ];
 
 const options = (configService: IConfigService): TypeOrmModuleOptions => ({
