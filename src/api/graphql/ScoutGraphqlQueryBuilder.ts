@@ -20,6 +20,7 @@ import {
   User,
   QueryPlayersBySearchParametersArgs,
   MutationAddGeneralReportsArgs,
+  MutationAddProReportsArgs,
 } from './types';
 import UpdatePreferences from '../entities/UpdatePreferences';
 
@@ -426,4 +427,167 @@ export const addGeneralReportsMutation = createMutationWithVariables<
     }
   `,
   ({addGeneralReports}) => addGeneralReports,
+);
+
+export const addProReportsMutation = createMutationWithVariables<
+  MutationAddProReportsArgs,
+  {addProReports: boolean},
+  boolean
+>(
+  gql`
+    mutation addProReports(
+      $signAbilityComment: String!
+      $signAbility: String!
+      $howWellSeenComment: String!
+      $howWellSeen: String!
+      $howWellKnownComment: String!
+      $howWellKnown: String!
+      $ETA: String!
+      $playerId: String!
+      $entryLevel: String!
+      $character: String!
+      $posInOrder: String!
+      $fortyYard: String!
+      $sixtyYard: String!
+      $homeToFirst: String!
+      $OFPDefense: String!
+      $OFPOffense: String!
+      $infield: String!
+      $BP: String!
+      $handEyeControl: String!
+      $baseballIQ: String!
+      $competitiveness: String!
+      $instincts: String!
+      $bodyControl: String!
+      $athleticism: String!
+      $aggressiveness: String!
+      $canHePlayAbj: String!
+      $canHePlayF: String!
+      $canHePlayP: String!
+      $feetAbj: String!
+      $feetF: String!
+      $rangeAbj: String!
+      $feetP: String!
+      $rangeF: String!
+      $rangeP: String!
+      $handsAbj: String!
+      $handsF: String!
+      $handsP: String!
+      $fieldingAbilityAbj: String!
+      $fieldingAbilityF: String!
+      $fieldingAbilityP: String!
+      $armStrengthAbj: String!
+      $armStrengthF: String!
+      $armStrengthP: String!
+      $baseStealerAbj: String!
+      $baseStealerF: String!
+      $baseStealerP: String!
+      $runningAbilityAbj: String!
+      $runningAbilityF: String!
+      $runningAbilityP: String!
+      $rawPwrAbj: String!
+      $rawPwrF: String!
+      $rawPwrP: String!
+      $powerFreqAbj: String!
+      $powerFreqF: String!
+      $powerFreqP: String!
+      $hitAppTypeAbj: String!
+      $hitAppTypeF: String!
+      $hitAppTypeP: String!
+      $hittingAbilityAdj: String!
+      $hittingAbilityF: String!
+      $hittingAbilityP: String!
+      $playerComp: String!
+      $physicalDest: String!
+      $future: String!
+      $current: String!
+      $adj: String!
+      $raw: String!
+      $ABs: String!
+      $innings: String!
+      $games: String!
+      $round: String!
+      $position: String!
+      $matchDate: DateTime!
+      $date: DateTime!
+    ) {
+      addProReports(
+        playerId: $playerId
+        date: $date
+        position: $position
+        ABs: $ABs
+        adj: $adj
+        aggressiveness: $aggressiveness
+        armStrengthAbj: $armStrengthAbj
+        armStrengthF: $armStrengthF
+        armStrengthP: $armStrengthP
+        athleticism: $athleticism
+        baseballIQ: $baseballIQ
+        baseStealerAbj: $baseStealerAbj
+        baseStealerF: $baseStealerF
+        baseStealerP: $baseStealerP
+        bodyControl: $bodyControl
+        BP: $BP
+        canHePlayAbj: $canHePlayAbj
+        canHePlayF: $canHePlayF
+        canHePlayP: $canHePlayP
+        character: $character
+        competitiveness: $competitiveness
+        current: $current
+        entryLevel: $entryLevel
+        ETA: $ETA
+        feetAbj: $feetAbj
+        feetF: $feetF
+        feetP: $feetP
+        fieldingAbilityAbj: $fieldingAbilityAbj
+        fieldingAbilityF: $fieldingAbilityF
+        fieldingAbilityP: $fieldingAbilityP
+        fortyYard: $fortyYard
+        future: $future
+        games: $games
+        handEyeControl: $handEyeControl
+        handsAbj: $handsAbj
+        handsF: $handsF
+        handsP: $handsP
+        hitAppTypeAbj: $hitAppTypeAbj
+        hitAppTypeF: $hitAppTypeF
+        hitAppTypeP: $hitAppTypeP
+        hittingAbilityAdj: $hittingAbilityAdj
+        hittingAbilityF: $hittingAbilityF
+        hittingAbilityP: $hittingAbilityP
+        homeToFirst: $homeToFirst
+        howWellKnown: $howWellKnown
+        howWellKnownComment: $howWellKnownComment
+        howWellSeen: $howWellSeen
+        howWellSeenComment: $howWellSeenComment
+        infield: $infield
+        innings: $innings
+        instincts: $instincts
+        matchDate: $matchDate
+        OFPDefense: $OFPDefense
+        OFPOffense: $OFPOffense
+        physicalDest: $physicalDest
+        playerComp: $playerComp
+        posInOrder: $posInOrder
+        powerFreqAbj: $powerFreqAbj
+        powerFreqF: $powerFreqF
+        powerFreqP: $powerFreqP
+        rangeAbj: $rangeAbj
+        rangeF: $rangeF
+        rangeP: $rangeP
+        raw: $raw
+        rawPwrAbj: $rawPwrAbj
+        rawPwrF: $rawPwrF
+        rawPwrP: $rawPwrP
+        round: $round
+        runningAbilityAbj: $runningAbilityAbj
+        runningAbilityF: $runningAbilityF
+        runningAbilityP: $runningAbilityP
+        signAbility: $signAbility
+        signAbilityComment: $signAbilityComment
+        sixtyYard: $sixtyYard
+      )
+    }
+  `,
+  ({addProReports}) => addProReports,
 );

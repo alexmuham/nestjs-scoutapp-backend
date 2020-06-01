@@ -18,6 +18,7 @@ import IApiTokenHolder from '@spryrocks/react-api/IApiTokenHolder';
 import UpdateFirebaseTokenRequest from 'api/entities/UpdateFirebaseTokenRequest';
 import {ApiBase} from '@spryrocks/react-api';
 import UpdatePreferences from './entities/UpdatePreferences';
+import ProReportsRequest from '../entities/proReportsRequest';
 
 export default class ScoutApi extends ApiBase implements IScoutApi {
   private readonly restApi: RestApi;
@@ -190,6 +191,87 @@ export default class ScoutApi extends ApiBase implements IScoutApi {
   ) {
     return this.wrapApiCall(async () =>
       this.graphqlApi.mutationAddGeneralReports(filesIds, date, notes, playerId),
+    );
+  }
+
+  public async addProReports(request: ProReportsRequest) {
+    return this.wrapApiCall(async () =>
+      this.graphqlApi.mutationAddProReport(
+        request.reportDate.dateValue,
+        request.reportDate.position,
+        request.reportDate.round,
+        request.reportDate.games,
+        request.reportDate.innings,
+        request.reportDate.ABs,
+        request.reportDate.raw,
+        request.reportDate.adj,
+        request.reportDate.current,
+        request.reportDate.future,
+        request.reportDate.physicalDest,
+        request.reportDate.playerComp,
+        request.parameterP.hittingAbility,
+        request.parameterF.hittingAbility,
+        request.parameterAdj.hittingAbility,
+        request.parameterP.hitAppType,
+        request.parameterF.hitAppType,
+        request.parameterAdj.hitAppType,
+        request.parameterP.powerFreq,
+        request.parameterF.powerFreq,
+        request.parameterAdj.powerFreq,
+        request.parameterP.rawPwr,
+        request.parameterF.rawPwr,
+        request.parameterAdj.rawPwr,
+        request.parameterP.runningAbility,
+        request.parameterF.runningAbility,
+        request.parameterAdj.runningAbility,
+        request.parameterP.baseStealer,
+        request.parameterF.baseStealer,
+        request.parameterAdj.baseStealer,
+        request.parameterP.armStrength,
+        request.parameterF.armStrength,
+        request.parameterAdj.armStrength,
+        request.parameterP.fieldingAbility,
+        request.parameterF.fieldingAbility,
+        request.parameterAdj.fieldingAbility,
+        request.parameterP.hands,
+        request.parameterF.hands,
+        request.parameterAdj.hands,
+        request.parameterP.range,
+        request.parameterF.range,
+        request.parameterAdj.range,
+        request.parameterP.feet,
+        request.parameterF.feet,
+        request.parameterAdj.feet,
+        request.parameterP.canHePlay,
+        request.parameterF.canHePlay,
+        request.parameterAdj.canHePlay,
+        request.aggressiveness,
+        request.athleticism,
+        request.bodyControl,
+        request.instincts,
+        request.competitiveness,
+        request.baseballIQ,
+        request.handEyeControl,
+        request.BP,
+        request.infield,
+        request.OFPOffense,
+        request.OFPDefense,
+        request.homeToFirst,
+        request.sixtyYard,
+        request.fortyYard,
+        request.posInOrder,
+        request.character,
+        request.entryLevel,
+        request.ETA,
+        request.howWellKnown,
+        request.howWellKnownComment,
+        request.howWellSeen,
+        request.howWellSeenComment,
+        request.signAbility,
+        request.signAbilityComment,
+        request.playerId,
+        request.reportDate.matchDate,
+      ),
     );
   }
 }

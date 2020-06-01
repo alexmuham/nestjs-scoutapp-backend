@@ -9,13 +9,22 @@ import {
   ReportsInput,
   RoleFuturePositionRound,
 } from 'components';
-import {useRouterActions} from 'state/hooks/UseActions';
+import {useProReportsActions, useRouterActions} from 'state/hooks/UseActions';
 import {useTranslation} from 'react-i18next';
 import {itemColor} from 'utils/itemColorUtil';
+import ProReportsRequest, {ReportDate, Parameter} from 'entities/proReportsRequest';
+import {useParams} from 'react-router-native';
+import {MaskService, TextInputMaskOptionProp} from 'react-native-masked-text';
+
+const MaskType = 'datetime';
+const MaskOptions: TextInputMaskOptionProp = {format: 'MM/DD/YYYY'};
 
 const ProReports: React.FC = () => {
   const {t} = useTranslation('proReports');
   const routerActions = useRouterActions();
+  const {id} = useParams();
+  const actions = useProReportsActions();
+
   const [dateValue, setDateValue] = useState<string>('');
 
   const [position, setPosition] = useState<string>('');
@@ -37,47 +46,47 @@ const ProReports: React.FC = () => {
 
   const [hitAppTypeP, setHitAppTypeP] = useState<string>('');
   const [hitAppTypeF, setHitAppTypeF] = useState<string>('');
-  const [hitAppTypeAbj, setHitAppTypeAbj] = useState<string>('');
+  const [hitAppTypeAdj, setHitAppTypeAdj] = useState<string>('');
 
   const [powerFreqP, setPowerFreqP] = useState<string>('');
   const [powerFreqF, setPowerFreqF] = useState<string>('');
-  const [powerFreqAbj, setPowerFreqAbj] = useState<string>('');
+  const [powerFreqAdj, setPowerFreqAdj] = useState<string>('');
 
   const [rawPwrP, setRawPwrP] = useState<string>('');
   const [rawPwrF, setRawPwrF] = useState<string>('');
-  const [rawPwrAbj, setRawPwrAbj] = useState<string>('');
+  const [rawPwrAdj, setRawPwrAdj] = useState<string>('');
 
   const [runningAbilityP, setRunningAbilityP] = useState<string>('');
   const [runningAbilityF, setRunningAbilityF] = useState<string>('');
-  const [runningAbilityAbj, setRunningAbilityAbj] = useState<string>('');
+  const [runningAbilityAdj, setRunningAbilityAdj] = useState<string>('');
 
   const [baseStealerP, setBaseStealerP] = useState<string>('');
   const [baseStealerF, setBaseStealerF] = useState<string>('');
-  const [baseStealerAbj, setBaseStealerAbj] = useState<string>('');
+  const [baseStealerAdj, setBaseStealerAdj] = useState<string>('');
 
   const [armStrengthP, setArmStrengthP] = useState<string>('');
   const [armStrengthF, setArmStrengthF] = useState<string>('');
-  const [armStrengthAbj, setArmStrengthAbj] = useState<string>('');
+  const [armStrengthAdj, setArmStrengthAdj] = useState<string>('');
 
   const [fieldingAbilityP, setFieldingAbilityP] = useState<string>('');
   const [fieldingAbilityF, setFieldingAbilityF] = useState<string>('');
-  const [fieldingAbilityAbj, setFieldingAbilityAbj] = useState<string>('');
+  const [fieldingAbilityAdj, setFieldingAbilityAdj] = useState<string>('');
 
   const [handsP, setHandsP] = useState<string>('');
   const [handsF, setHandsF] = useState<string>('');
-  const [handsAbj, setHandsAbj] = useState<string>('');
+  const [handsAdj, setHandsAdj] = useState<string>('');
 
   const [rangeP, setRangeP] = useState<string>('');
   const [rangeF, setRangeF] = useState<string>('');
-  const [rangeAbj, setRangeAbj] = useState<string>('');
+  const [rangeAdj, setRangeAdj] = useState<string>('');
 
   const [feetP, setFeetP] = useState<string>('');
   const [feetF, setFeetF] = useState<string>('');
-  const [feetAbj, setFeetAbj] = useState<string>('');
+  const [feetAdj, setFeetAdj] = useState<string>('');
 
   const [canHePlayP, setCanHePlayP] = useState<string>('');
   const [canHePlayF, setCanHePlayF] = useState<string>('');
-  const [canHePlayAbj, setCanHePlayAbj] = useState<string>('');
+  const [canHePlayAdj, setCanHePlayAdj] = useState<string>('');
 
   const [aggressiveness, setAggressiveness] = useState<string>('');
   const [athleticism, setAthleticism] = useState<string>('');
@@ -123,8 +132,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setHitAppTypeP(value),
       f: hitAppTypeF,
       setF: (value: string) => setHitAppTypeF(value),
-      adj: hitAppTypeAbj,
-      setAdj: (value: string) => setHitAppTypeAbj(value),
+      adj: hitAppTypeAdj,
+      setAdj: (value: string) => setHitAppTypeAdj(value),
     },
     {
       title: t('powerFreq'),
@@ -132,8 +141,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setPowerFreqP(value),
       f: powerFreqF,
       setF: (value: string) => setPowerFreqF(value),
-      adj: powerFreqAbj,
-      setAdj: (value: string) => setPowerFreqAbj(value),
+      adj: powerFreqAdj,
+      setAdj: (value: string) => setPowerFreqAdj(value),
     },
     {
       title: t('rawPwr'),
@@ -141,8 +150,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setRawPwrP(value),
       f: rawPwrF,
       setF: (value: string) => setRawPwrF(value),
-      adj: rawPwrAbj,
-      setAdj: (value: string) => setRawPwrAbj(value),
+      adj: rawPwrAdj,
+      setAdj: (value: string) => setRawPwrAdj(value),
     },
     {
       title: t('runningAbility'),
@@ -150,8 +159,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setRunningAbilityP(value),
       f: runningAbilityF,
       setF: (value: string) => setRunningAbilityF(value),
-      adj: runningAbilityAbj,
-      setAdj: (value: string) => setRunningAbilityAbj(value),
+      adj: runningAbilityAdj,
+      setAdj: (value: string) => setRunningAbilityAdj(value),
     },
     {
       title: t('baseStealer'),
@@ -159,8 +168,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setBaseStealerP(value),
       f: baseStealerF,
       setF: (value: string) => setBaseStealerF(value),
-      adj: baseStealerAbj,
-      setAdj: (value: string) => setBaseStealerAbj(value),
+      adj: baseStealerAdj,
+      setAdj: (value: string) => setBaseStealerAdj(value),
     },
     {
       title: t('armStrength'),
@@ -168,8 +177,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setArmStrengthP(value),
       f: armStrengthF,
       setF: (value: string) => setArmStrengthF(value),
-      adj: armStrengthAbj,
-      setAdj: (value: string) => setArmStrengthAbj(value),
+      adj: armStrengthAdj,
+      setAdj: (value: string) => setArmStrengthAdj(value),
     },
     {
       title: t('fieldingAbility'),
@@ -177,8 +186,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setFieldingAbilityP(value),
       f: fieldingAbilityF,
       setF: (value: string) => setFieldingAbilityF(value),
-      adj: fieldingAbilityAbj,
-      setAdj: (value: string) => setFieldingAbilityAbj(value),
+      adj: fieldingAbilityAdj,
+      setAdj: (value: string) => setFieldingAbilityAdj(value),
     },
     {
       title: t('hands'),
@@ -186,8 +195,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setHandsP(value),
       f: handsF,
       setF: (value: string) => setHandsF(value),
-      adj: handsAbj,
-      setAdj: (value: string) => setHandsAbj(value),
+      adj: handsAdj,
+      setAdj: (value: string) => setHandsAdj(value),
     },
     {
       title: t('range'),
@@ -195,8 +204,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setRangeP(value),
       f: rangeF,
       setF: (value: string) => setRangeF(value),
-      adj: rangeAbj,
-      setAdj: (value: string) => setRangeAbj(value),
+      adj: rangeAdj,
+      setAdj: (value: string) => setRangeAdj(value),
     },
     {
       title: t('feet'),
@@ -204,8 +213,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setFeetP(value),
       f: feetF,
       setF: (value: string) => setFeetF(value),
-      adj: feetAbj,
-      setAdj: (value: string) => setFeetAbj(value),
+      adj: feetAdj,
+      setAdj: (value: string) => setFeetAdj(value),
     },
     {
       title: t('canHePlay'),
@@ -213,8 +222,8 @@ const ProReports: React.FC = () => {
       setP: (value: string) => setCanHePlayP(value),
       f: canHePlayF,
       setF: (value: string) => setCanHePlayF(value),
-      adj: canHePlayAbj,
-      setAdj: (value: string) => setCanHePlayAbj(value),
+      adj: canHePlayAdj,
+      setAdj: (value: string) => setCanHePlayAdj(value),
     },
   ];
 
@@ -383,6 +392,101 @@ const ProReports: React.FC = () => {
     },
   ];
 
+  const getDateByString = (value: string): Date => {
+    const rawString = MaskService.toRawValue(MaskType, value, MaskOptions);
+    return new Date(rawString);
+  };
+
+  const reportDate: ReportDate = {
+    ABs,
+    adj,
+    current,
+    dateValue: new Date(),
+    future,
+    games,
+    innings,
+    physicalDest,
+    playerComp,
+    position,
+    raw,
+    round,
+    matchDate: getDateByString(dateValue),
+  };
+  const parameterP: Parameter = {
+    armStrength: armStrengthP,
+    baseStealer: baseStealerP,
+    canHePlay: canHePlayP,
+    feet: feetP,
+    fieldingAbility: fieldingAbilityP,
+    hands: handsP,
+    hitAppType: hitAppTypeP,
+    hittingAbility: hittingAbilityP,
+    powerFreq: powerFreqP,
+    range: rangeP,
+    rawPwr: rawPwrP,
+    runningAbility: runningAbilityP,
+  };
+  const parameterF: Parameter = {
+    armStrength: armStrengthF,
+    baseStealer: baseStealerF,
+    canHePlay: canHePlayF,
+    feet: feetF,
+    fieldingAbility: fieldingAbilityF,
+    hands: handsF,
+    hitAppType: hitAppTypeF,
+    hittingAbility: hittingAbilityF,
+    powerFreq: powerFreqF,
+    range: rangeF,
+    rawPwr: rawPwrF,
+    runningAbility: runningAbilityF,
+  };
+  const parameterAdj: Parameter = {
+    armStrength: armStrengthAdj,
+    baseStealer: baseStealerAdj,
+    canHePlay: canHePlayAdj,
+    feet: feetAdj,
+    fieldingAbility: fieldingAbilityAdj,
+    hands: handsAdj,
+    hitAppType: hitAppTypeAdj,
+    hittingAbility: hittingAbilityAdj,
+    powerFreq: powerFreqAdj,
+    range: rangeAdj,
+    rawPwr: rawPwrAdj,
+    runningAbility: runningAbilityAdj,
+  };
+
+  const request = (): ProReportsRequest => ({
+    sixtyYard,
+    signAbilityComment,
+    signAbility,
+    posInOrder,
+    playerId: id,
+    OFPOffense,
+    OFPDefense,
+    instincts,
+    infield,
+    howWellSeenComment,
+    howWellSeen,
+    howWellKnownComment,
+    howWellKnown,
+    homeToFirst,
+    handEyeControl,
+    fortyYard,
+    ETA,
+    entryLevel,
+    competitiveness,
+    character,
+    BP,
+    bodyControl,
+    baseballIQ,
+    athleticism,
+    aggressiveness,
+    parameterAdj,
+    parameterF,
+    parameterP,
+    reportDate,
+  });
+
   const renderParameterItem = (value: string, setValue: (value: string) => void) => {
     return (
       <View style={styles.parameterTextInputContainer}>
@@ -520,7 +624,12 @@ const ProReports: React.FC = () => {
           />
         </View>
         <View>
-          <Button visualStyle="solid" title={t('saveReport')} style={styles.button} />
+          <Button
+            visualStyle="solid"
+            title={t('saveReport')}
+            style={styles.button}
+            onPress={() => actions.addProReports(request())}
+          />
         </View>
       </ScrollView>
     </View>

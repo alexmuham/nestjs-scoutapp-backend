@@ -12,11 +12,13 @@ import {actions as imagePickerActions} from '../ducks/imagePicker';
 import {actions as friendsActions} from '../ducks/friends';
 import {actions as searchActions} from '../ducks/search';
 import {actions as genReportsActions} from '../ducks/generalReports';
+import {actions as proReportsActions} from '../ducks/proReports';
 import RegisterRequest from '../../auth/RegisterRequest';
 import LoginRequest from '@spryrocks/react-auth/LoginRequest';
 import ForgotPasswordRequest from '../../api/entities/ForgotPasswordRequest';
 import UpdatePreferences from '../../api/entities/UpdatePreferences';
 import SearchRequest from '../../entities/SearchRequest';
+import proReportsRequest from '../../entities/proReportsRequest';
 
 export function useAuthActions() {
   const dispatch = useDispatch();
@@ -165,5 +167,15 @@ export function useGeneralReportsActions() {
       dispatch(
         genReportsActions.addGeneralReports({history, notes, date, filesIds, playerId}),
       ),
+  };
+}
+
+export function useProReportsActions() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  return {
+    addProReports: (request: proReportsRequest) =>
+      dispatch(proReportsActions.addProReports({request, history})),
   };
 }

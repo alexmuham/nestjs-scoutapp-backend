@@ -8,6 +8,7 @@ import Session from '@spryrocks/react-auth/Session';
 import Preferences from 'entities/Preferences';
 import UpdatePreferences from './entities/UpdatePreferences';
 import User from '../entities/User';
+import ProReportsRequest from '../entities/proReportsRequest';
 
 export interface IScoutApi {
   register(request: RegisterRequest): Promise<Session>;
@@ -69,4 +70,6 @@ export interface IScoutApi {
     notes: string,
     playerId: string,
   ): Promise<void>;
+
+  addProReports(request: ProReportsRequest): Promise<void>;
 }

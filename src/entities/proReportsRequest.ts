@@ -1,6 +1,6 @@
-export default interface ProReportsRequest {
-  dateValue: Date;
+export interface ReportDate {
   position: string;
+  dateValue: Date;
   round: string;
   games: string;
   innings: string;
@@ -11,42 +11,29 @@ export default interface ProReportsRequest {
   future: string;
   physicalDest: string;
   playerComp: string;
-  hittingAbilityP: string;
-  hittingAbilityF: string;
-  hittingAbilityAdj: string;
-  hitAppTypeP: string;
-  hitAppTypeF: string;
-  hitAppTypeAbj: string;
-  powerFreqP: string;
-  powerFreqF: string;
-  powerFreqAbj: string;
-  rawPwrP: string;
-  rawPwrF: string;
-  rawPwrAbj: string;
-  runningAbilityP: string;
-  runningAbilityF: string;
-  runningAbilityAbj: string;
-  baseStealerP: string;
-  baseStealerF: string;
-  baseStealerAbj: string;
-  armStrengthP: string;
-  armStrengthF: string;
-  armStrengthAbj: string;
-  fieldingAbilityP: string;
-  fieldingAbilityF: string;
-  fieldingAbilityAbj: string;
-  handsP: string;
-  handsF: string;
-  handsAbj: string;
-  rangeP: string;
-  rangeF: string;
-  rangeAbj: string;
-  feetP: string;
-  feetF: string;
-  feetAbj: string;
-  canHePlayP: string;
-  canHePlayF: string;
-  canHePlayAbj: string;
+  matchDate: Date;
+}
+
+export interface Parameter {
+  hitAppType: string;
+  hittingAbility: string;
+  powerFreq: string;
+  rawPwr: string;
+  runningAbility: string;
+  baseStealer: string;
+  armStrength: string;
+  fieldingAbility: string;
+  hands: string;
+  canHePlay: string;
+  range: string;
+  feet: string;
+}
+
+export default interface ProReportsRequest {
+  reportDate: ReportDate;
+  parameterP: Parameter;
+  parameterF: Parameter;
+  parameterAdj: Parameter;
   aggressiveness: string;
   athleticism: string;
   bodyControl: string;
@@ -71,4 +58,5 @@ export default interface ProReportsRequest {
   howWellSeenComment: string;
   signAbility: string;
   signAbilityComment: string;
+  playerId: string;
 }

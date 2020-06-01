@@ -10,6 +10,15 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type Notification = {
+   __typename?: 'Notification';
+  id: Scalars['ID'];
+  date: Scalars['String'];
+  state: Scalars['String'];
+  text: Scalars['String'];
+  route: Scalars['String'];
+};
+
 export type CareerProgressions = {
    __typename?: 'CareerProgressions';
   id: Scalars['String'];
@@ -81,6 +90,7 @@ export type User = {
   phoneNumber: Scalars['String'];
   education: Scalars['String'];
   players?: Maybe<Array<Player>>;
+  notifications?: Maybe<Array<Notification>>;
   image?: Maybe<Scalars['String']>;
 };
 
@@ -110,6 +120,7 @@ export type Query = {
   playersFromUser: Array<Player>;
   playersBySearchParameters: Array<Player>;
   preferences: Preferences;
+  getNotifications: Array<Notification>;
 };
 
 
@@ -148,6 +159,10 @@ export type Mutation = {
   addPlayerImage: Scalars['Boolean'];
   updatePreferences: Preferences;
   addGeneralReports: Scalars['Boolean'];
+  addProReports: Scalars['Boolean'];
+  addNotification: Scalars['Boolean'];
+  addNotificationToUser: Scalars['Boolean'];
+  deleteNotificationToUser: Scalars['Boolean'];
 };
 
 
@@ -195,5 +210,93 @@ export type MutationAddGeneralReportsArgs = {
   videosIds?: Maybe<Array<Scalars['String']>>;
   notes: Scalars['String'];
   date: Scalars['DateTime'];
+};
+
+
+export type MutationAddProReportsArgs = {
+  signAbilityComment: Scalars['String'];
+  signAbility: Scalars['String'];
+  howWellSeenComment: Scalars['String'];
+  howWellSeen: Scalars['String'];
+  howWellKnownComment: Scalars['String'];
+  howWellKnown: Scalars['String'];
+  ETA: Scalars['String'];
+  playerId: Scalars['String'];
+  entryLevel: Scalars['String'];
+  character: Scalars['String'];
+  posInOrder: Scalars['String'];
+  fortyYard: Scalars['String'];
+  sixtyYard: Scalars['String'];
+  homeToFirst: Scalars['String'];
+  OFPDefense: Scalars['String'];
+  OFPOffense: Scalars['String'];
+  infield: Scalars['String'];
+  BP: Scalars['String'];
+  handEyeControl: Scalars['String'];
+  baseballIQ: Scalars['String'];
+  competitiveness: Scalars['String'];
+  instincts: Scalars['String'];
+  bodyControl: Scalars['String'];
+  athleticism: Scalars['String'];
+  aggressiveness: Scalars['String'];
+  canHePlayAbj: Scalars['String'];
+  canHePlayF: Scalars['String'];
+  canHePlayP: Scalars['String'];
+  feetAbj: Scalars['String'];
+  feetF: Scalars['String'];
+  rangeAbj: Scalars['String'];
+  feetP: Scalars['String'];
+  rangeF: Scalars['String'];
+  rangeP: Scalars['String'];
+  handsAbj: Scalars['String'];
+  handsF: Scalars['String'];
+  handsP: Scalars['String'];
+  fieldingAbilityAbj: Scalars['String'];
+  fieldingAbilityF: Scalars['String'];
+  fieldingAbilityP: Scalars['String'];
+  armStrengthAbj: Scalars['String'];
+  armStrengthF: Scalars['String'];
+  armStrengthP: Scalars['String'];
+  baseStealerAbj: Scalars['String'];
+  baseStealerF: Scalars['String'];
+  baseStealerP: Scalars['String'];
+  runningAbilityAbj: Scalars['String'];
+  runningAbilityF: Scalars['String'];
+  runningAbilityP: Scalars['String'];
+  rawPwrAbj: Scalars['String'];
+  rawPwrF: Scalars['String'];
+  rawPwrP: Scalars['String'];
+  powerFreqAbj: Scalars['String'];
+  powerFreqF: Scalars['String'];
+  powerFreqP: Scalars['String'];
+  hitAppTypeAbj: Scalars['String'];
+  hitAppTypeF: Scalars['String'];
+  hitAppTypeP: Scalars['String'];
+  hittingAbilityAdj: Scalars['String'];
+  hittingAbilityF: Scalars['String'];
+  hittingAbilityP: Scalars['String'];
+  playerComp: Scalars['String'];
+  physicalDest: Scalars['String'];
+  future: Scalars['String'];
+  current: Scalars['String'];
+  adj: Scalars['String'];
+  raw: Scalars['String'];
+  ABs: Scalars['String'];
+  innings: Scalars['String'];
+  games: Scalars['String'];
+  round: Scalars['String'];
+  position: Scalars['String'];
+  matchDate: Scalars['DateTime'];
+  date: Scalars['DateTime'];
+};
+
+
+export type MutationAddNotificationToUserArgs = {
+  notificationId: Scalars['String'];
+};
+
+
+export type MutationDeleteNotificationToUserArgs = {
+  notificationId: Scalars['String'];
 };
 
