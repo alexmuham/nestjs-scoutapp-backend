@@ -99,6 +99,14 @@ const styles = StyleSheet.create({
     borderColor: '#FFFFFF',
     borderWidth: 1,
   },
+  additionalInfoContainer: {
+    paddingTop: 35,
+  },
+  button: {
+    paddingTop: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+  },
 });
 
 export default styles;

@@ -19,6 +19,8 @@ import TextArea from './textInput/TextArea';
 import VideoContainer from './video/VideoContainer';
 import RoleFuturePositionRound from './roleFuturePositionRound/RoleFututlePositionRpund';
 import ReportsInput from './reportsInput/ReportsInput';
+import ReportParameterItem from './reportParametrItem/ReportParameterItem';
+import ReportCommentsField from './reportCommentsField/ReportCommentsField';
 
 export {
   //
@@ -43,4 +45,6 @@ export {
   VideoContainer,
   RoleFuturePositionRound,
   ReportsInput,
+  ReportParameterItem,
+  ReportCommentsField,
 };
