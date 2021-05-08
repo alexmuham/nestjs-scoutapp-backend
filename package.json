@@ -45,7 +45,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "7.0.0-beta.0",
-    "typeorm": "^0.2.24",
+    "typeorm": "^0.2.25",
     "uuid": "^8.0.0",
     "uuidv4": "^6.0.8",
     "@spryrocks/file-storage": "^0.0.1-alpha.3"
